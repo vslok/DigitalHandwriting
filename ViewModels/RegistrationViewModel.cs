@@ -1,6 +1,8 @@
-﻿using DigitalHandwriting.Context;
+﻿using DigitalHandwriting.Commands;
+using DigitalHandwriting.Context;
 using DigitalHandwriting.Helpers;
 using DigitalHandwriting.Models;
+using DigitalHandwriting.Services;
 using DigitalHandwriting.Stores;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -17,6 +19,7 @@ namespace DigitalHandwriting.ViewModels
         public ICommand OnCheckTextBoxKeyUpEventCommand { get; set; }
         public ICommand OnResetRegistrationWindowButtonClickCommand { get; set; }
         public ICommand OnRegistrationFinalizeButtonClickCommand { get; set; }
+        public ICommand ReturnHomeCommand { get; set; }
 
 
         private int _checkTextCurrentLetterIndex = 0;
@@ -48,12 +51,19 @@ namespace DigitalHandwriting.ViewModels
         private List<string> _registratedLogins;
 
         public RegistrationViewModel(
-            Func<HomeViewModel> homeViewModelfactory,
+            Func<HomeViewModel> homeViewModelFactory,
             NavigationStore navigationStore)
         {
             OnCheckTextBoxKeyDownEventCommand = new RelayCommand<object>(OnCheckTextBoxKeyDownEvent);
             OnCheckTextBoxKeyUpEventCommand = new RelayCommand<object>(OnCheckTextBoxKeyUpEvent);
-            OnRegistrationFinalizeButtonClickCommand = new Command(OnRegistrationFinalizeButtonClick);
+            OnRegistrationFinalizeButtonClickCommand = new NavigateCommand<HomeViewModel>(
+                new NavigationService<HomeViewModel>(
+                    navigationStore,
+                    () => homeViewModelFactory()), OnRegistrationFinalizeButtonClick);
+            ReturnHomeCommand = new NavigateCommand<HomeViewModel>(
+                new NavigationService<HomeViewModel>(
+                    navigationStore,
+                    () => homeViewModelFactory()));
             OnResetRegistrationWindowButtonClickCommand = new Command(OnResetRegistrationWindowButtonClick);
 
             for (int i = 0; i < 3; i++)
@@ -94,8 +104,6 @@ namespace DigitalHandwriting.ViewModels
                 if (value == 3)
                 {
                     IsLoginBoxEnabled = false;
-                    IsCheckTextBoxEnabled = false;
-                    IsFinalizeButtonVisible = true;
                 }
             }
         }
@@ -113,7 +121,14 @@ namespace DigitalHandwriting.ViewModels
         public string UserCheckText
         {
             get => _userCheckText;
-            set => SetProperty(ref _userCheckText, value);
+            set 
+            {
+                SetProperty(ref _userCheckText, value);
+                if (_registrationStep == 3 && _userCheckText.Length > 8)
+                {
+                    IsFinalizeButtonVisible = true;
+                }
+            }
         }
 
         private void OnRegistrationFinalizeButtonClick()
@@ -122,7 +137,8 @@ namespace DigitalHandwriting.ViewModels
             {
                 Login = UserLogin,
                 KeyPressedTimes = JsonSerializer.Serialize(Calculations.CalculateMedianValue(_keyPressedTimes)),
-                BeetwenKeysTimes = JsonSerializer.Serialize(Calculations.CalculateMedianValue(_beetwenKeysTimes))
+                BeetwenKeysTimes = JsonSerializer.Serialize(Calculations.CalculateMedianValue(_beetwenKeysTimes)),
+                Password = 
             };
 
             db.Users.Add(user);
@@ -133,7 +149,7 @@ namespace DigitalHandwriting.ViewModels
         {
             var e = (KeyEventArgs)props;
 
-            if (!_helper.CheckCurrentLetterKeyPressed(e, _checkTextCurrentLetterIndex - 1, _checkTextWithUpperCase))
+            if (!_helper.CheckCurrentLetterKeyPressed(e, _checkTextCurrentLetterIndex - 1, _checkTextWithUpperCase) || _registrationStep == 3)
             {
                 e.Handled = true;
                 return;
@@ -153,7 +169,7 @@ namespace DigitalHandwriting.ViewModels
         private void OnCheckTextBoxKeyDownEvent(object props)
         {
             var e = (KeyEventArgs)props;
-            if (!_helper.CheckCurrentLetterKeyPressed(e, _checkTextCurrentLetterIndex, _checkTextWithUpperCase))
+            if (!_helper.CheckCurrentLetterKeyPressed(e, _checkTextCurrentLetterIndex, _checkTextWithUpperCase) || _registrationStep == 3)
             {
                 e.Handled = true;
                 return;

@@ -18,6 +18,7 @@ namespace DigitalHandwriting
             "After entering the full text, the field will be cleared and the new step will be shown.";
         public const string SecondRegistrationStepDescription = "Enter Check text again";
         public const string ThirdRegistrationStepDescription = "And again";
-        public const string FourthRegistrationStepDescription = "Thanks for registration! Click on finalize button for close the window.";
+        public const string FourthRegistrationStepDescription = "Come up with a text that is at least 8 characters long in case the system crashes";
+        //public const string FifthRegistrationStepDescription = "Thanks for registration! Click on finalize button for close the window.";
     }
 }

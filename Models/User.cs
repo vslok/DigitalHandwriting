@@ -17,5 +17,8 @@ namespace DigitalHandwriting.Models
 
         [Required]
         public string BeetwenKeysTimes { get; set; }
+
+        [Required]
+        public string Password { get; set; }
     }
 }

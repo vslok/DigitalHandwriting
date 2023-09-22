@@ -19,11 +19,13 @@ namespace DigitalHandwriting
             AppHost = Host.CreateDefaultBuilder()
             .ConfigureServices((hostContext, services) =>
             {
-                services.AddSingleton<MainViewModel>();
                 services.AddSingleton<NavigationStore>();
+
+                services.AddSingleton<MainViewModel>();
                 services.AddSingleton<HomeViewModel>();
-                services.AddSingleton<RegistrationViewModel>();
                 services.AddSingleton<UserInfoViewModel>();
+                services.AddTransient<RegistrationViewModel>();
+
                 services.AddSingleton<MainWindow>((provider) =>
                 {
                     return new MainWindow()
@@ -31,6 +33,7 @@ namespace DigitalHandwriting
                         DataContext = provider.GetRequiredService<MainViewModel>()
                     };
                 });
+
                 services.AddTransient<Func<HomeViewModel>>((provider) =>
                 {
                     return new Func<HomeViewModel>(
