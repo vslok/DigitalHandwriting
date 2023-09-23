@@ -22,6 +22,6 @@ namespace DigitalHandwriting.Models
         public string Password { get; set; }
 
         [Required]
-        public string Sault { get; set; }
+        public string Salt { get; set; }
     }
 }

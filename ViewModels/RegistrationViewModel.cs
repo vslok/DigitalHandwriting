@@ -138,7 +138,8 @@ namespace DigitalHandwriting.ViewModels
                 Login = UserLogin,
                 KeyPressedTimes = JsonSerializer.Serialize(Calculations.CalculateMedianValue(_keyPressedTimes)),
                 BeetwenKeysTimes = JsonSerializer.Serialize(Calculations.CalculateMedianValue(_beetwenKeysTimes)),
-                Password = 
+                Password = EncryptionService.GetPasswordHash(UserCheckText, out string salt),
+                Salt = salt
             };
 
             db.Users.Add(user);
