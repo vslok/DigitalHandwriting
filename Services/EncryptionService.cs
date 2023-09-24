@@ -26,7 +26,8 @@ namespace DigitalHandwriting.Services
             argon2.Salt = Encoding.UTF8.GetBytes(salt);
 
             var hash = argon2.GetBytes(128);
-            return hash?.ToString() ?? throw new Exception("Failed to create password hash");
+            var temp = Encoding.UTF8.GetString(hash, 0, hash.Length);
+            return Encoding.UTF8.GetString(hash, 0, hash.Length);
         }
     }
 }

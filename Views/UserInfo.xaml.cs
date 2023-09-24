@@ -18,8 +18,8 @@ namespace DigitalHandwriting.Views
 {
     /// <summary>
     /// Interaction logic for UserInfo.xaml
-    /// </summary>
-    public partial class UserInfo : UserControl
+    /// </summary>  
+    public partial class UserInfo : Window
     {
         UserInfoViewModel _viewModel;
         public UserInfo(User user, List<int> keyPressedTimes, List<int> beetwenKeysTimes)

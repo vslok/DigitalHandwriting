@@ -10,6 +10,16 @@ namespace DigitalHandwriting.Services
 {
     public static class AuthentificationService
     {
+        public static bool PasswordAuthentification(User user, string password)
+        {
+            var userPasswordHash = user.Password;
+            var userPasswordSalt = user.Salt;
+
+            var inputPasswordHash = EncryptionService.GetPasswordHash(password, userPasswordSalt);
+
+            return userPasswordHash.Equals(inputPasswordHash);
+        } 
+
         public static bool HandwritingAuthentification(User user, List<int> loginKeyPressedTimes, List<int> loginBeetwenKeysTimes, 
             out double keyPressedDistance, out double beetweenKeysDistance)
         {

@@ -40,6 +40,8 @@ namespace DigitalHandwriting.ViewModels
 
         private string _userLogin = "";
 
+        private string _userPassword = "";
+
         private DateTime _lastKeyDownTime;
 
         private List<List<int>> _keyPressedTimes = new List<List<int>>(3);
@@ -47,8 +49,6 @@ namespace DigitalHandwriting.ViewModels
         private List<List<int>> _beetwenKeysTimes = new List<List<int>>(3);
 
         private ApplicationContext db = new ApplicationContext();
-
-        private List<string> _registratedLogins;
 
         public RegistrationViewModel(
             Func<HomeViewModel> homeViewModelFactory,
@@ -74,7 +74,6 @@ namespace DigitalHandwriting.ViewModels
 
             db.Database.EnsureCreated();
             db.Users.Load();
-            _registratedLogins = db.Users.Local.Select(user => user.Login).ToList();
         }
 
         public bool IsLoginBoxEnabled
@@ -103,7 +102,8 @@ namespace DigitalHandwriting.ViewModels
                 SetProperty(ref _registrationStep, value);
                 if (value == 3)
                 {
-                    IsLoginBoxEnabled = false;
+                    IsCheckTextBoxEnabled = false;
+                    InvokeOnPropertyChangedEvent(nameof(IsPasswordTextBoxVisible));
                 }
             }
         }
@@ -114,7 +114,22 @@ namespace DigitalHandwriting.ViewModels
             set
             {
                 SetProperty(ref _userLogin, value);
-                IsCheckTextBoxEnabled = !string.IsNullOrEmpty(value) && !_registratedLogins.Contains(value); ;
+                IsCheckTextBoxEnabled = !string.IsNullOrEmpty(value);
+            }
+        }
+
+        public bool IsPasswordTextBoxVisible => !IsCheckTextBoxEnabled && RegistrationStep != 0;
+
+        public string UserPassword
+        {
+            get => _userPassword;
+            set
+            {
+                SetProperty(ref _userPassword, value);
+                if (_registrationStep == 3 && _userPassword.Length > 8)
+                {
+                    IsFinalizeButtonVisible = true;
+                }
             }
         }
 
@@ -123,11 +138,8 @@ namespace DigitalHandwriting.ViewModels
             get => _userCheckText;
             set 
             {
+                IsLoginBoxEnabled = false;
                 SetProperty(ref _userCheckText, value);
-                if (_registrationStep == 3 && _userCheckText.Length > 8)
-                {
-                    IsFinalizeButtonVisible = true;
-                }
             }
         }
 
@@ -138,7 +150,7 @@ namespace DigitalHandwriting.ViewModels
                 Login = UserLogin,
                 KeyPressedTimes = JsonSerializer.Serialize(Calculations.CalculateMedianValue(_keyPressedTimes)),
                 BeetwenKeysTimes = JsonSerializer.Serialize(Calculations.CalculateMedianValue(_beetwenKeysTimes)),
-                Password = EncryptionService.GetPasswordHash(UserCheckText, out string salt),
+                Password = EncryptionService.GetPasswordHash(UserPassword, out string salt),
                 Salt = salt
             };
 
@@ -194,6 +206,7 @@ namespace DigitalHandwriting.ViewModels
             IsFinalizeButtonVisible = false;
             UserLogin = "";
             UserCheckText = "";
+            UserPassword = "";
             _checkTextCurrentLetterIndex = 0;
 
             _keyPressedTimes = new List<List<int>>(3);

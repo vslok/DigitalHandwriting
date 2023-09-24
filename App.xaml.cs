@@ -22,8 +22,9 @@ namespace DigitalHandwriting
                 services.AddSingleton<NavigationStore>();
 
                 services.AddSingleton<MainViewModel>();
-                services.AddSingleton<HomeViewModel>();
                 services.AddSingleton<UserInfoViewModel>();
+
+                services.AddTransient<HomeViewModel>();
                 services.AddTransient<RegistrationViewModel>();
 
                 services.AddSingleton<MainWindow>((provider) =>
@@ -51,12 +52,6 @@ namespace DigitalHandwriting
                             provider.GetRequiredService<NavigationStore>())
                     );
                 });
-                //services.AddTransient<Func<UserInfoViewModel>>((provider) =>
-                //{
-                //    return new Func<UserInfoViewModel>(
-                //        () => new UserInfoViewModel()
-                //    );
-                //});
             }).Build();
         }
 

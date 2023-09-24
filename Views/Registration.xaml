@@ -12,36 +12,43 @@
         Height="300" Width="500">
 
     <UserControl.Content>
-        <StackPanel Margin="10">
-            <Label Content="Login:"/>
-            <TextBox Text="{Binding UserLogin, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" IsEnabled="{Binding IsLoginBoxEnabled}"/>
+        <Grid Margin="10">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="25"/>
+                <RowDefinition Height="25"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="25"/>
+                <RowDefinition Height="25"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+
+            <Label Content="Login:" Grid.Row="0"/>
+            <TextBox Text="{Binding UserLogin, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" IsEnabled="{Binding IsLoginBoxEnabled}" Grid.Row="1"/>
             <TextBlock Text="{Binding RegistrationStep, Converter={converters:RegistrationInformationStringConverter}}" 
-                       Width="400" Margin="25" TextWrapping="Wrap" TextAlignment="Center"/>
-            <StackPanel>
-                <Label Content="Check text: lorem ipsum dolor sit amet consectetur adipiscing elit"/>
-                <TextBox Text="{Binding UserCheckText, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" IsEnabled="{Binding IsCheckTextBoxEnabled}">
-                    <b:Interaction.Triggers>
-                        <b:EventTrigger EventName="PreviewKeyDown">
-                            <b:InvokeCommandAction Command="{Binding OnCheckTextBoxKeyDownEventCommand}" PassEventArgsToCommand="True"/>
-                        </b:EventTrigger>
-                        <b:EventTrigger EventName="PreviewKeyUp">
-                            <b:InvokeCommandAction Command="{Binding OnCheckTextBoxKeyUpEventCommand}" PassEventArgsToCommand="True"/>
-                        </b:EventTrigger>
-                    </b:Interaction.Triggers>
-                </TextBox>
-            </StackPanel>
-            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                       Width="400" Margin="25" TextWrapping="Wrap" TextAlignment="Center" Grid.Row="2"/>
+
+            <Label Content="Check text: lorem ipsum dolor sit amet consectetur adipiscing elit" Grid.Row="3" Visibility="{Binding IsCheckTextBoxEnabled,Converter={converters:BoolToVisibilityConverter}}"/>
+            <TextBox Text="{Binding UserCheckText, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" IsEnabled="{Binding IsCheckTextBoxEnabled}" Grid.Row="4" Visibility="{Binding IsCheckTextBoxEnabled,Converter={converters:BoolToVisibilityConverter}}">
+                <b:Interaction.Triggers>
+                    <b:EventTrigger EventName="PreviewKeyDown">
+                        <b:InvokeCommandAction Command="{Binding OnCheckTextBoxKeyDownEventCommand}" PassEventArgsToCommand="True"/>
+                    </b:EventTrigger>
+                    <b:EventTrigger EventName="PreviewKeyUp">
+                        <b:InvokeCommandAction Command="{Binding OnCheckTextBoxKeyUpEventCommand}" PassEventArgsToCommand="True"/>
+                    </b:EventTrigger>
+                </b:Interaction.Triggers>
+            </TextBox>
+
+            <Label Content="Password:" Grid.Row="3" Visibility="{Binding IsPasswordTextBoxVisible, Converter={converters:BoolToVisibilityConverter}}"/>
+            <TextBox Text="{Binding UserPassword, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
+                     IsEnabled="{Binding IsPasswordTextBoxVisible}" Visibility="{Binding IsPasswordTextBoxVisible, Converter={converters:BoolToVisibilityConverter}}" Grid.Row="4"/>
+
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Grid.Row="5">
                 <Button Content="Authorize" HorizontalAlignment="Center" Width="100" Margin="10" Command="{Binding ReturnHomeCommand}"/>
                 <Button Content="Reset" HorizontalAlignment="Center" Width="100" Command="{Binding OnResetRegistrationWindowButtonClickCommand}" Margin="10"/>
                 <Button Content="Finalize" HorizontalAlignment="Center" Command="{Binding OnRegistrationFinalizeButtonClickCommand}" Width="100" Margin="10" 
-                        Visibility="{Binding IsFinalizeButtonVisible, Converter={converters:BoolToVisibilityConverter}}">
-                    <b:Interaction.Triggers>
-                        <b:EventTrigger EventName="Click">
-                            <b:CallMethodAction TargetObject="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}}" MethodName="Close"/>
-                        </b:EventTrigger>
-                    </b:Interaction.Triggers>
-                </Button>
+                        Visibility="{Binding IsFinalizeButtonVisible, Converter={converters:BoolToVisibilityConverter}}" />
             </StackPanel>
-        </StackPanel>
+        </Grid>
     </UserControl.Content>
 </UserControl>

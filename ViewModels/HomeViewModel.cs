@@ -25,9 +25,15 @@ namespace DigitalHandwriting.ViewModels
         public ICommand OnCheckTextBoxKeyDownEventCommand { get; set; }
         public ICommand OnCheckTextBoxKeyUpEventCommand { get; set; }
 
+        private int _authentificationTry = 0;
+
         private int _checkTextCurrentLetterIndex = 0;
 
         private bool _isAuthentificationButtonEnabled = false;
+
+        private bool _isPasswordAuthentificationEnabled = false;
+
+        private bool _isHandwritingAuthentificationEnabled = true;
 
         private Helper _helper = new Helper();
 
@@ -36,6 +42,8 @@ namespace DigitalHandwriting.ViewModels
         private string _userCheckText = "";
 
         private string _userLogin = "";
+
+        private string _userPassword = "";
 
         private DateTime _lastKeyDownTime;
 
@@ -61,6 +69,18 @@ namespace DigitalHandwriting.ViewModels
             db.Database.EnsureCreated();
         }
 
+        public bool IsHandwritingAuthentificationEnabled
+        {
+            get => _isHandwritingAuthentificationEnabled;
+            set => SetProperty(ref _isHandwritingAuthentificationEnabled, value);
+        }
+
+        public bool IsPasswordAuthentificationEnabled
+        {
+            get => _isPasswordAuthentificationEnabled;
+            set => SetProperty(ref _isPasswordAuthentificationEnabled, value);
+        }
+
         public bool IsAuthentificationButtonEnabled
         {
             get => _isAuthentificationButtonEnabled;
@@ -72,7 +92,21 @@ namespace DigitalHandwriting.ViewModels
             get => _userLogin;
             set
             {
+                _authentificationTry = 0;
                 SetProperty(ref _userLogin, value);
+            }
+        }
+
+        public string UserPassword
+        {
+            get => _userPassword; 
+            set
+            {
+                SetProperty(ref _userPassword, value);
+                if (_userPassword.Length > 8)
+                {
+                    IsAuthentificationButtonEnabled = true;
+                }
             }
         }
 
@@ -102,7 +136,7 @@ namespace DigitalHandwriting.ViewModels
                 var userRegistrated = db.Users.Local.Select(user => user.Login).Contains(_userLogin);
                 if (!userRegistrated)
                 {
-                    ResetWindowState();
+                    ResetTryState();
                 }
                 else
                 {
@@ -130,28 +164,67 @@ namespace DigitalHandwriting.ViewModels
             _checkTextCurrentLetterIndex++;
         }
 
-        private void OnRegistrationButtonClick()
-        {
-            //var window = new Registration();
-            //window.ShowDialog();
-        }
-
         private void OnAuthentificationButtonClick()
         {
             var user = db.Users.Select(user => user).Where(user => user.Login == UserLogin).FirstOrDefault();
-            //var window = new UserInfo(user, _keyPressedTimes, _beetwenKeysTimes);
-            //window.ShowDialog();
-            ResetWindowState();
+
+            if (IsPasswordAuthentificationEnabled)
+            {
+                var IsAuthentificated = AuthentificationService.PasswordAuthentification(user, UserPassword);
+                if (!IsAuthentificated)
+                {
+                    ResetWindowState();
+                    return;
+                }
+            }
+
+            if (_authentificationTry <= 2)
+            {
+                var isAuthentificated = AuthentificationService.HandwritingAuthentification(user, _keyPressedTimes, _beetwenKeysTimes,
+                    out double keyPressedDistance, out double beetweenKeysDistance);
+
+                var window = new UserInfo(user, _keyPressedTimes, _beetwenKeysTimes);
+                window.ShowDialog();
+
+                if (_authentificationTry == 2)
+                {
+                    EnablePasswordAuthentification();
+                }
+
+                if (!isAuthentificated)
+                {
+                    _authentificationTry++;
+                }
+            }
+
+            ResetTryState();
+        }
+
+        private void ResetTryState()
+        {
+            IsAuthentificationButtonEnabled = false;
+            _checkTextCurrentLetterIndex = 0;
+            UserCheckText = "";
+            UserPassword = "";
+
+            _keyPressedTimes = new List<int>();
+            _beetwenKeysTimes = new List<int>();
         }
 
         private void ResetWindowState()
         {
-            IsAuthentificationButtonEnabled = false;
+            ResetTryState();
+            IsPasswordAuthentificationEnabled = false;
+            IsHandwritingAuthentificationEnabled = true;
+            UserLogin = "";
+        }
+
+        private void EnablePasswordAuthentification()
+        {
             UserCheckText = "";
             _checkTextCurrentLetterIndex = 0;
-
-            _keyPressedTimes = new List<int>();
-            _beetwenKeysTimes = new List<int>();
+            IsPasswordAuthentificationEnabled = true;
+            IsHandwritingAuthentificationEnabled = false;
         }
 
     }

@@ -24,8 +24,16 @@ namespace DigitalHandwriting.Commands
 
         protected override void MainAction(object parameter)
         {
-            _actionBeforeNavigation?.Invoke();
-            _navigationService.Navigate();
+            try 
+            { 
+                _actionBeforeNavigation?.Invoke();
+                _navigationService.Navigate();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex);
+            }
+
         }
     }
 }

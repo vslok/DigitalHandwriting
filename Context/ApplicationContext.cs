@@ -1,8 +1,10 @@
 ﻿using DigitalHandwriting.Models;
+using Microsoft.Data.Sqlite;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
 using System;
 using System.Collections.Generic;
+using System.Data.Common;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -35,7 +37,17 @@ namespace DigitalHandwriting.Context
                 baseDir = baseDir.Substring(0, index);
             }
 
-            builder.UseSqlite($"Data source={baseDir}{ConstStrings.DbName}");
+            var connectionStringBuilder = new SqliteConnectionStringBuilder { DataSource = $"{baseDir}{ConstStrings.DbName}" };
+            var connection = new SqliteConnection(connectionStringBuilder.ToString());
+
+            // Set up the passphrase for SQLCipher encryption
+            connection.Open();
+
+            using var command = connection.CreateCommand();
+            command.CommandText = "PRAGMA key = 'testpragma';";
+            command.ExecuteNonQuery();
+
+            builder.UseSqlite(connection);
         }
     }
 }
