@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Windows;
+using DigitalHandwriting.Services;
 using DigitalHandwriting.Stores;
 using DigitalHandwriting.ViewModels;
 using Microsoft.Extensions.DependencyInjection;
@@ -27,6 +28,8 @@ namespace DigitalHandwriting
                 services.AddTransient<HomeViewModel>();
                 services.AddTransient<RegistrationViewModel>();
 
+                services.AddTransient<KeyboardMetricsCollectionService>();
+
                 services.AddSingleton<MainWindow>((provider) =>
                 {
                     return new MainWindow()
@@ -40,7 +43,8 @@ namespace DigitalHandwriting
                     return new Func<HomeViewModel>(
                         () => new HomeViewModel(
                             provider.GetRequiredService<Func<RegistrationViewModel>>(),
-                            provider.GetRequiredService<NavigationStore>()
+                            provider.GetRequiredService<NavigationStore>(),
+                            provider.GetRequiredService<KeyboardMetricsCollectionService>()
                             )
                     );
                 });
@@ -49,7 +53,8 @@ namespace DigitalHandwriting
                     return new Func<RegistrationViewModel>(
                         () => new RegistrationViewModel(
                             provider.GetRequiredService<Func<HomeViewModel>>(),
-                            provider.GetRequiredService<NavigationStore>())
+                            provider.GetRequiredService<NavigationStore>(),
+                            provider.GetRequiredService<KeyboardMetricsCollectionService>())
                     );
                 });
             }).Build();

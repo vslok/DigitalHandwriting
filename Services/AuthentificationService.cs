@@ -20,16 +20,16 @@ namespace DigitalHandwriting.Services
             return userPasswordHash.Equals(inputPasswordHash);
         } 
 
-        public static bool HandwritingAuthentification(User user, List<int> loginKeyPressedTimes, List<int> loginBeetwenKeysTimes, 
-            out double keyPressedDistance, out double beetweenKeysDistance)
+        public static bool HandwritingAuthentification(User user, List<int> loginKeyPressedTimes, List<int> loginBetweenKeysTimes, 
+            out double keyPressedDistance, out double betweenKeysDistance)
         {
             var userKeyPressedTimes = JsonSerializer.Deserialize<List<int>>(user.KeyPressedTimes);
-            var userBeetwenKeysTimes = JsonSerializer.Deserialize<List<int>>(user.BeetwenKeysTimes);
+            var userBetweenKeysTimes = JsonSerializer.Deserialize<List<int>>(user.BetweenKeysTimes);
 
             keyPressedDistance = EuclideanDistance(userKeyPressedTimes, loginKeyPressedTimes);
-            beetweenKeysDistance = EuclideanDistance(userBeetwenKeysTimes, loginBeetwenKeysTimes);
+            betweenKeysDistance = EuclideanDistance(userBetweenKeysTimes, loginBetweenKeysTimes);
 
-            return keyPressedDistance <= 0.20 && beetweenKeysDistance <= 0.30;
+            return keyPressedDistance <= 0.20 && betweenKeysDistance <= 0.30;
         }
         private static double EuclideanDistance(List<int> etVector, List<int> curVector)
         {

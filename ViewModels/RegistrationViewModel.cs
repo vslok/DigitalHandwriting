@@ -42,17 +42,14 @@ namespace DigitalHandwriting.ViewModels
 
         private string _userPassword = "";
 
-        private DateTime _lastKeyDownTime;
-
-        private List<List<int>> _keyPressedTimes = new List<List<int>>(3);
-
-        private List<List<int>> _beetwenKeysTimes = new List<List<int>>(3);
-
         private ApplicationContext db = new ApplicationContext();
+
+        private readonly KeyboardMetricsCollectionService _keyboardMetricsCollector;
 
         public RegistrationViewModel(
             Func<HomeViewModel> homeViewModelFactory,
-            NavigationStore navigationStore)
+            NavigationStore navigationStore,
+            KeyboardMetricsCollectionService keyboardMetricsCollector)
         {
             OnCheckTextBoxKeyDownEventCommand = new RelayCommand<object>(OnCheckTextBoxKeyDownEvent);
             OnCheckTextBoxKeyUpEventCommand = new RelayCommand<object>(OnCheckTextBoxKeyUpEvent);
@@ -66,11 +63,7 @@ namespace DigitalHandwriting.ViewModels
                     () => homeViewModelFactory()));
             OnResetRegistrationWindowButtonClickCommand = new Command(OnResetRegistrationWindowButtonClick);
 
-            for (int i = 0; i < 3; i++)
-            {
-                _keyPressedTimes.Add(new List<int>());
-                _beetwenKeysTimes.Add(new List<int>());
-            }
+            _keyboardMetricsCollector = keyboardMetricsCollector;
 
             db.Database.EnsureCreated();
             db.Users.Load();
@@ -148,8 +141,8 @@ namespace DigitalHandwriting.ViewModels
             User user = new User()
             {
                 Login = UserLogin,
-                KeyPressedTimes = JsonSerializer.Serialize(Calculations.CalculateMedianValue(_keyPressedTimes)),
-                BeetwenKeysTimes = JsonSerializer.Serialize(Calculations.CalculateMedianValue(_beetwenKeysTimes)),
+                KeyPressedTimes = JsonSerializer.Serialize(_keyboardMetricsCollector.GetKeyPressedTimesMedians()),
+                BetweenKeysTimes = JsonSerializer.Serialize(_keyboardMetricsCollector.GetBetweenKeysTimesMedians()),
                 Password = EncryptionService.GetPasswordHash(UserPassword, out string salt),
                 Salt = salt
             };
@@ -168,14 +161,14 @@ namespace DigitalHandwriting.ViewModels
                 return;
             }
 
-            var keyPressedTime = (DateTime.UtcNow - _lastKeyDownTime).Milliseconds;
-            _keyPressedTimes[_registrationStep].Add(keyPressedTime);
+            _keyboardMetricsCollector.OnKeyUpEvent(e);
 
             if (_checkTextCurrentLetterIndex == _checkTextWithUpperCase.Length)
             {
+                _keyboardMetricsCollector.IncreaseMetricsCollectingStep();
+                RegistrationStep++;
                 UserCheckText = "";
                 _checkTextCurrentLetterIndex = 0;
-                RegistrationStep++;
             }
         }
 
@@ -188,13 +181,7 @@ namespace DigitalHandwriting.ViewModels
                 return;
             }
 
-            if (!string.IsNullOrEmpty(_userCheckText))
-            {
-                var time = (DateTime.UtcNow - _lastKeyDownTime).Milliseconds;
-                _beetwenKeysTimes[_registrationStep].Add(time);
-            }
-
-            _lastKeyDownTime = DateTime.UtcNow;
+            _keyboardMetricsCollector.OnKeyDownEvent(e);
             _checkTextCurrentLetterIndex++;
         }
 
@@ -208,15 +195,7 @@ namespace DigitalHandwriting.ViewModels
             UserCheckText = "";
             UserPassword = "";
             _checkTextCurrentLetterIndex = 0;
-
-            _keyPressedTimes = new List<List<int>>(3);
-            _beetwenKeysTimes = new List<List<int>>(3);
-
-            for (int i = 0; i < 3; i++)
-            {
-                _keyPressedTimes.Add(new List<int>());
-                _beetwenKeysTimes.Add(new List<int>());
-            }
+            _keyboardMetricsCollector.ResetMetricsCollection();
         }
     }
 }

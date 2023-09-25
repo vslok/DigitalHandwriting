@@ -14,6 +14,7 @@ namespace DigitalHandwriting.Helpers
         {
             var medianValues = new List<int>();
             var rowLength = values.FirstOrDefault(new List<int>()).Count;
+
             for (int j = 0; j < rowLength; j++)
             {
                 var medianValue = 0;

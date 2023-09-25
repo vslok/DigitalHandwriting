@@ -1,20 +1,13 @@
 ﻿using DigitalHandwriting.Context;
 using DigitalHandwriting.Helpers;
 using DigitalHandwriting.Stores;
-using DigitalHandwriting.Models;
 using DigitalHandwriting.Views;
 using Microsoft.EntityFrameworkCore;
 using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Net.Security;
-using System.Text;
-using System.Text.Json;
-using System.Threading.Tasks;
 using System.Windows.Input;
 using DigitalHandwriting.Commands;
 using DigitalHandwriting.Services;
-using Microsoft.Extensions.Logging;
 
 namespace DigitalHandwriting.ViewModels
 {
@@ -45,17 +38,14 @@ namespace DigitalHandwriting.ViewModels
 
         private string _userPassword = "";
 
-        private DateTime _lastKeyDownTime;
-
-        private List<int> _keyPressedTimes = new List<int>();
-
-        private List<int> _beetwenKeysTimes = new List<int>();
-
         private ApplicationContext db = new ApplicationContext();
+
+        private readonly KeyboardMetricsCollectionService _keyboardMetricsCollector;
 
         public HomeViewModel(
             Func<RegistrationViewModel> registrationViewModelFactory,
-            NavigationStore navigationStore)
+            NavigationStore navigationStore,
+            KeyboardMetricsCollectionService keyboardMetricsCollector)
         {
             OnRegistrationButtonClickCommand = new NavigateCommand<RegistrationViewModel>(
                 new NavigationService<RegistrationViewModel>(
@@ -67,6 +57,8 @@ namespace DigitalHandwriting.ViewModels
             OnCheckTextBoxKeyUpEventCommand = new RelayCommand<object>(OnCheckTextBoxKeyUpEvent);
 
             db.Database.EnsureCreated();
+
+            _keyboardMetricsCollector = keyboardMetricsCollector;
         }
 
         public bool IsHandwritingAuthentificationEnabled
@@ -126,8 +118,7 @@ namespace DigitalHandwriting.ViewModels
                 return;
             }
 
-            var keyPressedTime = (DateTime.UtcNow - _lastKeyDownTime).Milliseconds;
-            _keyPressedTimes.Add(keyPressedTime);
+            _keyboardMetricsCollector.OnKeyUpEvent(e);
 
             if (_checkTextCurrentLetterIndex == _checkTextWithUpperCase.Length)
             {
@@ -154,13 +145,8 @@ namespace DigitalHandwriting.ViewModels
                 return;
             }
 
-            if (!string.IsNullOrEmpty(_userCheckText))
-            {
-                var time = (DateTime.UtcNow - _lastKeyDownTime).Milliseconds;
-                _beetwenKeysTimes.Add(time);
-            }
-
-            _lastKeyDownTime = DateTime.UtcNow;
+            _keyboardMetricsCollector.OnKeyDownEvent(e);
+            
             _checkTextCurrentLetterIndex++;
         }
 
@@ -180,10 +166,13 @@ namespace DigitalHandwriting.ViewModels
 
             if (_authentificationTry <= 2)
             {
-                var isAuthentificated = AuthentificationService.HandwritingAuthentification(user, _keyPressedTimes, _beetwenKeysTimes,
+
+                var keyPressedValues = _keyboardMetricsCollector.GetCurrentStepKeyPressedValues();
+                var betweenKeysValues = _keyboardMetricsCollector.GetCurrentStepBetweenKeysValues();
+                var isAuthentificated = AuthentificationService.HandwritingAuthentification(user, keyPressedValues, betweenKeysValues,
                     out double keyPressedDistance, out double beetweenKeysDistance);
 
-                var window = new UserInfo(user, _keyPressedTimes, _beetwenKeysTimes);
+                var window = new UserInfo(user, keyPressedValues, betweenKeysValues);
                 window.ShowDialog();
 
                 if (_authentificationTry == 2)
@@ -206,9 +195,7 @@ namespace DigitalHandwriting.ViewModels
             _checkTextCurrentLetterIndex = 0;
             UserCheckText = "";
             UserPassword = "";
-
-            _keyPressedTimes = new List<int>();
-            _beetwenKeysTimes = new List<int>();
+            _keyboardMetricsCollector.ResetMetricsCollection();
         }
 
         private void ResetWindowState()
@@ -226,6 +213,5 @@ namespace DigitalHandwriting.ViewModels
             IsPasswordAuthentificationEnabled = true;
             IsHandwritingAuthentificationEnabled = false;
         }
-
     }
 }

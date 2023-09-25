@@ -16,8 +16,8 @@
             <TextBlock Text="{Binding KeyPressedMetric}"/>
         </StackPanel>
         <StackPanel Orientation="Horizontal">
-            <TextBlock Text="Beetwen keys metric: "/>
-            <TextBlock Text="{Binding BeetwenKeysMetric}"/>
+            <TextBlock Text="Between keys metric: "/>
+            <TextBlock Text="{Binding BetweenKeysMetric}"/>
         </StackPanel>
     </StackPanel>
 </Window>

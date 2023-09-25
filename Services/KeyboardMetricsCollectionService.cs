@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DigitalHandwriting.Helpers;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Security.Policy;
@@ -10,9 +11,9 @@ namespace DigitalHandwriting.Services
 {
     public class KeyboardMetricsCollectionService
     {
-        private List<List<int>> _keyPressedTimes = new List<List<int>>(3);
+        private readonly List<List<int>> _keyPressedTimes;
 
-        private List<List<int>> _beetwenKeysTimes = new List<List<int>>(3);
+        private readonly List<List<int>> _betweenKeysTimes;
 
         private DateTime _lastKeyDownTime;
 
@@ -21,7 +22,21 @@ namespace DigitalHandwriting.Services
         public KeyboardMetricsCollectionService() 
         { 
             _collectingMetricsStep = 0;
+            _keyPressedTimes = new List<List<int>>(3);
+            _betweenKeysTimes = new List<List<int>>(3);
+
+            for (int i = 0; i < 3; i++)
+            {
+                _keyPressedTimes.Add(new List<int>());
+                _betweenKeysTimes.Add(new List<int>());
+            }
         }
+
+        public List<int> GetKeyPressedTimesMedians() => Calculations.CalculateMedianValue(_keyPressedTimes);
+        public List<int> GetBetweenKeysTimesMedians() => Calculations.CalculateMedianValue(_betweenKeysTimes);
+
+        public List<int> GetCurrentStepKeyPressedValues() => _keyPressedTimes[_collectingMetricsStep];
+        public List<int> GetCurrentStepBetweenKeysValues() => _betweenKeysTimes[_collectingMetricsStep];
 
         public void OnKeyUpEvent(KeyEventArgs args)
         {
@@ -34,9 +49,12 @@ namespace DigitalHandwriting.Services
             if (_lastKeyDownTime.Equals(default))
             {
                 _lastKeyDownTime = DateTime.UtcNow;
+                return;
             }
+
             var time = (DateTime.UtcNow - _lastKeyDownTime).Milliseconds;
-            _beetwenKeysTimes[_collectingMetricsStep].Add(time);
+            _lastKeyDownTime = DateTime.UtcNow;
+            _betweenKeysTimes[_collectingMetricsStep].Add(time);
         }
 
         public void IncreaseMetricsCollectingStep()
@@ -48,7 +66,8 @@ namespace DigitalHandwriting.Services
         public void ResetMetricsCollection()
         {
             _collectingMetricsStep = 0;
-            _beetwenKeysTimes.ForEach(step => step.Clear());
+            _lastKeyDownTime = default;
+            _betweenKeysTimes.ForEach(step => step.Clear());
             _keyPressedTimes.ForEach(step => step.Clear());
         }
     }

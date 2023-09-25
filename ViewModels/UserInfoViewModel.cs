@@ -16,7 +16,7 @@ namespace DigitalHandwriting.ViewModels
 
         private double _keyPressedMetric = 0.0;
 
-        private double _beetwenKeysMetric = 0.0;
+        private double _betweenKeysMetric = 0.0;
 
         public UserInfoViewModel(User user, List<int> keyPressedTimes, List<int> beetwenKeysTimes)
         {
@@ -24,7 +24,7 @@ namespace DigitalHandwriting.ViewModels
                 out double keyPressedDistance, out double beetweenKeysDistance);
 
             KeyPressedMetric = keyPressedDistance;
-            BeetwenKeysMetric = beetweenKeysDistance;
+            BetweenKeysMetric = beetweenKeysDistance;
         }
 
         public bool IsAuthentificated
@@ -39,10 +39,10 @@ namespace DigitalHandwriting.ViewModels
             set => SetProperty(ref _keyPressedMetric, value);
         }
 
-        public double BeetwenKeysMetric
+        public double BetweenKeysMetric
         {
-            get => _beetwenKeysMetric;
-            set => SetProperty(ref _beetwenKeysMetric, value);
+            get => _betweenKeysMetric;
+            set => SetProperty(ref _betweenKeysMetric, value);
         }
     }
 }
