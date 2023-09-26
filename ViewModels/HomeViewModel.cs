@@ -28,8 +28,6 @@ namespace DigitalHandwriting.ViewModels
 
         private bool _isHandwritingAuthentificationEnabled = true;
 
-        private Helper _helper = new Helper();
-
         private string _checkTextWithUpperCase => ConstStrings.CheckText.ToUpper();
 
         private string _userCheckText = "";
@@ -112,7 +110,7 @@ namespace DigitalHandwriting.ViewModels
         {
             var e = (KeyEventArgs)props;
 
-            if (!_helper.CheckCurrentLetterKeyPressed(e, _checkTextCurrentLetterIndex - 1, _checkTextWithUpperCase))
+            if (!Helper.CheckCurrentLetterKeyPressed(e, _checkTextCurrentLetterIndex - 1, _checkTextWithUpperCase))
             {
                 e.Handled = true;
                 return;
@@ -139,7 +137,7 @@ namespace DigitalHandwriting.ViewModels
         private void OnCheckTextBoxKeyDownEvent(object props)
         {
             var e = (KeyEventArgs)props;
-            if (!_helper.CheckCurrentLetterKeyPressed(e, _checkTextCurrentLetterIndex, _checkTextWithUpperCase))
+            if (Helper.CheckCurrentLetterKeyPressed(e, _checkTextCurrentLetterIndex, _checkTextWithUpperCase))
             {
                 e.Handled = true;
                 return;

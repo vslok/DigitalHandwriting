@@ -7,9 +7,9 @@ using System.Windows.Input;
 
 namespace DigitalHandwriting.Helpers
 {
-    public class Helper
+    public static class Helper
     {
-        public bool CheckCurrentLetterKeyPressed(KeyEventArgs e, int letterIndex, string upperCaseText)
+        public static bool CheckCurrentLetterKeyPressed(KeyEventArgs e, int letterIndex, string upperCaseText)
         {
             KeyConverter kc = new KeyConverter();
             var inputChar = kc.ConvertToString(e.Key);
