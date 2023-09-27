@@ -8,6 +8,7 @@ using System.Linq;
 using System.Windows.Input;
 using DigitalHandwriting.Commands;
 using DigitalHandwriting.Services;
+using System.Windows.Documents;
 
 namespace DigitalHandwriting.ViewModels
 {
@@ -110,15 +111,9 @@ namespace DigitalHandwriting.ViewModels
         {
             var e = (KeyEventArgs)props;
 
-            if (!Helper.CheckCurrentLetterKeyPressed(e, _checkTextCurrentLetterIndex - 1, _checkTextWithUpperCase))
-            {
-                e.Handled = true;
-                return;
-            }
-
             _keyboardMetricsCollector.OnKeyUpEvent(e);
 
-            if (_checkTextCurrentLetterIndex == _checkTextWithUpperCase.Length)
+            if (_checkTextCurrentLetterIndex == _checkTextWithUpperCase.Length && UserCheckText.Length == _checkTextWithUpperCase.Length)
             {
                 db.Users.Load();
 
@@ -137,15 +132,14 @@ namespace DigitalHandwriting.ViewModels
         private void OnCheckTextBoxKeyDownEvent(object props)
         {
             var e = (KeyEventArgs)props;
-            if (Helper.CheckCurrentLetterKeyPressed(e, _checkTextCurrentLetterIndex, _checkTextWithUpperCase))
+            if (!Helper.CheckCurrentLetterKeyPressed(e, _checkTextCurrentLetterIndex, _checkTextWithUpperCase))
             {
                 e.Handled = true;
                 return;
             }
 
-            _keyboardMetricsCollector.OnKeyDownEvent(e);
-            
             _checkTextCurrentLetterIndex++;
+            _keyboardMetricsCollector.OnKeyDownEvent(e);
         }
 
         private void OnAuthentificationButtonClick()
@@ -164,9 +158,8 @@ namespace DigitalHandwriting.ViewModels
 
             if (_authentificationTry <= 2)
             {
+                _keyboardMetricsCollector.GetCurrentStepValues(_checkTextWithUpperCase, out var keyPressedValues, out var betweenKeysValues);
 
-                var keyPressedValues = _keyboardMetricsCollector.GetCurrentStepKeyPressedValues();
-                var betweenKeysValues = _keyboardMetricsCollector.GetCurrentStepBetweenKeysValues();
                 var isAuthentificated = AuthentificationService.HandwritingAuthentification(user, keyPressedValues, betweenKeysValues,
                     out double keyPressedDistance, out double beetweenKeysDistance);
 

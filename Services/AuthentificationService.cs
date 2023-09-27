@@ -2,6 +2,7 @@
 using DigitalHandwriting.Models;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Text.Json;
@@ -27,10 +28,43 @@ namespace DigitalHandwriting.Services
             var userKeyPressedTimes = JsonSerializer.Deserialize<List<int>>(user.KeyPressedTimes);
             var userBetweenKeysTimes = JsonSerializer.Deserialize<List<int>>(user.BetweenKeysTimes);
 
-            keyPressedDistance = Calculations.EuclideanDistance(userKeyPressedTimes, loginKeyPressedTimes);
-            betweenKeysDistance = Calculations.EuclideanDistance(userBetweenKeysTimes, loginBetweenKeysTimes);
+            var userKeyPressedNormalized = Calculations.Normalize(userKeyPressedTimes);
+            var loginKeyPressedNormalized = Calculations.Normalize(loginKeyPressedTimes);
 
-            return keyPressedDistance <= 0.20 && betweenKeysDistance <= 0.30;
+            var keyPressedDistanceError = 0;            
+            for (int i = 0; i < userKeyPressedNormalized.Count; i++)
+            {
+                var result = Calculations.ManhattanDistance(userKeyPressedNormalized[i], loginKeyPressedNormalized[i]);
+                if (result > 0.2)
+                {
+                    keyPressedDistanceError++;
+                }
+            }
+
+            var userBetweenKeysNormalized = Calculations.Normalize(userBetweenKeysTimes);
+            var loginBetweenKeysNormalized = Calculations.Normalize(loginBetweenKeysTimes);
+
+            var keyBetweenKeysDistanceError = 0;
+            for (int i = 0; i < userBetweenKeysNormalized.Count; i++)
+            {
+                var result = Calculations.ManhattanDistance(userBetweenKeysNormalized[i], loginBetweenKeysNormalized[i]);
+                if (result > 0.2)
+                {
+                    keyBetweenKeysDistanceError++;
+                }
+            } 
+
+            keyPressedDistance = keyPressedDistanceError / (double)userKeyPressedTimes.Count;
+            betweenKeysDistance = keyBetweenKeysDistanceError / (double)userBetweenKeysTimes.Count;
+
+            var authResult = (keyPressedDistanceError + keyBetweenKeysDistanceError) / (double)(userKeyPressedTimes.Count + userBetweenKeysTimes.Count);
+
+            Trace.WriteLine($"Key pressed errors: {keyPressedDistanceError}, Between keys errors: {keyBetweenKeysDistanceError}, auth result : {authResult}");
+
+            //keyPressedDistance = Calculations.ManhattanDistance(userKeyPressedTimes, loginKeyPressedTimes);
+            //betweenKeysDistance = Calculations.ManhattanDistance(userBetweenKeysTimes, loginBetweenKeysTimes);
+
+            return authResult < 0.15;
         }
     }
 }

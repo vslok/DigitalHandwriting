@@ -7,6 +7,7 @@ using DigitalHandwriting.Stores;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text.Json;
 using System.Windows.Input;
@@ -153,17 +154,13 @@ namespace DigitalHandwriting.ViewModels
         {
             var e = (KeyEventArgs)props;
 
-            if (!Helper.CheckCurrentLetterKeyPressed(e, _checkTextCurrentLetterIndex - 1, _checkTextWithUpperCase) || _registrationStep == 3)
-            {
-                e.Handled = true;
-                return;
-            }
+            Trace.WriteLine($"{e.Key} = keyUp");
 
             _keyboardMetricsCollector.OnKeyUpEvent(e);
 
-            if (_checkTextCurrentLetterIndex == _checkTextWithUpperCase.Length)
+            if (_checkTextCurrentLetterIndex == _checkTextWithUpperCase.Length && UserCheckText.Length == _checkTextWithUpperCase.Length)
             {
-                _keyboardMetricsCollector.IncreaseMetricsCollectingStep();
+                _keyboardMetricsCollector.IncreaseMetricsCollectingStep(_checkTextWithUpperCase);
                 RegistrationStep++;
                 UserCheckText = "";
                 _checkTextCurrentLetterIndex = 0;
@@ -173,6 +170,7 @@ namespace DigitalHandwriting.ViewModels
         private void OnCheckTextBoxKeyDownEvent(object props)
         {
             var e = (KeyEventArgs)props;
+            Trace.WriteLine($"{e.Key} = keyDown");
             if (!Helper.CheckCurrentLetterKeyPressed(e, _checkTextCurrentLetterIndex, _checkTextWithUpperCase) || _registrationStep == 3)
             {
                 e.Handled = true;
@@ -186,14 +184,14 @@ namespace DigitalHandwriting.ViewModels
         private void OnResetRegistrationWindowButtonClick()
         {
             RegistrationStep = 0;
-            IsCheckTextBoxEnabled = false;
-            IsLoginBoxEnabled = true;
-            IsFinalizeButtonVisible = false;
             UserLogin = "";
             UserCheckText = "";
             UserPassword = "";
             _checkTextCurrentLetterIndex = 0;
             _keyboardMetricsCollector.ResetMetricsCollection();
+            IsLoginBoxEnabled = true;
+            IsCheckTextBoxEnabled = false;
+            IsFinalizeButtonVisible = false;
         }
     }
 }

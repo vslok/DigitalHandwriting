@@ -9,17 +9,24 @@ namespace DigitalHandwriting.Helpers
 {
     public static class Helper
     {
+        private static KeyConverter _keyConverter = new KeyConverter();
         public static bool CheckCurrentLetterKeyPressed(KeyEventArgs e, int letterIndex, string upperCaseText)
         {
-            KeyConverter kc = new KeyConverter();
-            var inputChar = kc.ConvertToString(e.Key);
+            var inputChar = ConvertKeyToString(e.Key);
+            var currentChar = upperCaseText.ElementAtOrDefault(letterIndex).ToString();
+
+            return inputChar == currentChar;
+        }
+
+        public static string ConvertKeyToString(Key key)
+        {
+            var inputChar = _keyConverter.ConvertToString(key);
             if (inputChar == "Space")
             {
                 inputChar = " ";
             }
-            var currentChar = upperCaseText.ElementAtOrDefault(letterIndex).ToString();
 
-            return inputChar == currentChar;
+            return inputChar;
         }
     }
 }

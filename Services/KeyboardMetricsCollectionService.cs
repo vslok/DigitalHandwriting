@@ -1,6 +1,7 @@
 ﻿using DigitalHandwriting.Helpers;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Security.Policy;
 using System.Text;
@@ -11,11 +12,12 @@ namespace DigitalHandwriting.Services
 {
     public class KeyboardMetricsCollectionService
     {
+        private List<int> KeyDownTimes = new List<int>();
+        private List<(string, int)> KeyUpTimes = new List<(string, int)>();
+
         private readonly List<List<int>> _keyPressedTimes;
 
         private readonly List<List<int>> _betweenKeysTimes;
-
-        private DateTime _lastKeyDownTime;
 
         private int _collectingMetricsStep;
 
@@ -47,40 +49,72 @@ namespace DigitalHandwriting.Services
             return transposedMatrix.Select(val => Calculations.Dispersion(val, Calculations.Expectancy(val))).ToList();
         }
 
-        public List<int> GetCurrentStepKeyPressedValues() => _keyPressedTimes[_collectingMetricsStep];
-        public List<int> GetCurrentStepBetweenKeysValues() => _betweenKeysTimes[_collectingMetricsStep];
+        public void GetCurrentStepValues(string testText, out List<int> keyPressedValues, out List<int> betweenKeysValues)
+        {
+            ConvertRawData(testText);
+            keyPressedValues = _keyPressedTimes[_collectingMetricsStep];
+            betweenKeysValues = _betweenKeysTimes[_collectingMetricsStep];
+        }
 
         public void OnKeyUpEvent(KeyEventArgs args)
         {
-            var keyPressedTime = (DateTime.UtcNow - _lastKeyDownTime).Milliseconds;
-            _keyPressedTimes[_collectingMetricsStep].Add(keyPressedTime);
+            KeyUpTimes.Add((Helper.ConvertKeyToString(args.Key), DateTime.Now.Millisecond));
         }
 
         public void OnKeyDownEvent(KeyEventArgs args)
         {
-            if (_lastKeyDownTime.Equals(default))
-            {
-                _lastKeyDownTime = DateTime.UtcNow;
-                return;
-            }
-
-            var time = (DateTime.UtcNow - _lastKeyDownTime).Milliseconds;
-            _lastKeyDownTime = DateTime.UtcNow;
-            _betweenKeysTimes[_collectingMetricsStep].Add(time);
+            KeyDownTimes.Add(DateTime.Now.Millisecond);
         }
 
-        public void IncreaseMetricsCollectingStep()
+        public void IncreaseMetricsCollectingStep(string testText)
         {
+
+            ConvertRawData(testText);
             _collectingMetricsStep++;
-            _lastKeyDownTime = default;
+            KeyDownTimes.Clear();
+            KeyUpTimes.Clear();
+        }
+
+        private void ConvertRawData(string testText)
+        {
+            var textKeyUpTimes = FilterKeyTimePairsToTheTimeList(KeyUpTimes, testText);
+            if (textKeyUpTimes.Count != KeyDownTimes.Count)
+            {
+                throw new InvalidOperationException("Increase step of metrics collection failed");
+            }
+
+            for (int i = 0; i < textKeyUpTimes.Count; i++)
+            {
+                _keyPressedTimes[_collectingMetricsStep].Add(textKeyUpTimes[i] - KeyDownTimes[i]);
+
+                if (i != 0)
+                {
+                    _betweenKeysTimes[_collectingMetricsStep].Add(KeyDownTimes[i] - textKeyUpTimes[i - 1]);
+                }
+            }
         }
 
         public void ResetMetricsCollection()
         {
             _collectingMetricsStep = 0;
-            _lastKeyDownTime = default;
             _betweenKeysTimes.ForEach(step => step.Clear());
             _keyPressedTimes.ForEach(step => step.Clear());
+            KeyDownTimes.Clear();
+            KeyUpTimes.Clear();
+        }
+
+        private List<int> FilterKeyTimePairsToTheTimeList(List<(string, int)> pairs, string pairsText)
+        {
+            List<int> times = new List<int>();
+            
+            for (int i = 0; i < pairsText.Count(); i++)
+            {
+                var firstPair = pairs.First(pair => pair.Item1[0] == pairsText[i]);
+                times.Add(firstPair.Item2);
+                pairs.Remove(firstPair);
+            }
+            Trace.WriteLine($"Times count = {times.Count}, text count = {pairsText.Count()}");
+            return times;
         }
     }
 }

@@ -5,6 +5,7 @@ using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Markup;
 
 namespace DigitalHandwriting.Helpers
 {
@@ -12,20 +13,23 @@ namespace DigitalHandwriting.Helpers
     {
         public static List<int> CalculateMedianValue(List<List<int>> values)
         {
-            var medianValues = new List<int>();
-            var rowLength = values.FirstOrDefault(new List<int>()).Count;
-
-            for (int j = 0; j < rowLength; j++)
+            foreach (var list in values)
             {
-                var medianValue = 0;
-                for (int i = 0; i < values.Count; i++)
+                if (list.Count != values[0].Count)
                 {
-                    medianValue += values[i].ElementAtOrDefault(j);
+                    throw new Exception("Median value cannot be calculated");
                 }
-                medianValues.Add(medianValue / values.Count);
             }
 
-            return medianValues;
+            List<int> mediansList = new List<int>();
+
+            for (int i = 0; i < values[0].Count; i++)
+            {
+                var valuesList = values.Select(list => list[i]).OrderBy(x => x).ToList();
+                mediansList.Add(valuesList.ElementAt((int)Math.Ceiling(valuesList.Count / 2.0d)));
+            }
+
+            return mediansList;
         }
 
         public static double EuclideanDistance(List<int> etVector, List<int> curVector)
@@ -38,7 +42,9 @@ namespace DigitalHandwriting.Helpers
             {
                 sum += Math.Pow(normalizedEtVector.ElementAtOrDefault(i) - normalizedCurVector.ElementAtOrDefault(i), 2);
             }
-            return Math.Round(Math.Sqrt(sum), 2);
+            var distance = Math.Sqrt(sum);
+            var normalizedDistance = distance / Math.Sqrt(etVector.Count);
+            return Math.Round(normalizedDistance, 2);
         }
 
         public static double ManhattanDistance(List<int> etVector, List<int> curVector)
@@ -51,7 +57,12 @@ namespace DigitalHandwriting.Helpers
             {
                 sum += Math.Abs(normalizedEtVector[i] - normalizedCurVector[i]);
             }
-            return sum;
+            return Math.Round(sum / etVector.Count, 2);
+        }
+
+        public static double ManhattanDistance(double etPoint, double curPoint)
+        { 
+            return Math.Round(Math.Abs(etPoint - curPoint), 2);
         }
 
         public static double CosineSimilarity(List<int> etVector, List<int> curVector)
