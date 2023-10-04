@@ -7,16 +7,16 @@
         xmlns:viewmodels="clr-namespace:DigitalHandwriting.ViewModels"
         xmlns:converters="clr-namespace:DigitalHandwriting.Converters"
         mc:Ignorable="d"
-        Height="200" Width="200">
+        Height="90" Width="210">
     
-    <StackPanel Margin="25">
-        <TextBlock Text="{Binding IsAuthentificated, Converter={converters:BoolToAuthorizationText}}" Margin="0,0,0,10"/>
+    <StackPanel Margin="5">
+        <TextBlock Text="{Binding IsAuthentificated, Converter={converters:BoolToAuthorizationText}}"/>
         <StackPanel Orientation="Horizontal">
-            <TextBlock Text="Key pressed metric: "/>
+            <TextBlock FontSize="8" Text="Результат времени удержания клавиш: "/>
             <TextBlock Text="{Binding KeyPressedMetric}"/>
         </StackPanel>
         <StackPanel Orientation="Horizontal">
-            <TextBlock Text="Between keys metric: "/>
+            <TextBlock FontSize="8" Text="Результат времени межсимвольных интервалов: "/>
             <TextBlock Text="{Binding BetweenKeysMetric}"/>
         </StackPanel>
     </StackPanel>

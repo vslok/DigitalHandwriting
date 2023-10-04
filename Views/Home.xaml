@@ -20,9 +20,9 @@
             <RowDefinition Height="40"/>
         </Grid.RowDefinitions>
 
-        <Label Content="Login:" Grid.Row="0"/>
+        <Label Content="Логин:" Grid.Row="0"/>
         <TextBox Text="{Binding UserLogin, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Grid.Row="1"/>
-        <Label Content="Check text: lorem ipsum dolor sit amet consectetur adipiscing elit" Grid.Row="2"/>
+        <Label Content="Проверочный текст: lorem ipsum dolor sit amet consectetur adipiscing elit" Grid.Row="2"/>
         <TextBox Text="{Binding UserCheckText, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" IsEnabled="{Binding IsHandwritingAuthentificationEnabled}" Grid.Row="3">
             <b:Interaction.Triggers>
                 <b:EventTrigger EventName="PreviewKeyDown">
@@ -33,14 +33,14 @@
                 </b:EventTrigger>
             </b:Interaction.Triggers>
         </TextBox>
-        <Label Content="Password:" Grid.Row="4" Visibility="{Binding IsPasswordAuthentificationEnabled, Converter={converters:BoolToVisibilityConverter}}"/>
+        <Label Content="Пароль:" Grid.Row="4" Visibility="{Binding IsPasswordAuthentificationEnabled, Converter={converters:BoolToVisibilityConverter}}"/>
         <TextBox Text="{Binding UserPassword, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Grid.Row="5" 
                      IsEnabled="{Binding IsPasswordAuthentificationEnabled}" 
                      Visibility="{Binding IsPasswordAuthentificationEnabled, Converter={converters:BoolToVisibilityConverter}}"/>
         <StackPanel HorizontalAlignment="Center" Orientation="Horizontal" Grid.Row="6">
-            <Button Content="Authentification" Margin="0,15,15,0" Width="100" 
+            <Button Content="Аутентификация" Margin="0,15,15,0" Width="100" 
                     Command="{Binding OnAuthentificationButtonClickCommand}" IsEnabled="{Binding IsAuthentificationButtonEnabled}"/>
-            <Button Content="Registration" Margin="15,15,0,0" Width="100" Command="{Binding OnRegistrationButtonClickCommand}"/>
+            <Button Content="Регистрация" Margin="15,15,0,0" Width="100" Command="{Binding OnRegistrationButtonClickCommand}"/>
         </StackPanel>
     </Grid>
 </UserControl>
