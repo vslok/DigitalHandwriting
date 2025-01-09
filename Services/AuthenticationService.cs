@@ -10,9 +10,9 @@ using System.Threading.Tasks;
 
 namespace DigitalHandwriting.Services
 {
-    public static class AuthentificationService
+    public static class AuthenticationService
     {
-        public static bool PasswordAuthentification(User user, string password)
+        public static bool PasswordAuthentication(User user, string password)
         {
             var userPasswordHash = user.Password;
             var userPasswordSalt = user.Salt;
@@ -22,7 +22,7 @@ namespace DigitalHandwriting.Services
             return userPasswordHash.Equals(inputPasswordHash);
         }
 
-        public static bool HandwritingAuthentification(User user, List<int> loginKeyPressedTimes, List<int> loginBetweenKeysTimes,
+        public static bool HandwritingAuthentication(User user, List<int> loginKeyPressedTimes, List<int> loginBetweenKeysTimes,
             out double keyPressedDistance, out double betweenKeysDistance)
         {
             var userKeyPressedTimes = JsonSerializer.Deserialize<List<int>>(user.KeyPressedTimes);

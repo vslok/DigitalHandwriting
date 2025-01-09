@@ -19,6 +19,8 @@ namespace DigitalHandwriting.ViewModels
         public ICommand OnCheckTextBoxKeyDownEventCommand { get; set; }
         public ICommand OnCheckTextBoxKeyUpEventCommand { get; set; }
         public ICommand OnResetRegistrationWindowButtonClickCommand { get; set; }
+
+        public ICommand OnRegistrationStartButtonClickCommand { get; set; }
         public ICommand OnRegistrationFinalizeButtonClickCommand { get; set; }
         public ICommand ReturnHomeCommand { get; set; }
 
@@ -33,13 +35,15 @@ namespace DigitalHandwriting.ViewModels
 
         private bool _isFinalizeButtonVisible = false;
 
-        private string _checkTextWithUpperCase => ConstStrings.CheckText.ToUpper();
+        private bool _isStartRegistrationbuttonVisible = false;
+
+        private string _checkTextWithUpperCase => UserPassPhrase.ToUpper();
 
         private string _userCheckText = "";
 
         private string _userLogin = "";
 
-        private string _userPassword = "";
+        private string _userPassPhrase = "";
 
         private ApplicationContext db = new ApplicationContext();
 
@@ -61,6 +65,7 @@ namespace DigitalHandwriting.ViewModels
                     navigationStore,
                     () => homeViewModelFactory()));
             OnResetRegistrationWindowButtonClickCommand = new Command(OnResetRegistrationWindowButtonClick);
+            OnRegistrationStartButtonClickCommand = new Command(OnRegistrationStartButtonClick);
 
             _keyboardMetricsCollector = keyboardMetricsCollector;
 
@@ -80,11 +85,20 @@ namespace DigitalHandwriting.ViewModels
             set => SetProperty(ref _isCheckTextBoxEnabled, value);
         }
 
+        public bool IsPasswordTextBoxVisible => !IsCheckTextBoxEnabled && RegistrationStep == 0;
+
         public bool IsFinalizeButtonVisible
         {
             get => _isFinalizeButtonVisible;
             set => SetProperty(ref _isFinalizeButtonVisible, value);
         }
+
+        public bool IsRegistrationStartButtonVisible
+        {
+            get => _isStartRegistrationbuttonVisible;
+            set => SetProperty(ref _isStartRegistrationbuttonVisible, value);
+        }
+
 
         public int RegistrationStep
         {
@@ -92,10 +106,10 @@ namespace DigitalHandwriting.ViewModels
             set
             {
                 SetProperty(ref _registrationStep, value);
-                if (value == 3)
+                if (value == 4)
                 {
                     IsCheckTextBoxEnabled = false;
-                    InvokeOnPropertyChangedEvent(nameof(IsPasswordTextBoxVisible));
+                    IsFinalizeButtonVisible = true;
                 }
             }
         }
@@ -106,21 +120,19 @@ namespace DigitalHandwriting.ViewModels
             set
             {
                 SetProperty(ref _userLogin, value);
-                IsCheckTextBoxEnabled = !string.IsNullOrEmpty(value);
             }
         }
 
-        public bool IsPasswordTextBoxVisible => !IsCheckTextBoxEnabled && RegistrationStep != 0;
-
-        public string UserPassword
+        public string UserPassPhrase
         {
-            get => _userPassword;
+            get => _userPassPhrase;
             set
             {
-                SetProperty(ref _userPassword, value);
-                if (_registrationStep == 3 && _userPassword.Length > 8)
+                SetProperty(ref _userPassPhrase, value);
+                if (value.Length >= 20)
                 {
-                    IsFinalizeButtonVisible = true;
+                    IsRegistrationStartButtonVisible = true;
+                    InvokeOnPropertyChangedEvent(nameof(_isStartRegistrationbuttonVisible));
                 }
             }
         }
@@ -142,7 +154,7 @@ namespace DigitalHandwriting.ViewModels
                 Login = UserLogin,
                 KeyPressedTimes = JsonSerializer.Serialize(_keyboardMetricsCollector.GetKeyPressedTimesMedians()),
                 BetweenKeysTimes = JsonSerializer.Serialize(_keyboardMetricsCollector.GetBetweenKeysTimesMedians()),
-                Password = EncryptionService.GetPasswordHash(UserPassword, out string salt),
+                Password = EncryptionService.GetPasswordHash(UserPassPhrase, out string salt),
                 Salt = salt
             };
 
@@ -171,7 +183,7 @@ namespace DigitalHandwriting.ViewModels
         {
             var e = (KeyEventArgs)props;
             Trace.WriteLine($"{e.Key} = keyDown");
-            if (!Helper.CheckCurrentLetterKeyPressed(e, _checkTextCurrentLetterIndex, _checkTextWithUpperCase) || _registrationStep == 3)
+            if (!Helper.CheckCurrentLetterKeyPressed(e, _checkTextCurrentLetterIndex, _checkTextWithUpperCase) || _registrationStep == 4)
             {
                 e.Handled = true;
                 return;
@@ -181,17 +193,27 @@ namespace DigitalHandwriting.ViewModels
             _checkTextCurrentLetterIndex++;
         }
 
+        private void OnRegistrationStartButtonClick()
+        {
+            RegistrationStep++;
+            IsRegistrationStartButtonVisible = false;
+            IsCheckTextBoxEnabled = true;
+            InvokeOnPropertyChangedEvent(nameof(IsPasswordTextBoxVisible));
+        }
+
         private void OnResetRegistrationWindowButtonClick()
         {
             RegistrationStep = 0;
             UserLogin = "";
             UserCheckText = "";
-            UserPassword = "";
+            UserPassPhrase = "";
             _checkTextCurrentLetterIndex = 0;
             _keyboardMetricsCollector.ResetMetricsCollection();
             IsLoginBoxEnabled = true;
             IsCheckTextBoxEnabled = false;
             IsFinalizeButtonVisible = false;
+            IsRegistrationStartButtonVisible = false;
+            InvokeOnPropertyChangedEvent(nameof(IsPasswordTextBoxVisible));
         }
     }
 }

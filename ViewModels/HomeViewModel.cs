@@ -15,17 +15,13 @@ namespace DigitalHandwriting.ViewModels
     public class HomeViewModel : BaseViewModel
     {
         public ICommand OnRegistrationButtonClickCommand { get; set; }
-        public ICommand OnAuthentificationButtonClickCommand { get; set; }
+        public ICommand OnAuthenticationButtonClickCommand { get; set; }
         public ICommand OnCheckTextBoxKeyDownEventCommand { get; set; }
         public ICommand OnCheckTextBoxKeyUpEventCommand { get; set; }
 
         private int _authentificationTry = 0;
 
         private int _checkTextCurrentLetterIndex = 0;
-
-        private bool _isAuthentificationButtonEnabled = false;
-
-        private bool _isPasswordAuthentificationEnabled = false;
 
         private bool _isHandwritingAuthentificationEnabled = true;
 
@@ -34,8 +30,6 @@ namespace DigitalHandwriting.ViewModels
         private string _userCheckText = "";
 
         private string _userLogin = "";
-
-        private string _userPassword = "";
 
         private ApplicationContext db = new ApplicationContext();
 
@@ -51,7 +45,7 @@ namespace DigitalHandwriting.ViewModels
                     navigationStore,
                     () => registrationViewModelFactory()));
 
-            OnAuthentificationButtonClickCommand = new Command(OnAuthentificationButtonClick);
+            OnAuthenticationButtonClickCommand = new Command(OnAuthenticationButtonClick);
             OnCheckTextBoxKeyDownEventCommand = new RelayCommand<object>(OnCheckTextBoxKeyDownEvent);
             OnCheckTextBoxKeyUpEventCommand = new RelayCommand<object>(OnCheckTextBoxKeyUpEvent);
 
@@ -66,17 +60,7 @@ namespace DigitalHandwriting.ViewModels
             set => SetProperty(ref _isHandwritingAuthentificationEnabled, value);
         }
 
-        public bool IsPasswordAuthentificationEnabled
-        {
-            get => _isPasswordAuthentificationEnabled;
-            set => SetProperty(ref _isPasswordAuthentificationEnabled, value);
-        }
-
-        public bool IsAuthentificationButtonEnabled
-        {
-            get => _isAuthentificationButtonEnabled;
-            set => SetProperty(ref _isAuthentificationButtonEnabled, value);
-        }
+        public bool IsAuthenticationButtonEnabled => UserLogin.Length > 0 && UserCheckText.Length >= 20;
 
         public string UserLogin
         {
@@ -85,26 +69,18 @@ namespace DigitalHandwriting.ViewModels
             {
                 _authentificationTry = 0;
                 SetProperty(ref _userLogin, value);
-            }
-        }
-
-        public string UserPassword
-        {
-            get => _userPassword; 
-            set
-            {
-                SetProperty(ref _userPassword, value);
-                if (_userPassword.Length > 8)
-                {
-                    IsAuthentificationButtonEnabled = true;
-                }
+                InvokeOnPropertyChangedEvent(nameof(IsAuthenticationButtonEnabled));
             }
         }
 
         public string UserCheckText
         {
             get => _userCheckText;
-            set => SetProperty(ref _userCheckText, value);
+            set
+            {
+                SetProperty(ref _userCheckText, value);
+                InvokeOnPropertyChangedEvent(nameof(IsAuthenticationButtonEnabled));
+            }
         }
 
         private void OnCheckTextBoxKeyUpEvent(object props)
@@ -122,54 +98,44 @@ namespace DigitalHandwriting.ViewModels
                 {
                     ResetTryState();
                 }
-                else
-                {
-                    IsAuthentificationButtonEnabled = true;
-                }
             }
         }
 
         private void OnCheckTextBoxKeyDownEvent(object props)
         {
             var e = (KeyEventArgs)props;
-            if (!Helper.CheckCurrentLetterKeyPressed(e, _checkTextCurrentLetterIndex, _checkTextWithUpperCase))
-            {
-                e.Handled = true;
-                return;
-            }
 
-            _checkTextCurrentLetterIndex++;
             _keyboardMetricsCollector.OnKeyDownEvent(e);
         }
 
-        private void OnAuthentificationButtonClick()
+        private void OnAuthenticationButtonClick()
         {
             var user = db.Users.Select(user => user).Where(user => user.Login == UserLogin).FirstOrDefault();
 
-            if (IsPasswordAuthentificationEnabled)
+            if (user == null)
             {
-                var IsAuthentificated = AuthentificationService.PasswordAuthentification(user, UserPassword);
-                if (!IsAuthentificated)
-                {
-                    ResetWindowState();
-                    return;
-                }
+                // TODO: Add UI notification
+                ResetTryState();
+                return;
             }
 
             if (_authentificationTry <= 2)
             {
-                _keyboardMetricsCollector.GetCurrentStepValues(_checkTextWithUpperCase, out var keyPressedValues, out var betweenKeysValues);
+                var isPassPhraseValid = AuthenticationService.PasswordAuthentication(user, UserCheckText);
+                if (!isPassPhraseValid)
+                {
+                    // TODO: Add UI notification
+                    ResetTryState();
+                    return;
+                }
 
-                var isAuthentificated = AuthentificationService.HandwritingAuthentification(user, keyPressedValues, betweenKeysValues,
+                _keyboardMetricsCollector.GetCurrentStepValues(UserCheckText.ToUpper(), out var keyPressedValues, out var betweenKeysValues);
+
+                var isAuthentificated = AuthenticationService.HandwritingAuthentication(user, keyPressedValues, betweenKeysValues,
                     out double keyPressedDistance, out double beetweenKeysDistance);
 
                 var window = new UserInfo(user, keyPressedValues, betweenKeysValues);
                 window.ShowDialog();
-
-                if (_authentificationTry == 2)
-                {
-                    EnablePasswordAuthentification();
-                }
 
                 if (!isAuthentificated)
                 {
@@ -182,27 +148,16 @@ namespace DigitalHandwriting.ViewModels
 
         private void ResetTryState()
         {
-            IsAuthentificationButtonEnabled = false;
             _checkTextCurrentLetterIndex = 0;
             UserCheckText = "";
-            UserPassword = "";
             _keyboardMetricsCollector.ResetMetricsCollection();
         }
 
         private void ResetWindowState()
         {
             ResetTryState();
-            IsPasswordAuthentificationEnabled = false;
             IsHandwritingAuthentificationEnabled = true;
             UserLogin = "";
-        }
-
-        private void EnablePasswordAuthentification()
-        {
-            UserCheckText = "";
-            _checkTextCurrentLetterIndex = 0;
-            IsPasswordAuthentificationEnabled = true;
-            IsHandwritingAuthentificationEnabled = false;
         }
     }
 }

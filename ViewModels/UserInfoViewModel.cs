@@ -20,7 +20,7 @@ namespace DigitalHandwriting.ViewModels
 
         public UserInfoViewModel(User user, List<int> keyPressedTimes, List<int> beetwenKeysTimes)
         {
-            IsAuthentificated = AuthentificationService.HandwritingAuthentification(user, keyPressedTimes, beetwenKeysTimes, 
+            IsAuthentificated = AuthenticationService.HandwritingAuthentication(user, keyPressedTimes, beetwenKeysTimes, 
                 out double keyPressedDistance, out double beetweenKeysDistance);
 
             KeyPressedMetric = keyPressedDistance;

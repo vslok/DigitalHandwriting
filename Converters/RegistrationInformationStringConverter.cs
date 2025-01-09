@@ -20,6 +20,7 @@ namespace DigitalHandwriting.Converters
                 1 => ConstStrings.SecondRegistrationStepDescription,
                 2 => ConstStrings.ThirdRegistrationStepDescription,
                 3 => ConstStrings.FourthRegistrationStepDescription,
+                4 => ConstStrings.FifthRegistrationStepDescription,
                 _ => " "
             };
         }
