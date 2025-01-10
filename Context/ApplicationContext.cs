@@ -15,15 +15,9 @@ namespace DigitalHandwriting.Context
 
     public class ApplicationContext : DbContext
     {
-        private static bool _created = true;
         public ApplicationContext()
         {
-            if (!_created)
-            {
-                _created = true;
-                Database.EnsureDeleted();
-                Database.EnsureCreated();
-            }
+            Database.EnsureCreated();
         }
         public DbSet<User> Users { get; set; }
 
@@ -43,9 +37,9 @@ namespace DigitalHandwriting.Context
             // Set up the passphrase for SQLCipher encryption
             connection.Open();
 
-            using var command = connection.CreateCommand();
+            /*using var command = connection.CreateCommand();
             command.CommandText = "PRAGMA key = 'testpragma';";
-            command.ExecuteNonQuery();
+            command.ExecuteNonQuery();*/
 
             builder.UseSqlite(connection);
         }

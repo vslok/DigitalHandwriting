@@ -9,6 +9,7 @@ using System.Windows.Input;
 using DigitalHandwriting.Commands;
 using DigitalHandwriting.Services;
 using System.Windows.Documents;
+using DigitalHandwriting.Repositories;
 
 namespace DigitalHandwriting.ViewModels
 {
@@ -31,7 +32,7 @@ namespace DigitalHandwriting.ViewModels
 
         private string _userLogin = "";
 
-        private ApplicationContext db = new ApplicationContext();
+        private readonly UserRepository _userRepository;
 
         private readonly KeyboardMetricsCollectionService _keyboardMetricsCollector;
 
@@ -49,9 +50,8 @@ namespace DigitalHandwriting.ViewModels
             OnCheckTextBoxKeyDownEventCommand = new RelayCommand<object>(OnCheckTextBoxKeyDownEvent);
             OnCheckTextBoxKeyUpEventCommand = new RelayCommand<object>(OnCheckTextBoxKeyUpEvent);
 
-            db.Database.EnsureCreated();
-
             _keyboardMetricsCollector = keyboardMetricsCollector;
+            _userRepository = new UserRepository();
         }
 
         public bool IsHandwritingAuthentificationEnabled
@@ -91,10 +91,8 @@ namespace DigitalHandwriting.ViewModels
 
             if (_checkTextCurrentLetterIndex == _checkTextWithUpperCase.Length && UserCheckText.Length == _checkTextWithUpperCase.Length)
             {
-                db.Users.Load();
-
-                var userRegistrated = db.Users.Local.Select(user => user.Login).Contains(_userLogin);
-                if (!userRegistrated)
+                var user = _userRepository.GetUser(UserLogin);
+                if (user == null)
                 {
                     ResetTryState();
                 }
@@ -110,7 +108,7 @@ namespace DigitalHandwriting.ViewModels
 
         private void OnAuthenticationButtonClick()
         {
-            var user = db.Users.Select(user => user).Where(user => user.Login == UserLogin).FirstOrDefault();
+            var user = _userRepository.GetUser(UserLogin);
 
             if (user == null)
             {
@@ -129,12 +127,16 @@ namespace DigitalHandwriting.ViewModels
                     return;
                 }
 
-                _keyboardMetricsCollector.GetCurrentStepValues(UserCheckText.ToUpper(), out var keyPressedValues, out var betweenKeysValues);
+                _keyboardMetricsCollector.GetCurrentStepValues(
+                    UserCheckText.ToUpper(), 
+                    out var keyPressedValues, 
+                    out var betweenKeysValues,
+                    out var betweenKeysPressValues);
 
-                var isAuthentificated = AuthenticationService.HandwritingAuthentication(user, keyPressedValues, betweenKeysValues,
-                    out double keyPressedDistance, out double beetweenKeysDistance);
+                var isAuthentificated = AuthenticationService.HandwritingAuthentication(user, keyPressedValues, betweenKeysValues, betweenKeysPressValues,
+                    out double keyPressedDistance, out double betweenKeysDistance, out double betweenKeysPressDistance);
 
-                var window = new UserInfo(user, keyPressedValues, betweenKeysValues);
+                var window = new UserInfo(isAuthentificated, keyPressedDistance, betweenKeysDistance, betweenKeysPressDistance);
                 window.ShowDialog();
 
                 if (!isAuthentificated)

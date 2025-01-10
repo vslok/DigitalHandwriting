@@ -19,6 +19,9 @@ namespace DigitalHandwriting.Models
         public string BetweenKeysTimes { get; set; }
 
         [Required]
+        public string BetweenKeysPressTimes { get; set; }
+
+        [Required]
         public string Password { get; set; }
 
         [Required]

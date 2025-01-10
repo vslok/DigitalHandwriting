@@ -2,6 +2,7 @@
 using DigitalHandwriting.Context;
 using DigitalHandwriting.Helpers;
 using DigitalHandwriting.Models;
+using DigitalHandwriting.Repositories;
 using DigitalHandwriting.Services;
 using DigitalHandwriting.Stores;
 using Microsoft.EntityFrameworkCore;
@@ -45,7 +46,7 @@ namespace DigitalHandwriting.ViewModels
 
         private string _userPassPhrase = "";
 
-        private ApplicationContext db = new ApplicationContext();
+        private readonly UserRepository _userRepository;
 
         private readonly KeyboardMetricsCollectionService _keyboardMetricsCollector;
 
@@ -69,8 +70,7 @@ namespace DigitalHandwriting.ViewModels
 
             _keyboardMetricsCollector = keyboardMetricsCollector;
 
-            db.Database.EnsureCreated();
-            db.Users.Load();
+            _userRepository = new UserRepository();
         }
 
         public bool IsLoginBoxEnabled
@@ -154,12 +154,12 @@ namespace DigitalHandwriting.ViewModels
                 Login = UserLogin,
                 KeyPressedTimes = JsonSerializer.Serialize(_keyboardMetricsCollector.GetKeyPressedTimesMedians()),
                 BetweenKeysTimes = JsonSerializer.Serialize(_keyboardMetricsCollector.GetBetweenKeysTimesMedians()),
+                BetweenKeysPressTimes = JsonSerializer.Serialize(_keyboardMetricsCollector.GetBetweenKeysPressTimesMedians()),
                 Password = EncryptionService.GetPasswordHash(UserPassPhrase, out string salt),
                 Salt = salt
             };
 
-            db.Users.Add(user);
-            db.SaveChanges();
+            _userRepository.AddUser(user);
         }
 
         private void OnCheckTextBoxKeyUpEvent(object props)

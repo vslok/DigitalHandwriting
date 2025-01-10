@@ -22,10 +22,10 @@ namespace DigitalHandwriting.Views
     public partial class UserInfo : Window
     {
         UserInfoViewModel _viewModel;
-        public UserInfo(User user, List<int> keyPressedTimes, List<int> betweenKeysTimes)
+        public UserInfo(bool isAuthenticated, double keyPressedMetric, double betweenKeysMetric, double betweenKeysPressMetric)
         {
             InitializeComponent();
-            _viewModel = new UserInfoViewModel(user, keyPressedTimes, betweenKeysTimes);
+            _viewModel = new UserInfoViewModel(isAuthenticated, keyPressedMetric, betweenKeysMetric, betweenKeysPressMetric);
             DataContext = _viewModel;
         }
     }

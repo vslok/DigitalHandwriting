@@ -1,12 +1,6 @@
 ﻿using DigitalHandwriting.Models;
 using DigitalHandwriting.Services;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Text.Json;
-using System.Threading.Tasks;
-using System.Windows.Controls;
 
 namespace DigitalHandwriting.ViewModels
 {
@@ -18,13 +12,14 @@ namespace DigitalHandwriting.ViewModels
 
         private double _betweenKeysMetric = 0.0;
 
-        public UserInfoViewModel(User user, List<int> keyPressedTimes, List<int> beetwenKeysTimes)
-        {
-            IsAuthentificated = AuthenticationService.HandwritingAuthentication(user, keyPressedTimes, beetwenKeysTimes, 
-                out double keyPressedDistance, out double beetweenKeysDistance);
+        private double _betweenKeysPressMetric = 0.0;
 
-            KeyPressedMetric = keyPressedDistance;
-            BetweenKeysMetric = beetweenKeysDistance;
+        public UserInfoViewModel(bool isAuthenticated, double keyPressedMetric, double betweenKeysMetric, double betweenKeysPressMetric)
+        {
+            IsAuthentificated = isAuthenticated;
+            KeyPressedMetric = keyPressedMetric;
+            BetweenKeysMetric = betweenKeysMetric;
+            BetweenKeysPressMetric = betweenKeysPressMetric;
         }
 
         public bool IsAuthentificated
@@ -43,6 +38,12 @@ namespace DigitalHandwriting.ViewModels
         {
             get => _betweenKeysMetric;
             set => SetProperty(ref _betweenKeysMetric, value);
+        }
+
+        public double BetweenKeysPressMetric
+        {
+            get => _betweenKeysPressMetric;
+            set => SetProperty(ref _betweenKeysPressMetric, value);
         }
     }
 }

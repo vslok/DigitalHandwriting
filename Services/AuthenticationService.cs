@@ -22,11 +22,23 @@ namespace DigitalHandwriting.Services
             return userPasswordHash.Equals(inputPasswordHash);
         }
 
-        public static bool HandwritingAuthentication(User user, List<int> loginKeyPressedTimes, List<int> loginBetweenKeysTimes,
-            out double keyPressedDistance, out double betweenKeysDistance)
+        public static bool HandwritingAuthentication(
+            User user, 
+            List<int> loginKeyPressedTimes, 
+            List<int> loginBetweenKeysTimes,
+            List<int> loginBetweenKeysPressTimes,
+            out double keyPressedDistance, 
+            out double betweenKeysDistance,
+            out double betweenKeysPressDistance)
         {
             var userKeyPressedTimes = JsonSerializer.Deserialize<List<int>>(user.KeyPressedTimes);
             var userBetweenKeysTimes = JsonSerializer.Deserialize<List<int>>(user.BetweenKeysTimes);
+            var userBetweenKeysPressTimes = JsonSerializer.Deserialize<List<int>>(user.BetweenKeysPressTimes);
+
+            if (userKeyPressedTimes == null || userBetweenKeysTimes == null || userBetweenKeysPressTimes == null)
+            {
+                throw new Exception("Incorrect user authentication parameters in db");
+            }
 
             var userKeyPressedNormalized = Calculations.Normalize(userKeyPressedTimes);
             var loginKeyPressedNormalized = Calculations.Normalize(loginKeyPressedTimes);
@@ -52,14 +64,32 @@ namespace DigitalHandwriting.Services
                 {
                     keyBetweenKeysDistanceError++;
                 }
-            } 
+            }
+
+            var userBetweenKeysPressNormalized = Calculations.Normalize(userBetweenKeysPressTimes);
+            var loginBetweenKeysPressNormalized = Calculations.Normalize(loginBetweenKeysPressTimes);
+
+            var keyBetweenKeysPressDistanceError = 0;
+            for (int i = 0; i < userBetweenKeysPressNormalized.Count; i++)
+            {
+                var result = Calculations.ManhattanDistance(userBetweenKeysPressNormalized[i], loginBetweenKeysPressNormalized[i]);
+                if (result > 0.2)
+                {
+                    keyBetweenKeysPressDistanceError++;
+                }
+            }
 
             keyPressedDistance = keyPressedDistanceError / (double)userKeyPressedTimes.Count;
             betweenKeysDistance = keyBetweenKeysDistanceError / (double)userBetweenKeysTimes.Count;
+            betweenKeysPressDistance = keyBetweenKeysPressDistanceError / (double)userBetweenKeysPressTimes.Count;
 
-            var authResult = (keyPressedDistanceError + keyBetweenKeysDistanceError) / (double)(userKeyPressedTimes.Count + userBetweenKeysTimes.Count);
+            var authResult = (keyPressedDistanceError + keyBetweenKeysDistanceError + keyBetweenKeysPressDistanceError) 
+                / (double)(userKeyPressedTimes.Count + userBetweenKeysTimes.Count + userBetweenKeysPressTimes.Count);
 
-            Trace.WriteLine($"Key pressed errors: {keyPressedDistanceError}, Between keys errors: {keyBetweenKeysDistanceError}, auth result : {authResult}");
+            Trace.WriteLine($"Key pressed errors: {keyPressedDistanceError}, " +
+                $"Between keys errors: {keyBetweenKeysDistanceError}, " +
+                $"Between keys press errors: {keyBetweenKeysPressDistanceError}" +
+                $"auth result : {authResult}");
 
             //keyPressedDistance = Calculations.ManhattanDistance(userKeyPressedTimes, loginKeyPressedTimes);
             //betweenKeysDistance = Calculations.ManhattanDistance(userBetweenKeysTimes, loginBetweenKeysTimes);
