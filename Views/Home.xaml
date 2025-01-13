@@ -37,6 +37,7 @@
             <Button Content="Аутентификация" Margin="0,15,15,0" Width="100" 
                     Command="{Binding OnAuthenticationButtonClickCommand}" IsEnabled="{Binding IsAuthenticationButtonEnabled}"/>
             <Button Content="Регистрация" Margin="15,15,0,0" Width="100" Command="{Binding OnRegistrationButtonClickCommand}"/>
+            <Button Content="Импорт" Margin="15,15,0,0" Width="100" Command="{Binding OnImportButtonClickCommand}"/>
         </StackPanel>
     </Grid>
 </UserControl>

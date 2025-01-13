@@ -10,6 +10,7 @@ using DigitalHandwriting.Commands;
 using DigitalHandwriting.Services;
 using System.Windows.Documents;
 using DigitalHandwriting.Repositories;
+using Microsoft.Win32;
 
 namespace DigitalHandwriting.ViewModels
 {
@@ -19,6 +20,7 @@ namespace DigitalHandwriting.ViewModels
         public ICommand OnAuthenticationButtonClickCommand { get; set; }
         public ICommand OnCheckTextBoxKeyDownEventCommand { get; set; }
         public ICommand OnCheckTextBoxKeyUpEventCommand { get; set; }
+        public ICommand OnImportButtonClickCommand { get; set; }
 
         private int _authentificationTry = 0;
 
@@ -36,6 +38,8 @@ namespace DigitalHandwriting.ViewModels
 
         private readonly KeyboardMetricsCollectionService _keyboardMetricsCollector;
 
+        private readonly DataMigrationService _dataMigrationService;
+
         public HomeViewModel(
             Func<RegistrationViewModel> registrationViewModelFactory,
             NavigationStore navigationStore,
@@ -47,11 +51,13 @@ namespace DigitalHandwriting.ViewModels
                     () => registrationViewModelFactory()));
 
             OnAuthenticationButtonClickCommand = new Command(OnAuthenticationButtonClick);
+            OnImportButtonClickCommand = new Command(OnImportButtonClick);
             OnCheckTextBoxKeyDownEventCommand = new RelayCommand<object>(OnCheckTextBoxKeyDownEvent);
             OnCheckTextBoxKeyUpEventCommand = new RelayCommand<object>(OnCheckTextBoxKeyUpEvent);
 
             _keyboardMetricsCollector = keyboardMetricsCollector;
             _userRepository = new UserRepository();
+            _dataMigrationService = new DataMigrationService();
         }
 
         public bool IsHandwritingAuthentificationEnabled
@@ -146,6 +152,26 @@ namespace DigitalHandwriting.ViewModels
             }
 
             ResetTryState();
+        }
+
+        private void OnImportButtonClick()
+        {
+            // Configure open file dialog box
+            var dialog = new OpenFileDialog();
+            dialog.FileName = "users"; // Default file name
+            dialog.DefaultExt = ".csv"; // Default file extension
+            dialog.Filter = "CSV documents (.csv)|*.csv"; // Filter files by extension
+
+            // Show open file dialog box
+            bool? result = dialog.ShowDialog();
+
+            // Process open file dialog box results
+            if (result == true)
+            {
+                // Open document
+                string filename = dialog.FileName;
+                _dataMigrationService.ImportDataFromCsv(filename);
+            }
         }
 
         private void ResetTryState()
