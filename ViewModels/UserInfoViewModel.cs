@@ -1,8 +1,4 @@
-﻿using DigitalHandwriting.Models;
-using DigitalHandwriting.Services;
-using System.Collections.Generic;
-
-namespace DigitalHandwriting.ViewModels
+﻿namespace DigitalHandwriting.ViewModels
 {
     public class UserInfoViewModel : BaseViewModel
     {

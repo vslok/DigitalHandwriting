@@ -18,6 +18,7 @@
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="40"/>
+            <RowDefinition Height="40"/>
         </Grid.RowDefinitions>
 
         <Label Content="Логин:" Grid.Row="0"/>
@@ -37,7 +38,10 @@
             <Button Content="Аутентификация" Margin="0,15,15,0" Width="100" 
                     Command="{Binding OnAuthenticationButtonClickCommand}" IsEnabled="{Binding IsAuthenticationButtonEnabled}"/>
             <Button Content="Регистрация" Margin="15,15,0,0" Width="100" Command="{Binding OnRegistrationButtonClickCommand}"/>
+        </StackPanel>
+        <StackPanel HorizontalAlignment="Center" Orientation="Horizontal" Grid.Row="7">
             <Button Content="Импорт" Margin="15,15,0,0" Width="100" Command="{Binding OnImportButtonClickCommand}"/>
+            <Button Content="Валидация" Margin="15,15,0,0" Width="100" Command="{Binding OnValidationButtonClickCommand}"/>
         </StackPanel>
     </Grid>
 </UserControl>

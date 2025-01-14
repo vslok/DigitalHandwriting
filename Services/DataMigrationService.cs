@@ -37,22 +37,14 @@ namespace DigitalHandwriting.Services
 
         public void ImportDataFromCsv(string filePath)
         {
-            var records = this.ReadUsersFromCsv(filePath);
-            foreach (var record in records)
+            var importedUsers = this.ReadUsersFromCsv(filePath);
+            foreach (var user in importedUsers)
             {
-                _userRepository.AddUser(new User()
-                {
-                    Login = record.Subject,
-                    Password = EncryptionService.GetPasswordHash(record.Password, out var salt),
-                    Salt = salt,
-                    KeyPressedTimes = JsonSerializer.Serialize(record.H),
-                    BetweenKeysTimes = JsonSerializer.Serialize(record.UD),
-                    BetweenKeysPressTimes = JsonSerializer.Serialize(record.DD),
-                });
+                _userRepository.AddUser(user);
             }
         }
 
-        private List<CsvImportUser> ReadUsersFromCsv(string filePath)
+        public List<User> ReadUsersFromCsv(string filePath)
         {
             var config = new CsvConfiguration(CultureInfo.InvariantCulture)
             {
@@ -64,7 +56,17 @@ namespace DigitalHandwriting.Services
             {
                 csv.Context.TypeConverterCache.AddConverter<double[]>(new DoubleArrayConverter());
                 var records = csv.GetRecords<CsvImportUser>().ToList();
-                return records;
+                var users = records.Select(record => new User()
+                {
+                    Login = record.Subject,
+                    Password = EncryptionService.GetPasswordHash(record.Password, out var salt),
+                    Salt = salt,
+                    KeyPressedTimes = JsonSerializer.Serialize(record.H),
+                    BetweenKeysTimes = JsonSerializer.Serialize(record.UD),
+                    BetweenKeysPressTimes = JsonSerializer.Serialize(record.DD),
+                }).ToList();
+
+                return users;
             }
         }
     }

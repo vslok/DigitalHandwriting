@@ -22,11 +22,11 @@ for index, row in df.iterrows():
     # Iterate over each column in the row
     for col in df.columns:
         if col.startswith('H.'):
-            combined_row['H'].append(row[col])
+            combined_row['H'].append(int(row[col] * 1000))
         elif col.startswith('DD.'):
-            combined_row['DD'].append(row[col])
+            combined_row['DD'].append(int(row[col] * 1000))
         elif col.startswith('UD.'):
-            combined_row['UD'].append(row[col])
+            combined_row['UD'].append(int(row[col] * 1000))
 
     # Append the combined row to the new DataFrame
     combined_df = pd.concat([combined_df, pd.DataFrame([combined_row])], ignore_index=True)

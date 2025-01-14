@@ -21,6 +21,7 @@ namespace DigitalHandwriting.ViewModels
         public ICommand OnCheckTextBoxKeyDownEventCommand { get; set; }
         public ICommand OnCheckTextBoxKeyUpEventCommand { get; set; }
         public ICommand OnImportButtonClickCommand { get; set; }
+        public ICommand OnValidationButtonClickCommand { get; set; }
 
         private int _authentificationTry = 0;
 
@@ -52,6 +53,7 @@ namespace DigitalHandwriting.ViewModels
 
             OnAuthenticationButtonClickCommand = new Command(OnAuthenticationButtonClick);
             OnImportButtonClickCommand = new Command(OnImportButtonClick);
+            OnValidationButtonClickCommand = new Command(OnValidationButtonClick);
             OnCheckTextBoxKeyDownEventCommand = new RelayCommand<object>(OnCheckTextBoxKeyDownEvent);
             OnCheckTextBoxKeyUpEventCommand = new RelayCommand<object>(OnCheckTextBoxKeyUpEvent);
 
@@ -171,6 +173,27 @@ namespace DigitalHandwriting.ViewModels
                 // Open document
                 string filename = dialog.FileName;
                 _dataMigrationService.ImportDataFromCsv(filename);
+            }
+        }
+
+        private void OnValidationButtonClick()
+        {
+            var dialog = new OpenFileDialog();
+            dialog.FileName = "test_data"; // Default file name
+            dialog.DefaultExt = ".csv"; // Default file extension
+            dialog.Filter = "CSV documents (.csv)|*.csv"; // Filter files by extension
+
+            // Show open file dialog box
+            bool? result = dialog.ShowDialog();
+
+            // Process open file dialog box results
+            if (result == true)
+            {
+                // Open document
+                string filename = dialog.FileName;
+
+                var window = new ValidationResult(filename);
+                window.ShowDialog();
             }
         }
 
