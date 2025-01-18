@@ -10,6 +10,17 @@ using System.Threading.Tasks;
 
 namespace DigitalHandwriting.Services
 {
+    public class HandwritingAuthenticationResult
+    {
+        public double KeyPressedDistance { get; set; }
+
+        public double BetweenKeysDistance { get; set; }
+
+        public double BetweenKeysPressDistance { get; set; }
+
+        public double AuthenticationResult { get; set; }
+    }
+
     public static class AuthenticationService
     {
         public static bool PasswordAuthentication(User user, string password)

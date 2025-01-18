@@ -38,36 +38,33 @@ combined_df.to_csv('data/DSL-CombinedData.csv', index=False)
 first_rows_df = combined_df.groupby('subject').first().reset_index()
 first_rows_df.to_csv('data/DSL-FirstRowsData.csv', index=False)
 
-# Create test data by mixing users with different passwords
+# Create test data
 test_df = pd.DataFrame()
-password_groups = df.groupby('password')
-passwords = df['password'].unique()
+subjects = combined_df['subject'].unique()
 
-for password1 in passwords:
-    # Get users who typed password1
-    users_password1 = df[df['password'] == password1]['subject'].unique()
+# For each subject
+for subject in subjects:
+    # Get the subject's login data as template
+    login_data = combined_df[combined_df['subject'] == subject].iloc[0]
 
-    # Get timing data from users who typed different passwords
-    other_passwords = [p for p in passwords if p != password1]
-    for password2 in other_passwords:
-        users_password2 = df[df['password'] == password2]['subject'].unique()
+    # Create base DataFrame for this subject with 100 rows
+    subject_rows = pd.DataFrame({
+        'subject': [subject] * 100,
+        'sessionIndex': [i // 20 + 1 for i in range(100)],  # 5 sessions
+        'rep': [i % 20 + 1 for i in range(100)],            # 20 reps per session
+        'password': [login_data['password']] * 100
+    })
 
-        # For each user who typed password1, get timing from a user who typed password2
-        for i, login_user in enumerate(users_password1):
-            timing_user = users_password2[i % len(users_password2)]
+    # Get timing data from other subjects
+    other_subjects_data = combined_df[combined_df['subject'] != subject].sample(n=100, replace=True)
 
-            # Get login data
-            login_data = combined_df[combined_df['subject'] == login_user].iloc[0].copy()
-            # Get timing data
-            timing_data = combined_df[combined_df['subject'] == timing_user].iloc[0]
+    # Add timing data from other subjects
+    subject_rows['H'] = other_subjects_data['H'].values
+    subject_rows['DD'] = other_subjects_data['DD'].values
+    subject_rows['UD'] = other_subjects_data['UD'].values
 
-            # Update timing data while keeping login info
-            login_data['H'] = timing_data['H']
-            login_data['DD'] = timing_data['DD']
-            login_data['UD'] = timing_data['UD']
-
-            # Add to test dataset
-            test_df = pd.concat([test_df, pd.DataFrame([login_data])], ignore_index=True)
+    # Add to test dataset
+    test_df = pd.concat([test_df, subject_rows], ignore_index=True)
 
 # Save the test DataFrame to a new CSV file
 test_df.to_csv('data/DSL-TestData.csv', index=False)
