@@ -9,7 +9,14 @@
         mc:Ignorable="d"
         Height="800" Width="600">
 
-    <Grid>
-        <DataGrid AutoGenerateColumns="True" ItemsSource="{Binding ValidationResults}" />
-    </Grid>
+    <StackPanel>
+        <Menu Height="25" VerticalAlignment="Top">
+            <MenuItem Header="File">
+                <Button Content="Export" Command="{Binding OnValidationResultButtonExportClickCommand}" />
+            </MenuItem>
+        </Menu>
+        <Grid>
+            <DataGrid AutoGenerateColumns="True" ItemsSource="{Binding ValidationResults}" />
+        </Grid>
+    </StackPanel>
 </Window>

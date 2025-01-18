@@ -88,7 +88,7 @@ namespace DigitalHandwriting.Services
 
             Trace.WriteLine($"Key pressed errors: {keyPressedDistanceError}, " +
                 $"Between keys errors: {keyBetweenKeysDistanceError}, " +
-                $"Between keys press errors: {keyBetweenKeysPressDistanceError}" +
+                $"Between keys press errors: {keyBetweenKeysPressDistanceError} " +
                 $"auth result : {authResult}");
 
             //keyPressedDistance = Calculations.ManhattanDistance(userKeyPressedTimes, loginKeyPressedTimes);

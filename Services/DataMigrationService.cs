@@ -15,7 +15,7 @@ using System.Text.Json;
 
 namespace DigitalHandwriting.Services
 {
-    internal class CsvImportUser
+    public class CsvImportUser
     {
         public string Subject { get; set; }
         public int SessionIndex { get; set; }
@@ -44,7 +44,7 @@ namespace DigitalHandwriting.Services
             }
         }
 
-        public List<User> ReadUsersFromCsv(string filePath)
+        public IEnumerable<CsvImportUser> GetUsersFromCsv(string filePath)
         {
             var config = new CsvConfiguration(CultureInfo.InvariantCulture)
             {
@@ -55,19 +55,28 @@ namespace DigitalHandwriting.Services
             using (var csv = new CsvReader(reader, config))
             {
                 csv.Context.TypeConverterCache.AddConverter<double[]>(new DoubleArrayConverter());
-                var records = csv.GetRecords<CsvImportUser>().ToList();
-                var users = records.Select(record => new User()
+                var records = csv.GetRecords<CsvImportUser>();
+                foreach (var record in records)
                 {
-                    Login = record.Subject,
-                    Password = EncryptionService.GetPasswordHash(record.Password, out var salt),
-                    Salt = salt,
-                    KeyPressedTimes = JsonSerializer.Serialize(record.H),
-                    BetweenKeysTimes = JsonSerializer.Serialize(record.UD),
-                    BetweenKeysPressTimes = JsonSerializer.Serialize(record.DD),
-                }).ToList();
-
-                return users;
+                    yield return record;
+                }
             }
+        }
+
+        public List<User> ReadUsersFromCsv(string filePath)
+        {
+            var records = GetUsersFromCsv(filePath).ToList();
+            var users = records.Select(record => new User()
+            {
+                Login = record.Subject,
+                Password = EncryptionService.GetPasswordHash(record.Password, out var salt),
+                Salt = salt,
+                KeyPressedTimes = JsonSerializer.Serialize(record.H),
+                BetweenKeysTimes = JsonSerializer.Serialize(record.UD),
+                BetweenKeysPressTimes = JsonSerializer.Serialize(record.DD),
+            }).ToList();
+
+            return users;
         }
     }
 }

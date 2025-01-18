@@ -25,5 +25,10 @@ namespace DigitalHandwriting.Repositories
         {
             return db.Users.Select(user => user).Where(user => user.Login == userLogin).FirstOrDefault();
         }
+
+        public List<User> getAllUsers()
+        {
+            return db.Users.ToList();
+        }
     }
 }
