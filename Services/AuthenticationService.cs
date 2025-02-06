@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Text.Json;
 using System.Threading.Tasks;
@@ -54,41 +55,15 @@ namespace DigitalHandwriting.Services
             var userKeyPressedNormalized = Calculations.Normalize(userKeyPressedTimes);
             var loginKeyPressedNormalized = Calculations.Normalize(loginKeyPressedTimes);
 
-            var keyPressedDistanceError = 0;            
-            for (int i = 0; i < userKeyPressedNormalized.Count; i++)
-            {
-                var result = Calculations.ManhattanDistance(userKeyPressedNormalized[i], loginKeyPressedNormalized[i]);
-                if (result > 0.2)
-                {
-                    keyPressedDistanceError++;
-                }
-            }
-
             var userBetweenKeysNormalized = Calculations.Normalize(userBetweenKeysTimes);
             var loginBetweenKeysNormalized = Calculations.Normalize(loginBetweenKeysTimes);
-
-            var keyBetweenKeysDistanceError = 0;
-            for (int i = 0; i < userBetweenKeysNormalized.Count; i++)
-            {
-                var result = Calculations.ManhattanDistance(userBetweenKeysNormalized[i], loginBetweenKeysNormalized[i]);
-                if (result > 0.2)
-                {
-                    keyBetweenKeysDistanceError++;
-                }
-            }
 
             var userBetweenKeysPressNormalized = Calculations.Normalize(userBetweenKeysPressTimes);
             var loginBetweenKeysPressNormalized = Calculations.Normalize(loginBetweenKeysPressTimes);
 
-            var keyBetweenKeysPressDistanceError = 0;
-            for (int i = 0; i < userBetweenKeysPressNormalized.Count; i++)
-            {
-                var result = Calculations.ManhattanDistance(userBetweenKeysPressNormalized[i], loginBetweenKeysPressNormalized[i]);
-                if (result > 0.2)
-                {
-                    keyBetweenKeysPressDistanceError++;
-                }
-            }
+            var keyPressedDistanceError = CalculateErrors(userKeyPressedNormalized, loginKeyPressedNormalized, 0.2);
+            var keyBetweenKeysDistanceError = CalculateErrors(userBetweenKeysNormalized, loginBetweenKeysNormalized, 0.2);
+            var keyBetweenKeysPressDistanceError = CalculateErrors(userBetweenKeysPressNormalized, loginBetweenKeysPressNormalized, 0.2);
 
             keyPressedDistance = keyPressedDistanceError / (double)userKeyPressedTimes.Count;
             betweenKeysDistance = keyBetweenKeysDistanceError / (double)userBetweenKeysTimes.Count;
@@ -106,6 +81,228 @@ namespace DigitalHandwriting.Services
             //betweenKeysDistance = Calculations.ManhattanDistance(userBetweenKeysTimes, loginBetweenKeysTimes);
 
             return authResult < 0.15;
+        }
+
+        private static int CalculateErrors(List<double> userData, List<double> loginData, double threshold)
+        {
+            int errors = 0;
+            for (int i = 0; i < userData.Count; i++)
+            {
+                var result = Calculations.ManhattanDistance(userData[i], loginData[i]);
+                if (result > threshold)
+                {
+                    errors++;
+                }
+            }
+            return errors;
+        }
+
+        private static bool EuclidianAuthentication(User user, List<int> loginKeyPressedTimes, List<int> loginBetweenKeysTimes, List<int> loginBetweenKeysPressTimes)
+        {
+            var userKeyPressedTimes = JsonSerializer.Deserialize<List<int>>(user.KeyPressedTimesMedians);
+            var userBetweenKeysTimes = JsonSerializer.Deserialize<List<int>>(user.BetweenKeysTimesMedians);
+            var userBetweenKeysPressTimes = JsonSerializer.Deserialize<List<int>>(user.BetweenKeysPressTimesMedians);
+
+            if (userKeyPressedTimes == null || userBetweenKeysTimes == null || userBetweenKeysPressTimes == null)
+            {
+                throw new Exception("Incorrect user authentication parameters in db");
+            }
+
+            var userKeyPressedTimesDouble = userKeyPressedTimes.ConvertAll(x => (double)x);
+            var loginKeyPressedTimesDouble = loginKeyPressedTimes.ConvertAll(x => (double)x);
+
+            var userBetweenKeysTimesDouble = userBetweenKeysTimes.ConvertAll(x => (double)x);
+            var loginBetweenKeysTimesDouble = loginBetweenKeysTimes.ConvertAll(x => (double)x);
+
+            var userBetweenKeysPressTimesDouble = userBetweenKeysPressTimes.ConvertAll(x => (double)x);
+            var loginBetweenKeysPressTimesDouble = loginBetweenKeysPressTimes.ConvertAll(x => (double)x);
+
+            // Вычисляем Евклидово расстояние для каждого из трех параметров
+            var keyPressedDistance = Calculations.EuclideanDistance(userKeyPressedTimesDouble, loginKeyPressedTimesDouble);
+            var betweenKeysDistance = Calculations.EuclideanDistance(userBetweenKeysTimesDouble, loginBetweenKeysTimesDouble);
+            var betweenKeysPressDistance = Calculations.EuclideanDistance(userBetweenKeysPressTimesDouble, loginBetweenKeysPressTimesDouble);
+
+            // Вычисляем общий результат аутентификации как среднее значение трех расстояний
+            var authResult = (keyPressedDistance + betweenKeysDistance + betweenKeysPressDistance) / 3.0;
+
+            Trace.WriteLine($"Key pressed distance: {keyPressedDistance}, " +
+                $"Between keys distance: {betweenKeysDistance}, " +
+                $"Between keys press distance: {betweenKeysPressDistance} " +
+                $"auth result : {authResult}");
+
+            // Возвращаем true, если результат аутентификации меньше порогового значения
+            return authResult < 0.15;
+        }
+
+        public static bool EuclidianAuthenticationWithNormalization(User user, List<int> loginKeyPressedTimes, 
+            List<int> loginBetweenKeysTimes, List<int> loginBetweenKeysPressTimes)
+        {
+            var userKeyPressedTimes = JsonSerializer.Deserialize<List<int>>(user.KeyPressedTimesMedians);
+            var userBetweenKeysTimes = JsonSerializer.Deserialize<List<int>>(user.BetweenKeysTimesMedians);
+            var userBetweenKeysPressTimes = JsonSerializer.Deserialize<List<int>>(user.BetweenKeysPressTimesMedians);
+
+            if (userKeyPressedTimes == null || userBetweenKeysTimes == null || userBetweenKeysPressTimes == null)
+            {
+                throw new Exception("Incorrect user authentication parameters in db");
+            }
+
+            // Нормализация данных
+            var userKeyPressedNormalized = Calculations.Normalize(userKeyPressedTimes);
+            var loginKeyPressedNormalized = Calculations.Normalize(loginKeyPressedTimes);
+
+            var userBetweenKeysNormalized = Calculations.Normalize(userBetweenKeysTimes);
+            var loginBetweenKeysNormalized = Calculations.Normalize(loginBetweenKeysTimes);
+
+            var userBetweenKeysPressNormalized = Calculations.Normalize(userBetweenKeysPressTimes);
+            var loginBetweenKeysPressNormalized = Calculations.Normalize(loginBetweenKeysPressTimes);
+
+            // Вычисляем Евклидово расстояние для каждого из трех параметров
+            var keyPressedDistance = Calculations.EuclideanDistance(userKeyPressedNormalized, loginKeyPressedNormalized);
+            var betweenKeysDistance = Calculations.EuclideanDistance(userBetweenKeysNormalized, loginBetweenKeysNormalized);
+            var betweenKeysPressDistance = Calculations.EuclideanDistance(userBetweenKeysPressNormalized, loginBetweenKeysPressNormalized);
+
+            // Вычисляем общий результат аутентификации как среднее значение трех расстояний
+            var authResult = (keyPressedDistance + betweenKeysDistance + betweenKeysPressDistance) / 3.0;
+
+            Trace.WriteLine($"Key pressed distance: {keyPressedDistance}, " +
+                $"Between keys distance: {betweenKeysDistance}, " +
+                $"Between keys press distance: {betweenKeysPressDistance} " +
+                $"auth result : {authResult}");
+
+            // Возвращаем true, если результат аутентификации меньше порогового значения
+            return authResult < 0.15;
+        }
+
+        public static bool ManhattanAuthentication(User user, List<int> loginKeyPressedTimes, List<int> loginBetweenKeysTimes, List<int> loginBetweenKeysPressTimes)
+        {
+            var userKeyPressedTimes = JsonSerializer.Deserialize<List<int>>(user.KeyPressedTimesMedians);
+            var userBetweenKeysTimes = JsonSerializer.Deserialize<List<int>>(user.BetweenKeysTimesMedians);
+            var userBetweenKeysPressTimes = JsonSerializer.Deserialize<List<int>>(user.BetweenKeysPressTimesMedians);
+
+            if (userKeyPressedTimes == null || userBetweenKeysTimes == null || userBetweenKeysPressTimes == null)
+            {
+                throw new Exception("Incorrect user authentication parameters in db");
+            }
+
+            var userKeyPressedTimesDouble = userKeyPressedTimes.ConvertAll(x => (double)x);
+            var loginKeyPressedTimesDouble = loginKeyPressedTimes.ConvertAll(x => (double)x);
+
+            var userBetweenKeysTimesDouble = userBetweenKeysTimes.ConvertAll(x => (double)x);
+            var loginBetweenKeysTimesDouble = loginBetweenKeysTimes.ConvertAll(x => (double)x);
+
+            var userBetweenKeysPressTimesDouble = userBetweenKeysPressTimes.ConvertAll(x => (double)x);
+            var loginBetweenKeysPressTimesDouble = loginBetweenKeysPressTimes.ConvertAll(x => (double)x);
+
+            // Вычисляем Манхэттенское расстояние для каждого из трех параметров
+            var keyPressedDistance = Calculations.ManhattanDistance(userKeyPressedTimesDouble, loginKeyPressedTimesDouble);
+            var betweenKeysDistance = Calculations.ManhattanDistance(userBetweenKeysTimesDouble, loginBetweenKeysTimesDouble);
+            var betweenKeysPressDistance = Calculations.ManhattanDistance(userBetweenKeysPressTimesDouble, loginBetweenKeysPressTimesDouble);
+
+            // Вычисляем общий результат аутентификации как среднее значение трех расстояний
+            var authResult = (keyPressedDistance + betweenKeysDistance + betweenKeysPressDistance) / 3.0;
+
+            Trace.WriteLine($"Key pressed distance: {keyPressedDistance}, " +
+                $"Between keys distance: {betweenKeysDistance}, " +
+                $"Between keys press distance: {betweenKeysPressDistance} " +
+                $"auth result : {authResult}");
+
+            // Возвращаем true, если результат аутентификации меньше порогового значения
+            return authResult < 0.15;
+        }
+
+        public static bool ManhattanAuthenticationWithNormalization(User user, List<int> loginKeyPressedTimes, 
+            List<int> loginBetweenKeysTimes, List<int> loginBetweenKeysPressTimes)
+        {
+            var userKeyPressedTimes = JsonSerializer.Deserialize<List<int>>(user.KeyPressedTimesMedians);
+            var userBetweenKeysTimes = JsonSerializer.Deserialize<List<int>>(user.BetweenKeysTimesMedians);
+            var userBetweenKeysPressTimes = JsonSerializer.Deserialize<List<int>>(user.BetweenKeysPressTimesMedians);
+
+            if (userKeyPressedTimes == null || userBetweenKeysTimes == null || userBetweenKeysPressTimes == null)
+            {
+                throw new Exception("Incorrect user authentication parameters in db");
+            }
+
+            var userKeyPressedNormalized = Calculations.Normalize(userKeyPressedTimes);
+            var loginKeyPressedNormalized = Calculations.Normalize(loginKeyPressedTimes);
+
+            var userBetweenKeysNormalized = Calculations.Normalize(userBetweenKeysTimes);
+            var loginBetweenKeysNormalized = Calculations.Normalize(loginBetweenKeysTimes);
+
+            var userBetweenKeysPressNormalized = Calculations.Normalize(userBetweenKeysPressTimes);
+            var loginBetweenKeysPressNormalized = Calculations.Normalize(loginBetweenKeysPressTimes);
+
+            // Вычисляем Манхэттенское расстояние для каждого из трех параметров
+            var keyPressedDistance = Calculations.ManhattanDistance(userKeyPressedNormalized, loginKeyPressedNormalized);
+            var betweenKeysDistance = Calculations.ManhattanDistance(userBetweenKeysNormalized, loginBetweenKeysNormalized);
+            var betweenKeysPressDistance = Calculations.ManhattanDistance(userBetweenKeysPressNormalized, loginBetweenKeysPressNormalized);
+
+            // Вычисляем общий результат аутентификации как среднее значение трех расстояний
+            var authResult = (keyPressedDistance + betweenKeysDistance + betweenKeysPressDistance) / 3.0;
+
+            Trace.WriteLine($"Key pressed distance: {keyPressedDistance}, " +
+                $"Between keys distance: {betweenKeysDistance}, " +
+                $"Between keys press distance: {betweenKeysPressDistance} " +
+                $"auth result : {authResult}");
+
+            // Возвращаем true, если результат аутентификации меньше порогового значения
+            return authResult < 0.15;
+        }
+
+        public static bool ITADAuthentication(User user, List<int> loginKeyPressedTimes,
+            List<int> loginBetweenKeysTimes, List<int> loginBetweenKeysPressTimes)
+        {
+            var userFirstKeyPressedTimes = JsonSerializer.Deserialize<List<int>>(user.KeyPressedTimesFirst);
+            var userFirstBetweenKeysTimes = JsonSerializer.Deserialize<List<int>>(user.BetweenKeysTimesFirst);
+            var userFirstBetweenKeysPressTimes = JsonSerializer.Deserialize<List<int>>(user.BetweenKeysPressTimesFirst);
+
+            var userSecondKeyPressedTimes = JsonSerializer.Deserialize<List<int>>(user.KeyPressedTimesSecond);
+            var userSecondBetweenKeysTimes = JsonSerializer.Deserialize<List<int>>(user.BetweenKeysTimesSecond);
+            var userSecondBetweenKeysPressTimes = JsonSerializer.Deserialize<List<int>>(user.BetweenKeysPressTimesSecond);
+
+            var userThirdKeyPressedTimes = JsonSerializer.Deserialize<List<int>>(user.KeyPressedTimesThird);
+            var userThirdBetweenKeysTimes = JsonSerializer.Deserialize<List<int>>(user.BetweenKeysTimesThird);
+            var userThirdBetweenKeysPressTimes = JsonSerializer.Deserialize<List<int>>(user.BetweenKeysPressTimesThird);
+
+            var loginKeyPressedTimesDouble = loginKeyPressedTimes.ConvertAll(x => (double)x);
+            var loginBetweenKeysTimesDouble = loginBetweenKeysTimes.ConvertAll(x => (double)x);
+            var loginBetweenKeysPressTimesDouble = loginBetweenKeysPressTimes.ConvertAll(x => (double)x);
+
+            var userFirstKeyPressedTimesDouble = userFirstKeyPressedTimes.ConvertAll(x => (double)x);
+            var userFirstBetweenKeysTimesDouble = userFirstBetweenKeysTimes.ConvertAll(x => (double)x);
+            var userFirstBetweenKeysPressTimesDouble = userFirstBetweenKeysPressTimes.ConvertAll(x => (double)x);
+
+            var userSecondKeyPressedTimesDouble = userSecondKeyPressedTimes.ConvertAll(x => (double)x);
+            var userSecondBetweenKeysTimesDouble = userSecondBetweenKeysTimes.ConvertAll(x => (double)x);
+            var userSecondBetweenKeysPressTimesDouble = userSecondBetweenKeysPressTimes.ConvertAll(x => (double)x);
+
+            var userThirdKeyPressedTimesDouble = userThirdKeyPressedTimes.ConvertAll(x => (double)x);
+            var userThirdBetweenKeysTimesDouble = userThirdBetweenKeysTimes.ConvertAll(x => (double)x);
+            var userThirdBetweenKeysPressTimesDouble = userThirdBetweenKeysPressTimes.ConvertAll(x => (double)x);
+
+
+            // Вычисляем Манхэттенское расстояние для каждого из трех параметров
+            var keyPressedDistance = Calculations.ITAD(loginKeyPressedTimesDouble, new List<List<double>>()
+            {
+                userFirstKeyPressedTimesDouble, userSecondKeyPressedTimesDouble, userThirdKeyPressedTimesDouble,
+            });
+            var betweenKeysDistance = Calculations.ITAD(loginBetweenKeysTimesDouble, new List<List<double>>()
+            {
+                userFirstBetweenKeysTimesDouble, userSecondBetweenKeysTimesDouble, userThirdBetweenKeysTimesDouble,
+            });
+            var betweenKeysPressDistance = Calculations.ITAD(loginBetweenKeysPressTimesDouble, new List<List<double>>()
+            {
+                userFirstBetweenKeysPressTimesDouble, userSecondBetweenKeysPressTimesDouble, userThirdBetweenKeysPressTimesDouble,
+            });
+
+            // Вычисляем общий результат аутентификации как среднее значение трех расстояний
+            var authResult = (keyPressedDistance + betweenKeysDistance + betweenKeysPressDistance) / 3.0;
+
+            Trace.WriteLine($"Key pressed distance: {keyPressedDistance}, " +
+                $"Between keys distance: {betweenKeysDistance}, " +
+                $"Between keys press distance: {betweenKeysPressDistance} " +
+                $"auth result : {authResult}");
+
+            return authResult > 0.45;
         }
     }
 }

@@ -1,4 +1,5 @@
-﻿using Microsoft.Windows.Themes;
+﻿using Microsoft.EntityFrameworkCore.Metadata.Conventions;
+using Microsoft.Windows.Themes;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
@@ -118,8 +119,28 @@ namespace DigitalHandwriting.Helpers
 
         public static List<double> Normalize(List<int> vector)
         {
-            var distance = Math.Sqrt(vector.ConvertAll(el => Math.Pow(el, 2)).Sum());
-            return vector.ConvertAll(el => el / distance);
+            var length = Math.Sqrt(vector.ConvertAll(el => Math.Pow(el, 2)).Sum());
+            return vector.ConvertAll(el => el / length);
+        }
+
+        public static double ITAD(List<double> sample, List<List<double>> rawReferences)
+        {
+            var totalITAD = 0.0;
+            for (var i = 0; i < rawReferences[0].Count; i++)
+            {
+                var keyValues = new List<double>();
+                for (var j = 0; j < rawReferences.Count; j++)
+                {
+                    keyValues.Add(rawReferences[j][i]);
+                }
+
+                var sortedReference = keyValues.OrderBy(x => x).ToList();
+                int count = sortedReference.Count(x => x <= sample[0]);
+                double itad = (double)count / sortedReference.Count;
+                totalITAD += itad;
+            }
+
+            return totalITAD / sample.Count;
         }
 
         public static List<List<T>> MatrixTransposing<T>(List<List<T>> matrix)
