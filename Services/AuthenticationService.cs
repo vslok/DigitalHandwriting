@@ -42,9 +42,9 @@ namespace DigitalHandwriting.Services
             out double betweenKeysDistance,
             out double betweenKeysPressDistance)
         {
-            var userKeyPressedTimes = JsonSerializer.Deserialize<List<int>>(user.KeyPressedTimes);
-            var userBetweenKeysTimes = JsonSerializer.Deserialize<List<int>>(user.BetweenKeysTimes);
-            var userBetweenKeysPressTimes = JsonSerializer.Deserialize<List<int>>(user.BetweenKeysPressTimes);
+            var userKeyPressedTimes = JsonSerializer.Deserialize<List<int>>(user.KeyPressedTimesMedians);
+            var userBetweenKeysTimes = JsonSerializer.Deserialize<List<int>>(user.BetweenKeysTimesMedians);
+            var userBetweenKeysPressTimes = JsonSerializer.Deserialize<List<int>>(user.BetweenKeysPressTimesMedians);
 
             if (userKeyPressedTimes == null || userBetweenKeysTimes == null || userBetweenKeysPressTimes == null)
             {

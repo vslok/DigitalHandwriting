@@ -152,9 +152,18 @@ namespace DigitalHandwriting.ViewModels
             User user = new User()
             {
                 Login = UserLogin,
-                KeyPressedTimes = JsonSerializer.Serialize(_keyboardMetricsCollector.GetKeyPressedTimesMedians()),
-                BetweenKeysTimes = JsonSerializer.Serialize(_keyboardMetricsCollector.GetBetweenKeysTimesMedians()),
-                BetweenKeysPressTimes = JsonSerializer.Serialize(_keyboardMetricsCollector.GetBetweenKeysPressTimesMedians()),
+                KeyPressedTimesMedians = JsonSerializer.Serialize(_keyboardMetricsCollector.GetKeyPressedTimesMedians()),
+                BetweenKeysTimesMedians = JsonSerializer.Serialize(_keyboardMetricsCollector.GetBetweenKeysTimesMedians()),
+                BetweenKeysPressTimesMedians = JsonSerializer.Serialize(_keyboardMetricsCollector.GetBetweenKeysPressTimesMedians()),
+                KeyPressedTimesFirst = JsonSerializer.Serialize(_keyboardMetricsCollector.KeyPressedTimes[0]),
+                KeyPressedTimesSecond = JsonSerializer.Serialize(_keyboardMetricsCollector.KeyPressedTimes[1]),
+                KeyPressedTimesThird = JsonSerializer.Serialize(_keyboardMetricsCollector.KeyPressedTimes[2]),
+                BetweenKeysTimesFirst = JsonSerializer.Serialize(_keyboardMetricsCollector.BetweenKeysTimes[0]),
+                BetweenKeysTimesSecond = JsonSerializer.Serialize(_keyboardMetricsCollector.BetweenKeysTimes[1]),
+                BetweenKeysTimesThird = JsonSerializer.Serialize(_keyboardMetricsCollector.BetweenKeysTimes[2]),
+                BetweenKeysPressTimesFirst = JsonSerializer.Serialize(_keyboardMetricsCollector.BetweenKeysPressTimes[0]),
+                BetweenKeysPressTimesSecond = JsonSerializer.Serialize(_keyboardMetricsCollector.BetweenKeysPressTimes[1]),
+                BetweenKeysPressTimesThird = JsonSerializer.Serialize(_keyboardMetricsCollector.BetweenKeysPressTimes[2]),
                 Password = EncryptionService.GetPasswordHash(UserPassPhrase, out string salt),
                 Salt = salt
             };

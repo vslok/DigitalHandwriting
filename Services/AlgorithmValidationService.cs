@@ -42,17 +42,17 @@ namespace DigitalHandwriting.Services
                         Login = testUserRecord.Subject,
                         Password = EncryptionService.GetPasswordHash(testUserRecord.Password, out var salt),
                         Salt = salt,
-                        KeyPressedTimes = JsonSerializer.Serialize(testUserRecord.H),
-                        BetweenKeysTimes = JsonSerializer.Serialize(testUserRecord.UD),
-                        BetweenKeysPressTimes = JsonSerializer.Serialize(testUserRecord.DD),
+                        KeyPressedTimesMedians = JsonSerializer.Serialize(testUserRecord.ThirdH),
+                        BetweenKeysTimesMedians = JsonSerializer.Serialize(testUserRecord.ThirdUD),
+                        BetweenKeysPressTimesMedians = JsonSerializer.Serialize(testUserRecord.ThirdDD),
                     };
 
                     var user = systemUsers.Find((user) => user.Login == testUser.Login);
                     var isAuthenticated = AuthenticationService.HandwritingAuthentication(
                         user,
-                        JsonSerializer.Deserialize<List<int>>(testUser.KeyPressedTimes),
-                        JsonSerializer.Deserialize<List<int>>(testUser.BetweenKeysTimes),
-                        JsonSerializer.Deserialize<List<int>>(testUser.BetweenKeysPressTimes),
+                        JsonSerializer.Deserialize<List<int>>(testUser.KeyPressedTimesMedians),
+                        JsonSerializer.Deserialize<List<int>>(testUser.BetweenKeysTimesMedians),
+                        JsonSerializer.Deserialize<List<int>>(testUser.BetweenKeysPressTimesMedians),
                         out var keyPressedDistance, out var betweenKeysDistance, out var betweenKeysPressDistance);
 
                     results.Add(new AuthenticationValidationResult()

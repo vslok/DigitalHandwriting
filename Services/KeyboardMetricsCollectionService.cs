@@ -23,6 +23,12 @@ namespace DigitalHandwriting.Services
 
         private int _collectingMetricsStep;
 
+        public List<List<int>> KeyPressedTimes {  get { return _keyPressedTimes; } }
+
+        public List<List<int>> BetweenKeysTimes { get { return _betweenKeysTimes; } }
+
+        public List<List<int>> BetweenKeysPressTimes { get { return _betweenKeysPressTimes; } }
+
         public KeyboardMetricsCollectionService() 
         { 
             _collectingMetricsStep = 0;

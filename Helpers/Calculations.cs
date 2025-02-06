@@ -32,37 +32,72 @@ namespace DigitalHandwriting.Helpers
             return mediansList;
         }
 
-        public static double EuclideanDistance(List<int> etVector, List<int> curVector)
+        public static double EuclideanDistance(List<double> vector1, List<double> vector2)
         {
-            var normalizedEtVector = Normalize(etVector);
-            var normalizedCurVector = Normalize(curVector);
+            if (vector1.Count != vector2.Count)
+                throw new ArgumentException("Vectors must be of same length.");
 
-            var sum = 0.0;
-            for (int i = 0; i < normalizedEtVector.Count; i++)
+            double sumSquared = 0.0;
+            for (int i = 0; i < vector1.Count; i++)
             {
-                sum += Math.Pow(normalizedEtVector.ElementAtOrDefault(i) - normalizedCurVector.ElementAtOrDefault(i), 2);
+                double diff = vector1[i] - vector2[i];
+                sumSquared += diff * diff;
             }
-            var distance = Math.Sqrt(sum);
-            var normalizedDistance = distance / Math.Sqrt(etVector.Count);
-            return Math.Round(normalizedDistance, 2);
+
+            var result = Math.Sqrt(sumSquared);
+
+            return Math.Round(result, 2);
         }
 
-        public static double ManhattanDistance(List<int> etVector, List<int> curVector)
+        public static double ManhattanDistance(List<double> vector1, List<double> vector2)
         {
-            var normalizedEtVector = Normalize(etVector);
-            var normalizedCurVector = Normalize(curVector);
+            if (vector1.Count != vector2.Count)
+                throw new ArgumentException("Vectors must be of same length.");
 
-            double sum = 0;
-            for (int i = 0; i < normalizedEtVector.Count; i++)
+            double sumAbs = 0.0;
+            for (int i = 0; i < vector1.Count; i++)
             {
-                sum += Math.Abs(normalizedEtVector[i] - normalizedCurVector[i]);
+                sumAbs += Math.Abs(vector1[i] - vector2[i]);
             }
-            return Math.Round(sum / etVector.Count, 2);
+
+            return Math.Round(sumAbs, 2);
         }
 
         public static double ManhattanDistance(double etPoint, double curPoint)
         { 
             return Math.Round(Math.Abs(etPoint - curPoint), 2);
+        }
+
+        public static double MahalanobisDistance(List<double> vector1, List<double> vector2, double[,] invCovMatrix)
+        {
+            if (vector1.Count != vector2.Count)
+                throw new ArgumentException("Vectors must be of same length.");
+
+            int n = vector1.Count;
+            double[] delta = new double[n];
+            for (int i = 0; i < n; i++)
+            {
+                delta[i] = vector1[i] - vector2[i];
+            }
+
+            // Perform delta^T * invCovMatrix * delta
+            double[] temp = new double[n];
+            for (int i = 0; i < n; i++)
+            {
+                temp[i] = 0.0;
+                for (int j = 0; j < n; j++)
+                {
+                    temp[i] += invCovMatrix[i, j] * delta[j];
+                }
+            }
+
+            double mahalanobis = 0.0;
+            for (int i = 0; i < n; i++)
+            {
+                mahalanobis += delta[i] * temp[i];
+            }
+
+            return Math.Sqrt(mahalanobis);
         }
 
         public static double CosineSimilarity(List<int> etVector, List<int> curVector)
