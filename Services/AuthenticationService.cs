@@ -304,5 +304,8 @@ namespace DigitalHandwriting.Services
 
             return authResult > 0.45;
         }
+
+        public static bool GunettiPicardiMetricAuthentication(User user, List<int> loginKeyPressedTimes,
+            List<int> loginBetweenKeysTimes, List<int> loginBetweenKeysPressTimes)
     }
 }

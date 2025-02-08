@@ -2,11 +2,7 @@
 using Microsoft.Windows.Themes;
 using System;
 using System.Collections.Generic;
-using System.Globalization;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Markup;
 
 namespace DigitalHandwriting.Helpers
 {
@@ -36,7 +32,9 @@ namespace DigitalHandwriting.Helpers
         public static double EuclideanDistance(List<double> vector1, List<double> vector2)
         {
             if (vector1.Count != vector2.Count)
+            {
                 throw new ArgumentException("Vectors must be of same length.");
+            }
 
             double sumSquared = 0.0;
             for (int i = 0; i < vector1.Count; i++)
@@ -53,7 +51,9 @@ namespace DigitalHandwriting.Helpers
         public static double ManhattanDistance(List<double> vector1, List<double> vector2)
         {
             if (vector1.Count != vector2.Count)
+            {
                 throw new ArgumentException("Vectors must be of same length.");
+            }
 
             double sumAbs = 0.0;
             for (int i = 0; i < vector1.Count; i++)
@@ -72,7 +72,9 @@ namespace DigitalHandwriting.Helpers
         public static double MahalanobisDistance(List<double> vector1, List<double> vector2, double[,] invCovMatrix)
         {
             if (vector1.Count != vector2.Count)
+            {
                 throw new ArgumentException("Vectors must be of same length.");
+            }
 
             int n = vector1.Count;
             double[] delta = new double[n];
@@ -164,6 +166,124 @@ namespace DigitalHandwriting.Helpers
         public static double StandardDeviation(double disp)
         {
             return Math.Sqrt(disp);
+        }
+
+        public static Dictionary<string, List<double>> CalculateNGraph(int n, List<double> holdTimes, List<double>betweenKeysTimes)
+        {
+            if (holdTimes.Count < n)
+            {
+                throw new ArgumentException("Not enough data to calculate n-graph");
+            }
+
+            if (betweenKeysTimes.Count != holdTimes.Count - 1)
+            {
+                throw new ArgumentException("Not between keys counts doesn't match hold times count");
+            }
+
+            List<double> nGraphBetweenKeysDown = new List<double>();
+            List<double> nGraphBetweenKeysUp = new List<double>();
+            List<double> nGraphHold = new List<double>();
+            List<double> nGraphBetweenKeys = new List<double>();
+
+            for (int i = 0; i <= holdTimes.Count - n; i++)
+            {
+                var nGraphBetweenKeysDownTime = 0.0;
+                var nGraphBetweenKeysUpTime = 0.0;
+                var nGraphHoldTime = 0.0;
+                var nGraphBetweenKeysTime = 0.0;
+
+                for (int j = 0; j < n - 1; j++)
+                {
+                    nGraphBetweenKeysDownTime += holdTimes[i + j];
+                    nGraphBetweenKeysDownTime += betweenKeysTimes[i + j];
+
+                    nGraphBetweenKeysUpTime += betweenKeysTimes[i + j];
+                    nGraphBetweenKeysUpTime += holdTimes[i + j + 1];
+
+                    nGraphBetweenKeysTime += betweenKeysTimes[i + j];
+                }
+
+                for (int j = 0; j < n; j++)
+                {
+                    nGraphHoldTime += holdTimes[i + j];
+                }
+
+                nGraphBetweenKeysDown.Add(nGraphBetweenKeysDownTime);
+                nGraphBetweenKeysUp.Add(nGraphBetweenKeysUpTime);
+                nGraphHold.Add(nGraphHoldTime);
+                nGraphBetweenKeys.Add(nGraphBetweenKeysTime);
+            }
+
+            return new Dictionary<string, List<double>>
+            {
+                { "H", nGraphHold },
+                { "DD", nGraphBetweenKeysDown },
+                { "UU", nGraphBetweenKeysUp },
+                { "DU", nGraphBetweenKeys },
+            };
+        }
+
+        public static double CalculateMetric(Dictionary<string, List<double>> nGraphs1, Dictionary<string, List<double>> nGraphs2, double t, 
+            List<string>? sequence1, List<string>? sequence2)
+        {
+            double aMeasure = CalculateAMeasure(nGraphs1, nGraphs2, t);
+            if (sequence1 != null && sequence2 != null)
+            {
+                double rMeasure = CalculateRMeasure(sequence1, sequence2);
+                return (aMeasure + rMeasure) / 2.0;
+            }
+
+            return aMeasure;
+            
+        }
+
+        public static double CalculateAMeasure(Dictionary<string, List<double>> nGraphs1, Dictionary<string, List<double>> nGraphs2, double t)
+        {
+            if (!nGraphs1.Keys.SequenceEqual(nGraphs2.Keys))
+                throw new ArgumentException("Наборы метрик должны быть одинаковыми.");
+
+            double totalSimilarity = 0;
+            int totalCount = 0;
+
+            foreach (var key in nGraphs1.Keys)
+            {
+                var values1 = nGraphs1[key];
+                var values2 = nGraphs2[key];
+
+                if (values1.Count != values2.Count)
+                    throw new ArgumentException("Количество значений для каждой метрики должно быть одинаковым.");
+
+                for (int i = 0; i < values1.Count; i++)
+                {
+                    double value1 = values1[i];
+                    double value2 = values2[i];
+
+                    if (Math.Max(value1, value2) / Math.Min(value1, value2) <= t)
+                    {
+                        totalSimilarity++;
+                    }
+                    totalCount++;
+                }
+            }
+
+            return 1.0 - (totalSimilarity / totalCount);
+        }
+
+        public static double CalculateRMeasure(List<string> sequence1, List<string> sequence2)
+        {
+            if (sequence1.Count != sequence2.Count)
+                throw new ArgumentException("Последовательности должны быть одинаковой длины.");
+
+            double rMeasure = 0;
+
+            for (int i = 0; i < sequence1.Count; i++)
+            {
+                int posInSequence2 = sequence2.IndexOf(sequence1[i]);
+
+                rMeasure += Math.Abs(i - posInSequence2);
+            }
+
+            return rMeasure;
         }
     }
 }
