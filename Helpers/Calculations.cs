@@ -125,6 +125,12 @@ namespace DigitalHandwriting.Helpers
             return vector.ConvertAll(el => el / length);
         }
 
+        public static List<double> Normalize(List<double> vector)
+        {
+            var length = Math.Sqrt(vector.ConvertAll(el => Math.Pow(el, 2)).Sum());
+            return vector.ConvertAll(el => el / length);
+        }
+
         public static double ITAD(List<double> sample, List<List<double>> rawReferences)
         {
             var totalITAD = 0.0;
@@ -221,6 +227,37 @@ namespace DigitalHandwriting.Helpers
                 { "UU", nGraphBetweenKeysUp },
                 { "DU", nGraphBetweenKeys },
             };
+        }
+
+        public static Dictionary<string, List<List<double>>> CalculateNGraph(int n, List<List<double>> holdTimes, List<List<double>> betweenKeysTimes)
+        {
+            if (holdTimes.Count != betweenKeysTimes.Count)
+            {
+                throw new ArgumentException("Not between keys counts doesn't match hold times count");
+            }
+
+            var result = new Dictionary<string, List<List<double>>>
+            {
+                { "H", new List<List<double>>() },
+                { "DD", new List<List<double>>() },
+                { "UU", new List<List<double>>() },
+                { "DU", new List<List<double>>() },
+            };
+
+            for (int i = 0; i < holdTimes.Count; i++)
+            {
+                var hold = holdTimes[i];
+                var between = betweenKeysTimes[i];
+
+                var graph = CalculateNGraph(n, hold, between);
+
+                foreach (var key in graph.Keys)
+                {
+                    result[key].Add(graph[key]);
+                }
+            }
+
+            return result;
         }
 
         public static double GunettiPicardiMetric(Dictionary<string, List<double>> nGraphs1, Dictionary<string, List<double>> nGraphs2, double t, 
