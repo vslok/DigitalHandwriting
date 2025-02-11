@@ -307,5 +307,30 @@ namespace DigitalHandwriting.Services
 
         public static bool GunettiPicardiMetricAuthentication(User user, List<int> loginKeyPressedTimes,
             List<int> loginBetweenKeysTimes, List<int> loginBetweenKeysPressTimes)
+        {
+            var userKeyPressedTimes = JsonSerializer.Deserialize<List<int>>(user.KeyPressedTimesMedians);
+            var userBetweenKeysTimes = JsonSerializer.Deserialize<List<int>>(user.BetweenKeysTimesMedians);
+
+            if (userKeyPressedTimes == null || userBetweenKeysTimes == null)
+            {
+                throw new Exception("Incorrect user authentication parameters in db");
+            }
+
+            var userKeyPressedTimesDouble = userKeyPressedTimes.ConvertAll(x => (double)x);
+            var userBetweenKeysTimesDouble = userBetweenKeysTimes.ConvertAll(x => (double)x);
+
+            var loginKeyPressedTimesDouble = userKeyPressedTimes.ConvertAll(x => (double)x);
+            var loginBetweenKeysTimesDouble = userBetweenKeysTimes.ConvertAll(x => (double)x);
+
+            var userDigraph = Calculations.CalculateNGraph(2, userKeyPressedTimesDouble, userBetweenKeysTimesDouble);
+            var loginDigraph = Calculations.CalculateNGraph(2, loginKeyPressedTimesDouble, loginBetweenKeysTimesDouble);
+
+            // Вычисляем общий результат аутентификации как среднее значение трех расстояний
+            var authResult = Calculations.GunettiPicardiMetric(userDigraph, loginDigraph, 1.15);
+
+            Trace.WriteLine($"Auth result : {authResult}");
+
+            return authResult > 0.15;
+        }
     }
 }

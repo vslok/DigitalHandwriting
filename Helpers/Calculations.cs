@@ -223,8 +223,8 @@ namespace DigitalHandwriting.Helpers
             };
         }
 
-        public static double CalculateMetric(Dictionary<string, List<double>> nGraphs1, Dictionary<string, List<double>> nGraphs2, double t, 
-            List<string>? sequence1, List<string>? sequence2)
+        public static double GunettiPicardiMetric(Dictionary<string, List<double>> nGraphs1, Dictionary<string, List<double>> nGraphs2, double t, 
+            List<string>? sequence1 = null, List<string>? sequence2 = null)
         {
             double aMeasure = CalculateAMeasure(nGraphs1, nGraphs2, t);
             if (sequence1 != null && sequence2 != null)
