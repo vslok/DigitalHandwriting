@@ -64,10 +64,11 @@ namespace DigitalHandwriting.Services
             using (var csv = new CsvReader(reader, config))
             {
                 csv.Context.TypeConverterCache.AddConverter<double[]>(new DoubleArrayConverter());
-                var records = csv.GetRecords<CsvImportUser>();
-                foreach (var record in records)
-                {
-                    yield return record;
+                csv.Read();
+                csv.ReadHeader();
+
+                while (csv.Read()) {
+                    yield return csv.GetRecord<CsvImportUser>();
                 }
             }
         }
