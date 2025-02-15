@@ -1,8 +1,10 @@
-﻿using Microsoft.EntityFrameworkCore.Metadata.Conventions;
+﻿using DigitalHandwriting.Factories.AuthenticationMethods.Models;
+using Microsoft.EntityFrameworkCore.Metadata.Conventions;
 using Microsoft.Windows.Themes;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.CompilerServices;
 
 namespace DigitalHandwriting.Helpers
 {
@@ -174,7 +176,7 @@ namespace DigitalHandwriting.Helpers
             return Math.Sqrt(disp);
         }
 
-        public static Dictionary<string, List<double>> CalculateNGraph(int n, List<double> holdTimes, List<double>betweenKeysTimes)
+        public static Dictionary<AuthenticationCalculationDataType, List<double>> CalculateNGraph(int n, List<double> holdTimes, List<double>betweenKeysTimes)
         {
             if (holdTimes.Count < n)
             {
@@ -220,28 +222,28 @@ namespace DigitalHandwriting.Helpers
                 nGraphBetweenKeys.Add(nGraphBetweenKeysTime);
             }
 
-            return new Dictionary<string, List<double>>
+            return new Dictionary<AuthenticationCalculationDataType, List<double>>
             {
-                { "H", nGraphHold },
-                { "DD", nGraphBetweenKeysDown },
-                { "UU", nGraphBetweenKeysUp },
-                { "DU", nGraphBetweenKeys },
+                { AuthenticationCalculationDataType.H, nGraphHold },
+                { AuthenticationCalculationDataType.DD, nGraphBetweenKeysDown },
+                { AuthenticationCalculationDataType.UU, nGraphBetweenKeysUp },
+                { AuthenticationCalculationDataType.DU, nGraphBetweenKeys },
             };
         }
 
-        public static Dictionary<string, List<List<double>>> CalculateNGraph(int n, List<List<double>> holdTimes, List<List<double>> betweenKeysTimes)
+        public static Dictionary<AuthenticationCalculationDataType, List<List<double>>> CalculateNGraph(int n, List<List<double>> holdTimes, List<List<double>> betweenKeysTimes)
         {
             if (holdTimes.Count != betweenKeysTimes.Count)
             {
                 throw new ArgumentException("Not between keys counts doesn't match hold times count");
             }
 
-            var result = new Dictionary<string, List<List<double>>>
+            var result = new Dictionary<AuthenticationCalculationDataType, List<List<double>>>
             {
-                { "H", new List<List<double>>() },
-                { "DD", new List<List<double>>() },
-                { "UU", new List<List<double>>() },
-                { "DU", new List<List<double>>() },
+                { AuthenticationCalculationDataType.H, new List<List<double>>() },
+                { AuthenticationCalculationDataType.DD, new List<List<double>>() },
+                { AuthenticationCalculationDataType.UU, new List<List<double>>() },
+                { AuthenticationCalculationDataType.DU, new List<List<double>>() },
             };
 
             for (int i = 0; i < holdTimes.Count; i++)
@@ -260,10 +262,11 @@ namespace DigitalHandwriting.Helpers
             return result;
         }
 
-        public static double GunettiPicardiMetric(Dictionary<string, List<double>> nGraphs1, Dictionary<string, List<double>> nGraphs2, double t, 
+        public static double GunettiPicardiMetric(Dictionary<AuthenticationCalculationDataType, List<double>> nGraphs1, 
+            Dictionary<AuthenticationCalculationDataType, List<double>> nGraphs2, double t, 
             List<string>? sequence1 = null, List<string>? sequence2 = null)
         {
-            double aMeasure = CalculateAMeasure(nGraphs1, nGraphs2, t);
+            double aMeasure = CalculateAMeasure(nGraphs1, nGraphs2, t, out var graphsSimilarity);
             if (sequence1 != null && sequence2 != null)
             {
                 double rMeasure = CalculateRMeasure(sequence1, sequence2);
@@ -274,36 +277,16 @@ namespace DigitalHandwriting.Helpers
             
         }
 
-        public static double CalculateAMeasure(Dictionary<string, List<double>> nGraphs1, Dictionary<string, List<double>> nGraphs2, double t)
+        public static double CalculateAMeasure(
+            Dictionary<AuthenticationCalculationDataType, List<double>> nGraphs1, 
+            Dictionary<AuthenticationCalculationDataType, List<double>> nGraphs2, 
+            double t,
+            out Dictionary<AuthenticationCalculationDataType, double> graphsSimilarity
+            )
         {
-            if (!nGraphs1.Keys.SequenceEqual(nGraphs2.Keys))
-                throw new ArgumentException("Наборы метрик должны быть одинаковыми.");
-
-            double totalSimilarity = 0;
-            int totalCount = 0;
-
-            foreach (var key in nGraphs1.Keys)
-            {
-                var values1 = nGraphs1[key];
-                var values2 = nGraphs2[key];
-
-                if (values1.Count != values2.Count)
-                    throw new ArgumentException("Количество значений для каждой метрики должно быть одинаковым.");
-
-                for (int i = 0; i < values1.Count; i++)
-                {
-                    double value1 = values1[i];
-                    double value2 = values2[i];
-
-                    if (Math.Max(value1, value2) / Math.Min(value1, value2) <= t)
-                    {
-                        totalSimilarity++;
-                    }
-                    totalCount++;
-                }
-            }
-
-            return 1.0 - (totalSimilarity / totalCount);
+            graphsSimilarity = CalculateNGraphsSimilarity(nGraphs1, nGraphs2, t);
+            var totalSimilarity = graphsSimilarity.Sum(x => x.Value);
+            return 1.0 - totalSimilarity;
         }
 
         public static double CalculateRMeasure(List<string> sequence1, List<string> sequence2)
@@ -321,6 +304,39 @@ namespace DigitalHandwriting.Helpers
             }
 
             return rMeasure;
+        }
+
+        private static Dictionary<AuthenticationCalculationDataType, double> CalculateNGraphsSimilarity(
+            Dictionary<AuthenticationCalculationDataType, List<double>> nGraphs1, Dictionary<AuthenticationCalculationDataType, List<double>> nGraphs2, double t)
+        {
+            if (!nGraphs1.Keys.SequenceEqual(nGraphs2.Keys))
+                throw new ArgumentException("Наборы метрик должны быть одинаковыми.");
+
+            var dataTypeResults = new Dictionary<AuthenticationCalculationDataType, double>();
+            foreach (var key in Enum.GetValues(typeof(AuthenticationCalculationDataType)).Cast<AuthenticationCalculationDataType>())
+            {
+                var values1 = nGraphs1[key];
+                var values2 = nGraphs2[key];
+
+                if (values1.Count != values2.Count)
+                    throw new ArgumentException("Количество значений для каждой метрики должно быть одинаковым.");
+
+                var similarCount = 0;
+                for (int i = 0; i < values1.Count; i++)
+                {
+                    double value1 = values1[i];
+                    double value2 = values2[i];
+
+                    if (Math.Max(value1, value2) / Math.Min(value1, value2) <= t)
+                    {
+                        similarCount++;
+                    }
+                }
+
+                dataTypeResults.Add(key, similarCount / values1.Count);
+            }
+
+            return dataTypeResults;
         }
     }
 }

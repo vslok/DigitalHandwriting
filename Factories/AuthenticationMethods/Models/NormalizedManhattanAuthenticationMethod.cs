@@ -14,7 +14,7 @@ namespace DigitalHandwriting.Factories.AuthenticationMethods.Models
         {
         }
 
-        public override bool Authenticate(int n, List<double> loginKeyPressedTimes, List<double> loginBetweenKeysTimes)
+        public override AuthenticationResult Authenticate(int n, List<double> loginKeyPressedTimes, List<double> loginBetweenKeysTimes)
         {
             if (n > 1)
             {
@@ -30,24 +30,25 @@ namespace DigitalHandwriting.Factories.AuthenticationMethods.Models
             var keyPressedDistance = Calculations.ManhattanDistance(userKeyPressedNormalized, loginKeyPressedNormalized);
             var betweenKeysDistance = Calculations.ManhattanDistance(userBetweenKeysNormalized, loginBetweenKeysNormalized);
 
-            // Вычисляем общий результат аутентификации как среднее значение трех расстояний
-            var authResult = (keyPressedDistance + betweenKeysDistance) / 2.0;
+            var authScore = (keyPressedDistance + betweenKeysDistance) / 2.0;
+            var isAuthenticated = authScore < 0.15;
 
-            Trace.WriteLine($"Key pressed distance: {keyPressedDistance}, " +
-                $"Between keys distance: {betweenKeysDistance}, " +
-                $"auth result : {authResult}");
+            var authResult = new AuthenticationResult(n, new Dictionary<AuthenticationCalculationDataType, double>()
+            {
+                { AuthenticationCalculationDataType.H, keyPressedDistance },
+                { AuthenticationCalculationDataType.DU, betweenKeysDistance },
+            }, authScore, isAuthenticated);
 
-            // Возвращаем true, если результат аутентификации меньше порогового значения
-            return authResult < 0.15;
+            return authResult;
         }
 
-        private bool nGraphAuthentication(int n, List<double> loginKeyPressedTimes, List<double> loginBetweenKeysTimes)
+        private AuthenticationResult nGraphAuthentication(int n, List<double> loginKeyPressedTimes, List<double> loginBetweenKeysTimes)
         {
             var userNGraph = Calculations.CalculateNGraph(n, UserKeyPressedTimes, UserBetweenKeysTimes);
             var loginNGraph = Calculations.CalculateNGraph(n, loginKeyPressedTimes, loginBetweenKeysTimes);
 
-            var sumDistance = 0.0;
-            foreach (var key in userNGraph.Keys)
+            var dataTypeResults = new Dictionary<AuthenticationCalculationDataType, double>();
+            foreach (var key in Enum.GetValues(typeof(AuthenticationCalculationDataType)).Cast<AuthenticationCalculationDataType>())
             {
                 var values1 = Calculations.Normalize(userNGraph[key]);
                 var values2 = Calculations.Normalize(loginNGraph[key]);
@@ -57,16 +58,17 @@ namespace DigitalHandwriting.Factories.AuthenticationMethods.Models
                     throw new ArgumentException("Количество значений для каждой метрики должно быть одинаковым.");
                 }
 
-                sumDistance += Calculations.ManhattanDistance(values1, values2);
+                var metricResult = Calculations.ManhattanDistance(values1, values2);
+                dataTypeResults[key] = metricResult;
             }
 
-            // Вычисляем общий результат аутентификации как среднее значение трех расстояний
-            var authResult = sumDistance / userNGraph.Keys.Count;
+            var metricTotal = dataTypeResults.Sum(x => x.Value);
+            var authScore = metricTotal / userNGraph.Keys.Count;
+            var isAuthenticated = authScore < 0.15;
 
-            Trace.WriteLine($"auth result : {authResult}");
+            var authResult = new AuthenticationResult(n, dataTypeResults, authScore, isAuthenticated);
 
-            // Возвращаем true, если результат аутентификации меньше порогового значения
-            return authResult < 0.15;
+            return authResult;
         }
     }
 }

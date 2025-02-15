@@ -14,41 +14,41 @@ namespace DigitalHandwriting.Factories.AuthenticationMethods.Models
         {
         }
 
-        public override bool Authenticate(int n, List<double> loginKeyPressedTimes, List<double> loginBetweenKeysTimes)
+        public override AuthenticationResult Authenticate(int n, List<double> loginKeyPressedTimes, List<double> loginBetweenKeysTimes)
         {
             if (n > 1)
             {
                 return nGraphAuthentication(n, loginKeyPressedTimes, loginBetweenKeysTimes);
             }
 
-            var authResult = Calculations.GunettiPicardiMetric(new Dictionary<string, List<double>>()
+            var authScore = Calculations.CalculateAMeasure(new Dictionary<AuthenticationCalculationDataType, List<double>>()
             {
-                { "H", UserKeyPressedTimes },
-                { "DU", UserBetweenKeysTimes },
+                { AuthenticationCalculationDataType.H, UserKeyPressedTimes },
+                { AuthenticationCalculationDataType.DU, UserBetweenKeysTimes },
             }, 
-            new Dictionary<string, List<double>>()
+            new Dictionary<AuthenticationCalculationDataType, List<double>>()
             {
-                { "H", loginKeyPressedTimes },
-                { "DU", loginBetweenKeysTimes },
-            }, 1.15);
+                { AuthenticationCalculationDataType.H, loginKeyPressedTimes },
+                { AuthenticationCalculationDataType.DU, loginBetweenKeysTimes },
+            }, 1.15, out var ngraphsSimiliarity);
 
-            Trace.WriteLine($"auth result : {authResult}");
+            var isAuthenticated = authScore < 0.15;
+            var authResult = new AuthenticationResult(n, ngraphsSimiliarity, authScore, isAuthenticated);
 
-            // Возвращаем true, если результат аутентификации меньше порогового значения
-            return authResult < 0.15;
+            return authResult;
         }
 
-        private bool nGraphAuthentication(int n, List<double> loginKeyPressedTimes, List<double> loginBetweenKeysTimes)
+        private AuthenticationResult nGraphAuthentication(int n, List<double> loginKeyPressedTimes, List<double> loginBetweenKeysTimes)
         {
             var userGraph = Calculations.CalculateNGraph(n, UserKeyPressedTimes, UserBetweenKeysTimes);
             var loginGraph = Calculations.CalculateNGraph(n, loginKeyPressedTimes, loginBetweenKeysTimes);
 
-            // Вычисляем общий результат аутентификации как среднее значение трех расстояний
-            var authResult = Calculations.GunettiPicardiMetric(userGraph, loginGraph, 1.15);
+            var authScore = Calculations.CalculateAMeasure(userGraph, loginGraph, 1.15, out var ngraphsSimiliarity);
 
-            Trace.WriteLine($"Auth result : {authResult}");
+            var isAuthenticated = authScore < 0.15;
+            var authResult = new AuthenticationResult(n, ngraphsSimiliarity, authScore, isAuthenticated);
 
-            return authResult < 0.15;
+            return authResult;
         }
     }
 }

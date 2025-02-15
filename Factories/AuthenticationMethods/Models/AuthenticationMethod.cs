@@ -6,6 +6,41 @@ using System.Threading.Tasks;
 
 namespace DigitalHandwriting.Factories.AuthenticationMethods.Models
 {
+    public enum AuthenticationCalculationDataType
+    {
+        H,
+        DU,
+        UU,
+        DD,
+    }
+
+    public struct AuthenticationResult
+    {
+        private readonly int _n;
+
+        private readonly Dictionary<AuthenticationCalculationDataType, double> _dataResults;
+
+        private readonly double _totalAuthenticationScore;
+
+        private readonly bool _isAuthenticated;
+
+        public AuthenticationResult(int n, Dictionary<AuthenticationCalculationDataType, double> dataResults, double totalAuthenticationScore, bool isAuthenticated)
+        {
+            _n = n;
+            _dataResults = dataResults;
+            _totalAuthenticationScore = totalAuthenticationScore;
+            _isAuthenticated = isAuthenticated;
+        }
+
+        public readonly int N => _n;
+
+        public readonly Dictionary<AuthenticationCalculationDataType, double> DataResults => _dataResults;
+
+        public readonly double TotalAuthenticationScore => _totalAuthenticationScore;
+
+        public readonly bool IsAuthenticated => _isAuthenticated;
+    }
+
     public abstract class AuthenticationMethod
     {
         private List<double> _userKeyPressedTimes;
@@ -37,6 +72,6 @@ namespace DigitalHandwriting.Factories.AuthenticationMethods.Models
 
         public List<List<double>> UserBetweenKeysTimesProfile => _userBetweenKeysTimesProfile;
 
-        public abstract bool Authenticate(int n, List<double> loginKeyPressedTimes, List<double> loginBetweenKeysTimes);
+        public abstract AuthenticationResult Authenticate(int n, List<double> loginKeyPressedTimes, List<double> loginBetweenKeysTimes);
     }
 }
