@@ -141,13 +141,12 @@ namespace DigitalHandwriting.ViewModels
                     out var betweenKeysValues,
                     out var betweenKeysPressValues);
 
-                var isAuthentificated = AuthenticationService.HandwritingAuthentication(user, keyPressedValues, betweenKeysValues, betweenKeysPressValues,
-                    out double keyPressedDistance, out double betweenKeysDistance, out double betweenKeysPressDistance);
+                var authenticationResult = AuthenticationService.HandwritingAuthentication(user, keyPressedValues, betweenKeysValues);
 
-                var window = new UserInfo(isAuthentificated, keyPressedDistance, betweenKeysDistance, betweenKeysPressDistance);
+                var window = new UserInfo(authenticationResult);
                 window.ShowDialog();
 
-                if (!isAuthentificated)
+                if (!authenticationResult.IsAuthenticated)
                 {
                     _authentificationTry++;
                 }

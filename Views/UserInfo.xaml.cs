@@ -1,4 +1,5 @@
-﻿using DigitalHandwriting.ViewModels;
+﻿using DigitalHandwriting.Factories.AuthenticationMethods.Models;
+using DigitalHandwriting.ViewModels;
 using System.Windows;
 
 namespace DigitalHandwriting.Views
@@ -9,10 +10,10 @@ namespace DigitalHandwriting.Views
     public partial class UserInfo : Window
     {
         UserInfoViewModel _viewModel;
-        public UserInfo(bool isAuthenticated, double keyPressedMetric, double betweenKeysMetric, double betweenKeysPressMetric)
+        public UserInfo(AuthenticationResult authenticationResult)
         {
             InitializeComponent();
-            _viewModel = new UserInfoViewModel(isAuthenticated, keyPressedMetric, betweenKeysMetric, betweenKeysPressMetric);
+            _viewModel = new UserInfoViewModel(authenticationResult);
             DataContext = _viewModel;
         }
     }

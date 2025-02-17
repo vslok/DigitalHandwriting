@@ -1,4 +1,7 @@
-﻿namespace DigitalHandwriting.ViewModels
+﻿using DigitalHandwriting.Factories.AuthenticationMethods.Models;
+using System.Collections.Generic;
+
+namespace DigitalHandwriting.ViewModels
 {
     public class UserInfoViewModel : BaseViewModel
     {
@@ -10,12 +13,15 @@
 
         private double _betweenKeysPressMetric = 0.0;
 
-        public UserInfoViewModel(bool isAuthenticated, double keyPressedMetric, double betweenKeysMetric, double betweenKeysPressMetric)
+        private double _betweenKeysResolveMetric = 0.0;
+
+        public UserInfoViewModel(AuthenticationResult authenticationResult)
         {
-            IsAuthentificated = isAuthenticated;
-            KeyPressedMetric = keyPressedMetric;
-            BetweenKeysMetric = betweenKeysMetric;
-            BetweenKeysPressMetric = betweenKeysPressMetric;
+            IsAuthentificated = authenticationResult.IsAuthenticated;
+            KeyPressedMetric = authenticationResult.DataResults.GetValueOrDefault(AuthenticationCalculationDataType.H);
+            BetweenKeysMetric = authenticationResult.DataResults.GetValueOrDefault(AuthenticationCalculationDataType.DU);
+            BetweenKeysPressMetric = authenticationResult.DataResults.GetValueOrDefault(AuthenticationCalculationDataType.DD);
+            BetweenKeysResolveMetric = authenticationResult.DataResults.GetValueOrDefault(AuthenticationCalculationDataType.UU);
         }
 
         public bool IsAuthentificated
@@ -40,6 +46,12 @@
         {
             get => _betweenKeysPressMetric;
             set => SetProperty(ref _betweenKeysPressMetric, value);
+        }
+
+        public double BetweenKeysResolveMetric
+        {
+            get => _betweenKeysResolveMetric;
+            set => SetProperty(ref _betweenKeysResolveMetric, value);
         }
     }
 }

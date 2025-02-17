@@ -23,5 +23,9 @@
             <TextBlock FontSize="8" Text="Результат времени межсимвольных интервалов (Down-Down): "/>
             <TextBlock Text="{Binding BetweenKeysPressMetric}"/>
         </StackPanel>
+        <StackPanel Orientation="Horizontal">
+            <TextBlock FontSize="8" Text="Результат времени межсимвольных интервалов (Up-Up): "/>
+            <TextBlock Text="{Binding BetweenKeysResolveMetric}"/>
+        </StackPanel>
     </StackPanel>
 </Window>
