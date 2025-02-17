@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DigitalHandwriting.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -14,7 +15,7 @@ namespace DigitalHandwriting.Factories.AuthenticationMethods.Models
         DD,
     }
 
-    public struct AuthenticationResult
+    public class AuthenticationResult
     {
         private readonly int _n;
 
@@ -24,6 +25,14 @@ namespace DigitalHandwriting.Factories.AuthenticationMethods.Models
 
         private readonly bool _isAuthenticated;
 
+        public AuthenticationResult(AuthenticationResult authenticationResult)
+        {
+            _n = authenticationResult.N;
+            _dataResults = authenticationResult.DataResults;
+            _totalAuthenticationScore = authenticationResult.TotalAuthenticationScore;
+            _isAuthenticated = authenticationResult.IsAuthenticated;
+        }
+
         public AuthenticationResult(int n, Dictionary<AuthenticationCalculationDataType, double> dataResults, double totalAuthenticationScore, bool isAuthenticated)
         {
             _n = n;
@@ -32,13 +41,13 @@ namespace DigitalHandwriting.Factories.AuthenticationMethods.Models
             _isAuthenticated = isAuthenticated;
         }
 
-        public readonly int N => _n;
+        public int N => _n;
 
-        public readonly Dictionary<AuthenticationCalculationDataType, double> DataResults => _dataResults;
+        public Dictionary<AuthenticationCalculationDataType, double> DataResults => _dataResults;
 
-        public readonly double TotalAuthenticationScore => _totalAuthenticationScore;
+        public double TotalAuthenticationScore => _totalAuthenticationScore;
 
-        public readonly bool IsAuthenticated => _isAuthenticated;
+        public bool IsAuthenticated => _isAuthenticated;
     }
 
     public abstract class AuthenticationMethod

@@ -31,6 +31,27 @@ namespace DigitalHandwriting.Helpers
             return mediansList;
         }
 
+        public static List<double> CalculateMedianValue(List<List<double>> values)
+        {
+            foreach (var list in values)
+            {
+                if (list.Count != values[0].Count)
+                {
+                    throw new Exception("Median value cannot be calculated");
+                }
+            }
+
+            List<double> mediansList = new List<double>();
+
+            for (int i = 0; i < values[0].Count; i++)
+            {
+                var valuesList = values.Select(list => list[i]).OrderBy(x => x).ToList();
+                mediansList.Add(valuesList.ElementAt((int)Math.Ceiling(valuesList.Count / 2.0d)));
+            }
+
+            return mediansList;
+        }
+
         public static double EuclideanDistance(List<double> vector1, List<double> vector2)
         {
             if (vector1.Count != vector2.Count)

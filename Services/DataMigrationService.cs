@@ -35,6 +35,17 @@ namespace DigitalHandwriting.Services
         public double[] ThirdUD { get; set; }
     }
 
+    public class CsvImportAuthentication
+    {
+        public string Subject { get; set; }
+
+        public double[] H { get; set; }
+
+        public double[] DU { get; set; }
+
+        public bool IsLegalUser { get; set; }
+    }
+
     public class DataMigrationService
     {
         private readonly UserRepository _userRepository;
@@ -69,6 +80,27 @@ namespace DigitalHandwriting.Services
 
                 while (csv.Read()) {
                     yield return csv.GetRecord<CsvImportUser>();
+                }
+            }
+        }
+
+        public IEnumerable<CsvImportAuthentication> GetAuthenticationDataFromCsv(string filePath)
+        {
+            var config = new CsvConfiguration(CultureInfo.InvariantCulture)
+            {
+                PrepareHeaderForMatch = args => args.Header.ToLower(),
+            };
+
+            using (var reader = new StreamReader(filePath))
+            using (var csv = new CsvReader(reader, config))
+            {
+                csv.Context.TypeConverterCache.AddConverter<double[]>(new DoubleArrayConverter());
+                csv.Read();
+                csv.ReadHeader();
+
+                while (csv.Read())
+                {
+                    yield return csv.GetRecord<CsvImportAuthentication>();
                 }
             }
         }
