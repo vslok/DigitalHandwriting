@@ -182,12 +182,12 @@ namespace DigitalHandwriting.Helpers
                          .ToList();
         }
 
-        public static double Expectancy(List<int> intervals)
+        public static double Expectancy(List<double> intervals)
         {
             return intervals.Average();
         }
 
-        public static double Dispersion(List<int> intervals, double expect)
+        public static double Dispersion(List<double> intervals, double expect)
         {
             return intervals.Select(interv => Math.Pow(interv - expect, 2)).Average();
         }

@@ -36,16 +36,16 @@ namespace DigitalHandwriting.Services
 
         public static bool HandwritingAuthentication(
             User user, 
-            List<int> loginKeyPressedTimes, 
-            List<int> loginBetweenKeysTimes,
-            List<int> loginBetweenKeysPressTimes,
+            List<double> loginKeyPressedTimes, 
+            List<double> loginBetweenKeysTimes,
+            List<double> loginBetweenKeysPressTimes,
             out double keyPressedDistance, 
             out double betweenKeysDistance,
             out double betweenKeysPressDistance)
         {
-            var userKeyPressedTimes = JsonSerializer.Deserialize<List<int>>(user.KeyPressedTimesMedians);
-            var userBetweenKeysTimes = JsonSerializer.Deserialize<List<int>>(user.BetweenKeysTimesMedians);
-            var userBetweenKeysPressTimes = JsonSerializer.Deserialize<List<int>>(user.BetweenKeysPressTimesMedians);
+            var userKeyPressedTimes = JsonSerializer.Deserialize<List<double>>(user.KeyPressedTimesMedians);
+            var userBetweenKeysTimes = JsonSerializer.Deserialize<List<double>>(user.BetweenKeysTimesMedians);
+            var userBetweenKeysPressTimes = JsonSerializer.Deserialize<List<double>>(user.BetweenKeysPressTimesMedians);
 
             if (userKeyPressedTimes == null || userBetweenKeysTimes == null || userBetweenKeysPressTimes == null)
             {
