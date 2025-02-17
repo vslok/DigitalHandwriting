@@ -13,15 +13,6 @@ namespace DigitalHandwriting.Models
         public string Login { get; set; }
 
         [Required]
-        public string KeyPressedTimesMedians { get; set; }
-
-        [Required]
-        public string BetweenKeysTimesMedians { get; set; }
-
-        [Required]
-        public string BetweenKeysPressTimesMedians { get; set; }
-
-        [Required]
         public string KeyPressedTimesFirst { get; set; }
 
         [Required]

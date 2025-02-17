@@ -152,9 +152,6 @@ namespace DigitalHandwriting.ViewModels
             User user = new User()
             {
                 Login = UserLogin,
-                KeyPressedTimesMedians = JsonSerializer.Serialize(_keyboardMetricsCollector.GetKeyPressedTimesMedians()),
-                BetweenKeysTimesMedians = JsonSerializer.Serialize(_keyboardMetricsCollector.GetBetweenKeysTimesMedians()),
-                BetweenKeysPressTimesMedians = JsonSerializer.Serialize(_keyboardMetricsCollector.GetBetweenKeysPressTimesMedians()),
                 KeyPressedTimesFirst = JsonSerializer.Serialize(_keyboardMetricsCollector.KeyPressedTimes[0]),
                 KeyPressedTimesSecond = JsonSerializer.Serialize(_keyboardMetricsCollector.KeyPressedTimes[1]),
                 KeyPressedTimesThird = JsonSerializer.Serialize(_keyboardMetricsCollector.KeyPressedTimes[2]),
