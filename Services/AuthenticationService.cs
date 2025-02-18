@@ -50,9 +50,9 @@ namespace DigitalHandwriting.Services
 
             var duUserProfile = new List<List<double>>()
                     {
-                        JsonSerializer.Deserialize<List<double>>(user.FirstDU),
-                        JsonSerializer.Deserialize<List<double>>(user.SecondDU),
-                        JsonSerializer.Deserialize<List<double>>(user.ThirdDU),
+                        JsonSerializer.Deserialize<List<double>>(user.FirstUD),
+                        JsonSerializer.Deserialize<List<double>>(user.SecondUD),
+                        JsonSerializer.Deserialize<List<double>>(user.ThirdUD),
                     };
 
             var hUserMedian = Calculations.CalculateMedianValue(hUserProfile);

@@ -73,18 +73,18 @@ namespace DigitalHandwriting.Services
                         JsonSerializer.Deserialize<List<double>>(user.ThirdH),
                     };
 
-                    var duUserProfile = new List<List<double>>()
+                    var udUserProfile = new List<List<double>>()
                     {
-                        JsonSerializer.Deserialize<List<double>>(user.FirstDU),
-                        JsonSerializer.Deserialize<List<double>>(user.SecondDU),
-                        JsonSerializer.Deserialize<List<double>>(user.ThirdDU),
+                        JsonSerializer.Deserialize<List<double>>(user.FirstUD),
+                        JsonSerializer.Deserialize<List<double>>(user.SecondUD),
+                        JsonSerializer.Deserialize<List<double>>(user.ThirdUD),
                     };
 
                     var hUserMedian = Calculations.CalculateMedianValue(hUserProfile);
-                    var udUserMedian = Calculations.CalculateMedianValue(duUserProfile);
+                    var udUserMedian = Calculations.CalculateMedianValue(udUserProfile);
 
                     var authenticationH = new List<double>(testAuthenticationsRecord.H);
-                    var authenticationDU = new List<double>(testAuthenticationsRecord.DU);
+                    var authenticationDU = new List<double>(testAuthenticationsRecord.UD);
 
 
                     var euclidianMethod = AuthenticationMethodFactory.GetAuthenticationMethod(
@@ -92,7 +92,7 @@ namespace DigitalHandwriting.Services
                         hUserMedian,
                         udUserMedian,
                         hUserProfile,
-                        duUserProfile);
+                        udUserProfile);
 
                     var euclidianMethodResult = euclidianMethod.Authenticate(1, authenticationH, authenticationDU);
 
@@ -101,7 +101,7 @@ namespace DigitalHandwriting.Services
                         hUserMedian,
                         udUserMedian,
                         hUserProfile,
-                        duUserProfile);
+                        udUserProfile);
 
                     var euclidianNormalizedMethodResult = euclidianNormalizedMethod.Authenticate(1, authenticationH, authenticationDU);
 
@@ -110,7 +110,7 @@ namespace DigitalHandwriting.Services
                         hUserMedian,
                         udUserMedian,
                         hUserProfile,
-                        duUserProfile);
+                        udUserProfile);
 
                     var manhattanMethodResult = manhattanMethod.Authenticate(1, authenticationH, authenticationDU);
 
@@ -119,7 +119,7 @@ namespace DigitalHandwriting.Services
                         hUserMedian,
                         udUserMedian,
                         hUserProfile,
-                        duUserProfile);
+                        udUserProfile);
 
                     var normalizedManhattanMethodResult = normalizedManhattanMethod.Authenticate(1, authenticationH, authenticationDU);
 
@@ -128,7 +128,7 @@ namespace DigitalHandwriting.Services
                         hUserMedian,
                         udUserMedian,
                         hUserProfile,
-                        duUserProfile);
+                        udUserProfile);
 
                     var ITADMethodResult = ITADMethod.Authenticate(1, authenticationH, authenticationDU);
 
@@ -137,7 +137,7 @@ namespace DigitalHandwriting.Services
                         hUserMedian,
                         udUserMedian,
                         hUserProfile,
-                        duUserProfile);
+                        udUserProfile);
 
                     var GunettiPicardiMethodResult = GunettiPicardiMethod.Authenticate(1, authenticationH, authenticationDU);
 

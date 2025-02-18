@@ -17,19 +17,17 @@ namespace DigitalHandwriting.Services
 {
     public class CsvImportUser
     {
-        public string Subject { get; set; }
-        public int SessionIndex { get; set; }
-        public int Rep { get; set; }
+        public string Login { get; set; }
         public string Password { get; set; }
 
         public double[] FirstH { get; set; }
-        public double[] FirstDU { get; set; }
+        public double[] FirstUD { get; set; }
 
         public double[] SecondH { get; set; }
-        public double[] SecondDU { get; set; }
+        public double[] SecondUD { get; set; }
 
         public double[] ThirdH { get; set; }
-        public double[] ThirdDU { get; set; }
+        public double[] ThirdUD { get; set; }
     }
 
     public class CsvImportAuthentication
@@ -38,7 +36,7 @@ namespace DigitalHandwriting.Services
 
         public double[] H { get; set; }
 
-        public double[] DU { get; set; }
+        public double[] UD { get; set; }
 
         public bool IsLegalUser { get; set; }
     }
@@ -109,15 +107,15 @@ namespace DigitalHandwriting.Services
             {
                 yield return new User()
                 {
-                    Login = record.Subject,
+                    Login = record.Login,
                     Password = EncryptionService.GetPasswordHash(record.Password, out var salt),
                     Salt = salt,
                     FirstH = JsonSerializer.Serialize(record.FirstH),
                     SecondH = JsonSerializer.Serialize(record.SecondH),
                     ThirdH = JsonSerializer.Serialize(record.ThirdH),
-                    FirstDU = JsonSerializer.Serialize(record.FirstDU),
-                    SecondDU = JsonSerializer.Serialize(record.SecondDU),
-                    ThirdDU = JsonSerializer.Serialize(record.ThirdDU),
+                    FirstUD = JsonSerializer.Serialize(record.FirstUD),
+                    SecondUD = JsonSerializer.Serialize(record.SecondUD),
+                    ThirdUD = JsonSerializer.Serialize(record.ThirdUD),
                 };
             }
         }

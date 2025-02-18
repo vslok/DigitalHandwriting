@@ -155,9 +155,9 @@ namespace DigitalHandwriting.ViewModels
                 FirstH = JsonSerializer.Serialize(_keyboardMetricsCollector.KeyPressedTimes[0]),
                 SecondH = JsonSerializer.Serialize(_keyboardMetricsCollector.KeyPressedTimes[1]),
                 ThirdH = JsonSerializer.Serialize(_keyboardMetricsCollector.KeyPressedTimes[2]),
-                FirstDU = JsonSerializer.Serialize(_keyboardMetricsCollector.BetweenKeysTimes[0]),
-                SecondDU = JsonSerializer.Serialize(_keyboardMetricsCollector.BetweenKeysTimes[1]),
-                ThirdDU = JsonSerializer.Serialize(_keyboardMetricsCollector.BetweenKeysTimes[2]),
+                FirstUD = JsonSerializer.Serialize(_keyboardMetricsCollector.BetweenKeysTimes[0]),
+                SecondUD = JsonSerializer.Serialize(_keyboardMetricsCollector.BetweenKeysTimes[1]),
+                ThirdUD = JsonSerializer.Serialize(_keyboardMetricsCollector.BetweenKeysTimes[2]),
                 Password = EncryptionService.GetPasswordHash(UserPassPhrase, out string salt),
                 Salt = salt
             };

@@ -16,19 +16,19 @@ namespace DigitalHandwriting.Models
         public string FirstH { get; set; }
 
         [Required]
-        public string FirstDU { get; set; }
+        public string FirstUD { get; set; }
 
         [Required]
         public string SecondH { get; set; }
 
         [Required]
-        public string SecondDU { get; set; }
+        public string SecondUD { get; set; }
 
         [Required]
         public string ThirdH { get; set; }
 
         [Required]
-        public string ThirdDU { get; set; }
+        public string ThirdUD { get; set; }
 
         [Required]
         public string Password { get; set; }
