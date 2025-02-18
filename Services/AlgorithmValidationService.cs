@@ -65,7 +65,7 @@ namespace DigitalHandwriting.Services
                             .Add(validationResult);
                     }
 
-                    var user = systemUsers.Find((user) => user.Login == testAuthenticationsRecord.Subject);
+                    var user = systemUsers.Find((user) => user.Login == testAuthenticationsRecord.Login);
                     var hUserProfile = new List<List<double>>()
                     {
                         JsonSerializer.Deserialize<List<double>>(user.FirstH),

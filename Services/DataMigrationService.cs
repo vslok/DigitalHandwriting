@@ -32,7 +32,7 @@ namespace DigitalHandwriting.Services
 
     public class CsvImportAuthentication
     {
-        public string Subject { get; set; }
+        public string Login { get; set; }
 
         public double[] H { get; set; }
 

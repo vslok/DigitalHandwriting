@@ -10,12 +10,11 @@ combined_df = pd.DataFrame()
 for index, row in df.iterrows():
     # Create a dictionary to store combined data for the current row
     combined_row = {
-        'subject': row['subject'],
+        'Login': row['subject'],  # Renamed from 'subject' to 'Login'
         'sessionIndex': row['sessionIndex'],
         'rep': row['rep'],
-        'password': '.tie5Roanl',
+        'Password': '.tie5Roanl',  # Renamed from 'password' to 'Password'
         'H': [],
-        'DD': [],
         'UD': []
     }
 
@@ -23,48 +22,63 @@ for index, row in df.iterrows():
     for col in df.columns:
         if col.startswith('H.'):
             combined_row['H'].append(row[col])
-        elif col.startswith('DD.'):
-            combined_row['DD'].append(row[col])
         elif col.startswith('UD.'):
             combined_row['UD'].append(row[col])
 
     # Append the combined row to the new DataFrame
     combined_df = pd.concat([combined_df, pd.DataFrame([combined_row])], ignore_index=True)
 
-# Save the combined DataFrame to a new CSV file
-combined_df.to_csv('data/DSL-CombinedData.csv', index=False)
+# Create users DataFrame matching CsvImportUser class
+users_df = pd.DataFrame()
 
-# Create and save first row for each subject
-first_rows_df = combined_df.groupby('subject').first().reset_index()
-first_rows_df.to_csv('data/DSL-FirstRowsData.csv', index=False)
+# For each unique subject/login
+for login in combined_df['Login'].unique():
+    user_data = combined_df[combined_df['Login'] == login].iloc[:3]  # Get first 3 rows
 
-# Create test data
-test_df = pd.DataFrame()
-subjects = combined_df['subject'].unique()
+    if len(user_data) >= 3:  # Only process if we have at least 3 rows
+        user_row = {
+            'Login': login,
+            'Password': '.tie5Roanl',
+            'FirstH': user_data.iloc[0]['H'],
+            'FirstUD': user_data.iloc[0]['UD'],
+            'SecondH': user_data.iloc[1]['H'],
+            'SecondUD': user_data.iloc[1]['UD'],
+            'ThirdH': user_data.iloc[2]['H'],
+            'ThirdUD': user_data.iloc[2]['UD']
+        }
+        users_df = pd.concat([users_df, pd.DataFrame([user_row])], ignore_index=True)
 
-# For each subject
-for subject in subjects:
-    # Get the subject's login data as template
-    login_data = combined_df[combined_df['subject'] == subject].iloc[0]
+# Save users DataFrame
+users_df.to_csv('data/DSL-TestUsers.csv', index=False)
 
-    # Create base DataFrame for this subject with 100 rows
-    subject_rows = pd.DataFrame({
-        'subject': [subject] * 100,
-        'sessionIndex': [i // 20 + 1 for i in range(100)],  # 5 sessions
-        'rep': [i % 20 + 1 for i in range(100)],            # 20 reps per session
-        'password': [login_data['password']] * 100
-    })
+# Create authentication DataFrame matching CsvImportAuthentication class
+auth_df = pd.DataFrame()
 
-    # Get timing data from other subjects
-    other_subjects_data = combined_df[combined_df['subject'] != subject].sample(n=100, replace=True)
+# Process remaining rows for each user (after the first 3)
+for login in combined_df['Login'].unique():
+    user_data = combined_df[combined_df['Login'] == login].iloc[3:]  # Get rows after first 3
 
-    # Add timing data from other subjects
-    subject_rows['H'] = other_subjects_data['H'].values
-    subject_rows['DD'] = other_subjects_data['DD'].values
-    subject_rows['UD'] = other_subjects_data['UD'].values
+    if len(user_data) > 0:
+        # Add legitimate user attempts
+        for _, row in user_data.iterrows():
+            auth_row = {
+                'Login': login,
+                'H': row['H'],
+                'UD': row['UD'],
+                'IsLegalUser': True
+            }
+            auth_df = pd.concat([auth_df, pd.DataFrame([auth_row])], ignore_index=True)
 
-    # Add to test dataset
-    test_df = pd.concat([test_df, subject_rows], ignore_index=True)
+        # Add impostor attempts (using data from other users)
+        other_users_data = combined_df[combined_df['Login'] != login].sample(n=len(user_data))
+        for _, row in other_users_data.iterrows():
+            auth_row = {
+                'Login': login,  # Keep the original login
+                'H': row['H'],   # But use timing data from other users
+                'UD': row['UD'],
+                'IsLegalUser': False
+            }
+            auth_df = pd.concat([auth_df, pd.DataFrame([auth_row])], ignore_index=True)
 
-# Save the test DataFrame to a new CSV file
-test_df.to_csv('data/DSL-TestData.csv', index=False)
+# Save authentication DataFrame
+auth_df.to_csv('data/DSL-AuthenticationTestData.csv', index=False)
