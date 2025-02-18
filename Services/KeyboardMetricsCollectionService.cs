@@ -19,35 +19,27 @@ namespace DigitalHandwriting.Services
 
         private readonly List<List<double>> _betweenKeysTimes;
 
-        private readonly List<List<double>> _betweenKeysPressTimes;
-
         private int _collectingMetricsStep;
 
         public List<List<double>> KeyPressedTimes {  get { return _keyPressedTimes; } }
 
         public List<List<double>> BetweenKeysTimes { get { return _betweenKeysTimes; } }
 
-        public List<List<double>> BetweenKeysPressTimes { get { return _betweenKeysPressTimes; } }
-
         public KeyboardMetricsCollectionService() 
         { 
             _collectingMetricsStep = 0;
             _keyPressedTimes = new List<List<double>>(3);
             _betweenKeysTimes = new List<List<double>>(3);
-            _betweenKeysPressTimes = new List<List<double>>(3);
 
             for (int i = 0; i < 3; i++)
             {
                 _keyPressedTimes.Add(new List<double>());
                 _betweenKeysTimes.Add(new List<double>());
-                _betweenKeysPressTimes.Add(new List<double>());
             }
         }
 
         public List<double> GetKeyPressedTimesMedians() => Calculations.CalculateMedianValue(_keyPressedTimes);
         public List<double> GetBetweenKeysTimesMedians() => Calculations.CalculateMedianValue(_betweenKeysTimes);
-
-        public List<double> GetBetweenKeysPressTimesMedians() => Calculations.CalculateMedianValue(_betweenKeysPressTimes);
 
         public List<double> GetKeyPressedTimesDispersions()
         {
@@ -61,22 +53,14 @@ namespace DigitalHandwriting.Services
             return transposedMatrix.Select(val => Calculations.Dispersion(val, Calculations.Expectancy(val))).ToList();
         }
 
-        public List<double> GetBetweenKeysPressTimeDispersions()
-        {
-            var transposedMatrix = Calculations.MatrixTransposing<double>(_betweenKeysPressTimes);
-            return transposedMatrix.Select(val => Calculations.Dispersion(val, Calculations.Expectancy(val))).ToList();
-        }
-
         public void GetCurrentStepValues(
             string testText, 
             out List<double> keyPressedValues, 
-            out List<double> betweenKeysValues, 
-            out List<double> betweenKeysPressValues)
+            out List<double> betweenKeysValues)
         {
             ConvertRawData(testText);
             keyPressedValues = _keyPressedTimes[_collectingMetricsStep];
             betweenKeysValues = _betweenKeysTimes[_collectingMetricsStep];
-            betweenKeysPressValues = _betweenKeysPressTimes[_collectingMetricsStep];
         }
 
         public void OnKeyUpEvent(KeyEventArgs args)
@@ -113,7 +97,6 @@ namespace DigitalHandwriting.Services
                 if (i != 0)
                 {
                     _betweenKeysTimes[_collectingMetricsStep].Add(KeyDownTimes[i] - textKeyUpTimes[i - 1]);
-                    _betweenKeysPressTimes[_collectingMetricsStep].Add(KeyDownTimes[i] - KeyDownTimes[i - 1]);
                 }
             }
         }
@@ -122,7 +105,6 @@ namespace DigitalHandwriting.Services
         {
             _collectingMetricsStep = 0;
             _betweenKeysTimes.ForEach(step => step.Clear());
-            _betweenKeysPressTimes.ForEach(step => step.Clear());
             _keyPressedTimes.ForEach(step => step.Clear());
             KeyDownTimes.Clear();
             KeyUpTimes.Clear();

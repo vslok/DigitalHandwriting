@@ -152,15 +152,12 @@ namespace DigitalHandwriting.ViewModels
             User user = new User()
             {
                 Login = UserLogin,
-                KeyPressedTimesFirst = JsonSerializer.Serialize(_keyboardMetricsCollector.KeyPressedTimes[0]),
-                KeyPressedTimesSecond = JsonSerializer.Serialize(_keyboardMetricsCollector.KeyPressedTimes[1]),
-                KeyPressedTimesThird = JsonSerializer.Serialize(_keyboardMetricsCollector.KeyPressedTimes[2]),
-                BetweenKeysTimesFirst = JsonSerializer.Serialize(_keyboardMetricsCollector.BetweenKeysTimes[0]),
-                BetweenKeysTimesSecond = JsonSerializer.Serialize(_keyboardMetricsCollector.BetweenKeysTimes[1]),
-                BetweenKeysTimesThird = JsonSerializer.Serialize(_keyboardMetricsCollector.BetweenKeysTimes[2]),
-                BetweenKeysPressTimesFirst = JsonSerializer.Serialize(_keyboardMetricsCollector.BetweenKeysPressTimes[0]),
-                BetweenKeysPressTimesSecond = JsonSerializer.Serialize(_keyboardMetricsCollector.BetweenKeysPressTimes[1]),
-                BetweenKeysPressTimesThird = JsonSerializer.Serialize(_keyboardMetricsCollector.BetweenKeysPressTimes[2]),
+                FirstH = JsonSerializer.Serialize(_keyboardMetricsCollector.KeyPressedTimes[0]),
+                SecondH = JsonSerializer.Serialize(_keyboardMetricsCollector.KeyPressedTimes[1]),
+                ThirdH = JsonSerializer.Serialize(_keyboardMetricsCollector.KeyPressedTimes[2]),
+                FirstDU = JsonSerializer.Serialize(_keyboardMetricsCollector.BetweenKeysTimes[0]),
+                SecondDU = JsonSerializer.Serialize(_keyboardMetricsCollector.BetweenKeysTimes[1]),
+                ThirdDU = JsonSerializer.Serialize(_keyboardMetricsCollector.BetweenKeysTimes[2]),
                 Password = EncryptionService.GetPasswordHash(UserPassPhrase, out string salt),
                 Salt = salt
             };

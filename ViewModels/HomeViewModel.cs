@@ -138,8 +138,7 @@ namespace DigitalHandwriting.ViewModels
                 _keyboardMetricsCollector.GetCurrentStepValues(
                     UserCheckText.ToUpper(), 
                     out var keyPressedValues, 
-                    out var betweenKeysValues,
-                    out var betweenKeysPressValues);
+                    out var betweenKeysValues);
 
                 var authenticationResult = AuthenticationService.HandwritingAuthentication(user, keyPressedValues, betweenKeysValues);
 

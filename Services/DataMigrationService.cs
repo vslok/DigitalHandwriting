@@ -23,16 +23,13 @@ namespace DigitalHandwriting.Services
         public string Password { get; set; }
 
         public double[] FirstH { get; set; }
-        public double[] FirstDD { get; set; }
-        public double[] FirstUD { get; set; }
+        public double[] FirstDU { get; set; }
 
         public double[] SecondH { get; set; }
-        public double[] SecondDD { get; set; }
-        public double[] SecondUD { get; set; }
+        public double[] SecondDU { get; set; }
 
         public double[] ThirdH { get; set; }
-        public double[] ThirdDD { get; set; }
-        public double[] ThirdUD { get; set; }
+        public double[] ThirdDU { get; set; }
     }
 
     public class CsvImportAuthentication
@@ -57,14 +54,14 @@ namespace DigitalHandwriting.Services
 
         public void ImportDataFromCsv(string filePath)
         {
-            var importedUsers = this.ReadUsersFromCsv(filePath);
+            var importedUsers = this.GetUsersFromCsv(filePath);
             foreach (var user in importedUsers)
             {
                 _userRepository.AddUser(user);
             }
         }
 
-        public IEnumerable<CsvImportUser> GetUsersFromCsv(string filePath)
+        public IEnumerable<CsvImportUser> ReadUsersFromCsv(string filePath)
         {
             var config = new CsvConfiguration(CultureInfo.InvariantCulture)
             {
@@ -105,26 +102,24 @@ namespace DigitalHandwriting.Services
             }
         }
 
-        public List<User> ReadUsersFromCsv(string filePath)
+        public IEnumerable<User> GetUsersFromCsv(string filePath)
         {
-            var records = GetUsersFromCsv(filePath).ToList();
-            var users = records.Select(record => new User()
+            var records = ReadUsersFromCsv(filePath);
+            foreach (var record in records)
             {
-                Login = record.Subject,
-                Password = EncryptionService.GetPasswordHash(record.Password, out var salt),
-                Salt = salt,
-                KeyPressedTimesFirst = JsonSerializer.Serialize(record.FirstH),
-                KeyPressedTimesSecond = JsonSerializer.Serialize(record.SecondH),
-                KeyPressedTimesThird = JsonSerializer.Serialize(record.ThirdH),
-                BetweenKeysTimesFirst = JsonSerializer.Serialize(record.FirstUD),
-                BetweenKeysTimesSecond = JsonSerializer.Serialize(record.SecondUD),
-                BetweenKeysTimesThird = JsonSerializer.Serialize(record.ThirdUD),
-                BetweenKeysPressTimesFirst = JsonSerializer.Serialize(record.FirstDD),
-                BetweenKeysPressTimesSecond = JsonSerializer.Serialize(record.SecondDD),
-                BetweenKeysPressTimesThird = JsonSerializer.Serialize(record.ThirdDD),
-            }).ToList();
-
-            return users;
+                yield return new User()
+                {
+                    Login = record.Subject,
+                    Password = EncryptionService.GetPasswordHash(record.Password, out var salt),
+                    Salt = salt,
+                    FirstH = JsonSerializer.Serialize(record.FirstH),
+                    SecondH = JsonSerializer.Serialize(record.SecondH),
+                    ThirdH = JsonSerializer.Serialize(record.ThirdH),
+                    FirstDU = JsonSerializer.Serialize(record.FirstDU),
+                    SecondDU = JsonSerializer.Serialize(record.SecondDU),
+                    ThirdDU = JsonSerializer.Serialize(record.ThirdDU),
+                };
+            }
         }
     }
 }

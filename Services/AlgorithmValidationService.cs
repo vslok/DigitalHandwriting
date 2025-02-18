@@ -68,20 +68,20 @@ namespace DigitalHandwriting.Services
                     var user = systemUsers.Find((user) => user.Login == testAuthenticationsRecord.Subject);
                     var hUserProfile = new List<List<double>>()
                     {
-                        JsonSerializer.Deserialize<List<double>>(user.KeyPressedTimesFirst),
-                        JsonSerializer.Deserialize<List<double>>(user.KeyPressedTimesSecond),
-                        JsonSerializer.Deserialize<List<double>>(user.KeyPressedTimesThird),
+                        JsonSerializer.Deserialize<List<double>>(user.FirstH),
+                        JsonSerializer.Deserialize<List<double>>(user.SecondH),
+                        JsonSerializer.Deserialize<List<double>>(user.ThirdH),
                     };
 
-                    var udUserProfile = new List<List<double>>()
+                    var duUserProfile = new List<List<double>>()
                     {
-                        JsonSerializer.Deserialize<List<double>>(user.BetweenKeysPressTimesFirst),
-                        JsonSerializer.Deserialize<List<double>>(user.BetweenKeysPressTimesSecond),
-                        JsonSerializer.Deserialize<List<double>>(user.BetweenKeysPressTimesThird),
+                        JsonSerializer.Deserialize<List<double>>(user.FirstDU),
+                        JsonSerializer.Deserialize<List<double>>(user.SecondDU),
+                        JsonSerializer.Deserialize<List<double>>(user.ThirdDU),
                     };
 
                     var hUserMedian = Calculations.CalculateMedianValue(hUserProfile);
-                    var udUserMedian = Calculations.CalculateMedianValue(udUserProfile);
+                    var udUserMedian = Calculations.CalculateMedianValue(duUserProfile);
 
                     var authenticationH = new List<double>(testAuthenticationsRecord.H);
                     var authenticationDU = new List<double>(testAuthenticationsRecord.DU);
@@ -92,7 +92,7 @@ namespace DigitalHandwriting.Services
                         hUserMedian,
                         udUserMedian,
                         hUserProfile,
-                        udUserProfile);
+                        duUserProfile);
 
                     var euclidianMethodResult = euclidianMethod.Authenticate(1, authenticationH, authenticationDU);
 
@@ -101,7 +101,7 @@ namespace DigitalHandwriting.Services
                         hUserMedian,
                         udUserMedian,
                         hUserProfile,
-                        udUserProfile);
+                        duUserProfile);
 
                     var euclidianNormalizedMethodResult = euclidianNormalizedMethod.Authenticate(1, authenticationH, authenticationDU);
 
@@ -110,7 +110,7 @@ namespace DigitalHandwriting.Services
                         hUserMedian,
                         udUserMedian,
                         hUserProfile,
-                        udUserProfile);
+                        duUserProfile);
 
                     var manhattanMethodResult = manhattanMethod.Authenticate(1, authenticationH, authenticationDU);
 
@@ -119,7 +119,7 @@ namespace DigitalHandwriting.Services
                         hUserMedian,
                         udUserMedian,
                         hUserProfile,
-                        udUserProfile);
+                        duUserProfile);
 
                     var normalizedManhattanMethodResult = normalizedManhattanMethod.Authenticate(1, authenticationH, authenticationDU);
 
@@ -128,7 +128,7 @@ namespace DigitalHandwriting.Services
                         hUserMedian,
                         udUserMedian,
                         hUserProfile,
-                        udUserProfile);
+                        duUserProfile);
 
                     var ITADMethodResult = ITADMethod.Authenticate(1, authenticationH, authenticationDU);
 
@@ -137,7 +137,7 @@ namespace DigitalHandwriting.Services
                         hUserMedian,
                         udUserMedian,
                         hUserProfile,
-                        udUserProfile);
+                        duUserProfile);
 
                     var GunettiPicardiMethodResult = GunettiPicardiMethod.Authenticate(1, authenticationH, authenticationDU);
 
