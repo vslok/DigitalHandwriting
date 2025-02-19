@@ -2,7 +2,9 @@
 using DigitalHandwriting.Factories.AuthenticationMethods;
 using DigitalHandwriting.Factories.AuthenticationMethods.Models;
 using DigitalHandwriting.Helpers;
+using DigitalHandwriting.Models;
 using DigitalHandwriting.Repositories;
+using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Globalization;
@@ -40,7 +42,7 @@ namespace DigitalHandwriting.Services
             _userRepository = new UserRepository();
         }
 
-        public List<AuthenticationValidationResult> ValidateAuthentication(string testFilePath)
+        public void ValidateAuthentication(string testFilePath)
         {
             var systemUsers = _userRepository.getAllUsers();
             var testAuthentications = _dataMigrationService.GetAuthenticationDataFromCsv(testFilePath);
@@ -123,7 +125,7 @@ namespace DigitalHandwriting.Services
 
                     var normalizedManhattanMethodResult = normalizedManhattanMethod.Authenticate(1, authenticationH, authenticationDU);
 
-                    var ITADMethod = AuthenticationMethodFactory.GetAuthenticationMethod(
+/*                    var ITADMethod = AuthenticationMethodFactory.GetAuthenticationMethod(
                         Method.ITAD,
                         hUserMedian,
                         udUserMedian,
@@ -139,14 +141,14 @@ namespace DigitalHandwriting.Services
                         hUserProfile,
                         udUserProfile);
 
-                    var GunettiPicardiMethodResult = GunettiPicardiMethod.Authenticate(1, authenticationH, authenticationDU);
+                    var GunettiPicardiMethodResult = GunettiPicardiMethod.Authenticate(1, authenticationH, authenticationDU);*/
 
                     ProcessMethod(Method.Euclidian, euclidianMethodResult, user.Login, testAuthenticationsRecord.IsLegalUser);
                     ProcessMethod(Method.NormalizedEuclidian, euclidianNormalizedMethodResult, user.Login, testAuthenticationsRecord.IsLegalUser);
                     ProcessMethod(Method.Manhattan, manhattanMethodResult, user.Login, testAuthenticationsRecord.IsLegalUser);
                     ProcessMethod(Method.NormalizedManhattan, normalizedManhattanMethodResult, user.Login, testAuthenticationsRecord.IsLegalUser);
-                    ProcessMethod(Method.ITAD, ITADMethodResult, user.Login, testAuthenticationsRecord.IsLegalUser);
-                    ProcessMethod(Method.GunettiPicardi, GunettiPicardiMethodResult, user.Login, testAuthenticationsRecord.IsLegalUser);
+/*                    ProcessMethod(Method.ITAD, ITADMethodResult, user.Login, testAuthenticationsRecord.IsLegalUser);
+                    ProcessMethod(Method.GunettiPicardi, GunettiPicardiMethodResult, user.Login, testAuthenticationsRecord.IsLegalUser);*/
                 }
             );
 
@@ -154,11 +156,6 @@ namespace DigitalHandwriting.Services
             {
                 WriteResultsToCsv(methodEntry.Value.ToList(), methodEntry.Key.ToString());
             }
-
-            return resultsByMethod
-                .SelectMany(x => x.Value)
-                .OrderBy(result => result.AuthenticationMethod)
-                .ToList();
         }
 
         private void WriteResultsToCsv(List<AuthenticationValidationResult> results, string methodName)
@@ -182,6 +179,7 @@ namespace DigitalHandwriting.Services
             using (var writer = new StreamWriter(filePath))
             using (var csv = new CsvWriter(writer, CultureInfo.InvariantCulture))
             {
+                Console.WriteLine($"Write in file {methodName} method");
                 csv.WriteRecords(records);
             }
         }

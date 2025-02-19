@@ -59,16 +59,14 @@ namespace DigitalHandwriting.Helpers
                 throw new ArgumentException("Vectors must be of same length.");
             }
 
-            double sumSquared = 0.0;
+            double score = 0.0;
             for (int i = 0; i < vector1.Count; i++)
             {
                 double diff = vector1[i] - vector2[i];
-                sumSquared += diff * diff;
+                score += Math.Sqrt(diff * diff);
             }
 
-            var result = Math.Sqrt(sumSquared);
-
-            return Math.Round(result, 2);
+            return Math.Round(score / vector1.Count, 3);
         }
 
         public static double ManhattanDistance(List<double> vector1, List<double> vector2)
@@ -84,12 +82,12 @@ namespace DigitalHandwriting.Helpers
                 sumAbs += Math.Abs(vector1[i] - vector2[i]);
             }
 
-            return Math.Round(sumAbs, 2);
+            return Math.Round(sumAbs / vector1.Count, 3);
         }
 
         public static double ManhattanDistance(double etPoint, double curPoint)
         { 
-            return Math.Round(Math.Abs(etPoint - curPoint), 2);
+            return Math.Round(Math.Abs(etPoint - curPoint), 3);
         }
 
         public static double MahalanobisDistance(List<double> vector1, List<double> vector2, double[,] invCovMatrix)
@@ -237,10 +235,10 @@ namespace DigitalHandwriting.Helpers
                     nGraphHoldTime += holdTimes[i + j];
                 }
 
-                nGraphBetweenKeysDown.Add(nGraphBetweenKeysDownTime);
-                nGraphBetweenKeysUp.Add(nGraphBetweenKeysUpTime);
-                nGraphHold.Add(nGraphHoldTime);
-                nGraphBetweenKeys.Add(nGraphBetweenKeysTime);
+                nGraphBetweenKeysDown.Add(nGraphBetweenKeysDownTime / (n - 1));
+                nGraphBetweenKeysUp.Add(nGraphBetweenKeysUpTime / (n - 1));
+                nGraphHold.Add(nGraphHoldTime / n);
+                nGraphBetweenKeys.Add(nGraphBetweenKeysTime / (n - 1));
             }
 
             return new Dictionary<AuthenticationCalculationDataType, List<double>>
@@ -334,7 +332,8 @@ namespace DigitalHandwriting.Helpers
                 throw new ArgumentException("Наборы метрик должны быть одинаковыми.");
 
             var dataTypeResults = new Dictionary<AuthenticationCalculationDataType, double>();
-            foreach (var key in Enum.GetValues(typeof(AuthenticationCalculationDataType)).Cast<AuthenticationCalculationDataType>())
+            /*foreach (var key in Enum.GetValues(typeof(AuthenticationCalculationDataType)).Cast<AuthenticationCalculationDataType>())*/
+            foreach (var key in nGraphs1.Keys)
             {
                 var values1 = nGraphs1[key];
                 var values2 = nGraphs2[key];

@@ -21,7 +21,8 @@ namespace DigitalHandwriting.ViewModels
             _algorithmValidationService = new AlgorithmValidationService();
             OnValidationResultButtonExportClickCommand = new Command(OnValidationResultButtonExportClick);
 
-            ValidationResults = _algorithmValidationService.ValidateAuthentication(testDataPath);
+           _algorithmValidationService.ValidateAuthentication(testDataPath);
+            ValidationResults = new List<AuthenticationValidationResult>();
         }
 
         public List<AuthenticationValidationResult> ValidationResults {
