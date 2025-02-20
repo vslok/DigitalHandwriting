@@ -20,6 +20,32 @@
             </MenuItem>
         </Menu>
 
+        <Grid DockPanel.Dock="Bottom" Margin="10">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Border Grid.Column="0" BorderBrush="LightGray" BorderThickness="1" Margin="5" Padding="10">
+                <StackPanel>
+                    <TextBlock Text="False Acceptance Rate (FAR)" FontWeight="Bold"/>
+                    <TextBlock Text="{Binding FAR, StringFormat={}{0:F2}%}"/>
+                </StackPanel>
+            </Border>
+            <Border Grid.Column="1" BorderBrush="LightGray" BorderThickness="1" Margin="5" Padding="10">
+                <StackPanel>
+                    <TextBlock Text="False Rejection Rate (FRR)" FontWeight="Bold"/>
+                    <TextBlock Text="{Binding FRR, StringFormat={}{0:F2}%}"/>
+                </StackPanel>
+            </Border>
+            <Border Grid.Column="2" BorderBrush="LightGray" BorderThickness="1" Margin="5" Padding="10">
+                <StackPanel>
+                    <TextBlock Text="Equal Error Rate (EER)" FontWeight="Bold"/>
+                    <TextBlock Text="{Binding EER, StringFormat={}{0:F2}%}"/>
+                </StackPanel>
+            </Border>
+        </Grid>
+
         <StackPanel DockPanel.Dock="Bottom" Orientation="Horizontal"
                     HorizontalAlignment="Center" Margin="10">
             <Button Content="Previous" Command="{Binding PreviousPageCommand}"

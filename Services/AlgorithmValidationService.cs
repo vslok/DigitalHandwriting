@@ -32,6 +32,13 @@ namespace DigitalHandwriting.Services
         public Method AuthenticationMethod {  get; set; }
     }
 
+    public class BiometricMetrics
+    {
+        public double FAR { get; set; } // False Acceptance Rate
+        public double FRR { get; set; } // False Rejection Rate
+        public double EER { get; set; } // Equal Error Rate
+    }
+
     public class AlgorithmValidationService
     {
         private readonly DataMigrationService _dataMigrationService;
@@ -157,6 +164,30 @@ namespace DigitalHandwriting.Services
             {
                 WriteResultsToCsv(methodEntry.Value.ToList(), saveDirectory);
             }
+        }
+
+        private BiometricMetrics CalculateMetrics(List<AuthenticationValidationResult> results)
+        {
+            var legalUsers = results.Where(r => r.IsLegalUser).ToList();
+            var impostors = results.Where(r => !r.IsLegalUser).ToList();
+
+            // Calculate FAR (False Acceptance Rate)
+            double falseAcceptances = impostors.Count(r => r.IsAuthenticated);
+            double far = falseAcceptances / impostors.Count;
+
+            // Calculate FRR (False Rejection Rate)
+            double falseRejections = legalUsers.Count(r => !r.IsAuthenticated);
+            double frr = falseRejections / legalUsers.Count;
+
+            // Calculate EER (Equal Error Rate) - approximate
+            double eer = (far + frr) / 2;
+
+            return new BiometricMetrics
+            {
+                FAR = far * 100, // Convert to percentage
+                FRR = frr * 100,
+                EER = eer * 100
+            };
         }
 
         private void WriteResultsToCsv(List<AuthenticationValidationResult> results, string saveDirectory)

@@ -1,4 +1,5 @@
 ﻿using DigitalHandwriting.Factories.AuthenticationMethods.Models;
+using DigitalHandwriting.Services;
 using Microsoft.EntityFrameworkCore.Metadata.Conventions;
 using Microsoft.Windows.Themes;
 using System;
@@ -86,7 +87,7 @@ namespace DigitalHandwriting.Helpers
         }
 
         public static double ManhattanDistance(double etPoint, double curPoint)
-        { 
+        {
             return Math.Round(Math.Abs(etPoint - curPoint), 3);
         }
 
@@ -189,7 +190,7 @@ namespace DigitalHandwriting.Helpers
         {
             return intervals.Select(interv => Math.Pow(interv - expect, 2)).Average();
         }
-       
+
         public static double StandardDeviation(double disp)
         {
             return Math.Sqrt(disp);
@@ -281,8 +282,8 @@ namespace DigitalHandwriting.Helpers
             return result;
         }
 
-        public static double GunettiPicardiMetric(Dictionary<AuthenticationCalculationDataType, List<double>> nGraphs1, 
-            Dictionary<AuthenticationCalculationDataType, List<double>> nGraphs2, double t, 
+        public static double GunettiPicardiMetric(Dictionary<AuthenticationCalculationDataType, List<double>> nGraphs1,
+            Dictionary<AuthenticationCalculationDataType, List<double>> nGraphs2, double t,
             List<string>? sequence1 = null, List<string>? sequence2 = null)
         {
             double aMeasure = CalculateAMeasure(nGraphs1, nGraphs2, t, out var graphsSimilarity);
@@ -293,12 +294,12 @@ namespace DigitalHandwriting.Helpers
             }
 
             return aMeasure;
-            
+
         }
 
         public static double CalculateAMeasure(
-            Dictionary<AuthenticationCalculationDataType, List<double>> nGraphs1, 
-            Dictionary<AuthenticationCalculationDataType, List<double>> nGraphs2, 
+            Dictionary<AuthenticationCalculationDataType, List<double>> nGraphs1,
+            Dictionary<AuthenticationCalculationDataType, List<double>> nGraphs2,
             double t,
             out Dictionary<AuthenticationCalculationDataType, double> graphsSimilarity
             )
@@ -357,6 +358,43 @@ namespace DigitalHandwriting.Helpers
             }
 
             return dataTypeResults;
+        }
+
+        public static class BiometricMetrics
+        {
+            public static (double FAR, double FRR, double EER) CalculateMetrics(IEnumerable<CsvExportAuthentication> results)
+            {
+                var methodGroups = results.GroupBy(r => new { r.AuthenticationMethod, r.N });
+
+                var totalFAR = 0.0;
+                var totalFRR = 0.0;
+                var groupCount = methodGroups.Count();
+
+                foreach (var group in methodGroups)
+                {
+                    var legalUsers = group.Where(r => r.IsLegalUser).ToList();
+                    var impostors = group.Where(r => !r.IsLegalUser).ToList();
+
+                    if (legalUsers.Count == 0 || impostors.Count == 0) continue;
+
+                    // Calculate FAR (False Acceptance Rate)
+                    double falseAcceptances = impostors.Count(r => r.IsAuthenticated);
+                    double far = falseAcceptances / impostors.Count;
+
+                    // Calculate FRR (False Rejection Rate)
+                    double falseRejections = legalUsers.Count(r => !r.IsAuthenticated);
+                    double frr = falseRejections / legalUsers.Count;
+
+                    totalFAR += far;
+                    totalFRR += frr;
+                }
+
+                double averageFAR = (totalFAR / groupCount) * 100; // Convert to percentage
+                double averageFRR = (totalFRR / groupCount) * 100;
+                double eer = (averageFAR + averageFRR) / 2;
+
+                return (averageFAR, averageFRR, eer);
+            }
         }
     }
 }

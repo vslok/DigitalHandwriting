@@ -19,11 +19,44 @@ namespace DigitalHandwriting.ViewModels
         private List<CsvExportAuthentication> _displayedResults;
         private int _pageSize = 100;
         private int _currentPage = 0;
+        private double _far;
+        private double _frr;
+        private double _eer;
 
         public ICommand OnValidationResultButtonImportClickCommand { get; set; }
         public ICommand ValidateDataCommand { get; private set; }
         public ICommand NextPageCommand { get; private set; }
         public ICommand PreviousPageCommand { get; private set; }
+
+        public double FAR
+        {
+            get => _far;
+            set
+            {
+                _far = value;
+                InvokeOnPropertyChangedEvent(nameof(FAR));
+            }
+        }
+
+        public double FRR
+        {
+            get => _frr;
+            set
+            {
+                _frr = value;
+                InvokeOnPropertyChangedEvent(nameof(FRR));
+            }
+        }
+
+        public double EER
+        {
+            get => _eer;
+            set
+            {
+                _eer = value;
+                InvokeOnPropertyChangedEvent(nameof(EER));
+            }
+        }
 
         public AlgorithmValidationViewModel()
         {
@@ -96,6 +129,15 @@ namespace DigitalHandwriting.ViewModels
                 var results = _dataMigrationService.GetAuthenticationResultsFromCsv(filename).ToList();
                 _currentPage = 0;
                 ValidationResults = results;
+
+                // Update metrics using Calculations class
+                if (results.Any())
+                {
+                    var (far, frr, eer) = Calculations.BiometricMetrics.CalculateMetrics(results);
+                    FAR = far;
+                    FRR = frr;
+                    EER = eer;
+                }
             }
         }
 
