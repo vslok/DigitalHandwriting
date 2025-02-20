@@ -41,6 +41,20 @@ namespace DigitalHandwriting.Services
         public bool IsLegalUser { get; set; }
     }
 
+    public class CsvExportAuthentication
+    {
+        public string Login { get; set; }
+        public bool IsLegalUser { get; set; }
+        public string AuthenticationMethod { get; set; }
+        public bool IsAuthenticated { get; set; }
+        public int N { get; set; }
+        public double H_Score { get; set; }
+        public double DU_Score { get; set; }
+        public double UU_Score { get; set; }
+        public double DD_Score { get; set; }
+        public double TotalAuthenticationScore { get; set; }
+    }
+
     public class DataMigrationService
     {
         private readonly UserRepository _userRepository;
@@ -117,6 +131,26 @@ namespace DigitalHandwriting.Services
                     SecondUD = JsonSerializer.Serialize(record.SecondUD),
                     ThirdUD = JsonSerializer.Serialize(record.ThirdUD),
                 };
+            }
+        }
+
+        public IEnumerable<CsvExportAuthentication> GetAuthenticationResultsFromCsv(string filePath)
+        {
+            var config = new CsvConfiguration(CultureInfo.InvariantCulture)
+            {
+                PrepareHeaderForMatch = args => args.Header.ToLower(),
+            };
+
+            using (var reader = new StreamReader(filePath))
+            using (var csv = new CsvReader(reader, config))
+            {
+                csv.Read();
+                csv.ReadHeader();
+
+                while (csv.Read())
+                {
+                    yield return csv.GetRecord<CsvExportAuthentication>();
+                }
             }
         }
     }

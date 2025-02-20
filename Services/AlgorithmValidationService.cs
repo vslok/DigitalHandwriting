@@ -10,6 +10,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Text.Json;
 using System.Threading.Tasks;
 
@@ -42,7 +43,7 @@ namespace DigitalHandwriting.Services
             _userRepository = new UserRepository();
         }
 
-        public void ValidateAuthentication(string testFilePath)
+        public void ValidateAuthentication(string testFilePath, int n, string saveDirectory)
         {
             var systemUsers = _userRepository.getAllUsers();
             var testAuthentications = _dataMigrationService.GetAuthenticationDataFromCsv(testFilePath);
@@ -96,7 +97,7 @@ namespace DigitalHandwriting.Services
                         hUserProfile,
                         udUserProfile);
 
-                    var euclidianMethodResult = euclidianMethod.Authenticate(1, authenticationH, authenticationDU);
+                    var euclidianMethodResult = euclidianMethod.Authenticate(n, authenticationH, authenticationDU);
 
                     var euclidianNormalizedMethod = AuthenticationMethodFactory.GetAuthenticationMethod(
                         Method.NormalizedEuclidian,
@@ -105,7 +106,7 @@ namespace DigitalHandwriting.Services
                         hUserProfile,
                         udUserProfile);
 
-                    var euclidianNormalizedMethodResult = euclidianNormalizedMethod.Authenticate(1, authenticationH, authenticationDU);
+                    var euclidianNormalizedMethodResult = euclidianNormalizedMethod.Authenticate(n, authenticationH, authenticationDU);
 
                     var manhattanMethod = AuthenticationMethodFactory.GetAuthenticationMethod(
                         Method.Manhattan,
@@ -114,7 +115,7 @@ namespace DigitalHandwriting.Services
                         hUserProfile,
                         udUserProfile);
 
-                    var manhattanMethodResult = manhattanMethod.Authenticate(1, authenticationH, authenticationDU);
+                    var manhattanMethodResult = manhattanMethod.Authenticate(n, authenticationH, authenticationDU);
 
                     var normalizedManhattanMethod = AuthenticationMethodFactory.GetAuthenticationMethod(
                         Method.NormalizedManhattan,
@@ -123,16 +124,16 @@ namespace DigitalHandwriting.Services
                         hUserProfile,
                         udUserProfile);
 
-                    var normalizedManhattanMethodResult = normalizedManhattanMethod.Authenticate(1, authenticationH, authenticationDU);
+                    var normalizedManhattanMethodResult = normalizedManhattanMethod.Authenticate(n, authenticationH, authenticationDU);
 
-/*                    var ITADMethod = AuthenticationMethodFactory.GetAuthenticationMethod(
+                    var ITADMethod = AuthenticationMethodFactory.GetAuthenticationMethod(
                         Method.ITAD,
                         hUserMedian,
                         udUserMedian,
                         hUserProfile,
                         udUserProfile);
 
-                    var ITADMethodResult = ITADMethod.Authenticate(1, authenticationH, authenticationDU);
+                    var ITADMethodResult = ITADMethod.Authenticate(n, authenticationH, authenticationDU);
 
                     var GunettiPicardiMethod = AuthenticationMethodFactory.GetAuthenticationMethod(
                         Method.GunettiPicardi,
@@ -141,25 +142,37 @@ namespace DigitalHandwriting.Services
                         hUserProfile,
                         udUserProfile);
 
-                    var GunettiPicardiMethodResult = GunettiPicardiMethod.Authenticate(1, authenticationH, authenticationDU);*/
+                    var GunettiPicardiMethodResult = GunettiPicardiMethod.Authenticate(n, authenticationH, authenticationDU);
 
                     ProcessMethod(Method.Euclidian, euclidianMethodResult, user.Login, testAuthenticationsRecord.IsLegalUser);
                     ProcessMethod(Method.NormalizedEuclidian, euclidianNormalizedMethodResult, user.Login, testAuthenticationsRecord.IsLegalUser);
                     ProcessMethod(Method.Manhattan, manhattanMethodResult, user.Login, testAuthenticationsRecord.IsLegalUser);
                     ProcessMethod(Method.NormalizedManhattan, normalizedManhattanMethodResult, user.Login, testAuthenticationsRecord.IsLegalUser);
-/*                    ProcessMethod(Method.ITAD, ITADMethodResult, user.Login, testAuthenticationsRecord.IsLegalUser);
-                    ProcessMethod(Method.GunettiPicardi, GunettiPicardiMethodResult, user.Login, testAuthenticationsRecord.IsLegalUser);*/
+                    ProcessMethod(Method.ITAD, ITADMethodResult, user.Login, testAuthenticationsRecord.IsLegalUser);
+                    ProcessMethod(Method.GunettiPicardi, GunettiPicardiMethodResult, user.Login, testAuthenticationsRecord.IsLegalUser);
                 }
             );
 
             foreach (var methodEntry in resultsByMethod)
             {
-                WriteResultsToCsv(methodEntry.Value.ToList(), methodEntry.Key.ToString());
+                WriteResultsToCsv(methodEntry.Value.ToList(), saveDirectory);
             }
         }
 
-        private void WriteResultsToCsv(List<AuthenticationValidationResult> results, string methodName)
+        private void WriteResultsToCsv(List<AuthenticationValidationResult> results, string saveDirectory)
         {
+            if (results.Count == 0)
+            {
+                return;
+            }
+
+            string folderPath = Path.Combine(saveDirectory, $"N_{results[0].N}");
+            if (!Directory.Exists(folderPath))
+            {
+                Directory.CreateDirectory(folderPath);
+            }
+            string filePath = Path.Combine(folderPath, $"{results[0].AuthenticationMethod}_results.csv");
+
             var records = results.Select(r => new
             {
                 r.Login,
@@ -174,12 +187,10 @@ namespace DigitalHandwriting.Services
                 r.TotalAuthenticationScore
             });
 
-            string filePath = $"{methodName}_results.csv";
-
             using (var writer = new StreamWriter(filePath))
             using (var csv = new CsvWriter(writer, CultureInfo.InvariantCulture))
             {
-                Console.WriteLine($"Write in file {methodName} method");
+                Console.WriteLine($"Write in file {filePath}");
                 csv.WriteRecords(records);
             }
         }

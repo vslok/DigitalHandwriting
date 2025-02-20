@@ -176,23 +176,8 @@ namespace DigitalHandwriting.ViewModels
 
         private void OnValidationButtonClick()
         {
-            var dialog = new OpenFileDialog();
-            dialog.FileName = "test_data"; // Default file name
-            dialog.DefaultExt = ".csv"; // Default file extension
-            dialog.Filter = "CSV documents (.csv)|*.csv"; // Filter files by extension
-
-            // Show open file dialog box
-            bool? result = dialog.ShowDialog();
-
-            // Process open file dialog box results
-            if (result == true)
-            {
-                // Open document
-                string filename = dialog.FileName;
-
-                var window = new ValidationResult(filename);
-                window.ShowDialog();
-            }
+            var window = new ValidationResult();
+            window.ShowDialog();
         }
 
         private void ResetTryState()

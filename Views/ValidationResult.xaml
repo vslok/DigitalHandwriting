@@ -3,20 +3,58 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:DigitalHandwriting.Views" 
+        xmlns:local="clr-namespace:DigitalHandwriting.Views"
         xmlns:viewmodels="clr-namespace:DigitalHandwriting.ViewModels"
         xmlns:converters="clr-namespace:DigitalHandwriting.Converters"
         mc:Ignorable="d"
-        Height="800" Width="600">
+        WindowState="Maximized"
+        WindowStyle="SingleBorderWindow"
+        Title="Validation Results">
 
-    <StackPanel>
-        <Menu Height="25" VerticalAlignment="Top">
+    <DockPanel>
+        <Menu DockPanel.Dock="Top" Height="25">
             <MenuItem Header="File">
-                <Button Content="Export" Command="{Binding OnValidationResultButtonExportClickCommand}" />
+                <MenuItem Header="Import Results" Command="{Binding OnValidationResultButtonImportClickCommand}" />
+                <Separator/>
+                <MenuItem Header="Validate Data" Command="{Binding ValidateDataCommand}" />
             </MenuItem>
         </Menu>
-        <Grid>
-            <DataGrid AutoGenerateColumns="True" ItemsSource="{Binding ValidationResults}" />
-        </Grid>
-    </StackPanel>
+
+        <StackPanel DockPanel.Dock="Bottom" Orientation="Horizontal"
+                    HorizontalAlignment="Center" Margin="10">
+            <Button Content="Previous" Command="{Binding PreviousPageCommand}"
+                    Width="80" Height="25" Margin="5,0" />
+            <Button Content="Next" Command="{Binding NextPageCommand}"
+                    Width="80" Height="25" Margin="5,0" />
+        </StackPanel>
+
+        <ScrollViewer VerticalScrollBarVisibility="Auto"
+                     HorizontalScrollBarVisibility="Auto">
+            <DataGrid ItemsSource="{Binding ValidationResults}"
+                     VirtualizingPanel.IsVirtualizing="True"
+                     VirtualizingPanel.VirtualizationMode="Standard"
+                     EnableRowVirtualization="True"
+                     EnableColumnVirtualization="True"
+                     ScrollViewer.CanContentScroll="True"
+                     ScrollViewer.IsDeferredScrollingEnabled="True"
+                     AutoGenerateColumns="False"
+                     IsReadOnly="True"
+                     GridLinesVisibility="All"
+                     AlternatingRowBackground="#F5F5F5"
+                     RowHeaderWidth="0">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Login" Binding="{Binding Login}" Width="Auto"/>
+                    <DataGridTextColumn Header="Is Legal User" Binding="{Binding IsLegalUser}" Width="Auto"/>
+                    <DataGridTextColumn Header="Authentication Method" Binding="{Binding AuthenticationMethod}" Width="Auto"/>
+                    <DataGridTextColumn Header="Is Authenticated" Binding="{Binding IsAuthenticated}" Width="Auto"/>
+                    <DataGridTextColumn Header="N" Binding="{Binding N}" Width="Auto"/>
+                    <DataGridTextColumn Header="H Score" Binding="{Binding H_Score, StringFormat={}{0:F3}}" Width="Auto"/>
+                    <DataGridTextColumn Header="DU Score" Binding="{Binding DU_Score, StringFormat={}{0:F3}}" Width="Auto"/>
+                    <DataGridTextColumn Header="UU Score" Binding="{Binding UU_Score, StringFormat={}{0:F3}}" Width="Auto"/>
+                    <DataGridTextColumn Header="DD Score" Binding="{Binding DD_Score, StringFormat={}{0:F3}}" Width="Auto"/>
+                    <DataGridTextColumn Header="Total Score" Binding="{Binding TotalAuthenticationScore, StringFormat={}{0:F3}}" Width="Auto"/>
+                </DataGrid.Columns>
+            </DataGrid>
+        </ScrollViewer>
+    </DockPanel>
 </Window>
