@@ -46,6 +46,7 @@ namespace DigitalHandwriting.Services
         public string Login { get; set; }
         public bool IsLegalUser { get; set; }
         public string AuthenticationMethod { get; set; }
+        public double Threshold { get; set; }
         public bool IsAuthenticated { get; set; }
         public int N { get; set; }
         public double H_Score { get; set; }

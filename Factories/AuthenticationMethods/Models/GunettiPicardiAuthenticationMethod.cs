@@ -25,7 +25,7 @@ namespace DigitalHandwriting.Factories.AuthenticationMethods.Models
             {
                 { AuthenticationCalculationDataType.H, UserKeyPressedTimes },
                 { AuthenticationCalculationDataType.DU, UserBetweenKeysTimes },
-            }, 
+            },
             new Dictionary<AuthenticationCalculationDataType, List<double>>()
             {
                 { AuthenticationCalculationDataType.H, loginKeyPressedTimes },
@@ -33,9 +33,41 @@ namespace DigitalHandwriting.Factories.AuthenticationMethods.Models
             }, 1.15, out var ngraphsSimiliarity);
 
             var isAuthenticated = authScore < 0.15;
-            var authResult = new AuthenticationResult(n, ngraphsSimiliarity, authScore, isAuthenticated);
+            var authResult = new AuthenticationResult(n, ngraphsSimiliarity, authScore, isAuthenticated, 0.15);
 
             return authResult;
+        }
+
+        public override List<AuthenticationResult> Authenticate(
+            int n, List<double> loginKeyPressedTimes,
+            List<double> loginBetweenKeysTimes,
+            List<double> thresholds)
+        {
+            if (n > 1)
+            {
+                return nGraphAuthentication(n, loginKeyPressedTimes, loginBetweenKeysTimes, thresholds);
+            }
+
+            var authScore = Calculations.CalculateAMeasure(new Dictionary<AuthenticationCalculationDataType, List<double>>()
+            {
+                { AuthenticationCalculationDataType.H, UserKeyPressedTimes },
+                { AuthenticationCalculationDataType.DU, UserBetweenKeysTimes },
+            },
+            new Dictionary<AuthenticationCalculationDataType, List<double>>()
+            {
+                { AuthenticationCalculationDataType.H, loginKeyPressedTimes },
+                { AuthenticationCalculationDataType.DU, loginBetweenKeysTimes },
+            }, 1.15, out var ngraphsSimiliarity);
+
+            var result = new List<AuthenticationResult>();
+            foreach (var threshold in thresholds)
+            {
+                var isAuthenticated = authScore < threshold;
+                var authResult = new AuthenticationResult(n, ngraphsSimiliarity, authScore, isAuthenticated, threshold);
+                result.Add(authResult);
+            }
+
+            return result;
         }
 
         private AuthenticationResult nGraphAuthentication(int n, List<double> loginKeyPressedTimes, List<double> loginBetweenKeysTimes)
@@ -46,9 +78,27 @@ namespace DigitalHandwriting.Factories.AuthenticationMethods.Models
             var authScore = Calculations.CalculateAMeasure(userGraph, loginGraph, 1.15, out var ngraphsSimiliarity);
 
             var isAuthenticated = authScore < 0.15;
-            var authResult = new AuthenticationResult(n, ngraphsSimiliarity, authScore, isAuthenticated);
+            var authResult = new AuthenticationResult(n, ngraphsSimiliarity, authScore, isAuthenticated, 0.15);
 
             return authResult;
+        }
+
+        private List<AuthenticationResult> nGraphAuthentication(int n, List<double> loginKeyPressedTimes, List<double> loginBetweenKeysTimes, List<double> thresholds)
+        {
+            var userGraph = Calculations.CalculateNGraph(n, UserKeyPressedTimes, UserBetweenKeysTimes);
+            var loginGraph = Calculations.CalculateNGraph(n, loginKeyPressedTimes, loginBetweenKeysTimes);
+
+            var authScore = Calculations.CalculateAMeasure(userGraph, loginGraph, 1.15, out var ngraphsSimiliarity);
+
+            var result = new List<AuthenticationResult>();
+            foreach (var threshold in thresholds)
+            {
+                var isAuthenticated = authScore < threshold;
+                var authResult = new AuthenticationResult(n, ngraphsSimiliarity, authScore, isAuthenticated, threshold);
+                result.Add(authResult);
+            }
+
+            return result;
         }
     }
 }

@@ -23,6 +23,8 @@ namespace DigitalHandwriting.Factories.AuthenticationMethods.Models
 
         private readonly double _totalAuthenticationScore;
 
+        private readonly double _threshold;
+
         private readonly bool _isAuthenticated;
 
         public AuthenticationResult(AuthenticationResult authenticationResult)
@@ -31,14 +33,21 @@ namespace DigitalHandwriting.Factories.AuthenticationMethods.Models
             _dataResults = authenticationResult.DataResults;
             _totalAuthenticationScore = authenticationResult.TotalAuthenticationScore;
             _isAuthenticated = authenticationResult.IsAuthenticated;
+            _threshold = authenticationResult.Threshold;
         }
 
-        public AuthenticationResult(int n, Dictionary<AuthenticationCalculationDataType, double> dataResults, double totalAuthenticationScore, bool isAuthenticated)
+        public AuthenticationResult(
+            int n,
+            Dictionary<AuthenticationCalculationDataType, double> dataResults,
+            double totalAuthenticationScore,
+            bool isAuthenticated,
+            double threshold)
         {
             _n = n;
             _dataResults = dataResults;
             _totalAuthenticationScore = totalAuthenticationScore;
             _isAuthenticated = isAuthenticated;
+            _threshold = threshold;
         }
 
         public int N => _n;
@@ -48,6 +57,8 @@ namespace DigitalHandwriting.Factories.AuthenticationMethods.Models
         public double TotalAuthenticationScore => _totalAuthenticationScore;
 
         public bool IsAuthenticated => _isAuthenticated;
+
+        public double Threshold => _threshold;
     }
 
     public abstract class AuthenticationMethod
@@ -61,7 +72,7 @@ namespace DigitalHandwriting.Factories.AuthenticationMethods.Models
         private List<List<double>> _userBetweenKeysTimesProfile;
 
         public AuthenticationMethod(
-            List<double> userKeyPressedTimes, 
+            List<double> userKeyPressedTimes,
             List<double> userBetweenKeysTimes,
             List<List<double>> userKeyPressedTimesProfile,
             List<List<double>> userBetweenKeysTimesProfile
@@ -81,6 +92,15 @@ namespace DigitalHandwriting.Factories.AuthenticationMethods.Models
 
         public List<List<double>> UserBetweenKeysTimesProfile => _userBetweenKeysTimesProfile;
 
-        public abstract AuthenticationResult Authenticate(int n, List<double> loginKeyPressedTimes, List<double> loginBetweenKeysTimes);
+        public abstract List<AuthenticationResult> Authenticate(
+            int n,
+            List<double> loginKeyPressedTimes,
+            List<double> loginBetweenKeysTimes,
+            List<double> thresholds);
+
+        public abstract AuthenticationResult Authenticate(
+            int n,
+            List<double> loginKeyPressedTimes,
+            List<double> loginBetweenKeysTimes);
     }
 }

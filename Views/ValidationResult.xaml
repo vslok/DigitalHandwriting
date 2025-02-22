@@ -24,24 +24,33 @@
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
             <Border Grid.Column="0" BorderBrush="LightGray" BorderThickness="1" Margin="5" Padding="10">
                 <StackPanel>
-                    <TextBlock Text="False Acceptance Rate (FAR)" FontWeight="Bold"/>
-                    <TextBlock Text="{Binding FAR, StringFormat={}{0:F2}%}"/>
+                    <TextBlock Text="Equal Error Rate (EER)" FontWeight="Bold" Margin="0,0,0,5"/>
+                    <TextBlock Text="{Binding EER, StringFormat=EER: {0:F2}%}"/>
+                    <TextBlock Text="{Binding EERThreshold, StringFormat=Threshold: {0:F3}}"/>
                 </StackPanel>
             </Border>
             <Border Grid.Column="1" BorderBrush="LightGray" BorderThickness="1" Margin="5" Padding="10">
                 <StackPanel>
-                    <TextBlock Text="False Rejection Rate (FRR)" FontWeight="Bold"/>
-                    <TextBlock Text="{Binding FRR, StringFormat={}{0:F2}%}"/>
-                </StackPanel>
-            </Border>
-            <Border Grid.Column="2" BorderBrush="LightGray" BorderThickness="1" Margin="5" Padding="10">
-                <StackPanel>
-                    <TextBlock Text="Equal Error Rate (EER)" FontWeight="Bold"/>
-                    <TextBlock Text="{Binding EER, StringFormat={}{0:F2}%}"/>
+                    <TextBlock Text="Threshold Metrics" FontWeight="Bold" Margin="0,0,0,5"/>
+                    <DataGrid ItemsSource="{Binding ThresholdMetrics}"
+                            AutoGenerateColumns="False"
+                            IsReadOnly="True"
+                            Height="100"
+                            ScrollViewer.VerticalScrollBarVisibility="Auto">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="Threshold" Binding="{Binding Key, StringFormat={}{0:F3}}" Width="Auto"/>
+                            <DataGridTextColumn Header="FAR (%)" Binding="{Binding Value.FAR, StringFormat={}{0:F2}}" Width="Auto"/>
+                            <DataGridTextColumn Header="FRR (%)" Binding="{Binding Value.FRR, StringFormat={}{0:F2}}" Width="Auto"/>
+                            <DataGridTextColumn Header="Accuracy (%)" Binding="{Binding Value.Accuracy, StringFormat={}{0:F2}}" Width="Auto"/>
+                            <DataGridTextColumn Header="Error Rate (%)" Binding="{Binding Value.ErrorRate, StringFormat={}{0:F2}}" Width="Auto"/>
+                            <DataGridTextColumn Header="Precision (%)" Binding="{Binding Value.Precision, StringFormat={}{0:F2}}" Width="Auto"/>
+                            <DataGridTextColumn Header="Recall (%)" Binding="{Binding Value.Recall, StringFormat={}{0:F2}}" Width="Auto"/>
+                            <DataGridTextColumn Header="F-Measure" Binding="{Binding Value.FMeasure, StringFormat={}{0:F2}}" Width="Auto"/>
+                        </DataGrid.Columns>
+                    </DataGrid>
                 </StackPanel>
             </Border>
         </Grid>
@@ -74,6 +83,7 @@
                     <DataGridTextColumn Header="Authentication Method" Binding="{Binding AuthenticationMethod}" Width="Auto"/>
                     <DataGridTextColumn Header="Is Authenticated" Binding="{Binding IsAuthenticated}" Width="Auto"/>
                     <DataGridTextColumn Header="N" Binding="{Binding N}" Width="Auto"/>
+                    <DataGridTextColumn Header="Threshold" Binding="{Binding Threshold, StringFormat={}{0:F3}}" Width="Auto"/>
                     <DataGridTextColumn Header="H Score" Binding="{Binding H_Score, StringFormat={}{0:F3}}" Width="Auto"/>
                     <DataGridTextColumn Header="DU Score" Binding="{Binding DU_Score, StringFormat={}{0:F3}}" Width="Auto"/>
                     <DataGridTextColumn Header="UU Score" Binding="{Binding UU_Score, StringFormat={}{0:F3}}" Width="Auto"/>

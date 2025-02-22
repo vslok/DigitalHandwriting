@@ -8,6 +8,7 @@ using System.Text.Json.Nodes;
 using System.Windows.Input;
 using System.Linq;
 using DigitalHandwriting.Factories.AuthenticationMethods.Models;
+using static DigitalHandwriting.Helpers.Calculations.BiometricMetrics;
 
 namespace DigitalHandwriting.ViewModels
 {
@@ -19,34 +20,14 @@ namespace DigitalHandwriting.ViewModels
         private List<CsvExportAuthentication> _displayedResults;
         private int _pageSize = 100;
         private int _currentPage = 0;
-        private double _far;
-        private double _frr;
         private double _eer;
+        private double _eerThreshold;
+        private Dictionary<double, ThresholdMetrics> _thresholdMetrics;
 
         public ICommand OnValidationResultButtonImportClickCommand { get; set; }
         public ICommand ValidateDataCommand { get; private set; }
         public ICommand NextPageCommand { get; private set; }
         public ICommand PreviousPageCommand { get; private set; }
-
-        public double FAR
-        {
-            get => _far;
-            set
-            {
-                _far = value;
-                InvokeOnPropertyChangedEvent(nameof(FAR));
-            }
-        }
-
-        public double FRR
-        {
-            get => _frr;
-            set
-            {
-                _frr = value;
-                InvokeOnPropertyChangedEvent(nameof(FRR));
-            }
-        }
 
         public double EER
         {
@@ -55,6 +36,26 @@ namespace DigitalHandwriting.ViewModels
             {
                 _eer = value;
                 InvokeOnPropertyChangedEvent(nameof(EER));
+            }
+        }
+
+        public double EERThreshold
+        {
+            get => _eerThreshold;
+            set
+            {
+                _eerThreshold = value;
+                InvokeOnPropertyChangedEvent(nameof(EERThreshold));
+            }
+        }
+
+        public Dictionary<double, ThresholdMetrics> ThresholdMetrics
+        {
+            get => _thresholdMetrics;
+            set
+            {
+                _thresholdMetrics = value;
+                InvokeOnPropertyChangedEvent(nameof(ThresholdMetrics));
             }
         }
 
@@ -69,6 +70,7 @@ namespace DigitalHandwriting.ViewModels
 
             _allResults = new List<CsvExportAuthentication>();
             _displayedResults = new List<CsvExportAuthentication>();
+            _thresholdMetrics = new Dictionary<double, ThresholdMetrics>();
         }
 
         public List<CsvExportAuthentication> ValidationResults
@@ -133,10 +135,10 @@ namespace DigitalHandwriting.ViewModels
                 // Update metrics using Calculations class
                 if (results.Any())
                 {
-                    var (far, frr, eer) = Calculations.BiometricMetrics.CalculateMetrics(results);
-                    FAR = far;
-                    FRR = frr;
+                    var (eer, eerThreshold, thresholdMetrics) = Calculations.BiometricMetrics.CalculateMetrics(results);
                     EER = eer;
+                    EERThreshold = eerThreshold;
+                    ThresholdMetrics = thresholdMetrics;
                 }
             }
         }

@@ -196,7 +196,7 @@ namespace DigitalHandwriting.Helpers
             return Math.Sqrt(disp);
         }
 
-        public static Dictionary<AuthenticationCalculationDataType, List<double>> CalculateNGraph(int n, List<double> holdTimes, List<double>betweenKeysTimes)
+        public static Dictionary<AuthenticationCalculationDataType, List<double>> CalculateNGraph(int n, List<double> holdTimes, List<double> betweenKeysTimes)
         {
             if (holdTimes.Count < n)
             {
@@ -362,13 +362,24 @@ namespace DigitalHandwriting.Helpers
 
         public static class BiometricMetrics
         {
-            public static (double FAR, double FRR, double EER) CalculateMetrics(IEnumerable<CsvExportAuthentication> results)
+            public class ThresholdMetrics
+            {
+                public double FAR { get; set; }
+                public double FRR { get; set; }
+                public double Accuracy { get; set; }
+                public double ErrorRate { get; set; }
+                public double Precision { get; set; }
+                public double Recall { get; set; }
+                public double FMeasure { get; set; }
+            }
+
+            public static (double EER, double EERThreshold, Dictionary<double, ThresholdMetrics> ThresholdMetrics)
+                CalculateMetrics(IEnumerable<CsvExportAuthentication> results)
             {
                 var methodGroups = results.GroupBy(r => new { r.AuthenticationMethod, r.N });
-
-                var totalFAR = 0.0;
-                var totalFRR = 0.0;
-                var groupCount = methodGroups.Count();
+                double bestEER = double.MaxValue;
+                double bestEERThreshold = 0.0;
+                var allThresholdMetrics = new Dictionary<double, ThresholdMetrics>();
 
                 foreach (var group in methodGroups)
                 {
@@ -377,23 +388,115 @@ namespace DigitalHandwriting.Helpers
 
                     if (legalUsers.Count == 0 || impostors.Count == 0) continue;
 
-                    // Calculate FAR (False Acceptance Rate)
-                    double falseAcceptances = impostors.Count(r => r.IsAuthenticated);
-                    double far = falseAcceptances / impostors.Count;
+                    var thresholds = group.Select(r => r.Threshold).Distinct().OrderBy(t => t).ToList();
+                    var farList = new List<double>();
+                    var frrList = new List<double>();
+                    var thresholdList = new List<double>();
 
-                    // Calculate FRR (False Rejection Rate)
-                    double falseRejections = legalUsers.Count(r => !r.IsAuthenticated);
-                    double frr = falseRejections / legalUsers.Count;
+                    foreach (var threshold in thresholds)
+                    {
+                        var legalAtThreshold = legalUsers.Where(r => r.Threshold == threshold).ToList();
+                        var impostorsAtThreshold = impostors.Where(r => r.Threshold == threshold).ToList();
 
-                    totalFAR += far;
-                    totalFRR += frr;
+                        if (legalAtThreshold.Count == 0 || impostorsAtThreshold.Count == 0) continue;
+
+                        // Calculate confusion matrix values
+                        double truePositives = legalAtThreshold.Count(r => r.IsAuthenticated);
+                        double trueNegatives = impostorsAtThreshold.Count(r => !r.IsAuthenticated);
+                        double falsePositives = impostorsAtThreshold.Count(r => r.IsAuthenticated);
+                        double falseNegatives = legalAtThreshold.Count(r => !r.IsAuthenticated);
+
+                        double total = legalAtThreshold.Count + impostorsAtThreshold.Count;
+
+                        // Calculate metrics
+                        double far = (falsePositives / impostorsAtThreshold.Count) * 100;
+                        double frr = (falseNegatives / legalAtThreshold.Count) * 100;
+
+                        double accuracy = ((truePositives + trueNegatives) / total) * 100;
+                        double errorRate = ((falsePositives + falseNegatives) / total) * 100;
+
+                        double precision = truePositives / (truePositives + falsePositives) * 100;
+                        double recall = truePositives / (truePositives + falseNegatives) * 100;
+                        double fMeasure = 2 * (precision * recall) / (precision + recall);
+
+                        // Store metrics for this threshold
+                        allThresholdMetrics[threshold] = new ThresholdMetrics
+                        {
+                            FAR = far,
+                            FRR = frr,
+                            Accuracy = accuracy,
+                            ErrorRate = errorRate,
+                            Precision = precision,
+                            Recall = recall,
+                            FMeasure = fMeasure
+                        };
+
+                        farList.Add(far);
+                        frrList.Add(frr);
+                        thresholdList.Add(threshold);
+                    }
+
+                    // Find EER intersection point
+                    int crossoverIndex = -1;
+                    for (int i = 0; i < farList.Count - 1; i++)
+                    {
+                        if ((farList[i] >= frrList[i] && farList[i + 1] <= frrList[i + 1]) ||
+                            (farList[i] <= frrList[i] && farList[i + 1] >= frrList[i + 1]))
+                        {
+                            crossoverIndex = i;
+                            break;
+                        }
+                    }
+
+                    if (crossoverIndex != -1)
+                    {
+                        // Linear interpolation
+                        double t1 = thresholdList[crossoverIndex];
+                        double t2 = thresholdList[crossoverIndex + 1];
+                        double far1 = farList[crossoverIndex];
+                        double far2 = farList[crossoverIndex + 1];
+                        double frr1 = frrList[crossoverIndex];
+                        double frr2 = frrList[crossoverIndex + 1];
+
+                        double delta = (far1 - frr1) / (far1 - frr1 - far2 + frr2);
+                        double eer = far1 - delta * (far1 - far2);
+
+                        // Interpolate threshold at EER point
+                        double thresholdEER = t1 + delta * (t2 - t1);
+
+                        if (eer < bestEER)
+                        {
+                            bestEER = eer;
+                            bestEERThreshold = thresholdEER;
+                        }
+                    }
+                    else
+                    {
+                        // If no intersection, use minimum difference
+                        double minDiff = double.MaxValue;
+                        double thresholdAtMinDiff = 0.0;
+                        double currentEER = 0.0;
+
+                        for (int i = 0; i < farList.Count; i++)
+                        {
+                            double diff = Math.Abs(farList[i] - frrList[i]);
+                            if (diff < minDiff)
+                            {
+                                minDiff = diff;
+                                currentEER = (farList[i] + frrList[i]) / 2.0;
+                                thresholdAtMinDiff = thresholdList[i];
+                            }
+                        }
+
+                        if (currentEER < bestEER)
+                        {
+                            bestEER = currentEER;
+                            bestEERThreshold = thresholdAtMinDiff;
+                        }
+                    }
                 }
 
-                double averageFAR = (totalFAR / groupCount) * 100; // Convert to percentage
-                double averageFRR = (totalFRR / groupCount) * 100;
-                double eer = (averageFAR + averageFRR) / 2;
-
-                return (averageFAR, averageFRR, eer);
+                return (bestEER, bestEERThreshold, allThresholdMetrics);
             }
         }
     }

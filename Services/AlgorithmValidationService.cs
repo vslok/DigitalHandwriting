@@ -36,7 +36,6 @@ namespace DigitalHandwriting.Services
     {
         public double FAR { get; set; } // False Acceptance Rate
         public double FRR { get; set; } // False Rejection Rate
-        public double EER { get; set; } // Equal Error Rate
     }
 
     public class AlgorithmValidationService
@@ -61,18 +60,27 @@ namespace DigitalHandwriting.Services
                 testAuthentications,
                 (testAuthenticationsRecord) =>
                 {
-                    void ProcessMethod(Method method, AuthenticationResult result, string userLogin, bool isLegalUser)
+                    void ProcessMethod(Method method, List<AuthenticationResult> results, string userLogin, bool isLegalUser)
                     {
-                        var validationResult = new AuthenticationValidationResult(
-                            result,
-                            userLogin,
-                            isLegalUser,
-                            method
-                        );
+                        foreach (var result in results)
+                        {
+                            var validationResult = new AuthenticationValidationResult(
+                                result,
+                                userLogin,
+                                isLegalUser,
+                                method
+                            );
 
-                        resultsByMethod
-                            .GetOrAdd(method, _ => new ConcurrentBag<AuthenticationValidationResult>())
-                            .Add(validationResult);
+                            resultsByMethod
+                                .GetOrAdd(method, _ => new ConcurrentBag<AuthenticationValidationResult>())
+                                .Add(validationResult);
+                        }
+                    }
+
+                    var thresholds = new List<double>();
+                    for (double t = 0.0; t <= 1.0; t += 0.01)
+                    {
+                        thresholds.Add(Math.Round(t, 2));
                     }
 
                     var user = systemUsers.Find((user) => user.Login == testAuthenticationsRecord.Login);
@@ -104,7 +112,7 @@ namespace DigitalHandwriting.Services
                         hUserProfile,
                         udUserProfile);
 
-                    var euclidianMethodResult = euclidianMethod.Authenticate(n, authenticationH, authenticationDU);
+                    var euclidianMethodResult = euclidianMethod.Authenticate(n, authenticationH, authenticationDU, thresholds);
 
                     var euclidianNormalizedMethod = AuthenticationMethodFactory.GetAuthenticationMethod(
                         Method.NormalizedEuclidian,
@@ -113,7 +121,7 @@ namespace DigitalHandwriting.Services
                         hUserProfile,
                         udUserProfile);
 
-                    var euclidianNormalizedMethodResult = euclidianNormalizedMethod.Authenticate(n, authenticationH, authenticationDU);
+                    var euclidianNormalizedMethodResult = euclidianNormalizedMethod.Authenticate(n, authenticationH, authenticationDU, thresholds);
 
                     var manhattanMethod = AuthenticationMethodFactory.GetAuthenticationMethod(
                         Method.Manhattan,
@@ -122,7 +130,7 @@ namespace DigitalHandwriting.Services
                         hUserProfile,
                         udUserProfile);
 
-                    var manhattanMethodResult = manhattanMethod.Authenticate(n, authenticationH, authenticationDU);
+                    var manhattanMethodResult = manhattanMethod.Authenticate(n, authenticationH, authenticationDU, thresholds);
 
                     var normalizedManhattanMethod = AuthenticationMethodFactory.GetAuthenticationMethod(
                         Method.NormalizedManhattan,
@@ -131,7 +139,7 @@ namespace DigitalHandwriting.Services
                         hUserProfile,
                         udUserProfile);
 
-                    var normalizedManhattanMethodResult = normalizedManhattanMethod.Authenticate(n, authenticationH, authenticationDU);
+                    var normalizedManhattanMethodResult = normalizedManhattanMethod.Authenticate(n, authenticationH, authenticationDU, thresholds);
 
                     var ITADMethod = AuthenticationMethodFactory.GetAuthenticationMethod(
                         Method.ITAD,
@@ -140,7 +148,7 @@ namespace DigitalHandwriting.Services
                         hUserProfile,
                         udUserProfile);
 
-                    var ITADMethodResult = ITADMethod.Authenticate(n, authenticationH, authenticationDU);
+                    var ITADMethodResult = ITADMethod.Authenticate(n, authenticationH, authenticationDU, thresholds);
 
                     var GunettiPicardiMethod = AuthenticationMethodFactory.GetAuthenticationMethod(
                         Method.GunettiPicardi,
@@ -149,7 +157,7 @@ namespace DigitalHandwriting.Services
                         hUserProfile,
                         udUserProfile);
 
-                    var GunettiPicardiMethodResult = GunettiPicardiMethod.Authenticate(n, authenticationH, authenticationDU);
+                    var GunettiPicardiMethodResult = GunettiPicardiMethod.Authenticate(n, authenticationH, authenticationDU, thresholds);
 
                     ProcessMethod(Method.Euclidian, euclidianMethodResult, user.Login, testAuthenticationsRecord.IsLegalUser);
                     ProcessMethod(Method.NormalizedEuclidian, euclidianNormalizedMethodResult, user.Login, testAuthenticationsRecord.IsLegalUser);
@@ -164,30 +172,6 @@ namespace DigitalHandwriting.Services
             {
                 WriteResultsToCsv(methodEntry.Value.ToList(), saveDirectory);
             }
-        }
-
-        private BiometricMetrics CalculateMetrics(List<AuthenticationValidationResult> results)
-        {
-            var legalUsers = results.Where(r => r.IsLegalUser).ToList();
-            var impostors = results.Where(r => !r.IsLegalUser).ToList();
-
-            // Calculate FAR (False Acceptance Rate)
-            double falseAcceptances = impostors.Count(r => r.IsAuthenticated);
-            double far = falseAcceptances / impostors.Count;
-
-            // Calculate FRR (False Rejection Rate)
-            double falseRejections = legalUsers.Count(r => !r.IsAuthenticated);
-            double frr = falseRejections / legalUsers.Count;
-
-            // Calculate EER (Equal Error Rate) - approximate
-            double eer = (far + frr) / 2;
-
-            return new BiometricMetrics
-            {
-                FAR = far * 100, // Convert to percentage
-                FRR = frr * 100,
-                EER = eer * 100
-            };
         }
 
         private void WriteResultsToCsv(List<AuthenticationValidationResult> results, string saveDirectory)
@@ -209,6 +193,7 @@ namespace DigitalHandwriting.Services
                 r.Login,
                 r.IsLegalUser,
                 AuthenticationMethod = r.AuthenticationMethod.ToString(),
+                threshold = r.Threshold,
                 r.IsAuthenticated,
                 r.N,
                 H_Score = r.DataResults.GetValueOrDefault(AuthenticationCalculationDataType.H),
