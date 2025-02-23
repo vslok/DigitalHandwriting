@@ -38,9 +38,6 @@ namespace DigitalHandwriting.Services
             }
         }
 
-        public List<double> GetKeyPressedTimesMedians() => Calculations.CalculateMedianValue(_keyPressedTimes);
-        public List<double> GetBetweenKeysTimesMedians() => Calculations.CalculateMedianValue(_betweenKeysTimes);
-
         public List<double> GetKeyPressedTimesDispersions()
         {
             var transposedMatrix = Calculations.MatrixTransposing<double>(_keyPressedTimes);

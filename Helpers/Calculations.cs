@@ -1,5 +1,6 @@
 ﻿using DigitalHandwriting.Factories.AuthenticationMethods.Models;
 using DigitalHandwriting.Services;
+using MathNet.Numerics.Statistics;
 using Microsoft.EntityFrameworkCore.Metadata.Conventions;
 using Microsoft.Windows.Themes;
 using System;
@@ -53,6 +54,27 @@ namespace DigitalHandwriting.Helpers
             return mediansList;
         }
 
+        public static List<double> CalculateMeanValue(List<List<double>> values)
+        {
+            foreach (var list in values)
+            {
+                if (list.Count != values[0].Count)
+                {
+                    throw new Exception("Mean value cannot be calculated");
+                }
+            }
+
+            List<double> meansList = new List<double>();
+
+            for (int i = 0; i < values[0].Count; i++)
+            {
+                var valuesList = values.Select(list => list[i]);
+                meansList.Add(valuesList.Average());
+            }
+
+            return meansList;
+        }
+
         public static double EuclideanDistance(List<double> vector1, List<double> vector2)
         {
             if (vector1.Count != vector2.Count)
@@ -64,10 +86,33 @@ namespace DigitalHandwriting.Helpers
             for (int i = 0; i < vector1.Count; i++)
             {
                 double diff = vector1[i] - vector2[i];
-                score += Math.Sqrt(diff * diff);
+                score += diff * diff;
             }
 
-            return Math.Round(score / vector1.Count, 3);
+            return Math.Round(Math.Sqrt(score), 3);
+        }
+
+        public static double NormalizedEuclideanDistance(List<double> vector1, List<double> vector2)
+        {
+            if (vector1.Count != vector2.Count)
+            {
+                throw new ArgumentException("Vectors must be of same length.");
+            }
+
+            // Calculate squared Euclidean distance
+            double squaredDistance = 0.0;
+            for (int i = 0; i < vector1.Count; i++)
+            {
+                double diff = vector1[i] - vector2[i];
+                squaredDistance += diff * diff;
+            }
+
+            // Calculate vector norms
+            double vectorNorm = Math.Sqrt(vector1.Sum(x => x * x));
+            double meanVectorNorm = Math.Sqrt(vector2.Sum(x => x * x));
+
+            // Normalize the distance
+            return squaredDistance / (vectorNorm * meanVectorNorm);
         }
 
         public static double ManhattanDistance(List<double> vector1, List<double> vector2)
@@ -83,12 +128,84 @@ namespace DigitalHandwriting.Helpers
                 sumAbs += Math.Abs(vector1[i] - vector2[i]);
             }
 
-            return Math.Round(sumAbs / vector1.Count, 3);
+            return Math.Round(sumAbs, 3);
         }
 
-        public static double ManhattanDistance(double etPoint, double curPoint)
+        public static (List<double> filteredMeanVector, double distance) ManhattanFilteredDistance(
+            List<List<double>> trainData,
+            List<double> testVector,
+            double stdDeviationThreshold = 3.0)
         {
-            return Math.Round(Math.Abs(etPoint - curPoint), 3);
+            if (trainData.Count == 0 || trainData[0].Count != testVector.Count)
+            {
+                throw new ArgumentException("Invalid input data dimensions");
+            }
+
+            // Calculate initial mean vector
+            var meanVector = CalculateMeanValue(trainData);
+
+            // Calculate standard deviation vector
+            var stdVector = new List<double>();
+            for (int j = 0; j < trainData[0].Count; j++)
+            {
+                var values = trainData.Select(row => row[j]);
+                stdVector.Add(Math.Sqrt(values.Select(x => Math.Pow(x - meanVector[j], 2)).Average()));
+            }
+
+            // Filter outliers
+            var filteredTrainData = trainData.Where(row =>
+            {
+                var euclideanDist = EuclideanDistance(row, meanVector);
+                return !row.Select((val, idx) => Math.Abs(val - meanVector[idx]) > stdDeviationThreshold * stdVector[idx])
+                        .Any(isOutlier => isOutlier);
+            }).ToList();
+
+            // Recalculate mean vector with filtered data
+            var filteredMeanVector = CalculateMeanValue(filteredTrainData);
+
+            // Calculate Manhattan distance with filtered mean
+            var distance = ManhattanDistance(testVector, filteredMeanVector);
+
+            return (filteredMeanVector, distance);
+        }
+
+        public static double ScaledManhattanDistance(
+            List<List<double>> trainData,
+            List<double> testVector)
+        {
+            if (trainData.Count == 0 || trainData[0].Count != testVector.Count)
+            {
+                throw new ArgumentException("Vectors must be of same length and training data must not be empty.");
+            }
+
+            // Calculate initial mean vector
+            var meanVector = CalculateMeanValue(trainData);
+
+            // Calculate MAD (Mean Absolute Deviation) vector
+            var madVector = new List<double>();
+            for (int j = 0; j < meanVector.Count; j++)
+            {
+                // Calculate absolute deviations for this dimension
+                var deviations = trainData.Select(row => Math.Abs(row[j] - meanVector[j]));
+                madVector.Add(deviations.Average());
+            }
+
+            // Calculate scaled Manhattan distance
+            double scaledDistance = 0.0;
+            for (int j = 0; j < testVector.Count; j++)
+            {
+                // Avoid division by zero
+                if (madVector[j] != 0)
+                {
+                    scaledDistance += Math.Abs(testVector[j] - meanVector[j]) / madVector[j];
+                }
+                else
+                {
+                    scaledDistance += Math.Abs(testVector[j] - meanVector[j]);
+                }
+            }
+
+            return Math.Round(scaledDistance, 3);
         }
 
         public static double MahalanobisDistance(List<double> vector1, List<double> vector2, double[,] invCovMatrix)
@@ -215,31 +332,31 @@ namespace DigitalHandwriting.Helpers
 
             for (int i = 0; i <= holdTimes.Count - n; i++)
             {
-                var nGraphBetweenKeysDownTime = 0.0;
-                var nGraphBetweenKeysUpTime = 0.0;
-                var nGraphHoldTime = 0.0;
-                var nGraphBetweenKeysTime = 0.0;
+                var nGraphBetweenKeysDownValues = new List<double>();
+                var nGraphBetweenKeysUpValues = new List<double>();
+                var nGraphHoldValues = new List<double>();
+                var nGraphBetweenKeysValues = new List<double>();
 
                 for (int j = 0; j < n - 1; j++)
                 {
-                    nGraphBetweenKeysDownTime += holdTimes[i + j];
-                    nGraphBetweenKeysDownTime += betweenKeysTimes[i + j];
+                    nGraphBetweenKeysDownValues.Add(holdTimes[i + j]);
+                    nGraphBetweenKeysDownValues.Add(betweenKeysTimes[i + j]);
 
-                    nGraphBetweenKeysUpTime += betweenKeysTimes[i + j];
-                    nGraphBetweenKeysUpTime += holdTimes[i + j + 1];
+                    nGraphBetweenKeysUpValues.Add(betweenKeysTimes[i + j]);
+                    nGraphBetweenKeysUpValues.Add(holdTimes[i + j + 1]);
 
-                    nGraphBetweenKeysTime += betweenKeysTimes[i + j];
+                    nGraphBetweenKeysValues.Add(betweenKeysTimes[i + j]);
                 }
 
                 for (int j = 0; j < n; j++)
                 {
-                    nGraphHoldTime += holdTimes[i + j];
+                    nGraphHoldValues.Add(holdTimes[i + j]);
                 }
 
-                nGraphBetweenKeysDown.Add(nGraphBetweenKeysDownTime / (n - 1));
-                nGraphBetweenKeysUp.Add(nGraphBetweenKeysUpTime / (n - 1));
-                nGraphHold.Add(nGraphHoldTime / n);
-                nGraphBetweenKeys.Add(nGraphBetweenKeysTime / (n - 1));
+                nGraphBetweenKeysDown.Add(nGraphBetweenKeysDownValues.Sum());
+                nGraphBetweenKeysUp.Add(nGraphBetweenKeysUpValues.Sum());
+                nGraphHold.Add(nGraphHoldValues.Sum());
+                nGraphBetweenKeys.Add(nGraphBetweenKeysValues.Sum());
             }
 
             return new Dictionary<AuthenticationCalculationDataType, List<double>>
@@ -247,7 +364,7 @@ namespace DigitalHandwriting.Helpers
                 { AuthenticationCalculationDataType.H, nGraphHold },
                 { AuthenticationCalculationDataType.DD, nGraphBetweenKeysDown },
                 { AuthenticationCalculationDataType.UU, nGraphBetweenKeysUp },
-                { AuthenticationCalculationDataType.DU, nGraphBetweenKeys },
+                { AuthenticationCalculationDataType.UD, nGraphBetweenKeys },
             };
         }
 
@@ -263,7 +380,7 @@ namespace DigitalHandwriting.Helpers
                 { AuthenticationCalculationDataType.H, new List<List<double>>() },
                 { AuthenticationCalculationDataType.DD, new List<List<double>>() },
                 { AuthenticationCalculationDataType.UU, new List<List<double>>() },
-                { AuthenticationCalculationDataType.DU, new List<List<double>>() },
+                { AuthenticationCalculationDataType.UD, new List<List<double>>() },
             };
 
             for (int i = 0; i < holdTimes.Count; i++)
@@ -376,127 +493,92 @@ namespace DigitalHandwriting.Helpers
             public static (double EER, double EERThreshold, Dictionary<double, ThresholdMetrics> ThresholdMetrics)
                 CalculateMetrics(IEnumerable<CsvExportAuthentication> results)
             {
-                var methodGroups = results.GroupBy(r => new { r.AuthenticationMethod, r.N });
-                double bestEER = double.MaxValue;
-                double bestEERThreshold = 0.0;
-                var allThresholdMetrics = new Dictionary<double, ThresholdMetrics>();
+                var legalUsers = results.Where(r => r.IsLegalUser).ToList();
+                var impostors = results.Where(r => !r.IsLegalUser).ToList();
 
-                foreach (var group in methodGroups)
+                if (legalUsers.Count == 0 || impostors.Count == 0)
                 {
-                    var legalUsers = group.Where(r => r.IsLegalUser).ToList();
-                    var impostors = group.Where(r => !r.IsLegalUser).ToList();
+                    throw new ArgumentException("Both legal users and impostors data must be present");
+                }
 
-                    if (legalUsers.Count == 0 || impostors.Count == 0) continue;
+                // Extract scores
+                var userScores = legalUsers.Select(r => r.TotalAuthenticationScore).ToList();
+                var impostersScores = impostors.Select(r => r.TotalAuthenticationScore).ToList();
+                var allScores = userScores.Concat(impostersScores).OrderBy(s => s).ToList();
 
-                    var thresholds = group.Select(r => r.Threshold).Distinct().OrderBy(t => t).ToList();
-                    var farList = new List<double>();
-                    var frrList = new List<double>();
-                    var thresholdList = new List<double>();
+                // Get unique thresholds and sort them
+                var thresholds = allScores.Distinct().OrderBy(s => s).ToList();
+                var frrs = new List<double>(); // FRR (False Rejection Rate)
+                var fars = new List<double>();  // FAR (False Acceptance Rate)
 
-                    foreach (var threshold in thresholds)
+                // Calculate FAR and FRR for each threshold
+                foreach (var threshold in thresholds)
+                {
+                    // For genuine users: scores <= threshold are accepted (true positives)
+                    // scores > threshold are rejected (false negatives)
+                    double falseRejections = userScores.Count(s => s >= threshold);
+                    double frr = falseRejections / userScores.Count;
+
+                    // For impostors: scores <= threshold are false positives
+                    // scores > threshold are true negatives
+                    double falseAcceptances = impostersScores.Count(s => s < threshold);
+                    double far = falseAcceptances / impostersScores.Count;
+
+                    frrs.Add(frr);
+                    fars.Add(far);
+                }
+
+                // Find EER - the point where FAR and FRR are closest
+                double minDiff = double.MaxValue;
+                int eerIndex = 0;
+                double eer = 0;
+                double eerThreshold = 0;
+
+                for (int i = 0; i < thresholds.Count; i++)
+                {
+                    double diff = Math.Abs(fars[i] - frrs[i]);
+                    if (diff < minDiff)
                     {
-                        var legalAtThreshold = legalUsers.Where(r => r.Threshold == threshold).ToList();
-                        var impostorsAtThreshold = impostors.Where(r => r.Threshold == threshold).ToList();
-
-                        if (legalAtThreshold.Count == 0 || impostorsAtThreshold.Count == 0) continue;
-
-                        // Calculate confusion matrix values
-                        double truePositives = legalAtThreshold.Count(r => r.IsAuthenticated);
-                        double trueNegatives = impostorsAtThreshold.Count(r => !r.IsAuthenticated);
-                        double falsePositives = impostorsAtThreshold.Count(r => r.IsAuthenticated);
-                        double falseNegatives = legalAtThreshold.Count(r => !r.IsAuthenticated);
-
-                        double total = legalAtThreshold.Count + impostorsAtThreshold.Count;
-
-                        // Calculate metrics
-                        double far = (falsePositives / impostorsAtThreshold.Count) * 100;
-                        double frr = (falseNegatives / legalAtThreshold.Count) * 100;
-
-                        double accuracy = ((truePositives + trueNegatives) / total) * 100;
-                        double errorRate = ((falsePositives + falseNegatives) / total) * 100;
-
-                        double precision = truePositives / (truePositives + falsePositives) * 100;
-                        double recall = truePositives / (truePositives + falseNegatives) * 100;
-                        double fMeasure = 2 * (precision * recall) / (precision + recall);
-
-                        // Store metrics for this threshold
-                        allThresholdMetrics[threshold] = new ThresholdMetrics
-                        {
-                            FAR = far,
-                            FRR = frr,
-                            Accuracy = accuracy,
-                            ErrorRate = errorRate,
-                            Precision = precision,
-                            Recall = recall,
-                            FMeasure = fMeasure
-                        };
-
-                        farList.Add(far);
-                        frrList.Add(frr);
-                        thresholdList.Add(threshold);
-                    }
-
-                    // Find EER intersection point
-                    int crossoverIndex = -1;
-                    for (int i = 0; i < farList.Count - 1; i++)
-                    {
-                        if ((farList[i] >= frrList[i] && farList[i + 1] <= frrList[i + 1]) ||
-                            (farList[i] <= frrList[i] && farList[i + 1] >= frrList[i + 1]))
-                        {
-                            crossoverIndex = i;
-                            break;
-                        }
-                    }
-
-                    if (crossoverIndex != -1)
-                    {
-                        // Linear interpolation
-                        double t1 = thresholdList[crossoverIndex];
-                        double t2 = thresholdList[crossoverIndex + 1];
-                        double far1 = farList[crossoverIndex];
-                        double far2 = farList[crossoverIndex + 1];
-                        double frr1 = frrList[crossoverIndex];
-                        double frr2 = frrList[crossoverIndex + 1];
-
-                        double delta = (far1 - frr1) / (far1 - frr1 - far2 + frr2);
-                        double eer = far1 - delta * (far1 - far2);
-
-                        // Interpolate threshold at EER point
-                        double thresholdEER = t1 + delta * (t2 - t1);
-
-                        if (eer < bestEER)
-                        {
-                            bestEER = eer;
-                            bestEERThreshold = thresholdEER;
-                        }
-                    }
-                    else
-                    {
-                        // If no intersection, use minimum difference
-                        double minDiff = double.MaxValue;
-                        double thresholdAtMinDiff = 0.0;
-                        double currentEER = 0.0;
-
-                        for (int i = 0; i < farList.Count; i++)
-                        {
-                            double diff = Math.Abs(farList[i] - frrList[i]);
-                            if (diff < minDiff)
-                            {
-                                minDiff = diff;
-                                currentEER = (farList[i] + frrList[i]) / 2.0;
-                                thresholdAtMinDiff = thresholdList[i];
-                            }
-                        }
-
-                        if (currentEER < bestEER)
-                        {
-                            bestEER = currentEER;
-                            bestEERThreshold = thresholdAtMinDiff;
-                        }
+                        minDiff = diff;
+                        eerIndex = i;
+                        eer = (fars[i] + frrs[i]) / 2; // Average of FAR and FRR at closest point
+                        eerThreshold = thresholds[i];
                     }
                 }
 
-                return (bestEER, bestEERThreshold, allThresholdMetrics);
+                // Calculate metrics for all thresholds
+                var allThresholdMetrics = new Dictionary<double, ThresholdMetrics>();
+                for (int i = 0; i < thresholds.Count; i++)
+                {
+                    double threshold = thresholds[i];
+
+                    double truePositives = userScores.Count(s => s < threshold);
+                    double falsePositives = impostersScores.Count(s => s < threshold);
+                    double trueNegatives = impostersScores.Count(s => s >= threshold);
+                    double falseNegatives = userScores.Count(s => s >= threshold);
+
+                    double totalSamples = userScores.Count + impostersScores.Count;
+
+                    double accuracy = ((truePositives + trueNegatives) / totalSamples) * 100;
+                    double errorRate = ((falsePositives + falseNegatives) / totalSamples) * 100;
+
+                    double precision = truePositives / (truePositives + falsePositives) * 100;
+                    double recall = truePositives / (truePositives + falseNegatives) * 100;
+                    double fMeasure = 2 * (precision * recall) / (precision + recall);
+
+                    allThresholdMetrics[threshold] = new ThresholdMetrics
+                    {
+                        FAR = fars[i] * 100,
+                        FRR = frrs[i] * 100,
+                        Accuracy = accuracy,
+                        ErrorRate = errorRate,
+                        Precision = precision,
+                        Recall = recall,
+                        FMeasure = fMeasure
+                    };
+                }
+
+                return (eer * 100, eerThreshold, allThresholdMetrics);
             }
         }
     }

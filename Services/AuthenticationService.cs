@@ -55,11 +55,11 @@ namespace DigitalHandwriting.Services
                         JsonSerializer.Deserialize<List<double>>(user.ThirdUD),
                     };
 
-            var hUserMedian = Calculations.CalculateMedianValue(hUserProfile);
-            var udUserMedian = Calculations.CalculateMedianValue(duUserProfile);
+            var hUserMedian = Calculations.CalculateMeanValue(hUserProfile);
+            var udUserMedian = Calculations.CalculateMeanValue(duUserProfile);
 
             var normalizedManhattanMethod = AuthenticationMethodFactory.GetAuthenticationMethod(
-                Method.NormalizedManhattan,
+                Method.FilteredManhattan,
                 hUserMedian,
                 udUserMedian,
                 hUserProfile,

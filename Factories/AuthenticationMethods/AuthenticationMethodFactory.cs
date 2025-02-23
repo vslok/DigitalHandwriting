@@ -12,7 +12,8 @@ namespace DigitalHandwriting.Factories.AuthenticationMethods
         Euclidian,
         NormalizedEuclidian,
         Manhattan,
-        NormalizedManhattan,
+        FilteredManhattan,
+        ScaledManhattan,
         ITAD,
         GunettiPicardi,
     }
@@ -35,8 +36,10 @@ namespace DigitalHandwriting.Factories.AuthenticationMethods
                     return new NormalizedEuclidianAuthenticationMethod(userKeyPressedTimes, userBetweenKeysTimes, userKeyPressedTimesProfile, userBetweenKeysTimesProfile);
                 case Method.Manhattan:
                     return new ManhattanAuthenticationMethod(userKeyPressedTimes, userBetweenKeysTimes, userKeyPressedTimesProfile, userBetweenKeysTimesProfile);
-                case Method.NormalizedManhattan:
-                    return new NormalizedManhattanAuthenticationMethod(userKeyPressedTimes, userBetweenKeysTimes, userKeyPressedTimesProfile, userBetweenKeysTimesProfile);
+                case Method.FilteredManhattan:
+                    return new FilteredManhattanAuthenticationMethod(userKeyPressedTimes, userBetweenKeysTimes, userKeyPressedTimesProfile, userBetweenKeysTimesProfile);
+                case Method.ScaledManhattan:
+                    return new ScaledManhattanAuthenticationMethod(userKeyPressedTimes, userBetweenKeysTimes, userKeyPressedTimesProfile, userBetweenKeysTimesProfile);
                 case Method.ITAD:
                     return new ITADAuthenticationMethod(userKeyPressedTimes, userBetweenKeysTimes, userKeyPressedTimesProfile, userBetweenKeysTimesProfile);
                 case Method.GunettiPicardi:

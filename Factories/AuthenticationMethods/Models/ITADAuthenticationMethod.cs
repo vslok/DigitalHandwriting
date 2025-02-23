@@ -30,7 +30,7 @@ namespace DigitalHandwriting.Factories.AuthenticationMethods.Models
             var authResult = new AuthenticationResult(n, new Dictionary<AuthenticationCalculationDataType, double>()
             {
                 { AuthenticationCalculationDataType.H, keyPressedDistance },
-                { AuthenticationCalculationDataType.DU, betweenKeysDistance },
+                { AuthenticationCalculationDataType.UD, betweenKeysDistance },
             }, authScore, isAuthenticated, 0.45);
 
             return authResult;
@@ -58,7 +58,7 @@ namespace DigitalHandwriting.Factories.AuthenticationMethods.Models
                 var authResult = new AuthenticationResult(n, new Dictionary<AuthenticationCalculationDataType, double>()
                 {
                     { AuthenticationCalculationDataType.H, keyPressedDistance },
-                    { AuthenticationCalculationDataType.DU, betweenKeysDistance },
+                    { AuthenticationCalculationDataType.UD, betweenKeysDistance },
                 }, authScore, isAuthenticated, threshold);
                 result.Add(authResult);
             }

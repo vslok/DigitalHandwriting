@@ -10,7 +10,7 @@ namespace DigitalHandwriting.Factories.AuthenticationMethods.Models
     public enum AuthenticationCalculationDataType
     {
         H,
-        DU,
+        UD,
         UU,
         DD,
     }

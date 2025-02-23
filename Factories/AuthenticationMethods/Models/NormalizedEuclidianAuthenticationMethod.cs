@@ -21,14 +21,8 @@ namespace DigitalHandwriting.Factories.AuthenticationMethods.Models
                 return nGraphAuthentication(n, loginKeyPressedTimes, loginBetweenKeysTimes);
             }
 
-            var userKeyPressedNormalized = Calculations.Normalize(UserKeyPressedTimes);
-            var loginKeyPressedNormalized = Calculations.Normalize(loginKeyPressedTimes);
-
-            var userBetweenKeysNormalized = Calculations.Normalize(UserBetweenKeysTimes);
-            var loginBetweenKeysNormalized = Calculations.Normalize(loginBetweenKeysTimes);
-
-            var keyPressedDistance = Calculations.EuclideanDistance(userKeyPressedNormalized, loginKeyPressedNormalized);
-            var betweenKeysDistance = Calculations.EuclideanDistance(userBetweenKeysNormalized, loginBetweenKeysNormalized);
+            var keyPressedDistance = Calculations.NormalizedEuclideanDistance(UserKeyPressedTimes, loginKeyPressedTimes);
+            var betweenKeysDistance = Calculations.NormalizedEuclideanDistance(UserBetweenKeysTimes, loginBetweenKeysTimes);
 
             var authScore = (keyPressedDistance + betweenKeysDistance) / 2.0;
             var isAuthenticated = authScore < 0.15;
@@ -36,7 +30,7 @@ namespace DigitalHandwriting.Factories.AuthenticationMethods.Models
             var authResult = new AuthenticationResult(n, new Dictionary<AuthenticationCalculationDataType, double>()
             {
                 { AuthenticationCalculationDataType.H, keyPressedDistance },
-                { AuthenticationCalculationDataType.DU, betweenKeysDistance },
+                { AuthenticationCalculationDataType.UD, betweenKeysDistance },
             }, authScore, isAuthenticated, 0.15);
 
             return authResult;
@@ -52,14 +46,8 @@ namespace DigitalHandwriting.Factories.AuthenticationMethods.Models
                 return nGraphAuthentication(n, loginKeyPressedTimes, loginBetweenKeysTimes, thresholds);
             }
 
-            var userKeyPressedNormalized = Calculations.Normalize(UserKeyPressedTimes);
-            var loginKeyPressedNormalized = Calculations.Normalize(loginKeyPressedTimes);
-
-            var userBetweenKeysNormalized = Calculations.Normalize(UserBetweenKeysTimes);
-            var loginBetweenKeysNormalized = Calculations.Normalize(loginBetweenKeysTimes);
-
-            var keyPressedDistance = Calculations.EuclideanDistance(userKeyPressedNormalized, loginKeyPressedNormalized);
-            var betweenKeysDistance = Calculations.EuclideanDistance(userBetweenKeysNormalized, loginBetweenKeysNormalized);
+            var keyPressedDistance = Calculations.NormalizedEuclideanDistance(UserKeyPressedTimes, loginKeyPressedTimes);
+            var betweenKeysDistance = Calculations.NormalizedEuclideanDistance(UserBetweenKeysTimes, loginBetweenKeysTimes);
 
             var authScore = (keyPressedDistance + betweenKeysDistance) / 2.0;
 
@@ -70,7 +58,7 @@ namespace DigitalHandwriting.Factories.AuthenticationMethods.Models
                 var authResult = new AuthenticationResult(n, new Dictionary<AuthenticationCalculationDataType, double>()
                 {
                     { AuthenticationCalculationDataType.H, keyPressedDistance },
-                    { AuthenticationCalculationDataType.DU, betweenKeysDistance },
+                    { AuthenticationCalculationDataType.UD, betweenKeysDistance },
                 }, authScore, isAuthenticated, threshold);
                 result.Add(authResult);
             }
@@ -86,15 +74,15 @@ namespace DigitalHandwriting.Factories.AuthenticationMethods.Models
             var dataTypeResults = new Dictionary<AuthenticationCalculationDataType, double>();
             foreach (var key in Enum.GetValues(typeof(AuthenticationCalculationDataType)).Cast<AuthenticationCalculationDataType>())
             {
-                var values1 = Calculations.Normalize(userNGraph[key]);
-                var values2 = Calculations.Normalize(loginNGraph[key]);
+                var values1 = userNGraph[key];
+                var values2 = loginNGraph[key];
 
                 if (values1.Count != values2.Count)
                 {
                     throw new ArgumentException("Количество значений для каждой метрики должно быть одинаковым.");
                 }
 
-                var metricResult = Calculations.EuclideanDistance(values1, values2);
+                var metricResult = Calculations.NormalizedEuclideanDistance(values1, values2);
                 dataTypeResults[key] = metricResult;
             }
 
@@ -115,15 +103,15 @@ namespace DigitalHandwriting.Factories.AuthenticationMethods.Models
             var dataTypeResults = new Dictionary<AuthenticationCalculationDataType, double>();
             foreach (var key in Enum.GetValues(typeof(AuthenticationCalculationDataType)).Cast<AuthenticationCalculationDataType>())
             {
-                var values1 = Calculations.Normalize(userNGraph[key]);
-                var values2 = Calculations.Normalize(loginNGraph[key]);
+                var values1 = userNGraph[key];
+                var values2 = loginNGraph[key];
 
                 if (values1.Count != values2.Count)
                 {
                     throw new ArgumentException("Количество значений для каждой метрики должно быть одинаковым.");
                 }
 
-                var metricResult = Calculations.EuclideanDistance(values1, values2);
+                var metricResult = Calculations.NormalizedEuclideanDistance(values1, values2);
                 dataTypeResults[key] = metricResult;
             }
 

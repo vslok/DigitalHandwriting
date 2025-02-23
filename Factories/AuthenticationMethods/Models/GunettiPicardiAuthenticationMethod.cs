@@ -24,12 +24,12 @@ namespace DigitalHandwriting.Factories.AuthenticationMethods.Models
             var authScore = Calculations.CalculateAMeasure(new Dictionary<AuthenticationCalculationDataType, List<double>>()
             {
                 { AuthenticationCalculationDataType.H, UserKeyPressedTimes },
-                { AuthenticationCalculationDataType.DU, UserBetweenKeysTimes },
+                { AuthenticationCalculationDataType.UD, UserBetweenKeysTimes },
             },
             new Dictionary<AuthenticationCalculationDataType, List<double>>()
             {
                 { AuthenticationCalculationDataType.H, loginKeyPressedTimes },
-                { AuthenticationCalculationDataType.DU, loginBetweenKeysTimes },
+                { AuthenticationCalculationDataType.UD, loginBetweenKeysTimes },
             }, 1.15, out var ngraphsSimiliarity);
 
             var isAuthenticated = authScore < 0.15;
@@ -51,12 +51,12 @@ namespace DigitalHandwriting.Factories.AuthenticationMethods.Models
             var authScore = Calculations.CalculateAMeasure(new Dictionary<AuthenticationCalculationDataType, List<double>>()
             {
                 { AuthenticationCalculationDataType.H, UserKeyPressedTimes },
-                { AuthenticationCalculationDataType.DU, UserBetweenKeysTimes },
+                { AuthenticationCalculationDataType.UD, UserBetweenKeysTimes },
             },
             new Dictionary<AuthenticationCalculationDataType, List<double>>()
             {
                 { AuthenticationCalculationDataType.H, loginKeyPressedTimes },
-                { AuthenticationCalculationDataType.DU, loginBetweenKeysTimes },
+                { AuthenticationCalculationDataType.UD, loginBetweenKeysTimes },
             }, 1.15, out var ngraphsSimiliarity);
 
             var result = new List<AuthenticationResult>();

@@ -19,7 +19,7 @@ namespace DigitalHandwriting.ViewModels
         {
             IsAuthentificated = authenticationResult.IsAuthenticated;
             KeyPressedMetric = authenticationResult.DataResults.GetValueOrDefault(AuthenticationCalculationDataType.H);
-            BetweenKeysMetric = authenticationResult.DataResults.GetValueOrDefault(AuthenticationCalculationDataType.DU);
+            BetweenKeysMetric = authenticationResult.DataResults.GetValueOrDefault(AuthenticationCalculationDataType.UD);
             BetweenKeysPressMetric = authenticationResult.DataResults.GetValueOrDefault(AuthenticationCalculationDataType.DD);
             BetweenKeysResolveMetric = authenticationResult.DataResults.GetValueOrDefault(AuthenticationCalculationDataType.UU);
         }

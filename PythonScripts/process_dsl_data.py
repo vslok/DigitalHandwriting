@@ -1,4 +1,5 @@
 import pandas as pd
+import numpy as np
 
 # Load the CSV file
 df = pd.read_csv('data/DSL-StrongPasswordData.csv')
@@ -33,20 +34,29 @@ users_df = pd.DataFrame()
 
 # For each unique subject/login
 for login in combined_df['Login'].unique():
-    user_data = combined_df[combined_df['Login'] == login].iloc[:3]  # Get first 3 rows
+    user_data = combined_df[combined_df['Login'] == login]
 
-    if len(user_data) >= 3:  # Only process if we have at least 3 rows
-        user_row = {
-            'Login': login,
-            'Password': '.tie5Roanl',
-            'FirstH': user_data.iloc[0]['H'],
-            'FirstUD': user_data.iloc[0]['UD'],
-            'SecondH': user_data.iloc[1]['H'],
-            'SecondUD': user_data.iloc[1]['UD'],
-            'ThirdH': user_data.iloc[2]['H'],
-            'ThirdUD': user_data.iloc[2]['UD']
-        }
-        users_df = pd.concat([users_df, pd.DataFrame([user_row])], ignore_index=True)
+    # Calculate mean vectors from first N rows
+    first_n_rows = user_data.iloc[:3]
+    h_vectors = first_n_rows['H'].tolist()
+    ud_vectors = first_n_rows['UD'].tolist()
+
+    # Convert vectors to comma-separated strings
+    h_strs = [','.join(map(str, h_vector)) for h_vector in h_vectors]
+    ud_strs = [','.join(map(str, ud_vector)) for ud_vector in ud_vectors]
+
+    # Create row with actual first, second, third values
+    user_row = {
+        'Login': login,
+        'Password': '.tie5Roanl',
+        'FirstH': h_strs[0],
+        'FirstUD': ud_strs[0],
+        'SecondH': h_strs[1],
+        'SecondUD': ud_strs[1],
+        'ThirdH': h_strs[2],
+        'ThirdUD': ud_strs[2]
+    }
+    users_df = pd.concat([users_df, pd.DataFrame([user_row])], ignore_index=True)
 
 # Save users DataFrame
 users_df.to_csv('data/DSL-TestUsers.csv', index=False)
@@ -54,13 +64,16 @@ users_df.to_csv('data/DSL-TestUsers.csv', index=False)
 # Create authentication DataFrame matching CsvImportAuthentication class
 auth_df = pd.DataFrame()
 
-# Process remaining rows for each user (after the first 3)
+# Process 20 rows for each user (after the first 5 used for means)
 for login in combined_df['Login'].unique():
-    user_data = combined_df[combined_df['Login'] == login].iloc[3:]  # Get rows after first 3
+    user_data = combined_df[combined_df['Login'] == login].iloc[3:]  # Get rows after first 5
 
-    if len(user_data) > 0:
+    # Take up to 20 rows for legitimate attempts
+    legitimate_attempts = user_data.iloc[:3]
+
+    if len(legitimate_attempts) > 0:
         # Add legitimate user attempts
-        for _, row in user_data.iterrows():
+        for _, row in legitimate_attempts.iterrows():
             auth_row = {
                 'Login': login,
                 'H': row['H'],

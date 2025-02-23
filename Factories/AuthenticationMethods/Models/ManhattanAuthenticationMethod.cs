@@ -30,7 +30,7 @@ namespace DigitalHandwriting.Factories.AuthenticationMethods.Models
             var authResult = new AuthenticationResult(n, new Dictionary<AuthenticationCalculationDataType, double>()
             {
                 { AuthenticationCalculationDataType.H, keyPressedDistance },
-                { AuthenticationCalculationDataType.DU, betweenKeysDistance },
+                { AuthenticationCalculationDataType.UD, betweenKeysDistance },
             }, authScore, isAuthenticated, 0.15);
 
             return authResult;
@@ -58,7 +58,7 @@ namespace DigitalHandwriting.Factories.AuthenticationMethods.Models
                 var authResult = new AuthenticationResult(n, new Dictionary<AuthenticationCalculationDataType, double>()
                 {
                     { AuthenticationCalculationDataType.H, keyPressedDistance },
-                    { AuthenticationCalculationDataType.DU, betweenKeysDistance },
+                    { AuthenticationCalculationDataType.UD, betweenKeysDistance },
                 }, authScore, isAuthenticated, threshold);
                 result.Add(authResult);
             }
@@ -102,15 +102,15 @@ namespace DigitalHandwriting.Factories.AuthenticationMethods.Models
             var dataTypeResults = new Dictionary<AuthenticationCalculationDataType, double>();
             foreach (var key in Enum.GetValues(typeof(AuthenticationCalculationDataType)).Cast<AuthenticationCalculationDataType>())
             {
-                var values1 = userNGraph[key];
-                var values2 = loginNGraph[key];
+                var values1 = Calculations.Normalize(userNGraph[key]);
+                var values2 = Calculations.Normalize(loginNGraph[key]);
 
                 if (values1.Count != values2.Count)
                 {
                     throw new ArgumentException("Количество значений для каждой метрики должно быть одинаковым.");
                 }
 
-                var metricResult = Calculations.ManhattanDistance(values1, values2);
+                var metricResult = Calculations.ManhattanDistance(values1, values2) / values1.Count;
                 dataTypeResults[key] = metricResult;
             }
 
