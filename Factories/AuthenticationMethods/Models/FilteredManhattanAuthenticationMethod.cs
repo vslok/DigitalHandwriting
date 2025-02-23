@@ -21,14 +21,14 @@ namespace DigitalHandwriting.Factories.AuthenticationMethods.Models
                 return nGraphAuthentication(n, loginKeyPressedTimes, loginBetweenKeysTimes);
             }
 
-            var userKeyPressedNormalized = Calculations.Normalize(UserKeyPressedTimes);
+            var userProfileData = GetUserProfileData(n);
             var loginKeyPressedNormalized = Calculations.Normalize(loginKeyPressedTimes);
-
-            var userBetweenKeysNormalized = Calculations.Normalize(UserBetweenKeysTimes);
             var loginBetweenKeysNormalized = Calculations.Normalize(loginBetweenKeysTimes);
 
-            var keyPressedDistance = Calculations.ManhattanDistance(userKeyPressedNormalized, loginKeyPressedNormalized);
-            var betweenKeysDistance = Calculations.ManhattanDistance(userBetweenKeysNormalized, loginBetweenKeysNormalized);
+            var keyPressedDistance = Calculations.ManhattanFilteredDistance(userProfileData[AuthenticationCalculationDataType.H], loginKeyPressedNormalized).distance
+                / loginKeyPressedNormalized.Count;
+            var betweenKeysDistance = Calculations.ManhattanFilteredDistance(userProfileData[AuthenticationCalculationDataType.UD], loginBetweenKeysNormalized).distance 
+                / loginBetweenKeysNormalized.Count;
 
             var authScore = (keyPressedDistance + betweenKeysDistance) / 2.0;
             var isAuthenticated = authScore < 0.15;
@@ -52,14 +52,14 @@ namespace DigitalHandwriting.Factories.AuthenticationMethods.Models
                 return nGraphAuthentication(n, loginKeyPressedTimes, loginBetweenKeysTimes, thresholds);
             }
 
-            var userKeyPressedNormalized = Calculations.Normalize(UserKeyPressedTimes);
+            var userProfileData = GetUserProfileData(n);
             var loginKeyPressedNormalized = Calculations.Normalize(loginKeyPressedTimes);
-
-            var userBetweenKeysNormalized = Calculations.Normalize(UserBetweenKeysTimes);
             var loginBetweenKeysNormalized = Calculations.Normalize(loginBetweenKeysTimes);
 
-            var keyPressedDistance = Calculations.ManhattanDistance(userKeyPressedNormalized, loginKeyPressedNormalized);
-            var betweenKeysDistance = Calculations.ManhattanDistance(userBetweenKeysNormalized, loginBetweenKeysNormalized);
+            var keyPressedDistance = Calculations.ManhattanFilteredDistance(userProfileData[AuthenticationCalculationDataType.H], loginKeyPressedNormalized).distance
+                / loginKeyPressedNormalized.Count;
+            var betweenKeysDistance = Calculations.ManhattanFilteredDistance(userProfileData[AuthenticationCalculationDataType.UD], loginBetweenKeysNormalized).distance
+                / loginBetweenKeysNormalized.Count;
 
             var authScore = (keyPressedDistance + betweenKeysDistance) / 2.0;
 
@@ -80,26 +80,26 @@ namespace DigitalHandwriting.Factories.AuthenticationMethods.Models
 
         private AuthenticationResult nGraphAuthentication(int n, List<double> loginKeyPressedTimes, List<double> loginBetweenKeysTimes)
         {
-            var userNGraph = Calculations.CalculateNGraph(n, UserKeyPressedTimes, UserBetweenKeysTimes);
+            var userProfileData = GetUserProfileData(n);
             var loginNGraph = Calculations.CalculateNGraph(n, loginKeyPressedTimes, loginBetweenKeysTimes);
 
             var dataTypeResults = new Dictionary<AuthenticationCalculationDataType, double>();
             foreach (var key in Enum.GetValues(typeof(AuthenticationCalculationDataType)).Cast<AuthenticationCalculationDataType>())
             {
-                var values1 = Calculations.Normalize(userNGraph[key]);
+                var values1 = userProfileData[key];
                 var values2 = Calculations.Normalize(loginNGraph[key]);
 
-                if (values1.Count != values2.Count)
+                if (values1[0].Count != values2.Count)
                 {
                     throw new ArgumentException("Количество значений для каждой метрики должно быть одинаковым.");
                 }
 
-                var metricResult = Calculations.ManhattanDistance(values1, values2) / values2.Count;
+                var metricResult = Calculations.ManhattanFilteredDistance(values1, values2).distance / values2.Count;
                 dataTypeResults[key] = metricResult;
             }
 
             var metricTotal = dataTypeResults.Sum(x => x.Value);
-            var authScore = metricTotal / userNGraph.Keys.Count;
+            var authScore = metricTotal / loginNGraph.Keys.Count;
             var isAuthenticated = authScore < 0.15;
 
             var authResult = new AuthenticationResult(n, dataTypeResults, authScore, isAuthenticated, 0.15);

@@ -21,8 +21,9 @@ namespace DigitalHandwriting.Factories.AuthenticationMethods.Models
                 return nGraphAuthentication(n, loginKeyPressedTimes, loginBetweenKeysTimes);
             }
 
-            var keyPressedDistance = Calculations.ITAD(loginKeyPressedTimes, UserKeyPressedTimesProfile);
-            var betweenKeysDistance = Calculations.ITAD(loginBetweenKeysTimes, UserBetweenKeysTimesProfile);
+            var userNGraphs = GetUserProfileData(n);
+            var keyPressedDistance = Calculations.ITAD(userNGraphs[AuthenticationCalculationDataType.H], loginKeyPressedTimes) / loginKeyPressedTimes.Count;
+            var betweenKeysDistance = Calculations.ITAD(userNGraphs[AuthenticationCalculationDataType.UD], loginBetweenKeysTimes) / loginBetweenKeysTimes.Count;
 
             var authScore = (keyPressedDistance + betweenKeysDistance) / 2.0;
             var isAuthenticated = authScore > 0.45;
@@ -46,8 +47,9 @@ namespace DigitalHandwriting.Factories.AuthenticationMethods.Models
                 return nGraphAuthentication(n, loginKeyPressedTimes, loginBetweenKeysTimes, thresholds);
             }
 
-            var keyPressedDistance = Calculations.ITAD(loginKeyPressedTimes, UserKeyPressedTimesProfile);
-            var betweenKeysDistance = Calculations.ITAD(loginBetweenKeysTimes, UserBetweenKeysTimesProfile);
+            var userNGraphs = GetUserProfileData(n);
+            var keyPressedDistance = Calculations.ITAD(userNGraphs[AuthenticationCalculationDataType.H], loginKeyPressedTimes) / loginKeyPressedTimes.Count;
+            var betweenKeysDistance = Calculations.ITAD(userNGraphs[AuthenticationCalculationDataType.UD], loginBetweenKeysTimes) / loginBetweenKeysTimes.Count;
 
             var authScore = (keyPressedDistance + betweenKeysDistance) / 2.0;
 
@@ -68,7 +70,7 @@ namespace DigitalHandwriting.Factories.AuthenticationMethods.Models
 
         private AuthenticationResult nGraphAuthentication(int n, List<double> loginKeyPressedTimes, List<double> loginBetweenKeysTimes)
         {
-            var userNGraphs = Calculations.CalculateNGraph(n, UserKeyPressedTimesProfile, UserBetweenKeysTimesProfile);
+            var userNGraphs = GetUserProfileData(n);
             var loginNGraph = Calculations.CalculateNGraph(n, loginKeyPressedTimes, loginBetweenKeysTimes);
 
             var dataTypeResults = new Dictionary<AuthenticationCalculationDataType, double>();
@@ -82,7 +84,7 @@ namespace DigitalHandwriting.Factories.AuthenticationMethods.Models
                     throw new ArgumentException("Количество значений для каждой метрики должно быть одинаковым.");
                 }
 
-                var metricResult = Calculations.ITAD(values2, values1);
+                var metricResult = Calculations.ITAD(values1, values2) / values2.Count;
                 dataTypeResults[key] = metricResult;
             }
 
@@ -96,7 +98,7 @@ namespace DigitalHandwriting.Factories.AuthenticationMethods.Models
 
         private List<AuthenticationResult> nGraphAuthentication(int n, List<double> loginKeyPressedTimes, List<double> loginBetweenKeysTimes, List<double> thresholds)
         {
-            var userNGraphs = Calculations.CalculateNGraph(n, UserKeyPressedTimesProfile, UserBetweenKeysTimesProfile);
+            var userNGraphs = GetUserProfileData(n);
             var loginNGraph = Calculations.CalculateNGraph(n, loginKeyPressedTimes, loginBetweenKeysTimes);
 
             var dataTypeResults = new Dictionary<AuthenticationCalculationDataType, double>();
@@ -110,7 +112,7 @@ namespace DigitalHandwriting.Factories.AuthenticationMethods.Models
                     throw new ArgumentException("Количество значений для каждой метрики должно быть одинаковым.");
                 }
 
-                var metricResult = Calculations.ITAD(values2, values1);
+                var metricResult = Calculations.ITAD(values1, values2);
                 dataTypeResults[key] = metricResult;
             }
 
@@ -126,6 +128,32 @@ namespace DigitalHandwriting.Factories.AuthenticationMethods.Models
             }
 
             return result;
+        }
+
+        private Dictionary<AuthenticationCalculationDataType, List<List<double>>> GetUserProfileData(int n)
+        {
+            var profileData = new Dictionary<AuthenticationCalculationDataType, List<List<double>>>();
+
+            if (UserKeyPressedTimesProfile.Count != UserBetweenKeysTimesProfile.Count)
+            {
+                throw new ArgumentException("Inconsistent profile data");
+            }
+
+            for (int i = 0; i < UserKeyPressedTimesProfile.Count; i++)
+            {
+                var nGraph = Calculations.CalculateNGraph(n, UserKeyPressedTimesProfile[i], UserBetweenKeysTimesProfile[i]);
+
+                foreach (var key in nGraph.Keys)
+                {
+                    if (!profileData.ContainsKey(key))
+                    {
+                        profileData[key] = new List<List<double>>();
+                    }
+                    profileData[key].Add(nGraph[key]);
+                }
+            }
+
+            return profileData;
         }
     }
 }

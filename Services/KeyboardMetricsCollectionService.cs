@@ -38,18 +38,6 @@ namespace DigitalHandwriting.Services
             }
         }
 
-        public List<double> GetKeyPressedTimesDispersions()
-        {
-            var transposedMatrix = Calculations.MatrixTransposing<double>(_keyPressedTimes);
-            return transposedMatrix.Select(val => Calculations.Dispersion(val, Calculations.Expectancy(val))).ToList();
-        }
-
-        public List<double> GetBetweenKeysTimesDispersions()
-        {
-            var transposedMatrix = Calculations.MatrixTransposing<double>(_betweenKeysTimes);
-            return transposedMatrix.Select(val => Calculations.Dispersion(val, Calculations.Expectancy(val))).ToList();
-        }
-
         public void GetCurrentStepValues(
             string testText, 
             out List<double> keyPressedValues, 

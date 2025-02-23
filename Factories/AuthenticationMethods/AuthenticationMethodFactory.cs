@@ -15,7 +15,6 @@ namespace DigitalHandwriting.Factories.AuthenticationMethods
         FilteredManhattan,
         ScaledManhattan,
         ITAD,
-        GunettiPicardi,
     }
 
     public static class AuthenticationMethodFactory
@@ -42,8 +41,6 @@ namespace DigitalHandwriting.Factories.AuthenticationMethods
                     return new ScaledManhattanAuthenticationMethod(userKeyPressedTimes, userBetweenKeysTimes, userKeyPressedTimesProfile, userBetweenKeysTimesProfile);
                 case Method.ITAD:
                     return new ITADAuthenticationMethod(userKeyPressedTimes, userBetweenKeysTimes, userKeyPressedTimesProfile, userBetweenKeysTimesProfile);
-                case Method.GunettiPicardi:
-                    return new GunettiPicardiAuthenticationMethod(userKeyPressedTimes, userBetweenKeysTimes, userKeyPressedTimesProfile, userBetweenKeysTimesProfile);
                 default:
                     throw new ApplicationException("Authentication method not supported");
             }

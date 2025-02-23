@@ -2,6 +2,7 @@
 using DigitalHandwriting.Services;
 using MathNet.Numerics.Statistics;
 using Microsoft.EntityFrameworkCore.Metadata.Conventions;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using Microsoft.Windows.Themes;
 using System;
 using System.Collections.Generic;
@@ -12,46 +13,41 @@ namespace DigitalHandwriting.Helpers
 {
     public static class Calculations
     {
-        public static List<int> CalculateMedianValue(List<List<int>> values)
-        {
-            foreach (var list in values)
-            {
-                if (list.Count != values[0].Count)
-                {
-                    throw new Exception("Median value cannot be calculated");
-                }
-            }
-
-            List<int> mediansList = new List<int>();
-
-            for (int i = 0; i < values[0].Count; i++)
-            {
-                var valuesList = values.Select(list => list[i]).OrderBy(x => x).ToList();
-                mediansList.Add(valuesList.ElementAt((int)Math.Ceiling(valuesList.Count / 2.0d)));
-            }
-
-            return mediansList;
-        }
-
         public static List<double> CalculateMedianValue(List<List<double>> values)
         {
+            if (values.Count == 0)
+                return new List<double>();
+
+            // Проверка одинаковой длины всех списков
+            int expectedCount = values[0].Count;
             foreach (var list in values)
             {
-                if (list.Count != values[0].Count)
+                if (list.Count != expectedCount)
+                    throw new ArgumentException("All lists must have the same length.");
+            }
+
+            List<double> medians = new List<double>();
+
+            for (int i = 0; i < expectedCount; i++)
+            {
+                // Собираем элементы i-го столбца и сортируем
+                var column = values.Select(list => list[i]).OrderBy(x => x).ToList();
+                int n = column.Count;
+
+                // Правильный расчет медианы
+                if (n % 2 == 1)
                 {
-                    throw new Exception("Median value cannot be calculated");
+                    // Нечетное количество: берем средний элемент
+                    medians.Add(column[n / 2]);
+                }
+                else
+                {
+                    // Четное количество: среднее двух центральных
+                    medians.Add((column[(n / 2) - 1] + column[n / 2]) / 2.0);
                 }
             }
 
-            List<double> mediansList = new List<double>();
-
-            for (int i = 0; i < values[0].Count; i++)
-            {
-                var valuesList = values.Select(list => list[i]).OrderBy(x => x).ToList();
-                mediansList.Add(valuesList.ElementAt((int)Math.Ceiling(valuesList.Count / 2.0d)));
-            }
-
-            return mediansList;
+            return medians;
         }
 
         public static List<double> CalculateMeanValue(List<List<double>> values)
@@ -174,38 +170,27 @@ namespace DigitalHandwriting.Helpers
             List<double> testVector)
         {
             if (trainData.Count == 0 || trainData[0].Count != testVector.Count)
+                throw new ArgumentException("Invalid input data.");
+
+            List<double> medianVector = CalculateMedianValue(trainData);
+            List<double> madVector = new List<double>();
+
+            for (int j = 0; j < medianVector.Count; j++)
             {
-                throw new ArgumentException("Vectors must be of same length and training data must not be empty.");
+                var deviations = trainData.Select(row => Math.Abs(row[j] - medianVector[j])).ToList();
+                deviations.Sort();
+                madVector.Add(deviations.Median());
             }
 
-            // Calculate initial mean vector
-            var meanVector = CalculateMeanValue(trainData);
-
-            // Calculate MAD (Mean Absolute Deviation) vector
-            var madVector = new List<double>();
-            for (int j = 0; j < meanVector.Count; j++)
-            {
-                // Calculate absolute deviations for this dimension
-                var deviations = trainData.Select(row => Math.Abs(row[j] - meanVector[j]));
-                madVector.Add(deviations.Average());
-            }
-
-            // Calculate scaled Manhattan distance
-            double scaledDistance = 0.0;
+            double distance = 0;
             for (int j = 0; j < testVector.Count; j++)
             {
-                // Avoid division by zero
-                if (madVector[j] != 0)
-                {
-                    scaledDistance += Math.Abs(testVector[j] - meanVector[j]) / madVector[j];
-                }
-                else
-                {
-                    scaledDistance += Math.Abs(testVector[j] - meanVector[j]);
-                }
+                double diff = Math.Abs(testVector[j] - medianVector[j]);
+                double denominator = madVector[j] < 0.0001 ? 1.0 : madVector[j];
+                distance += diff / denominator;
             }
 
-            return Math.Round(scaledDistance, 3);
+            return Math.Round(distance, 3);
         }
 
         public static double MahalanobisDistance(List<double> vector1, List<double> vector2, double[,] invCovMatrix)
@@ -270,24 +255,31 @@ namespace DigitalHandwriting.Helpers
             return vector.ConvertAll(el => el / length);
         }
 
-        public static double ITAD(List<double> sample, List<List<double>> rawReferences)
+        public static double ITAD(List<List<double>> profile, List<double> current)
         {
-            var totalITAD = 0.0;
-            for (var i = 0; i < rawReferences[0].Count; i++)
-            {
-                var keyValues = new List<double>();
-                for (var j = 0; j < rawReferences.Count; j++)
-                {
-                    keyValues.Add(rawReferences[j][i]);
-                }
+            if (profile.Count == 0 || profile.Any(p => p == null || p.Count != current.Count))
+                return 0;
 
-                var sortedReference = keyValues.OrderBy(x => x).ToList();
-                int count = sortedReference.Count(x => x <= sample[0]);
-                double itad = (double)count / sortedReference.Count;
-                totalITAD += itad;
+            int numKeys = current.Count; // Количество клавиш
+            double total = 0;
+
+            // Проходим по каждой клавише
+            for (int keyIndex = 0; keyIndex < numKeys; keyIndex++)
+            {
+                // Собираем все замеры для текущей клавиши из профиля
+                var keyMeasurements = profile.Select(p => p[keyIndex]).OrderBy(x => x).ToList();
+                double median = keyMeasurements.Median();
+
+                // Текущее значение для этой клавиши
+                double currentValue = current[keyIndex];
+
+                // Вычисляем CDF и ITAD
+                double cdf = CalculateCDF(keyMeasurements, currentValue);
+                total += currentValue <= median ? cdf : 1 - cdf;
             }
 
-            return totalITAD / sample.Count;
+            // Усредняем результат по всем клавишам
+            return total / numKeys;
         }
 
         public static List<List<T>> MatrixTransposing<T>(List<List<T>> matrix)
@@ -298,23 +290,16 @@ namespace DigitalHandwriting.Helpers
                          .ToList();
         }
 
-        public static double Expectancy(List<double> intervals)
-        {
-            return intervals.Average();
-        }
-
-        public static double Dispersion(List<double> intervals, double expect)
-        {
-            return intervals.Select(interv => Math.Pow(interv - expect, 2)).Average();
-        }
-
-        public static double StandardDeviation(double disp)
-        {
-            return Math.Sqrt(disp);
-        }
-
         public static Dictionary<AuthenticationCalculationDataType, List<double>> CalculateNGraph(int n, List<double> holdTimes, List<double> betweenKeysTimes)
         {
+            if (n == 1)
+            {
+                return new Dictionary<AuthenticationCalculationDataType, List<double>>() {
+                    { AuthenticationCalculationDataType.H, holdTimes },
+                    { AuthenticationCalculationDataType.UD, betweenKeysTimes }
+                };
+            }
+
             if (holdTimes.Count < n)
             {
                 throw new ArgumentException("Not enough data to calculate n-graph");
@@ -399,50 +384,6 @@ namespace DigitalHandwriting.Helpers
             return result;
         }
 
-        public static double GunettiPicardiMetric(Dictionary<AuthenticationCalculationDataType, List<double>> nGraphs1,
-            Dictionary<AuthenticationCalculationDataType, List<double>> nGraphs2, double t,
-            List<string>? sequence1 = null, List<string>? sequence2 = null)
-        {
-            double aMeasure = CalculateAMeasure(nGraphs1, nGraphs2, t, out var graphsSimilarity);
-            if (sequence1 != null && sequence2 != null)
-            {
-                double rMeasure = CalculateRMeasure(sequence1, sequence2);
-                return (aMeasure + rMeasure) / 2.0;
-            }
-
-            return aMeasure;
-
-        }
-
-        public static double CalculateAMeasure(
-            Dictionary<AuthenticationCalculationDataType, List<double>> nGraphs1,
-            Dictionary<AuthenticationCalculationDataType, List<double>> nGraphs2,
-            double t,
-            out Dictionary<AuthenticationCalculationDataType, double> graphsSimilarity
-            )
-        {
-            graphsSimilarity = CalculateNGraphsSimilarity(nGraphs1, nGraphs2, t);
-            var totalSimilarity = graphsSimilarity.Sum(x => x.Value);
-            return 1.0 - totalSimilarity;
-        }
-
-        public static double CalculateRMeasure(List<string> sequence1, List<string> sequence2)
-        {
-            if (sequence1.Count != sequence2.Count)
-                throw new ArgumentException("Последовательности должны быть одинаковой длины.");
-
-            double rMeasure = 0;
-
-            for (int i = 0; i < sequence1.Count; i++)
-            {
-                int posInSequence2 = sequence2.IndexOf(sequence1[i]);
-
-                rMeasure += Math.Abs(i - posInSequence2);
-            }
-
-            return rMeasure;
-        }
-
         private static Dictionary<AuthenticationCalculationDataType, double> CalculateNGraphsSimilarity(
             Dictionary<AuthenticationCalculationDataType, List<double>> nGraphs1, Dictionary<AuthenticationCalculationDataType, List<double>> nGraphs2, double t)
         {
@@ -475,6 +416,57 @@ namespace DigitalHandwriting.Helpers
             }
 
             return dataTypeResults;
+        }
+
+        private static double CalculateCDF(List<double> sorted, double value)
+        {
+            int n = sorted.Count;
+            if (n == 0)
+            {
+                throw new ArgumentException("Список данных не может быть пустым.");
+            }
+
+            // Граничные случаи
+            if (value < sorted[0])
+            {
+                return 0.0;
+            }
+            if (value >= sorted[n - 1])
+            {
+                return 1.0;
+            }
+
+            // Бинарный поиск индекса
+            int index = sorted.BinarySearch(value);
+            if (index < 0)
+            {
+                index = ~index - 1; // Индекс последнего элемента меньше value
+            }
+            else
+            {
+                // Найден точный элемент, находим последнее вхождение
+                while (index < n - 1 && sorted[index + 1] == value)
+                {
+                    index++;
+                }
+            }
+
+            // Интерполяция между index и index+1
+            double lower = sorted[index];
+            double upper = (index < n - 1) ? sorted[index + 1] : lower;
+
+            // Если lower и upper совпадают (дубликаты), возвращаем CDF сразу
+            if (upper == lower)
+            {
+                return (index + 1) / (double)n;
+            }
+
+            // Линейная интерполяция CDF
+            double fraction = (value - lower) / (upper - lower);
+            double cdfLower = (index + 1) / (double)n; // CDF в точке lower
+            double cdfUpper = (index + 2) / (double)n; // CDF в точке upper
+
+            return cdfLower + fraction * (cdfUpper - cdfLower);
         }
 
         public static class BiometricMetrics

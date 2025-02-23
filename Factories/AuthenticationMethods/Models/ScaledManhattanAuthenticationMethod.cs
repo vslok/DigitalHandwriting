@@ -26,8 +26,10 @@ namespace DigitalHandwriting.Factories.AuthenticationMethods.Models
             var loginKeyPressedNormalized = Calculations.Normalize(loginKeyPressedTimes);
             var loginBetweenKeysNormalized = Calculations.Normalize(loginBetweenKeysTimes);
 
-            var keyPressedDistance = Calculations.ScaledManhattanDistance(userProfileData[AuthenticationCalculationDataType.H], loginKeyPressedNormalized);
-            var betweenKeysDistance = Calculations.ScaledManhattanDistance(userProfileData[AuthenticationCalculationDataType.UD], loginBetweenKeysNormalized);
+            var keyPressedDistance = Calculations.ScaledManhattanDistance(userProfileData[AuthenticationCalculationDataType.H], loginKeyPressedNormalized) 
+                / loginKeyPressedNormalized.Count;
+            var betweenKeysDistance = Calculations.ScaledManhattanDistance(userProfileData[AuthenticationCalculationDataType.UD], loginBetweenKeysNormalized) 
+                / loginBetweenKeysNormalized.Count;
 
             var authScore = (keyPressedDistance + betweenKeysDistance) / 2.0;
             var isAuthenticated = authScore < 0.15;
@@ -93,7 +95,7 @@ namespace DigitalHandwriting.Factories.AuthenticationMethods.Models
                     throw new ArgumentException("The number of values for each metric must be the same.");
                 }
 
-                var metricResult = Calculations.ScaledManhattanDistance(values1, values2);
+                var metricResult = Calculations.ScaledManhattanDistance(values1, values2) / values2.Count;
                 dataTypeResults[key] = metricResult;
             }
 

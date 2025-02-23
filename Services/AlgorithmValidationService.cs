@@ -105,23 +105,23 @@ namespace DigitalHandwriting.Services
                     var authenticationDU = new List<double>(testAuthenticationsRecord.UD);
 
 
-                    /*                    var euclidianMethod = AuthenticationMethodFactory.GetAuthenticationMethod(
-                                            Method.Euclidian,
-                                            hUserMedian,
-                                            udUserMedian,
-                                            hUserProfile,
-                                            udUserProfile);
+                    var euclidianMethod = AuthenticationMethodFactory.GetAuthenticationMethod(
+                        Method.Euclidian,
+                        hUserMedian,
+                        udUserMedian,
+                        hUserProfile,
+                        udUserProfile);
 
-                                        var euclidianMethodResult = euclidianMethod.Authenticate(n, authenticationH, authenticationDU, thresholds);
+                    var euclidianMethodResult = euclidianMethod.Authenticate(n, authenticationH, authenticationDU, thresholds);
 
-                                        var euclidianNormalizedMethod = AuthenticationMethodFactory.GetAuthenticationMethod(
-                                            Method.NormalizedEuclidian,
-                                            hUserMedian,
-                                            udUserMedian,
-                                            hUserProfile,
-                                            udUserProfile);
+                    var euclidianNormalizedMethod = AuthenticationMethodFactory.GetAuthenticationMethod(
+                        Method.NormalizedEuclidian,
+                        hUserMedian,
+                        udUserMedian,
+                        hUserProfile,
+                        udUserProfile);
 
-                                        var euclidianNormalizedMethodResult = euclidianNormalizedMethod.Authenticate(n, authenticationH, authenticationDU, thresholds);*/
+                    var euclidianNormalizedMethodResult = euclidianNormalizedMethod.Authenticate(n, authenticationH, authenticationDU, thresholds);
 
                     var manhattanMethod = AuthenticationMethodFactory.GetAuthenticationMethod(
                         Method.Manhattan,
@@ -132,25 +132,25 @@ namespace DigitalHandwriting.Services
 
                     var manhattanMethodResult = manhattanMethod.Authenticate(n, authenticationH, authenticationDU, thresholds);
 
-                    var FilteredManhattanMethod = AuthenticationMethodFactory.GetAuthenticationMethod(
+                    var filteredManhattanMethod = AuthenticationMethodFactory.GetAuthenticationMethod(
                         Method.FilteredManhattan,
                         hUserMedian,
                         udUserMedian,
                         hUserProfile,
                         udUserProfile);
 
-                    var FilteredManhattanMethodResult = FilteredManhattanMethod.Authenticate(n, authenticationH, authenticationDU, thresholds);
+                    var filteredManhattanMethodResult = filteredManhattanMethod.Authenticate(n, authenticationH, authenticationDU, thresholds);
 
-                    var ScaledManhattanMethod = AuthenticationMethodFactory.GetAuthenticationMethod(
+                    var scaledManhattanMethod = AuthenticationMethodFactory.GetAuthenticationMethod(
                         Method.ScaledManhattan,
                         hUserMedian,
                         udUserMedian,
                         hUserProfile,
                         udUserProfile);
 
-                    var ScaledManhattanMethodResult = FilteredManhattanMethod.Authenticate(n, authenticationH, authenticationDU, thresholds);
+                    var scaledManhattanMethodResult = scaledManhattanMethod.Authenticate(n, authenticationH, authenticationDU, thresholds);
 
-/*                    var ITADMethod = AuthenticationMethodFactory.GetAuthenticationMethod(
+                    var ITADMethod = AuthenticationMethodFactory.GetAuthenticationMethod(
                         Method.ITAD,
                         hUserMedian,
                         udUserMedian,
@@ -159,22 +159,12 @@ namespace DigitalHandwriting.Services
 
                     var ITADMethodResult = ITADMethod.Authenticate(n, authenticationH, authenticationDU, thresholds);
 
-                    var GunettiPicardiMethod = AuthenticationMethodFactory.GetAuthenticationMethod(
-                        Method.GunettiPicardi,
-                        hUserMedian,
-                        udUserMedian,
-                        hUserProfile,
-                        udUserProfile);
-
-                    var GunettiPicardiMethodResult = GunettiPicardiMethod.Authenticate(n, authenticationH, authenticationDU, thresholds);*/
-
-/*                    ProcessMethod(Method.Euclidian, euclidianMethodResult, user.Login, testAuthenticationsRecord.IsLegalUser);
-                    ProcessMethod(Method.NormalizedEuclidian, euclidianNormalizedMethodResult, user.Login, testAuthenticationsRecord.IsLegalUser);*/
+                    ProcessMethod(Method.Euclidian, euclidianMethodResult, user.Login, testAuthenticationsRecord.IsLegalUser);
+                    ProcessMethod(Method.NormalizedEuclidian, euclidianNormalizedMethodResult, user.Login, testAuthenticationsRecord.IsLegalUser);
                     ProcessMethod(Method.Manhattan, manhattanMethodResult, user.Login, testAuthenticationsRecord.IsLegalUser);
-                    ProcessMethod(Method.FilteredManhattan, FilteredManhattanMethodResult, user.Login, testAuthenticationsRecord.IsLegalUser);
-                    ProcessMethod(Method.ScaledManhattan, ScaledManhattanMethodResult, user.Login, testAuthenticationsRecord.IsLegalUser);
-/*                    ProcessMethod(Method.ITAD, ITADMethodResult, user.Login, testAuthenticationsRecord.IsLegalUser);
-                    ProcessMethod(Method.GunettiPicardi, GunettiPicardiMethodResult, user.Login, testAuthenticationsRecord.IsLegalUser);*/
+                    ProcessMethod(Method.FilteredManhattan, filteredManhattanMethodResult, user.Login, testAuthenticationsRecord.IsLegalUser);
+                    ProcessMethod(Method.ScaledManhattan, scaledManhattanMethodResult, user.Login, testAuthenticationsRecord.IsLegalUser);
+                    ProcessMethod(Method.ITAD, ITADMethodResult, user.Login, testAuthenticationsRecord.IsLegalUser);
                 }
             );
 
