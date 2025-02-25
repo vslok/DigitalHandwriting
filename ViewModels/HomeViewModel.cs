@@ -20,7 +20,6 @@ namespace DigitalHandwriting.ViewModels
         public ICommand OnAuthenticationButtonClickCommand { get; set; }
         public ICommand OnCheckTextBoxKeyDownEventCommand { get; set; }
         public ICommand OnCheckTextBoxKeyUpEventCommand { get; set; }
-        public ICommand OnImportButtonClickCommand { get; set; }
         public ICommand OnValidationButtonClickCommand { get; set; }
 
         private int _authentificationTry = 0;
@@ -52,7 +51,6 @@ namespace DigitalHandwriting.ViewModels
                     () => registrationViewModelFactory()));
 
             OnAuthenticationButtonClickCommand = new Command(OnAuthenticationButtonClick);
-            OnImportButtonClickCommand = new Command(OnImportButtonClick);
             OnValidationButtonClickCommand = new Command(OnValidationButtonClick);
             OnCheckTextBoxKeyDownEventCommand = new RelayCommand<object>(OnCheckTextBoxKeyDownEvent);
             OnCheckTextBoxKeyUpEventCommand = new RelayCommand<object>(OnCheckTextBoxKeyUpEvent);
@@ -136,8 +134,8 @@ namespace DigitalHandwriting.ViewModels
                 }
 
                 _keyboardMetricsCollector.GetCurrentStepValues(
-                    UserCheckText.ToUpper(), 
-                    out var keyPressedValues, 
+                    UserCheckText.ToUpper(),
+                    out var keyPressedValues,
                     out var betweenKeysValues);
 
                 var authenticationResult = AuthenticationService.HandwritingAuthentication(user, keyPressedValues, betweenKeysValues);
@@ -152,26 +150,6 @@ namespace DigitalHandwriting.ViewModels
             }
 
             ResetTryState();
-        }
-
-        private void OnImportButtonClick()
-        {
-            // Configure open file dialog box
-            var dialog = new OpenFileDialog();
-            dialog.FileName = "users"; // Default file name
-            dialog.DefaultExt = ".csv"; // Default file extension
-            dialog.Filter = "CSV documents (.csv)|*.csv"; // Filter files by extension
-
-            // Show open file dialog box
-            bool? result = dialog.ShowDialog();
-
-            // Process open file dialog box results
-            if (result == true)
-            {
-                // Open document
-                string filename = dialog.FileName;
-                _dataMigrationService.ImportDataFromCsv(filename);
-            }
         }
 
         private void OnValidationButtonClick()

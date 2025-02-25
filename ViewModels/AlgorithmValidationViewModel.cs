@@ -25,6 +25,7 @@ namespace DigitalHandwriting.ViewModels
         private Dictionary<double, ThresholdMetrics> _thresholdMetrics;
 
         public ICommand OnValidationResultButtonImportClickCommand { get; set; }
+        public ICommand OnImportButtonClickCommand { get; set; }
         public ICommand ValidateDataCommand { get; private set; }
         public ICommand NextPageCommand { get; private set; }
         public ICommand PreviousPageCommand { get; private set; }
@@ -64,6 +65,7 @@ namespace DigitalHandwriting.ViewModels
             _algorithmValidationService = new AlgorithmValidationService();
             _dataMigrationService = new DataMigrationService();
             OnValidationResultButtonImportClickCommand = new Command(OnValidationResultButtonImportClick);
+            OnImportButtonClickCommand = new Command(OnImportButtonClick);
             ValidateDataCommand = new Command(OnValidateDataClick);
             NextPageCommand = new Command(NextPage, CanGoToNextPage);
             PreviousPageCommand = new Command(PreviousPage, CanGoToPreviousPage);
@@ -116,6 +118,26 @@ namespace DigitalHandwriting.ViewModels
         private bool CanGoToPreviousPage()
         {
             return _currentPage > 0;
+        }
+
+        private void OnImportButtonClick()
+        {
+            // Configure open file dialog box
+            var dialog = new Microsoft.Win32.OpenFileDialog();
+            dialog.FileName = "users"; // Default file name
+            dialog.DefaultExt = ".csv"; // Default file extension
+            dialog.Filter = "CSV documents (.csv)|*.csv"; // Filter files by extension
+
+            // Show open file dialog box
+            bool? result = dialog.ShowDialog();
+
+            // Process open file dialog box results
+            if (result == true)
+            {
+                // Open document
+                string filename = dialog.FileName;
+                _dataMigrationService.ImportDataFromCsv(filename);
+            }
         }
 
         private void OnValidationResultButtonImportClick()

@@ -20,12 +20,10 @@ namespace DigitalHandwriting.Views
     /// </summary>
     public partial class ValidationResult : Window
     {
-        AlgorithmValidationViewModel _viewModel;
         public ValidationResult()
         {
             InitializeComponent();
-            _viewModel = new AlgorithmValidationViewModel();
-            DataContext = _viewModel;
+            DataContext = new AlgorithmValidationViewModel();
         }
     }
 }
