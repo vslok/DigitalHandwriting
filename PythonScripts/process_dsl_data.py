@@ -69,7 +69,7 @@ for login in combined_df['Login'].unique():
     user_data = combined_df[combined_df['Login'] == login].iloc[3:]  # Get rows after first 5
 
     # Take up to 20 rows for legitimate attempts
-    legitimate_attempts = user_data.iloc[:3]
+    legitimate_attempts = user_data
 
     if len(legitimate_attempts) > 0:
         # Add legitimate user attempts

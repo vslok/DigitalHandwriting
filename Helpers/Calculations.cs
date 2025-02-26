@@ -78,10 +78,14 @@ namespace DigitalHandwriting.Helpers
                 throw new ArgumentException("Vectors must be of same length.");
             }
 
+            // Normalize the vectors first
+            var normalizedVector1 = Normalize(vector1);
+            var normalizedVector2 = Normalize(vector2);
+
             double score = 0.0;
-            for (int i = 0; i < vector1.Count; i++)
+            for (int i = 0; i < normalizedVector1.Count; i++)
             {
-                double diff = vector1[i] - vector2[i];
+                double diff = normalizedVector1[i] - normalizedVector2[i];
                 score += diff * diff;
             }
 
@@ -151,7 +155,6 @@ namespace DigitalHandwriting.Helpers
             // Filter outliers
             var filteredTrainData = trainData.Where(row =>
             {
-                var euclideanDist = EuclideanDistance(row, meanVector);
                 return !row.Select((val, idx) => Math.Abs(val - meanVector[idx]) > stdDeviationThreshold * stdVector[idx])
                         .Any(isOutlier => isOutlier);
             }).ToList();

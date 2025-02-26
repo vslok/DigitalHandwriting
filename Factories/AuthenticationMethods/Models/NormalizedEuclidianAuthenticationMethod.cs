@@ -21,6 +21,8 @@ namespace DigitalHandwriting.Factories.AuthenticationMethods.Models
                 return nGraphAuthentication(n, loginKeyPressedTimes, loginBetweenKeysTimes);
             }
 
+            // Calculate normalized Euclidean distance directly
+            // (normalization is now handled inside the NormalizedEuclideanDistance method)
             var keyPressedDistance = Calculations.NormalizedEuclideanDistance(UserKeyPressedTimes, loginKeyPressedTimes);
             var betweenKeysDistance = Calculations.NormalizedEuclideanDistance(UserBetweenKeysTimes, loginBetweenKeysTimes);
 
@@ -46,6 +48,8 @@ namespace DigitalHandwriting.Factories.AuthenticationMethods.Models
                 return nGraphAuthentication(n, loginKeyPressedTimes, loginBetweenKeysTimes, thresholds);
             }
 
+            // Calculate normalized Euclidean distance directly
+            // (normalization is now handled inside the NormalizedEuclideanDistance method)
             var keyPressedDistance = Calculations.NormalizedEuclideanDistance(UserKeyPressedTimes, loginKeyPressedTimes);
             var betweenKeysDistance = Calculations.NormalizedEuclideanDistance(UserBetweenKeysTimes, loginBetweenKeysTimes);
 
@@ -74,15 +78,9 @@ namespace DigitalHandwriting.Factories.AuthenticationMethods.Models
             var dataTypeResults = new Dictionary<AuthenticationCalculationDataType, double>();
             foreach (var key in Enum.GetValues(typeof(AuthenticationCalculationDataType)).Cast<AuthenticationCalculationDataType>())
             {
-                var values1 = userNGraph[key];
-                var values2 = loginNGraph[key];
-
-                if (values1.Count != values2.Count)
-                {
-                    throw new ArgumentException("Количество значений для каждой метрики должно быть одинаковым.");
-                }
-
-                var metricResult = Calculations.NormalizedEuclideanDistance(values1, values2);
+                // Calculate normalized Euclidean distance directly
+                // (normalization is now handled inside the NormalizedEuclideanDistance method)
+                var metricResult = Calculations.NormalizedEuclideanDistance(userNGraph[key], loginNGraph[key]);
                 dataTypeResults[key] = metricResult;
             }
 
@@ -103,15 +101,9 @@ namespace DigitalHandwriting.Factories.AuthenticationMethods.Models
             var dataTypeResults = new Dictionary<AuthenticationCalculationDataType, double>();
             foreach (var key in Enum.GetValues(typeof(AuthenticationCalculationDataType)).Cast<AuthenticationCalculationDataType>())
             {
-                var values1 = userNGraph[key];
-                var values2 = loginNGraph[key];
-
-                if (values1.Count != values2.Count)
-                {
-                    throw new ArgumentException("Количество значений для каждой метрики должно быть одинаковым.");
-                }
-
-                var metricResult = Calculations.NormalizedEuclideanDistance(values1, values2);
+                // Calculate normalized Euclidean distance directly
+                // (normalization is now handled inside the NormalizedEuclideanDistance method)
+                var metricResult = Calculations.NormalizedEuclideanDistance(userNGraph[key], loginNGraph[key]);
                 dataTypeResults[key] = metricResult;
             }
 
