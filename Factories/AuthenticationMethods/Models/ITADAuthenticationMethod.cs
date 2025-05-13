@@ -21,18 +21,25 @@ namespace DigitalHandwriting.Factories.AuthenticationMethods.Models
                 return nGraphAuthentication(n, loginKeyPressedTimes, loginBetweenKeysTimes);
             }
 
-            var userNGraphs = GetUserProfileData(n);
-            var keyPressedDistance = Calculations.ITAD(userNGraphs[AuthenticationCalculationDataType.H], loginKeyPressedTimes) / loginKeyPressedTimes.Count;
-            var betweenKeysDistance = Calculations.ITAD(userNGraphs[AuthenticationCalculationDataType.UD], loginBetweenKeysTimes) / loginBetweenKeysTimes.Count;
+            // For n=1, UserKeyPressedTimesProfile and UserBetweenKeysTimesProfile are the raw profile data.
+            // Calculations.ITAD expects List<List<double>> for profile.
+            var keyPressedSimilarity = Calculations.ITAD(UserKeyPressedTimesProfile, loginKeyPressedTimes);
+            var betweenKeysSimilarity = Calculations.ITAD(UserBetweenKeysTimesProfile, loginBetweenKeysTimes);
 
-            var authScore = (keyPressedDistance + betweenKeysDistance) / 2.0;
-            var isAuthenticated = authScore > 0.45;
+            // Average similarity
+            var avgSimilarity = (keyPressedSimilarity + betweenKeysSimilarity) / 2.0;
+
+            // Convert to distance-like score (0 is best, 0.5 is worst)
+            var authScore = 0.5 - avgSimilarity;
+            var isAuthenticated = authScore < 0.05; // Adjusted threshold for distance (0.5 - 0.45)
 
             var authResult = new AuthenticationResult(n, new Dictionary<AuthenticationCalculationDataType, double>()
             {
-                { AuthenticationCalculationDataType.H, keyPressedDistance },
-                { AuthenticationCalculationDataType.UD, betweenKeysDistance },
-            }, authScore, isAuthenticated, 0.45);
+                // Store individual distance-like scores if needed, or original similarities.
+                // For now, let's store transformed scores for consistency in what DataResults represents.
+                { AuthenticationCalculationDataType.H, 0.5 - keyPressedSimilarity },
+                { AuthenticationCalculationDataType.UD, 0.5 - betweenKeysSimilarity },
+            }, authScore, isAuthenticated, 0.05); // Adjusted threshold
 
             return authResult;
         }
@@ -47,20 +54,20 @@ namespace DigitalHandwriting.Factories.AuthenticationMethods.Models
                 return nGraphAuthentication(n, loginKeyPressedTimes, loginBetweenKeysTimes, thresholds);
             }
 
-            var userNGraphs = GetUserProfileData(n);
-            var keyPressedDistance = Calculations.ITAD(userNGraphs[AuthenticationCalculationDataType.H], loginKeyPressedTimes) / loginKeyPressedTimes.Count;
-            var betweenKeysDistance = Calculations.ITAD(userNGraphs[AuthenticationCalculationDataType.UD], loginBetweenKeysTimes) / loginBetweenKeysTimes.Count;
+            var keyPressedSimilarity = Calculations.ITAD(UserKeyPressedTimesProfile, loginKeyPressedTimes);
+            var betweenKeysSimilarity = Calculations.ITAD(UserBetweenKeysTimesProfile, loginBetweenKeysTimes);
 
-            var authScore = (keyPressedDistance + betweenKeysDistance) / 2.0;
+            var avgSimilarity = (keyPressedSimilarity + betweenKeysSimilarity) / 2.0;
+            var authScore = 0.5 - avgSimilarity; // Convert to distance-like score
 
             var result = new List<AuthenticationResult>();
-            foreach (var threshold in thresholds)
+            foreach (var threshold in thresholds) // Assuming these thresholds are for distance scores
             {
-                var isAuthenticated = authScore > threshold;
+                var isAuthenticated = authScore < threshold;
                 var authResult = new AuthenticationResult(n, new Dictionary<AuthenticationCalculationDataType, double>()
                 {
-                    { AuthenticationCalculationDataType.H, keyPressedDistance },
-                    { AuthenticationCalculationDataType.UD, betweenKeysDistance },
+                    { AuthenticationCalculationDataType.H, 0.5 - keyPressedSimilarity },
+                    { AuthenticationCalculationDataType.UD, 0.5 - betweenKeysSimilarity },
                 }, authScore, isAuthenticated, threshold);
                 result.Add(authResult);
             }
@@ -70,60 +77,71 @@ namespace DigitalHandwriting.Factories.AuthenticationMethods.Models
 
         private AuthenticationResult nGraphAuthentication(int n, List<double> loginKeyPressedTimes, List<double> loginBetweenKeysTimes)
         {
-            var userNGraphs = GetUserProfileData(n);
-            var loginNGraph = Calculations.CalculateNGraph(n, loginKeyPressedTimes, loginBetweenKeysTimes);
+            var userNGraphProfileData = GetUserProfileData(n);
+            var loginNGraphFeatures = Calculations.CalculateNGraph(n, loginKeyPressedTimes, loginBetweenKeysTimes);
 
-            var dataTypeResults = new Dictionary<AuthenticationCalculationDataType, double>();
-            foreach (var key in Enum.GetValues(typeof(AuthenticationCalculationDataType)).Cast<AuthenticationCalculationDataType>())
+            var dataTypeSimilarityResults = new Dictionary<AuthenticationCalculationDataType, double>();
+            var dataTypeDistanceResults = new Dictionary<AuthenticationCalculationDataType, double>();
+
+            foreach (var key in userNGraphProfileData.Keys)
             {
-                var values1 = userNGraphs[key];
-                var values2 = loginNGraph[key];
-
-                if (values1[0].Count != values2.Count)
+                if (loginNGraphFeatures.ContainsKey(key) && userNGraphProfileData[key].Any())
                 {
-                    throw new ArgumentException("Количество значений для каждой метрики должно быть одинаковым.");
+                    var similarity = Calculations.ITAD(userNGraphProfileData[key], loginNGraphFeatures[key]);
+                    dataTypeSimilarityResults[key] = similarity;
+                    dataTypeDistanceResults[key] = 0.5 - similarity;
                 }
-
-                var metricResult = Calculations.ITAD(values1, values2) / values2.Count;
-                dataTypeResults[key] = metricResult;
             }
 
-            var metricTotal = dataTypeResults.Sum(x => x.Value);
-            var authScore = metricTotal / loginNGraph.Keys.Count;
-            var isAuthenticated = authScore > 0.45;
+            if (!dataTypeDistanceResults.Any())
+            {
+                 return new AuthenticationResult(n, new Dictionary<AuthenticationCalculationDataType, double>(), 0.5, false, 0.05); // Max distance, not authenticated
+            }
 
-            var authResult = new AuthenticationResult(n, dataTypeResults, authScore, isAuthenticated, 0.45);
+            var totalDistance = dataTypeDistanceResults.Sum(x => x.Value);
+            var authScore = totalDistance / dataTypeDistanceResults.Count;
+            var isAuthenticated = authScore < 0.05;
+
+            var authResult = new AuthenticationResult(n, dataTypeDistanceResults, authScore, isAuthenticated, 0.05);
             return authResult;
         }
 
         private List<AuthenticationResult> nGraphAuthentication(int n, List<double> loginKeyPressedTimes, List<double> loginBetweenKeysTimes, List<double> thresholds)
         {
-            var userNGraphs = GetUserProfileData(n);
-            var loginNGraph = Calculations.CalculateNGraph(n, loginKeyPressedTimes, loginBetweenKeysTimes);
+            var userNGraphProfileData = GetUserProfileData(n);
+            var loginNGraphFeatures = Calculations.CalculateNGraph(n, loginKeyPressedTimes, loginBetweenKeysTimes);
 
-            var dataTypeResults = new Dictionary<AuthenticationCalculationDataType, double>();
-            foreach (var key in Enum.GetValues(typeof(AuthenticationCalculationDataType)).Cast<AuthenticationCalculationDataType>())
+            var dataTypeSimilarityResults = new Dictionary<AuthenticationCalculationDataType, double>();
+            var dataTypeDistanceResults = new Dictionary<AuthenticationCalculationDataType, double>();
+
+            foreach (var key in userNGraphProfileData.Keys)
             {
-                var values1 = userNGraphs[key];
-                var values2 = loginNGraph[key];
-
-                if (values1[0].Count != values2.Count)
+                if (loginNGraphFeatures.ContainsKey(key) && userNGraphProfileData[key].Any())
                 {
-                    throw new ArgumentException("Количество значений для каждой метрики должно быть одинаковым.");
+                    var similarity = Calculations.ITAD(userNGraphProfileData[key], loginNGraphFeatures[key]);
+                    dataTypeSimilarityResults[key] = similarity;
+                    dataTypeDistanceResults[key] = 0.5 - similarity;
                 }
-
-                var metricResult = Calculations.ITAD(values1, values2);
-                dataTypeResults[key] = metricResult;
             }
 
-            var metricTotal = dataTypeResults.Sum(x => x.Value);
-            var authScore = metricTotal / loginNGraph.Keys.Count;
+            if (!dataTypeDistanceResults.Any())
+            {
+                var emptyResults = new List<AuthenticationResult>();
+                foreach (var threshold_dist in thresholds) // Assuming thresholds are distance-based
+                {
+                    emptyResults.Add(new AuthenticationResult(n, new Dictionary<AuthenticationCalculationDataType, double>(), 0.5, false, threshold_dist));
+                }
+                return emptyResults;
+            }
+
+            var totalDistance = dataTypeDistanceResults.Sum(x => x.Value);
+            var authScore = totalDistance / dataTypeDistanceResults.Count;
 
             var result = new List<AuthenticationResult>();
-            foreach (var threshold in thresholds)
+            foreach (var threshold_dist in thresholds) // Assuming thresholds are distance-based
             {
-                var isAuthenticated = authScore > threshold;
-                var authResult = new AuthenticationResult(n, dataTypeResults, authScore, isAuthenticated, threshold);
+                var isAuthenticated = authScore < threshold_dist;
+                var authResult = new AuthenticationResult(n, dataTypeDistanceResults, authScore, isAuthenticated, threshold_dist);
                 result.Add(authResult);
             }
 
