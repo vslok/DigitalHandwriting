@@ -349,3 +349,10 @@ Temporary Items
 
 venv
 *.csv
+
+PythonScripts/data/N_1
+PythonScripts/data/N_2
+PythonScripts/data/N_3
+PythonScripts/data/DSL-TestUsers.csv
+PythonScripts/data/DSL-AuthenticationTestData.csv
+

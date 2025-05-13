@@ -140,7 +140,7 @@ namespace DigitalHandwriting.ViewModels
         public string UserCheckText
         {
             get => _userCheckText;
-            set 
+            set
             {
                 IsLoginBoxEnabled = false;
                 SetProperty(ref _userCheckText, value);
@@ -149,15 +149,19 @@ namespace DigitalHandwriting.ViewModels
 
         private void OnRegistrationFinalizeButtonClick()
         {
+            var hSampleValues = _keyboardMetricsCollector.KeyPressedTimes;
+            var udSampleValues = _keyboardMetricsCollector.BetweenKeysTimes;
+
+            if (hSampleValues == null /*|| hSampleValues.Count < 3*/ || udSampleValues == null /*|| udSampleValues.Count < 3*/)
+            {
+                Trace.TraceError("Insufficient keyboard metrics collected for registration.");
+            }
+
             User user = new User()
             {
                 Login = UserLogin,
-                FirstH = JsonSerializer.Serialize(_keyboardMetricsCollector.KeyPressedTimes[0]),
-                SecondH = JsonSerializer.Serialize(_keyboardMetricsCollector.KeyPressedTimes[1]),
-                ThirdH = JsonSerializer.Serialize(_keyboardMetricsCollector.KeyPressedTimes[2]),
-                FirstUD = JsonSerializer.Serialize(_keyboardMetricsCollector.BetweenKeysTimes[0]),
-                SecondUD = JsonSerializer.Serialize(_keyboardMetricsCollector.BetweenKeysTimes[1]),
-                ThirdUD = JsonSerializer.Serialize(_keyboardMetricsCollector.BetweenKeysTimes[2]),
+                HSampleValues = hSampleValues,
+                UDSampleValues = udSampleValues,
                 Password = EncryptionService.GetPasswordHash(UserPassPhrase, out string salt),
                 Salt = salt
             };

@@ -31,6 +31,14 @@
                     <TextBlock Text="Equal Error Rate (EER)" FontWeight="Bold" Margin="0,0,0,5"/>
                     <TextBlock Text="{Binding EER, StringFormat=EER: {0:F2}%}"/>
                     <TextBlock Text="{Binding EERThreshold, StringFormat=Threshold: {0:F3}}"/>
+                    <TextBlock Text="Metrics at EER Threshold:" FontWeight="SemiBold" Margin="0,10,0,5"/>
+                    <TextBlock Text="{Binding MetricsAtEER.FAR, StringFormat=FAR: {0:F2}%}"/>
+                    <TextBlock Text="{Binding MetricsAtEER.FRR, StringFormat=FRR: {0:F2}%}"/>
+                    <TextBlock Text="{Binding MetricsAtEER.Accuracy, StringFormat=Accuracy: {0:F2}%}"/>
+                    <TextBlock Text="{Binding MetricsAtEER.ErrorRate, StringFormat=Error Rate: {0:F2}%}"/>
+                    <TextBlock Text="{Binding MetricsAtEER.Precision, StringFormat=Precision: {0:F2}%}"/>
+                    <TextBlock Text="{Binding MetricsAtEER.Recall, StringFormat=Recall: {0:F2}%}"/>
+                    <TextBlock Text="{Binding MetricsAtEER.FMeasure, StringFormat=F-Measure: {0:F2}}"/>
                 </StackPanel>
             </Border>
             <Border Grid.Column="1" BorderBrush="LightGray" BorderThickness="1" Margin="5" Padding="10">

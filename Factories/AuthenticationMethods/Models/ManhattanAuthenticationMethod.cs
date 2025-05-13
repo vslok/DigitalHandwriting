@@ -78,26 +78,31 @@ namespace DigitalHandwriting.Factories.AuthenticationMethods.Models
 
         private AuthenticationResult nGraphAuthentication(int n, List<double> loginKeyPressedTimes, List<double> loginBetweenKeysTimes)
         {
-            var userNGraph = Calculations.CalculateNGraph(n, UserKeyPressedTimes, UserBetweenKeysTimes);
+            var userNGraphProfile = Calculations.CalculateNGraph(n, UserKeyPressedTimesProfile, UserBetweenKeysTimesProfile);
             var loginNGraph = Calculations.CalculateNGraph(n, loginKeyPressedTimes, loginBetweenKeysTimes);
 
             var dataTypeResults = new Dictionary<AuthenticationCalculationDataType, double>();
-            foreach (var key in Enum.GetValues(typeof(AuthenticationCalculationDataType)).Cast<AuthenticationCalculationDataType>())
+
+            foreach (var key in userNGraphProfile.Keys)
             {
-                var values1 = Calculations.Normalize(userNGraph[key]);
-                var values2 = Calculations.Normalize(loginNGraph[key]);
-
-                if (values1.Count != values2.Count)
+                if (loginNGraph.ContainsKey(key) && userNGraphProfile[key].Any() && userNGraphProfile[key][0].Any())
                 {
-                    throw new ArgumentException("Количество значений для каждой метрики должно быть одинаковым.");
+                    var meanUserNGraphFeatureVectorForKey = Calculations.CalculateMeanValue(userNGraphProfile[key]);
+                    if (meanUserNGraphFeatureVectorForKey.Any())
+                    {
+                        var metricResult = Calculations.ManhattanDistance(meanUserNGraphFeatureVectorForKey, loginNGraph[key]);
+                        dataTypeResults[key] = metricResult;
+                    }
                 }
+            }
 
-                var metricResult = Calculations.ManhattanDistance(values1, values2) / values1.Count;
-                dataTypeResults[key] = metricResult;
+            if (!dataTypeResults.Any())
+            {
+                return new AuthenticationResult(n, new Dictionary<AuthenticationCalculationDataType, double>(), double.MaxValue, false, 0.15);
             }
 
             var metricTotal = dataTypeResults.Sum(x => x.Value);
-            var authScore = metricTotal / userNGraph.Keys.Count;
+            var authScore = metricTotal / dataTypeResults.Count;
             var isAuthenticated = authScore < 0.15;
 
             var authResult = new AuthenticationResult(n, dataTypeResults, authScore, isAuthenticated, 0.15);
@@ -106,26 +111,36 @@ namespace DigitalHandwriting.Factories.AuthenticationMethods.Models
 
         private List<AuthenticationResult> nGraphAuthentication(int n, List<double> loginKeyPressedTimes, List<double> loginBetweenKeysTimes, List<double> thresholds)
         {
-            var userNGraph = Calculations.CalculateNGraph(n, UserKeyPressedTimes, UserBetweenKeysTimes);
+            var userNGraphProfile = Calculations.CalculateNGraph(n, UserKeyPressedTimesProfile, UserBetweenKeysTimesProfile);
             var loginNGraph = Calculations.CalculateNGraph(n, loginKeyPressedTimes, loginBetweenKeysTimes);
 
             var dataTypeResults = new Dictionary<AuthenticationCalculationDataType, double>();
-            foreach (var key in Enum.GetValues(typeof(AuthenticationCalculationDataType)).Cast<AuthenticationCalculationDataType>())
+
+            foreach (var key in userNGraphProfile.Keys)
             {
-                var values1 = Calculations.Normalize(userNGraph[key]);
-                var values2 = Calculations.Normalize(loginNGraph[key]);
-
-                if (values1.Count != values2.Count)
+                if (loginNGraph.ContainsKey(key) && userNGraphProfile[key].Any() && userNGraphProfile[key][0].Any())
                 {
-                    throw new ArgumentException("Количество значений для каждой метрики должно быть одинаковым.");
+                    var meanUserNGraphFeatureVectorForKey = Calculations.CalculateMeanValue(userNGraphProfile[key]);
+                    if (meanUserNGraphFeatureVectorForKey.Any())
+                    {
+                        var metricResult = Calculations.ManhattanDistance(meanUserNGraphFeatureVectorForKey, loginNGraph[key]);
+                        dataTypeResults[key] = metricResult;
+                    }
                 }
+            }
 
-                var metricResult = Calculations.ManhattanDistance(values1, values2) / values1.Count;
-                dataTypeResults[key] = metricResult;
+            if (!dataTypeResults.Any())
+            {
+                var emptyResults = new List<AuthenticationResult>();
+                foreach (var threshold in thresholds)
+                {
+                    emptyResults.Add(new AuthenticationResult(n, new Dictionary<AuthenticationCalculationDataType, double>(), double.MaxValue, false, threshold));
+                }
+                return emptyResults;
             }
 
             var metricTotal = dataTypeResults.Sum(x => x.Value);
-            var authScore = metricTotal / userNGraph.Keys.Count;
+            var authScore = metricTotal / dataTypeResults.Count;
 
             var result = new List<AuthenticationResult>();
             foreach (var threshold in thresholds)

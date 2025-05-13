@@ -18,7 +18,6 @@ namespace DigitalHandwriting.Helpers
             if (values.Count == 0)
                 return new List<double>();
 
-            // Проверка одинаковой длины всех списков
             int expectedCount = values[0].Count;
             foreach (var list in values)
             {
@@ -30,19 +29,15 @@ namespace DigitalHandwriting.Helpers
 
             for (int i = 0; i < expectedCount; i++)
             {
-                // Собираем элементы i-го столбца и сортируем
                 var column = values.Select(list => list[i]).OrderBy(x => x).ToList();
                 int n = column.Count;
 
-                // Правильный расчет медианы
                 if (n % 2 == 1)
                 {
-                    // Нечетное количество: берем средний элемент
                     medians.Add(column[n / 2]);
                 }
                 else
                 {
-                    // Четное количество: среднее двух центральных
                     medians.Add((column[(n / 2) - 1] + column[n / 2]) / 2.0);
                 }
             }
@@ -78,14 +73,10 @@ namespace DigitalHandwriting.Helpers
                 throw new ArgumentException("Vectors must be of same length.");
             }
 
-            // Normalize the vectors first
-            var normalizedVector1 = Normalize(vector1);
-            var normalizedVector2 = Normalize(vector2);
-
             double score = 0.0;
-            for (int i = 0; i < normalizedVector1.Count; i++)
+            for (int i = 0; i < vector1.Count; i++)
             {
-                double diff = normalizedVector1[i] - normalizedVector2[i];
+                double diff = vector1[i] - vector2[i];
                 score += diff * diff;
             }
 
@@ -99,7 +90,6 @@ namespace DigitalHandwriting.Helpers
                 throw new ArgumentException("Vectors must be of same length.");
             }
 
-            // Calculate squared Euclidean distance
             double squaredDistance = 0.0;
             for (int i = 0; i < vector1.Count; i++)
             {
@@ -107,11 +97,9 @@ namespace DigitalHandwriting.Helpers
                 squaredDistance += diff * diff;
             }
 
-            // Calculate vector norms
             double vectorNorm = Math.Sqrt(vector1.Sum(x => x * x));
             double meanVectorNorm = Math.Sqrt(vector2.Sum(x => x * x));
 
-            // Normalize the distance
             return squaredDistance / (vectorNorm * meanVectorNorm);
         }
 
@@ -141,10 +129,8 @@ namespace DigitalHandwriting.Helpers
                 throw new ArgumentException("Invalid input data dimensions");
             }
 
-            // Calculate initial mean vector
             var meanVector = CalculateMeanValue(trainData);
 
-            // Calculate standard deviation vector
             var stdVector = new List<double>();
             for (int j = 0; j < trainData[0].Count; j++)
             {
@@ -152,17 +138,14 @@ namespace DigitalHandwriting.Helpers
                 stdVector.Add(Math.Sqrt(values.Select(x => Math.Pow(x - meanVector[j], 2)).Average()));
             }
 
-            // Filter outliers
             var filteredTrainData = trainData.Where(row =>
             {
                 return !row.Select((val, idx) => Math.Abs(val - meanVector[idx]) > stdDeviationThreshold * stdVector[idx])
                         .Any(isOutlier => isOutlier);
             }).ToList();
 
-            // Recalculate mean vector with filtered data
             var filteredMeanVector = CalculateMeanValue(filteredTrainData);
 
-            // Calculate Manhattan distance with filtered mean
             var distance = ManhattanDistance(testVector, filteredMeanVector);
 
             return (filteredMeanVector, distance);
@@ -210,7 +193,6 @@ namespace DigitalHandwriting.Helpers
                 delta[i] = vector1[i] - vector2[i];
             }
 
-            // Perform delta^T * invCovMatrix * delta
             double[] temp = new double[n];
             for (int i = 0; i < n; i++)
             {
@@ -263,25 +245,20 @@ namespace DigitalHandwriting.Helpers
             if (profile.Count == 0 || profile.Any(p => p == null || p.Count != current.Count))
                 return 0;
 
-            int numKeys = current.Count; // Количество клавиш
+            int numKeys = current.Count;
             double total = 0;
 
-            // Проходим по каждой клавише
             for (int keyIndex = 0; keyIndex < numKeys; keyIndex++)
             {
-                // Собираем все замеры для текущей клавиши из профиля
                 var keyMeasurements = profile.Select(p => p[keyIndex]).OrderBy(x => x).ToList();
                 double median = keyMeasurements.Median();
 
-                // Текущее значение для этой клавиши
                 double currentValue = current[keyIndex];
 
-                // Вычисляем CDF и ITAD
                 double cdf = CalculateCDF(keyMeasurements, currentValue);
                 total += currentValue <= median ? cdf : 1 - cdf;
             }
 
-            // Усредняем результат по всем клавишам
             return total / numKeys;
         }
 
@@ -429,7 +406,6 @@ namespace DigitalHandwriting.Helpers
                 throw new ArgumentException("Список данных не может быть пустым.");
             }
 
-            // Граничные случаи
             if (value < sorted[0])
             {
                 return 0.0;
@@ -439,35 +415,30 @@ namespace DigitalHandwriting.Helpers
                 return 1.0;
             }
 
-            // Бинарный поиск индекса
             int index = sorted.BinarySearch(value);
             if (index < 0)
             {
-                index = ~index - 1; // Индекс последнего элемента меньше value
+                index = ~index - 1;
             }
             else
             {
-                // Найден точный элемент, находим последнее вхождение
                 while (index < n - 1 && sorted[index + 1] == value)
                 {
                     index++;
                 }
             }
 
-            // Интерполяция между index и index+1
             double lower = sorted[index];
             double upper = (index < n - 1) ? sorted[index + 1] : lower;
 
-            // Если lower и upper совпадают (дубликаты), возвращаем CDF сразу
             if (upper == lower)
             {
                 return (index + 1) / (double)n;
             }
 
-            // Линейная интерполяция CDF
             double fraction = (value - lower) / (upper - lower);
-            double cdfLower = (index + 1) / (double)n; // CDF в точке lower
-            double cdfUpper = (index + 2) / (double)n; // CDF в точке upper
+            double cdfLower = (index + 1) / (double)n;
+            double cdfUpper = (index + 2) / (double)n;
 
             return cdfLower + fraction * (cdfUpper - cdfLower);
         }
@@ -496,26 +467,19 @@ namespace DigitalHandwriting.Helpers
                     throw new ArgumentException("Both legal users and impostors data must be present");
                 }
 
-                // Extract scores
                 var userScores = legalUsers.Select(r => r.TotalAuthenticationScore).ToList();
                 var impostersScores = impostors.Select(r => r.TotalAuthenticationScore).ToList();
                 var allScores = userScores.Concat(impostersScores).OrderBy(s => s).ToList();
 
-                // Get unique thresholds and sort them
                 var thresholds = allScores.Distinct().OrderBy(s => s).ToList();
-                var frrs = new List<double>(); // FRR (False Rejection Rate)
-                var fars = new List<double>();  // FAR (False Acceptance Rate)
+                var frrs = new List<double>();
+                var fars = new List<double>();
 
-                // Calculate FAR and FRR for each threshold
                 foreach (var threshold in thresholds)
                 {
-                    // For genuine users: scores <= threshold are accepted (true positives)
-                    // scores > threshold are rejected (false negatives)
                     double falseRejections = userScores.Count(s => s >= threshold);
                     double frr = falseRejections / userScores.Count;
 
-                    // For impostors: scores <= threshold are false positives
-                    // scores > threshold are true negatives
                     double falseAcceptances = impostersScores.Count(s => s < threshold);
                     double far = falseAcceptances / impostersScores.Count;
 
@@ -523,7 +487,6 @@ namespace DigitalHandwriting.Helpers
                     fars.Add(far);
                 }
 
-                // Find EER - the point where FAR and FRR are closest
                 double minDiff = double.MaxValue;
                 int eerIndex = 0;
                 double eer = 0;
@@ -536,7 +499,7 @@ namespace DigitalHandwriting.Helpers
                     {
                         minDiff = diff;
                         eerIndex = i;
-                        eer = (fars[i] + frrs[i]) / 2; // Average of FAR and FRR at closest point
+                        eer = (fars[i] + frrs[i]) / 2;
                         eerThreshold = thresholds[i];
                     }
                 }

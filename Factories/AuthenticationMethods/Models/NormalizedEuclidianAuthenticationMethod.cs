@@ -21,8 +21,6 @@ namespace DigitalHandwriting.Factories.AuthenticationMethods.Models
                 return nGraphAuthentication(n, loginKeyPressedTimes, loginBetweenKeysTimes);
             }
 
-            // Calculate normalized Euclidean distance directly
-            // (normalization is now handled inside the NormalizedEuclideanDistance method)
             var keyPressedDistance = Calculations.NormalizedEuclideanDistance(UserKeyPressedTimes, loginKeyPressedTimes);
             var betweenKeysDistance = Calculations.NormalizedEuclideanDistance(UserBetweenKeysTimes, loginBetweenKeysTimes);
 
@@ -48,8 +46,6 @@ namespace DigitalHandwriting.Factories.AuthenticationMethods.Models
                 return nGraphAuthentication(n, loginKeyPressedTimes, loginBetweenKeysTimes, thresholds);
             }
 
-            // Calculate normalized Euclidean distance directly
-            // (normalization is now handled inside the NormalizedEuclideanDistance method)
             var keyPressedDistance = Calculations.NormalizedEuclideanDistance(UserKeyPressedTimes, loginKeyPressedTimes);
             var betweenKeysDistance = Calculations.NormalizedEuclideanDistance(UserBetweenKeysTimes, loginBetweenKeysTimes);
 
@@ -72,20 +68,31 @@ namespace DigitalHandwriting.Factories.AuthenticationMethods.Models
 
         private AuthenticationResult nGraphAuthentication(int n, List<double> loginKeyPressedTimes, List<double> loginBetweenKeysTimes)
         {
-            var userNGraph = Calculations.CalculateNGraph(n, UserKeyPressedTimes, UserBetweenKeysTimes);
+            var userNGraphProfile = Calculations.CalculateNGraph(n, UserKeyPressedTimesProfile, UserBetweenKeysTimesProfile);
             var loginNGraph = Calculations.CalculateNGraph(n, loginKeyPressedTimes, loginBetweenKeysTimes);
 
             var dataTypeResults = new Dictionary<AuthenticationCalculationDataType, double>();
-            foreach (var key in Enum.GetValues(typeof(AuthenticationCalculationDataType)).Cast<AuthenticationCalculationDataType>())
+
+            foreach (var key in userNGraphProfile.Keys)
             {
-                // Calculate normalized Euclidean distance directly
-                // (normalization is now handled inside the NormalizedEuclideanDistance method)
-                var metricResult = Calculations.NormalizedEuclideanDistance(userNGraph[key], loginNGraph[key]);
-                dataTypeResults[key] = metricResult;
+                if (loginNGraph.ContainsKey(key) && userNGraphProfile[key].Any() && userNGraphProfile[key][0].Any())
+                {
+                    var meanUserNGraphFeatureVectorForKey = Calculations.CalculateMeanValue(userNGraphProfile[key]);
+                    if (meanUserNGraphFeatureVectorForKey.Any())
+                    {
+                        var metricResult = Calculations.NormalizedEuclideanDistance(meanUserNGraphFeatureVectorForKey, loginNGraph[key]);
+                        dataTypeResults[key] = metricResult;
+                    }
+                }
+            }
+
+            if (!dataTypeResults.Any())
+            {
+                return new AuthenticationResult(n, new Dictionary<AuthenticationCalculationDataType, double>(), double.MaxValue, false, 0.15);
             }
 
             var metricTotal = dataTypeResults.Sum(x => x.Value);
-            var authScore = metricTotal / userNGraph.Keys.Count;
+            var authScore = metricTotal / dataTypeResults.Count;
             var isAuthenticated = authScore < 0.15;
 
             var authResult = new AuthenticationResult(n, dataTypeResults, authScore, isAuthenticated, 0.15);
@@ -95,20 +102,36 @@ namespace DigitalHandwriting.Factories.AuthenticationMethods.Models
 
         private List<AuthenticationResult> nGraphAuthentication(int n, List<double> loginKeyPressedTimes, List<double> loginBetweenKeysTimes, List<double> thresholds)
         {
-            var userNGraph = Calculations.CalculateNGraph(n, UserKeyPressedTimes, UserBetweenKeysTimes);
+            var userNGraphProfile = Calculations.CalculateNGraph(n, UserKeyPressedTimesProfile, UserBetweenKeysTimesProfile);
             var loginNGraph = Calculations.CalculateNGraph(n, loginKeyPressedTimes, loginBetweenKeysTimes);
 
             var dataTypeResults = new Dictionary<AuthenticationCalculationDataType, double>();
-            foreach (var key in Enum.GetValues(typeof(AuthenticationCalculationDataType)).Cast<AuthenticationCalculationDataType>())
+
+            foreach (var key in userNGraphProfile.Keys)
             {
-                // Calculate normalized Euclidean distance directly
-                // (normalization is now handled inside the NormalizedEuclideanDistance method)
-                var metricResult = Calculations.NormalizedEuclideanDistance(userNGraph[key], loginNGraph[key]);
-                dataTypeResults[key] = metricResult;
+                if (loginNGraph.ContainsKey(key) && userNGraphProfile[key].Any() && userNGraphProfile[key][0].Any())
+                {
+                    var meanUserNGraphFeatureVectorForKey = Calculations.CalculateMeanValue(userNGraphProfile[key]);
+                    if (meanUserNGraphFeatureVectorForKey.Any())
+                    {
+                        var metricResult = Calculations.NormalizedEuclideanDistance(meanUserNGraphFeatureVectorForKey, loginNGraph[key]);
+                        dataTypeResults[key] = metricResult;
+                    }
+                }
+            }
+
+            if (!dataTypeResults.Any())
+            {
+                var emptyResults = new List<AuthenticationResult>();
+                foreach (var threshold in thresholds)
+                {
+                    emptyResults.Add(new AuthenticationResult(n, new Dictionary<AuthenticationCalculationDataType, double>(), double.MaxValue, false, threshold));
+                }
+                return emptyResults;
             }
 
             var metricTotal = dataTypeResults.Sum(x => x.Value);
-            var authScore = metricTotal / userNGraph.Keys.Count;
+            var authScore = metricTotal / dataTypeResults.Count;
 
             var result = new List<AuthenticationResult>();
             foreach (var threshold in thresholds)

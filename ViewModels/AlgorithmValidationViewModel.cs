@@ -47,6 +47,7 @@ namespace DigitalHandwriting.ViewModels
             {
                 _eerThreshold = value;
                 InvokeOnPropertyChangedEvent(nameof(EERThreshold));
+                InvokeOnPropertyChangedEvent(nameof(MetricsAtEER));
             }
         }
 
@@ -57,6 +58,19 @@ namespace DigitalHandwriting.ViewModels
             {
                 _thresholdMetrics = value;
                 InvokeOnPropertyChangedEvent(nameof(ThresholdMetrics));
+                InvokeOnPropertyChangedEvent(nameof(MetricsAtEER));
+            }
+        }
+
+        public ThresholdMetrics MetricsAtEER
+        {
+            get
+            {
+                if (_thresholdMetrics != null && _thresholdMetrics.TryGetValue(_eerThreshold, out var metrics))
+                {
+                    return metrics;
+                }
+                return null;
             }
         }
 
