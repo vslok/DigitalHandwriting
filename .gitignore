@@ -355,4 +355,8 @@ PythonScripts/data/N_2
 PythonScripts/data/N_3
 PythonScripts/data/DSL-TestUsers.csv
 PythonScripts/data/DSL-AuthenticationTestData.csv
-
+PythonScripts/data/ML_KeystrokeData_train.csv
+PythonScripts/data/ML_KeystrokeData_val.csv
+PythonScripts/data/ML_KeystrokeData_test.csv
+PythonScripts/data/ML_KeystrokeData_train_val.csv
+PythonScripts/ml_models/*/weights/*
