@@ -1,0 +1,1207 @@
+Starting model training and validation...
+
+
+Processing user: s030
+Training model for s030...
+Validating model for s030 on train validation set...
+Testing model for s030 on test set...
+
+Train Validation Results for s030:
+Accuracy: 93.33%
+Precision: 91.94%
+Recall: 95.00%
+F1 Score: 93.44%
+FAR: 8.33%
+FRR: 5.00%
+
+Test Results for s030:
+Accuracy: 97.00%
+Precision: 96.08%
+Recall: 98.00%
+F1 Score: 97.03%
+FAR: 4.00%
+FRR: 2.00%
+
+Processing user: s056
+Training model for s056...
+Validating model for s056 on train validation set...
+Testing model for s056 on test set...
+
+Train Validation Results for s056:
+Accuracy: 93.33%
+Precision: 94.83%
+Recall: 91.67%
+F1 Score: 93.22%
+FAR: 5.00%
+FRR: 8.33%
+
+Test Results for s056:
+Accuracy: 93.50%
+Precision: 92.23%
+Recall: 95.00%
+F1 Score: 93.60%
+FAR: 8.00%
+FRR: 5.00%
+
+Processing user: s043
+Training model for s043...
+Validating model for s043 on train validation set...
+Testing model for s043 on test set...
+
+Train Validation Results for s043:
+Accuracy: 100.00%
+Precision: 100.00%
+Recall: 100.00%
+F1 Score: 100.00%
+FAR: 0.00%
+FRR: 0.00%
+
+Test Results for s043:
+Accuracy: 97.50%
+Precision: 97.98%
+Recall: 97.00%
+F1 Score: 97.49%
+FAR: 2.00%
+FRR: 3.00%
+
+Processing user: s004
+Training model for s004...
+Validating model for s004 on train validation set...
+Testing model for s004 on test set...
+
+Train Validation Results for s004:
+Accuracy: 95.83%
+Precision: 95.08%
+Recall: 96.67%
+F1 Score: 95.87%
+FAR: 5.00%
+FRR: 3.33%
+
+Test Results for s004:
+Accuracy: 97.50%
+Precision: 97.98%
+Recall: 97.00%
+F1 Score: 97.49%
+FAR: 2.00%
+FRR: 3.00%
+
+Processing user: s050
+Training model for s050...
+Validating model for s050 on train validation set...
+Testing model for s050 on test set...
+
+Train Validation Results for s050:
+Accuracy: 99.17%
+Precision: 98.36%
+Recall: 100.00%
+F1 Score: 99.17%
+FAR: 1.67%
+FRR: 0.00%
+
+Test Results for s050:
+Accuracy: 94.50%
+Precision: 93.20%
+Recall: 96.00%
+F1 Score: 94.58%
+FAR: 7.00%
+FRR: 4.00%
+
+Processing user: s051
+Training model for s051...
+Validating model for s051 on train validation set...
+Testing model for s051 on test set...
+
+Train Validation Results for s051:
+Accuracy: 91.67%
+Precision: 90.32%
+Recall: 93.33%
+F1 Score: 91.80%
+FAR: 10.00%
+FRR: 6.67%
+
+Test Results for s051:
+Accuracy: 96.00%
+Precision: 95.10%
+Recall: 97.00%
+F1 Score: 96.04%
+FAR: 5.00%
+FRR: 3.00%
+
+Processing user: s005
+Training model for s005...
+Validating model for s005 on train validation set...
+Testing model for s005 on test set...
+
+Train Validation Results for s005:
+Accuracy: 95.00%
+Precision: 93.55%
+Recall: 96.67%
+F1 Score: 95.08%
+FAR: 6.67%
+FRR: 3.33%
+
+Test Results for s005:
+Accuracy: 96.50%
+Precision: 96.04%
+Recall: 97.00%
+F1 Score: 96.52%
+FAR: 4.00%
+FRR: 3.00%
+
+Processing user: s020
+Training model for s020...
+Validating model for s020 on train validation set...
+Testing model for s020 on test set...
+
+Train Validation Results for s020:
+Accuracy: 90.83%
+Precision: 92.98%
+Recall: 88.33%
+F1 Score: 90.60%
+FAR: 6.67%
+FRR: 11.67%
+
+Test Results for s020:
+Accuracy: 89.00%
+Precision: 89.00%
+Recall: 89.00%
+F1 Score: 89.00%
+FAR: 11.00%
+FRR: 11.00%
+
+Processing user: s027
+Training model for s027...
+Validating model for s027 on train validation set...
+Testing model for s027 on test set...
+
+Train Validation Results for s027:
+Accuracy: 98.33%
+Precision: 98.33%
+Recall: 98.33%
+F1 Score: 98.33%
+FAR: 1.67%
+FRR: 1.67%
+
+Test Results for s027:
+Accuracy: 96.00%
+Precision: 95.10%
+Recall: 97.00%
+F1 Score: 96.04%
+FAR: 5.00%
+FRR: 3.00%
+
+Processing user: s042
+Training model for s042...
+Validating model for s042 on train validation set...
+Testing model for s042 on test set...
+
+Train Validation Results for s042:
+Accuracy: 98.33%
+Precision: 98.33%
+Recall: 98.33%
+F1 Score: 98.33%
+FAR: 1.67%
+FRR: 1.67%
+
+Test Results for s042:
+Accuracy: 96.50%
+Precision: 96.04%
+Recall: 97.00%
+F1 Score: 96.52%
+FAR: 4.00%
+FRR: 3.00%
+
+Processing user: s011
+Training model for s011...
+Validating model for s011 on train validation set...
+Testing model for s011 on test set...
+
+Train Validation Results for s011:
+Accuracy: 96.67%
+Precision: 96.67%
+Recall: 96.67%
+F1 Score: 96.67%
+FAR: 3.33%
+FRR: 3.33%
+
+Test Results for s011:
+Accuracy: 96.50%
+Precision: 97.94%
+Recall: 95.00%
+F1 Score: 96.45%
+FAR: 2.00%
+FRR: 5.00%
+
+Processing user: s054
+Training model for s054...
+Validating model for s054 on train validation set...
+Testing model for s054 on test set...
+
+Train Validation Results for s054:
+Accuracy: 92.50%
+Precision: 86.96%
+Recall: 100.00%
+F1 Score: 93.02%
+FAR: 15.00%
+FRR: 0.00%
+
+Test Results for s054:
+Accuracy: 90.00%
+Precision: 87.04%
+Recall: 94.00%
+F1 Score: 90.38%
+FAR: 14.00%
+FRR: 6.00%
+
+Processing user: s035
+Training model for s035...
+Validating model for s035 on train validation set...
+Testing model for s035 on test set...
+
+Train Validation Results for s035:
+Accuracy: 98.33%
+Precision: 96.77%
+Recall: 100.00%
+F1 Score: 98.36%
+FAR: 3.33%
+FRR: 0.00%
+
+Test Results for s035:
+Accuracy: 96.50%
+Precision: 95.15%
+Recall: 98.00%
+F1 Score: 96.55%
+FAR: 5.00%
+FRR: 2.00%
+
+Processing user: s044
+Training model for s044...
+Validating model for s044 on train validation set...
+Testing model for s044 on test set...
+
+Train Validation Results for s044:
+Accuracy: 100.00%
+Precision: 100.00%
+Recall: 100.00%
+F1 Score: 100.00%
+FAR: 0.00%
+FRR: 0.00%
+
+Test Results for s044:
+Accuracy: 96.50%
+Precision: 96.97%
+Recall: 96.00%
+F1 Score: 96.48%
+FAR: 3.00%
+FRR: 4.00%
+
+Processing user: s019
+Training model for s019...
+Validating model for s019 on train validation set...
+Testing model for s019 on test set...
+
+Train Validation Results for s019:
+Accuracy: 95.83%
+Precision: 98.25%
+Recall: 93.33%
+F1 Score: 95.73%
+FAR: 1.67%
+FRR: 6.67%
+
+Test Results for s019:
+Accuracy: 97.00%
+Precision: 97.00%
+Recall: 97.00%
+F1 Score: 97.00%
+FAR: 3.00%
+FRR: 3.00%
+
+Processing user: s032
+Training model for s032...
+Validating model for s032 on train validation set...
+Testing model for s032 on test set...
+
+Train Validation Results for s032:
+Accuracy: 87.50%
+Precision: 88.14%
+Recall: 86.67%
+F1 Score: 87.39%
+FAR: 11.67%
+FRR: 13.33%
+
+Test Results for s032:
+Accuracy: 86.00%
+Precision: 83.96%
+Recall: 89.00%
+F1 Score: 86.41%
+FAR: 17.00%
+FRR: 11.00%
+
+Processing user: s036
+Training model for s036...
+Validating model for s036 on train validation set...
+Testing model for s036 on test set...
+
+Train Validation Results for s036:
+Accuracy: 100.00%
+Precision: 100.00%
+Recall: 100.00%
+F1 Score: 100.00%
+FAR: 0.00%
+FRR: 0.00%
+
+Test Results for s036:
+Accuracy: 99.50%
+Precision: 99.01%
+Recall: 100.00%
+F1 Score: 99.50%
+FAR: 1.00%
+FRR: 0.00%
+
+Processing user: s049
+Training model for s049...
+Validating model for s049 on train validation set...
+Testing model for s049 on test set...
+
+Train Validation Results for s049:
+Accuracy: 97.50%
+Precision: 96.72%
+Recall: 98.33%
+F1 Score: 97.52%
+FAR: 3.33%
+FRR: 1.67%
+
+Test Results for s049:
+Accuracy: 99.50%
+Precision: 99.01%
+Recall: 100.00%
+F1 Score: 99.50%
+FAR: 1.00%
+FRR: 0.00%
+
+Processing user: s012
+Training model for s012...
+Validating model for s012 on train validation set...
+Testing model for s012 on test set...
+
+Train Validation Results for s012:
+Accuracy: 95.83%
+Precision: 95.08%
+Recall: 96.67%
+F1 Score: 95.87%
+FAR: 5.00%
+FRR: 3.33%
+
+Test Results for s012:
+Accuracy: 96.50%
+Precision: 95.15%
+Recall: 98.00%
+F1 Score: 96.55%
+FAR: 5.00%
+FRR: 2.00%
+
+Processing user: s017
+Training model for s017...
+Validating model for s017 on train validation set...
+Testing model for s017 on test set...
+
+Train Validation Results for s017:
+Accuracy: 98.33%
+Precision: 98.33%
+Recall: 98.33%
+F1 Score: 98.33%
+FAR: 1.67%
+FRR: 1.67%
+
+Test Results for s017:
+Accuracy: 95.50%
+Precision: 95.05%
+Recall: 96.00%
+F1 Score: 95.52%
+FAR: 5.00%
+FRR: 4.00%
+
+Processing user: s015
+Training model for s015...
+Validating model for s015 on train validation set...
+Testing model for s015 on test set...
+
+Train Validation Results for s015:
+Accuracy: 94.17%
+Precision: 93.44%
+Recall: 95.00%
+F1 Score: 94.21%
+FAR: 6.67%
+FRR: 5.00%
+
+Test Results for s015:
+Accuracy: 91.00%
+Precision: 90.20%
+Recall: 92.00%
+F1 Score: 91.09%
+FAR: 10.00%
+FRR: 8.00%
+
+Processing user: s031
+Training model for s031...
+Validating model for s031 on train validation set...
+Testing model for s031 on test set...
+
+Train Validation Results for s031:
+Accuracy: 95.83%
+Precision: 96.61%
+Recall: 95.00%
+F1 Score: 95.80%
+FAR: 3.33%
+FRR: 5.00%
+
+Test Results for s031:
+Accuracy: 91.50%
+Precision: 91.09%
+Recall: 92.00%
+F1 Score: 91.54%
+FAR: 9.00%
+FRR: 8.00%
+
+Processing user: s034
+Training model for s034...
+Validating model for s034 on train validation set...
+Testing model for s034 on test set...
+
+Train Validation Results for s034:
+Accuracy: 96.67%
+Precision: 98.28%
+Recall: 95.00%
+F1 Score: 96.61%
+FAR: 1.67%
+FRR: 5.00%
+
+Test Results for s034:
+Accuracy: 93.00%
+Precision: 92.16%
+Recall: 94.00%
+F1 Score: 93.07%
+FAR: 8.00%
+FRR: 6.00%
+
+Processing user: s037
+Training model for s037...
+Validating model for s037 on train validation set...
+Testing model for s037 on test set...
+
+Train Validation Results for s037:
+Accuracy: 96.67%
+Precision: 96.67%
+Recall: 96.67%
+F1 Score: 96.67%
+FAR: 3.33%
+FRR: 3.33%
+
+Test Results for s037:
+Accuracy: 95.50%
+Precision: 98.92%
+Recall: 92.00%
+F1 Score: 95.34%
+FAR: 1.00%
+FRR: 8.00%
+
+Processing user: s028
+Training model for s028...
+Validating model for s028 on train validation set...
+Testing model for s028 on test set...
+
+Train Validation Results for s028:
+Accuracy: 96.67%
+Precision: 95.16%
+Recall: 98.33%
+F1 Score: 96.72%
+FAR: 5.00%
+FRR: 1.67%
+
+Test Results for s028:
+Accuracy: 98.00%
+Precision: 97.06%
+Recall: 99.00%
+F1 Score: 98.02%
+FAR: 3.00%
+FRR: 1.00%
+
+Processing user: s010
+Training model for s010...
+Validating model for s010 on train validation set...
+Testing model for s010 on test set...
+
+Train Validation Results for s010:
+Accuracy: 97.50%
+Precision: 100.00%
+Recall: 95.00%
+F1 Score: 97.44%
+FAR: 0.00%
+FRR: 5.00%
+
+Test Results for s010:
+Accuracy: 96.00%
+Precision: 96.94%
+Recall: 95.00%
+F1 Score: 95.96%
+FAR: 3.00%
+FRR: 5.00%
+
+Processing user: s038
+Training model for s038...
+Validating model for s038 on train validation set...
+Testing model for s038 on test set...
+
+Train Validation Results for s038:
+Accuracy: 97.50%
+Precision: 98.31%
+Recall: 96.67%
+F1 Score: 97.48%
+FAR: 1.67%
+FRR: 3.33%
+
+Test Results for s038:
+Accuracy: 97.00%
+Precision: 96.08%
+Recall: 98.00%
+F1 Score: 97.03%
+FAR: 4.00%
+FRR: 2.00%
+
+Processing user: s008
+Training model for s008...
+Validating model for s008 on train validation set...
+Testing model for s008 on test set...
+
+Train Validation Results for s008:
+Accuracy: 94.17%
+Precision: 92.06%
+Recall: 96.67%
+F1 Score: 94.31%
+FAR: 8.33%
+FRR: 3.33%
+
+Test Results for s008:
+Accuracy: 91.50%
+Precision: 90.29%
+Recall: 93.00%
+F1 Score: 91.63%
+FAR: 10.00%
+FRR: 7.00%
+
+Processing user: s018
+Training model for s018...
+Validating model for s018 on train validation set...
+Testing model for s018 on test set...
+
+Train Validation Results for s018:
+Accuracy: 95.00%
+Precision: 98.21%
+Recall: 91.67%
+F1 Score: 94.83%
+FAR: 1.67%
+FRR: 8.33%
+
+Test Results for s018:
+Accuracy: 94.00%
+Precision: 94.90%
+Recall: 93.00%
+F1 Score: 93.94%
+FAR: 5.00%
+FRR: 7.00%
+
+Processing user: s047
+Training model for s047...
+Validating model for s047 on train validation set...
+Testing model for s047 on test set...
+
+Train Validation Results for s047:
+Accuracy: 98.33%
+Precision: 98.33%
+Recall: 98.33%
+F1 Score: 98.33%
+FAR: 1.67%
+FRR: 1.67%
+
+Test Results for s047:
+Accuracy: 93.50%
+Precision: 93.94%
+Recall: 93.00%
+F1 Score: 93.47%
+FAR: 6.00%
+FRR: 7.00%
+
+Processing user: s033
+Training model for s033...
+Validating model for s033 on train validation set...
+Testing model for s033 on test set...
+
+Train Validation Results for s033:
+Accuracy: 100.00%
+Precision: 100.00%
+Recall: 100.00%
+F1 Score: 100.00%
+FAR: 0.00%
+FRR: 0.00%
+
+Test Results for s033:
+Accuracy: 99.50%
+Precision: 100.00%
+Recall: 99.00%
+F1 Score: 99.50%
+FAR: 0.00%
+FRR: 1.00%
+
+Processing user: s026
+Training model for s026...
+Validating model for s026 on train validation set...
+Testing model for s026 on test set...
+
+Train Validation Results for s026:
+Accuracy: 94.17%
+Precision: 96.49%
+Recall: 91.67%
+F1 Score: 94.02%
+FAR: 3.33%
+FRR: 8.33%
+
+Test Results for s026:
+Accuracy: 96.00%
+Precision: 95.10%
+Recall: 97.00%
+F1 Score: 96.04%
+FAR: 5.00%
+FRR: 3.00%
+
+Processing user: s048
+Training model for s048...
+Validating model for s048 on train validation set...
+Testing model for s048 on test set...
+
+Train Validation Results for s048:
+Accuracy: 89.17%
+Precision: 88.52%
+Recall: 90.00%
+F1 Score: 89.26%
+FAR: 11.67%
+FRR: 10.00%
+
+Test Results for s048:
+Accuracy: 94.50%
+Precision: 94.95%
+Recall: 94.00%
+F1 Score: 94.47%
+FAR: 5.00%
+FRR: 6.00%
+
+Processing user: s055
+Training model for s055...
+Validating model for s055 on train validation set...
+Testing model for s055 on test set...
+
+Train Validation Results for s055:
+Accuracy: 99.17%
+Precision: 100.00%
+Recall: 98.33%
+F1 Score: 99.16%
+FAR: 0.00%
+FRR: 1.67%
+
+Test Results for s055:
+Accuracy: 99.50%
+Precision: 100.00%
+Recall: 99.00%
+F1 Score: 99.50%
+FAR: 0.00%
+FRR: 1.00%
+
+Processing user: s024
+Training model for s024...
+Validating model for s024 on train validation set...
+Testing model for s024 on test set...
+
+Train Validation Results for s024:
+Accuracy: 99.17%
+Precision: 100.00%
+Recall: 98.33%
+F1 Score: 99.16%
+FAR: 0.00%
+FRR: 1.67%
+
+Test Results for s024:
+Accuracy: 98.50%
+Precision: 100.00%
+Recall: 97.00%
+F1 Score: 98.48%
+FAR: 0.00%
+FRR: 3.00%
+
+Processing user: s016
+Training model for s016...
+Validating model for s016 on train validation set...
+Testing model for s016 on test set...
+
+Train Validation Results for s016:
+Accuracy: 98.33%
+Precision: 98.33%
+Recall: 98.33%
+F1 Score: 98.33%
+FAR: 1.67%
+FRR: 1.67%
+
+Test Results for s016:
+Accuracy: 98.00%
+Precision: 98.98%
+Recall: 97.00%
+F1 Score: 97.98%
+FAR: 1.00%
+FRR: 3.00%
+
+Processing user: s053
+Training model for s053...
+Validating model for s053 on train validation set...
+Testing model for s053 on test set...
+
+Train Validation Results for s053:
+Accuracy: 99.17%
+Precision: 100.00%
+Recall: 98.33%
+F1 Score: 99.16%
+FAR: 0.00%
+FRR: 1.67%
+
+Test Results for s053:
+Accuracy: 99.00%
+Precision: 99.00%
+Recall: 99.00%
+F1 Score: 99.00%
+FAR: 1.00%
+FRR: 1.00%
+
+Processing user: s022
+Training model for s022...
+Validating model for s022 on train validation set...
+Testing model for s022 on test set...
+
+Train Validation Results for s022:
+Accuracy: 97.50%
+Precision: 96.72%
+Recall: 98.33%
+F1 Score: 97.52%
+FAR: 3.33%
+FRR: 1.67%
+
+Test Results for s022:
+Accuracy: 99.50%
+Precision: 99.01%
+Recall: 100.00%
+F1 Score: 99.50%
+FAR: 1.00%
+FRR: 0.00%
+
+Processing user: s052
+Training model for s052...
+Validating model for s052 on train validation set...
+Testing model for s052 on test set...
+
+Train Validation Results for s052:
+Accuracy: 100.00%
+Precision: 100.00%
+Recall: 100.00%
+F1 Score: 100.00%
+FAR: 0.00%
+FRR: 0.00%
+
+Test Results for s052:
+Accuracy: 98.50%
+Precision: 98.02%
+Recall: 99.00%
+F1 Score: 98.51%
+FAR: 2.00%
+FRR: 1.00%
+
+Processing user: s021
+Training model for s021...
+Validating model for s021 on train validation set...
+Testing model for s021 on test set...
+
+Train Validation Results for s021:
+Accuracy: 90.83%
+Precision: 91.53%
+Recall: 90.00%
+F1 Score: 90.76%
+FAR: 8.33%
+FRR: 10.00%
+
+Test Results for s021:
+Accuracy: 92.00%
+Precision: 91.18%
+Recall: 93.00%
+F1 Score: 92.08%
+FAR: 9.00%
+FRR: 7.00%
+
+Processing user: s039
+Training model for s039...
+Validating model for s039 on train validation set...
+Testing model for s039 on test set...
+
+Train Validation Results for s039:
+Accuracy: 98.33%
+Precision: 100.00%
+Recall: 96.67%
+F1 Score: 98.31%
+FAR: 0.00%
+FRR: 3.33%
+
+Test Results for s039:
+Accuracy: 94.00%
+Precision: 94.00%
+Recall: 94.00%
+F1 Score: 94.00%
+FAR: 6.00%
+FRR: 6.00%
+
+Processing user: s013
+Training model for s013...
+Validating model for s013 on train validation set...
+Testing model for s013 on test set...
+
+Train Validation Results for s013:
+Accuracy: 97.50%
+Precision: 98.31%
+Recall: 96.67%
+F1 Score: 97.48%
+FAR: 1.67%
+FRR: 3.33%
+
+Test Results for s013:
+Accuracy: 97.00%
+Precision: 96.08%
+Recall: 98.00%
+F1 Score: 97.03%
+FAR: 4.00%
+FRR: 2.00%
+
+Processing user: s046
+Training model for s046...
+Validating model for s046 on train validation set...
+Testing model for s046 on test set...
+
+Train Validation Results for s046:
+Accuracy: 91.67%
+Precision: 89.06%
+Recall: 95.00%
+F1 Score: 91.94%
+FAR: 11.67%
+FRR: 5.00%
+
+Test Results for s046:
+Accuracy: 94.50%
+Precision: 93.20%
+Recall: 96.00%
+F1 Score: 94.58%
+FAR: 7.00%
+FRR: 4.00%
+
+Processing user: s041
+Training model for s041...
+Validating model for s041 on train validation set...
+Testing model for s041 on test set...
+
+Train Validation Results for s041:
+Accuracy: 95.00%
+Precision: 93.55%
+Recall: 96.67%
+F1 Score: 95.08%
+FAR: 6.67%
+FRR: 3.33%
+
+Test Results for s041:
+Accuracy: 94.50%
+Precision: 93.20%
+Recall: 96.00%
+F1 Score: 94.58%
+FAR: 7.00%
+FRR: 4.00%
+
+Processing user: s002
+Training model for s002...
+Validating model for s002 on train validation set...
+Testing model for s002 on test set...
+
+Train Validation Results for s002:
+Accuracy: 90.83%
+Precision: 90.16%
+Recall: 91.67%
+F1 Score: 90.91%
+FAR: 10.00%
+FRR: 8.33%
+
+Test Results for s002:
+Accuracy: 90.50%
+Precision: 88.57%
+Recall: 93.00%
+F1 Score: 90.73%
+FAR: 12.00%
+FRR: 7.00%
+
+Processing user: s025
+Training model for s025...
+Validating model for s025 on train validation set...
+Testing model for s025 on test set...
+
+Train Validation Results for s025:
+Accuracy: 100.00%
+Precision: 100.00%
+Recall: 100.00%
+F1 Score: 100.00%
+FAR: 0.00%
+FRR: 0.00%
+
+Test Results for s025:
+Accuracy: 97.50%
+Precision: 96.12%
+Recall: 99.00%
+F1 Score: 97.54%
+FAR: 4.00%
+FRR: 1.00%
+
+Processing user: s007
+Training model for s007...
+Validating model for s007 on train validation set...
+Testing model for s007 on test set...
+
+Train Validation Results for s007:
+Accuracy: 92.50%
+Precision: 93.22%
+Recall: 91.67%
+F1 Score: 92.44%
+FAR: 6.67%
+FRR: 8.33%
+
+Test Results for s007:
+Accuracy: 92.00%
+Precision: 88.89%
+Recall: 96.00%
+F1 Score: 92.31%
+FAR: 12.00%
+FRR: 4.00%
+
+Processing user: s029
+Training model for s029...
+Validating model for s029 on train validation set...
+Testing model for s029 on test set...
+
+Train Validation Results for s029:
+Accuracy: 95.00%
+Precision: 95.00%
+Recall: 95.00%
+F1 Score: 95.00%
+FAR: 5.00%
+FRR: 5.00%
+
+Test Results for s029:
+Accuracy: 93.50%
+Precision: 93.07%
+Recall: 94.00%
+F1 Score: 93.53%
+FAR: 7.00%
+FRR: 6.00%
+
+Processing user: s003
+Training model for s003...
+Validating model for s003 on train validation set...
+Testing model for s003 on test set...
+
+Train Validation Results for s003:
+Accuracy: 95.83%
+Precision: 95.08%
+Recall: 96.67%
+F1 Score: 95.87%
+FAR: 5.00%
+FRR: 3.33%
+
+Test Results for s003:
+Accuracy: 95.00%
+Precision: 95.00%
+Recall: 95.00%
+F1 Score: 95.00%
+FAR: 5.00%
+FRR: 5.00%
+
+Processing user: s040
+Training model for s040...
+Validating model for s040 on train validation set...
+Testing model for s040 on test set...
+
+Train Validation Results for s040:
+Accuracy: 95.83%
+Precision: 96.61%
+Recall: 95.00%
+F1 Score: 95.80%
+FAR: 3.33%
+FRR: 5.00%
+
+Test Results for s040:
+Accuracy: 97.50%
+Precision: 97.03%
+Recall: 98.00%
+F1 Score: 97.51%
+FAR: 3.00%
+FRR: 2.00%
+
+Processing user: s057
+Training model for s057...
+Validating model for s057 on train validation set...
+Testing model for s057 on test set...
+
+Train Validation Results for s057:
+Accuracy: 94.17%
+Precision: 92.06%
+Recall: 96.67%
+F1 Score: 94.31%
+FAR: 8.33%
+FRR: 3.33%
+
+Test Results for s057:
+Accuracy: 93.00%
+Precision: 92.16%
+Recall: 94.00%
+F1 Score: 93.07%
+FAR: 8.00%
+FRR: 6.00%
+
+=== Train Validation Summary ===
+
+Overall Statistics:
+Total Users: 51
+Total Samples: 6120
+Overall Accuracy: 95.98%
+Average Precision: 95.93%
+Average Recall: 96.11%
+Average F1 Score: 95.99%
+Average FAR: 4.15%
+Average FRR: 3.89%
+
+Per-User Statistics:
+Login		Accuracy	Precision	Recall		F1 Score	FAR		FRR
+----------------------------------------------------------------------------------------------------
+s002		90.83%		90.16%		91.67%		90.91%		10.00%		8.33%
+s003		95.83%		95.08%		96.67%		95.87%		5.00%		3.33%
+s004		95.83%		95.08%		96.67%		95.87%		5.00%		3.33%
+s005		95.00%		93.55%		96.67%		95.08%		6.67%		3.33%
+s007		92.50%		93.22%		91.67%		92.44%		6.67%		8.33%
+s008		94.17%		92.06%		96.67%		94.31%		8.33%		3.33%
+s010		97.50%		100.00%		95.00%		97.44%		0.00%		5.00%
+s011		96.67%		96.67%		96.67%		96.67%		3.33%		3.33%
+s012		95.83%		95.08%		96.67%		95.87%		5.00%		3.33%
+s013		97.50%		98.31%		96.67%		97.48%		1.67%		3.33%
+s015		94.17%		93.44%		95.00%		94.21%		6.67%		5.00%
+s016		98.33%		98.33%		98.33%		98.33%		1.67%		1.67%
+s017		98.33%		98.33%		98.33%		98.33%		1.67%		1.67%
+s018		95.00%		98.21%		91.67%		94.83%		1.67%		8.33%
+s019		95.83%		98.25%		93.33%		95.73%		1.67%		6.67%
+s020		90.83%		92.98%		88.33%		90.60%		6.67%		11.67%
+s021		90.83%		91.53%		90.00%		90.76%		8.33%		10.00%
+s022		97.50%		96.72%		98.33%		97.52%		3.33%		1.67%
+s024		99.17%		100.00%		98.33%		99.16%		0.00%		1.67%
+s025		100.00%		100.00%		100.00%		100.00%		0.00%		0.00%
+s026		94.17%		96.49%		91.67%		94.02%		3.33%		8.33%
+s027		98.33%		98.33%		98.33%		98.33%		1.67%		1.67%
+s028		96.67%		95.16%		98.33%		96.72%		5.00%		1.67%
+s029		95.00%		95.00%		95.00%		95.00%		5.00%		5.00%
+s030		93.33%		91.94%		95.00%		93.44%		8.33%		5.00%
+s031		95.83%		96.61%		95.00%		95.80%		3.33%		5.00%
+s032		87.50%		88.14%		86.67%		87.39%		11.67%		13.33%
+s033		100.00%		100.00%		100.00%		100.00%		0.00%		0.00%
+s034		96.67%		98.28%		95.00%		96.61%		1.67%		5.00%
+s035		98.33%		96.77%		100.00%		98.36%		3.33%		0.00%
+s036		100.00%		100.00%		100.00%		100.00%		0.00%		0.00%
+s037		96.67%		96.67%		96.67%		96.67%		3.33%		3.33%
+s038		97.50%		98.31%		96.67%		97.48%		1.67%		3.33%
+s039		98.33%		100.00%		96.67%		98.31%		0.00%		3.33%
+s040		95.83%		96.61%		95.00%		95.80%		3.33%		5.00%
+s041		95.00%		93.55%		96.67%		95.08%		6.67%		3.33%
+s042		98.33%		98.33%		98.33%		98.33%		1.67%		1.67%
+s043		100.00%		100.00%		100.00%		100.00%		0.00%		0.00%
+s044		100.00%		100.00%		100.00%		100.00%		0.00%		0.00%
+s046		91.67%		89.06%		95.00%		91.94%		11.67%		5.00%
+s047		98.33%		98.33%		98.33%		98.33%		1.67%		1.67%
+s048		89.17%		88.52%		90.00%		89.26%		11.67%		10.00%
+s049		97.50%		96.72%		98.33%		97.52%		3.33%		1.67%
+s050		99.17%		98.36%		100.00%		99.17%		1.67%		0.00%
+s051		91.67%		90.32%		93.33%		91.80%		10.00%		6.67%
+s052		100.00%		100.00%		100.00%		100.00%		0.00%		0.00%
+s053		99.17%		100.00%		98.33%		99.16%		0.00%		1.67%
+s054		92.50%		86.96%		100.00%		93.02%		15.00%		0.00%
+s055		99.17%		100.00%		98.33%		99.16%		0.00%		1.67%
+s056		93.33%		94.83%		91.67%		93.22%		5.00%		8.33%
+s057		94.17%		92.06%		96.67%		94.31%		8.33%		3.33%
+
+=== Test Summary ===
+
+Overall Statistics:
+Total Users: 51
+Total Samples: 10200
+Overall Accuracy: 95.34%
+Average Precision: 94.90%
+Average Recall: 95.90%
+Average F1 Score: 95.39%
+Average FAR: 5.22%
+Average FRR: 4.10%
+
+Per-User Statistics:
+Login		Accuracy	Precision	Recall		F1 Score	FAR		FRR
+----------------------------------------------------------------------------------------------------
+s002		90.50%		88.57%		93.00%		90.73%		12.00%		7.00%
+s003		95.00%		95.00%		95.00%		95.00%		5.00%		5.00%
+s004		97.50%		97.98%		97.00%		97.49%		2.00%		3.00%
+s005		96.50%		96.04%		97.00%		96.52%		4.00%		3.00%
+s007		92.00%		88.89%		96.00%		92.31%		12.00%		4.00%
+s008		91.50%		90.29%		93.00%		91.63%		10.00%		7.00%
+s010		96.00%		96.94%		95.00%		95.96%		3.00%		5.00%
+s011		96.50%		97.94%		95.00%		96.45%		2.00%		5.00%
+s012		96.50%		95.15%		98.00%		96.55%		5.00%		2.00%
+s013		97.00%		96.08%		98.00%		97.03%		4.00%		2.00%
+s015		91.00%		90.20%		92.00%		91.09%		10.00%		8.00%
+s016		98.00%		98.98%		97.00%		97.98%		1.00%		3.00%
+s017		95.50%		95.05%		96.00%		95.52%		5.00%		4.00%
+s018		94.00%		94.90%		93.00%		93.94%		5.00%		7.00%
+s019		97.00%		97.00%		97.00%		97.00%		3.00%		3.00%
+s020		89.00%		89.00%		89.00%		89.00%		11.00%		11.00%
+s021		92.00%		91.18%		93.00%		92.08%		9.00%		7.00%
+s022		99.50%		99.01%		100.00%		99.50%		1.00%		0.00%
+s024		98.50%		100.00%		97.00%		98.48%		0.00%		3.00%
+s025		97.50%		96.12%		99.00%		97.54%		4.00%		1.00%
+s026		96.00%		95.10%		97.00%		96.04%		5.00%		3.00%
+s027		96.00%		95.10%		97.00%		96.04%		5.00%		3.00%
+s028		98.00%		97.06%		99.00%		98.02%		3.00%		1.00%
+s029		93.50%		93.07%		94.00%		93.53%		7.00%		6.00%
+s030		97.00%		96.08%		98.00%		97.03%		4.00%		2.00%
+s031		91.50%		91.09%		92.00%		91.54%		9.00%		8.00%
+s032		86.00%		83.96%		89.00%		86.41%		17.00%		11.00%
+s033		99.50%		100.00%		99.00%		99.50%		0.00%		1.00%
+s034		93.00%		92.16%		94.00%		93.07%		8.00%		6.00%
+s035		96.50%		95.15%		98.00%		96.55%		5.00%		2.00%
+s036		99.50%		99.01%		100.00%		99.50%		1.00%		0.00%
+s037		95.50%		98.92%		92.00%		95.34%		1.00%		8.00%
+s038		97.00%		96.08%		98.00%		97.03%		4.00%		2.00%
+s039		94.00%		94.00%		94.00%		94.00%		6.00%		6.00%
+s040		97.50%		97.03%		98.00%		97.51%		3.00%		2.00%
+s041		94.50%		93.20%		96.00%		94.58%		7.00%		4.00%
+s042		96.50%		96.04%		97.00%		96.52%		4.00%		3.00%
+s043		97.50%		97.98%		97.00%		97.49%		2.00%		3.00%
+s044		96.50%		96.97%		96.00%		96.48%		3.00%		4.00%
+s046		94.50%		93.20%		96.00%		94.58%		7.00%		4.00%
+s047		93.50%		93.94%		93.00%		93.47%		6.00%		7.00%
+s048		94.50%		94.95%		94.00%		94.47%		5.00%		6.00%
+s049		99.50%		99.01%		100.00%		99.50%		1.00%		0.00%
+s050		94.50%		93.20%		96.00%		94.58%		7.00%		4.00%
+s051		96.00%		95.10%		97.00%		96.04%		5.00%		3.00%
+s052		98.50%		98.02%		99.00%		98.51%		2.00%		1.00%
+s053		99.00%		99.00%		99.00%		99.00%		1.00%		1.00%
+s054		90.00%		87.04%		94.00%		90.38%		14.00%		6.00%
+s055		99.50%		100.00%		99.00%		99.50%		0.00%		1.00%
+s056		93.50%		92.23%		95.00%		93.60%		8.00%		5.00%
+s057		93.00%		92.16%		94.00%		93.07%		8.00%		6.00%
