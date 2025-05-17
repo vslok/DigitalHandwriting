@@ -1,0 +1,1615 @@
+Starting model training and validation...
+
+
+Processing user: s030
+
+Tuning hyperparameters for user s030...
+Best parameters for s030:
+activation: relu
+alpha: 0.0001
+hidden_layer_sizes: (50,)
+learning_rate_init: 0.1
+max_iter: 200
+Best cross-validation score: 0.9625
+Validating model for s030 on train validation set...
+Testing model for s030 on test set...
+
+Train Validation Results for s030:
+Accuracy: 95.00%
+Precision: 95.00%
+Recall: 95.00%
+F1 Score: 95.00%
+FAR: 5.00%
+FRR: 5.00%
+
+Test Results for s030:
+Accuracy: 97.00%
+Precision: 97.00%
+Recall: 97.00%
+F1 Score: 97.00%
+FAR: 3.00%
+FRR: 3.00%
+
+Processing user: s056
+
+Tuning hyperparameters for user s056...
+Best parameters for s056:
+activation: tanh
+alpha: 0.0001
+hidden_layer_sizes: (100,)
+learning_rate_init: 0.01
+max_iter: 200
+Best cross-validation score: 0.9437
+Validating model for s056 on train validation set...
+Testing model for s056 on test set...
+
+Train Validation Results for s056:
+Accuracy: 93.33%
+Precision: 96.43%
+Recall: 90.00%
+F1 Score: 93.10%
+FAR: 3.33%
+FRR: 10.00%
+
+Test Results for s056:
+Accuracy: 92.50%
+Precision: 90.48%
+Recall: 95.00%
+F1 Score: 92.68%
+FAR: 10.00%
+FRR: 5.00%
+
+Processing user: s043
+
+Tuning hyperparameters for user s043...
+Best parameters for s043:
+activation: relu
+alpha: 0.0001
+hidden_layer_sizes: (100, 50)
+learning_rate_init: 0.01
+max_iter: 200
+Best cross-validation score: 0.9771
+Validating model for s043 on train validation set...
+Testing model for s043 on test set...
+
+Train Validation Results for s043:
+Accuracy: 97.50%
+Precision: 96.72%
+Recall: 98.33%
+F1 Score: 97.52%
+FAR: 3.33%
+FRR: 1.67%
+
+Test Results for s043:
+Accuracy: 98.50%
+Precision: 98.02%
+Recall: 99.00%
+F1 Score: 98.51%
+FAR: 2.00%
+FRR: 1.00%
+
+Processing user: s004
+
+Tuning hyperparameters for user s004...
+Best parameters for s004:
+activation: relu
+alpha: 0.001
+hidden_layer_sizes: (50, 50)
+learning_rate_init: 0.1
+max_iter: 200
+Best cross-validation score: 0.9417
+Validating model for s004 on train validation set...
+Testing model for s004 on test set...
+
+Train Validation Results for s004:
+Accuracy: 95.00%
+Precision: 93.55%
+Recall: 96.67%
+F1 Score: 95.08%
+FAR: 6.67%
+FRR: 3.33%
+
+Test Results for s004:
+Accuracy: 95.50%
+Precision: 95.96%
+Recall: 95.00%
+F1 Score: 95.48%
+FAR: 4.00%
+FRR: 5.00%
+
+Processing user: s050
+
+Tuning hyperparameters for user s050...
+Best parameters for s050:
+activation: relu
+alpha: 0.001
+hidden_layer_sizes: (50, 50)
+learning_rate_init: 0.1
+max_iter: 200
+Best cross-validation score: 0.9250
+Validating model for s050 on train validation set...
+Testing model for s050 on test set...
+
+Train Validation Results for s050:
+Accuracy: 98.33%
+Precision: 98.33%
+Recall: 98.33%
+F1 Score: 98.33%
+FAR: 1.67%
+FRR: 1.67%
+
+Test Results for s050:
+Accuracy: 93.00%
+Precision: 94.79%
+Recall: 91.00%
+F1 Score: 92.86%
+FAR: 5.00%
+FRR: 9.00%
+
+Processing user: s051
+
+Tuning hyperparameters for user s051...
+Best parameters for s051:
+activation: relu
+alpha: 0.0001
+hidden_layer_sizes: (100,)
+learning_rate_init: 0.1
+max_iter: 200
+Best cross-validation score: 0.9229
+Validating model for s051 on train validation set...
+Testing model for s051 on test set...
+
+Train Validation Results for s051:
+Accuracy: 87.50%
+Precision: 90.91%
+Recall: 83.33%
+F1 Score: 86.96%
+FAR: 8.33%
+FRR: 16.67%
+
+Test Results for s051:
+Accuracy: 94.00%
+Precision: 94.00%
+Recall: 94.00%
+F1 Score: 94.00%
+FAR: 6.00%
+FRR: 6.00%
+
+Processing user: s005
+
+Tuning hyperparameters for user s005...
+Best parameters for s005:
+activation: relu
+alpha: 0.01
+hidden_layer_sizes: (50, 50)
+learning_rate_init: 0.1
+max_iter: 200
+Best cross-validation score: 0.9521
+Validating model for s005 on train validation set...
+Testing model for s005 on test set...
+
+Train Validation Results for s005:
+Accuracy: 94.17%
+Precision: 94.92%
+Recall: 93.33%
+F1 Score: 94.12%
+FAR: 5.00%
+FRR: 6.67%
+
+Test Results for s005:
+Accuracy: 94.50%
+Precision: 94.95%
+Recall: 94.00%
+F1 Score: 94.47%
+FAR: 5.00%
+FRR: 6.00%
+
+Processing user: s020
+
+Tuning hyperparameters for user s020...
+Best parameters for s020:
+activation: relu
+alpha: 0.0001
+hidden_layer_sizes: (100,)
+learning_rate_init: 0.01
+max_iter: 200
+Best cross-validation score: 0.9458
+Validating model for s020 on train validation set...
+Testing model for s020 on test set...
+
+Train Validation Results for s020:
+Accuracy: 89.17%
+Precision: 89.83%
+Recall: 88.33%
+F1 Score: 89.08%
+FAR: 10.00%
+FRR: 11.67%
+
+Test Results for s020:
+Accuracy: 86.00%
+Precision: 87.50%
+Recall: 84.00%
+F1 Score: 85.71%
+FAR: 12.00%
+FRR: 16.00%
+
+Processing user: s027
+
+Tuning hyperparameters for user s027...
+Best parameters for s027:
+activation: relu
+alpha: 0.01
+hidden_layer_sizes: (50,)
+learning_rate_init: 0.1
+max_iter: 200
+Best cross-validation score: 0.9729
+Validating model for s027 on train validation set...
+Testing model for s027 on test set...
+
+Train Validation Results for s027:
+Accuracy: 94.17%
+Precision: 90.77%
+Recall: 98.33%
+F1 Score: 94.40%
+FAR: 10.00%
+FRR: 1.67%
+
+Test Results for s027:
+Accuracy: 92.50%
+Precision: 90.48%
+Recall: 95.00%
+F1 Score: 92.68%
+FAR: 10.00%
+FRR: 5.00%
+
+Processing user: s042
+
+Tuning hyperparameters for user s042...
+Best parameters for s042:
+activation: relu
+alpha: 0.001
+hidden_layer_sizes: (50, 50)
+learning_rate_init: 0.1
+max_iter: 200
+Best cross-validation score: 0.9854
+Validating model for s042 on train validation set...
+Testing model for s042 on test set...
+
+Train Validation Results for s042:
+Accuracy: 98.33%
+Precision: 98.33%
+Recall: 98.33%
+F1 Score: 98.33%
+FAR: 1.67%
+FRR: 1.67%
+
+Test Results for s042:
+Accuracy: 96.00%
+Precision: 96.00%
+Recall: 96.00%
+F1 Score: 96.00%
+FAR: 4.00%
+FRR: 4.00%
+
+Processing user: s011
+
+Tuning hyperparameters for user s011...
+Best parameters for s011:
+activation: relu
+alpha: 0.001
+hidden_layer_sizes: (100, 50)
+learning_rate_init: 0.01
+max_iter: 200
+Best cross-validation score: 0.9500
+Validating model for s011 on train validation set...
+Testing model for s011 on test set...
+
+Train Validation Results for s011:
+Accuracy: 94.17%
+Precision: 94.92%
+Recall: 93.33%
+F1 Score: 94.12%
+FAR: 5.00%
+FRR: 6.67%
+
+Test Results for s011:
+Accuracy: 93.00%
+Precision: 95.74%
+Recall: 90.00%
+F1 Score: 92.78%
+FAR: 4.00%
+FRR: 10.00%
+
+Processing user: s054
+
+Tuning hyperparameters for user s054...
+Best parameters for s054:
+activation: relu
+alpha: 0.0001
+hidden_layer_sizes: (100,)
+learning_rate_init: 0.1
+max_iter: 200
+Best cross-validation score: 0.9313
+Validating model for s054 on train validation set...
+Testing model for s054 on test set...
+
+Train Validation Results for s054:
+Accuracy: 94.17%
+Precision: 89.55%
+Recall: 100.00%
+F1 Score: 94.49%
+FAR: 11.67%
+FRR: 0.00%
+
+Test Results for s054:
+Accuracy: 90.00%
+Precision: 87.04%
+Recall: 94.00%
+F1 Score: 90.38%
+FAR: 14.00%
+FRR: 6.00%
+
+Processing user: s035
+
+Tuning hyperparameters for user s035...
+Best parameters for s035:
+activation: relu
+alpha: 0.0001
+hidden_layer_sizes: (100, 50)
+learning_rate_init: 0.01
+max_iter: 200
+Best cross-validation score: 0.9708
+Validating model for s035 on train validation set...
+Testing model for s035 on test set...
+
+Train Validation Results for s035:
+Accuracy: 97.50%
+Precision: 95.24%
+Recall: 100.00%
+F1 Score: 97.56%
+FAR: 5.00%
+FRR: 0.00%
+
+Test Results for s035:
+Accuracy: 95.50%
+Precision: 94.17%
+Recall: 97.00%
+F1 Score: 95.57%
+FAR: 6.00%
+FRR: 3.00%
+
+Processing user: s044
+
+Tuning hyperparameters for user s044...
+Best parameters for s044:
+activation: relu
+alpha: 0.0001
+hidden_layer_sizes: (50,)
+learning_rate_init: 0.1
+max_iter: 200
+Best cross-validation score: 0.9708
+Validating model for s044 on train validation set...
+Testing model for s044 on test set...
+
+Train Validation Results for s044:
+Accuracy: 98.33%
+Precision: 100.00%
+Recall: 96.67%
+F1 Score: 98.31%
+FAR: 0.00%
+FRR: 3.33%
+
+Test Results for s044:
+Accuracy: 98.00%
+Precision: 98.00%
+Recall: 98.00%
+F1 Score: 98.00%
+FAR: 2.00%
+FRR: 2.00%
+
+Processing user: s019
+
+Tuning hyperparameters for user s019...
+Best parameters for s019:
+activation: relu
+alpha: 0.0001
+hidden_layer_sizes: (50,)
+learning_rate_init: 0.1
+max_iter: 200
+Best cross-validation score: 0.9750
+Validating model for s019 on train validation set...
+Testing model for s019 on test set...
+
+Train Validation Results for s019:
+Accuracy: 95.83%
+Precision: 98.25%
+Recall: 93.33%
+F1 Score: 95.73%
+FAR: 1.67%
+FRR: 6.67%
+
+Test Results for s019:
+Accuracy: 95.50%
+Precision: 98.92%
+Recall: 92.00%
+F1 Score: 95.34%
+FAR: 1.00%
+FRR: 8.00%
+
+Processing user: s032
+
+Tuning hyperparameters for user s032...
+Best parameters for s032:
+activation: relu
+alpha: 0.0001
+hidden_layer_sizes: (100,)
+learning_rate_init: 0.1
+max_iter: 200
+Best cross-validation score: 0.8708
+Validating model for s032 on train validation set...
+Testing model for s032 on test set...
+
+Train Validation Results for s032:
+Accuracy: 86.67%
+Precision: 92.31%
+Recall: 80.00%
+F1 Score: 85.71%
+FAR: 6.67%
+FRR: 20.00%
+
+Test Results for s032:
+Accuracy: 84.50%
+Precision: 87.10%
+Recall: 81.00%
+F1 Score: 83.94%
+FAR: 12.00%
+FRR: 19.00%
+
+Processing user: s036
+
+Tuning hyperparameters for user s036...
+Best parameters for s036:
+activation: tanh
+alpha: 0.0001
+hidden_layer_sizes: (100, 50)
+learning_rate_init: 0.1
+max_iter: 200
+Best cross-validation score: 1.0000
+Validating model for s036 on train validation set...
+Testing model for s036 on test set...
+
+Train Validation Results for s036:
+Accuracy: 100.00%
+Precision: 100.00%
+Recall: 100.00%
+F1 Score: 100.00%
+FAR: 0.00%
+FRR: 0.00%
+
+Test Results for s036:
+Accuracy: 99.50%
+Precision: 99.01%
+Recall: 100.00%
+F1 Score: 99.50%
+FAR: 1.00%
+FRR: 0.00%
+
+Processing user: s049
+
+Tuning hyperparameters for user s049...
+Best parameters for s049:
+activation: relu
+alpha: 0.0001
+hidden_layer_sizes: (100, 50)
+learning_rate_init: 0.01
+max_iter: 200
+Best cross-validation score: 0.9833
+Validating model for s049 on train validation set...
+Testing model for s049 on test set...
+
+Train Validation Results for s049:
+Accuracy: 97.50%
+Precision: 96.72%
+Recall: 98.33%
+F1 Score: 97.52%
+FAR: 3.33%
+FRR: 1.67%
+
+Test Results for s049:
+Accuracy: 99.50%
+Precision: 100.00%
+Recall: 99.00%
+F1 Score: 99.50%
+FAR: 0.00%
+FRR: 1.00%
+
+Processing user: s012
+
+Tuning hyperparameters for user s012...
+Best parameters for s012:
+activation: relu
+alpha: 0.01
+hidden_layer_sizes: (100,)
+learning_rate_init: 0.1
+max_iter: 200
+Best cross-validation score: 0.9708
+Validating model for s012 on train validation set...
+Testing model for s012 on test set...
+
+Train Validation Results for s012:
+Accuracy: 95.00%
+Precision: 95.00%
+Recall: 95.00%
+F1 Score: 95.00%
+FAR: 5.00%
+FRR: 5.00%
+
+Test Results for s012:
+Accuracy: 95.00%
+Precision: 93.27%
+Recall: 97.00%
+F1 Score: 95.10%
+FAR: 7.00%
+FRR: 3.00%
+
+Processing user: s017
+
+Tuning hyperparameters for user s017...
+Best parameters for s017:
+activation: relu
+alpha: 0.0001
+hidden_layer_sizes: (100,)
+learning_rate_init: 0.1
+max_iter: 200
+Best cross-validation score: 0.9792
+Validating model for s017 on train validation set...
+Testing model for s017 on test set...
+
+Train Validation Results for s017:
+Accuracy: 98.33%
+Precision: 100.00%
+Recall: 96.67%
+F1 Score: 98.31%
+FAR: 0.00%
+FRR: 3.33%
+
+Test Results for s017:
+Accuracy: 96.50%
+Precision: 96.97%
+Recall: 96.00%
+F1 Score: 96.48%
+FAR: 3.00%
+FRR: 4.00%
+
+Processing user: s015
+
+Tuning hyperparameters for user s015...
+Best parameters for s015:
+activation: relu
+alpha: 0.001
+hidden_layer_sizes: (50,)
+learning_rate_init: 0.1
+max_iter: 200
+Best cross-validation score: 0.9187
+Validating model for s015 on train validation set...
+Testing model for s015 on test set...
+
+Train Validation Results for s015:
+Accuracy: 94.17%
+Precision: 93.44%
+Recall: 95.00%
+F1 Score: 94.21%
+FAR: 6.67%
+FRR: 5.00%
+
+Test Results for s015:
+Accuracy: 93.00%
+Precision: 93.00%
+Recall: 93.00%
+F1 Score: 93.00%
+FAR: 7.00%
+FRR: 7.00%
+
+Processing user: s031
+
+Tuning hyperparameters for user s031...
+Best parameters for s031:
+activation: relu
+alpha: 0.01
+hidden_layer_sizes: (100,)
+learning_rate_init: 0.1
+max_iter: 200
+Best cross-validation score: 0.8750
+Validating model for s031 on train validation set...
+Testing model for s031 on test set...
+
+Train Validation Results for s031:
+Accuracy: 91.67%
+Precision: 94.64%
+Recall: 88.33%
+F1 Score: 91.38%
+FAR: 5.00%
+FRR: 11.67%
+
+Test Results for s031:
+Accuracy: 89.00%
+Precision: 90.62%
+Recall: 87.00%
+F1 Score: 88.78%
+FAR: 9.00%
+FRR: 13.00%
+
+Processing user: s034
+
+Tuning hyperparameters for user s034...
+Best parameters for s034:
+activation: relu
+alpha: 0.0001
+hidden_layer_sizes: (100,)
+learning_rate_init: 0.1
+max_iter: 200
+Best cross-validation score: 0.9354
+Validating model for s034 on train validation set...
+Testing model for s034 on test set...
+
+Train Validation Results for s034:
+Accuracy: 92.50%
+Precision: 90.48%
+Recall: 95.00%
+F1 Score: 92.68%
+FAR: 10.00%
+FRR: 5.00%
+
+Test Results for s034:
+Accuracy: 91.50%
+Precision: 88.07%
+Recall: 96.00%
+F1 Score: 91.87%
+FAR: 13.00%
+FRR: 4.00%
+
+Processing user: s037
+
+Tuning hyperparameters for user s037...
+Best parameters for s037:
+activation: relu
+alpha: 0.001
+hidden_layer_sizes: (100, 50)
+learning_rate_init: 0.01
+max_iter: 200
+Best cross-validation score: 0.9167
+Validating model for s037 on train validation set...
+Testing model for s037 on test set...
+
+Train Validation Results for s037:
+Accuracy: 92.50%
+Precision: 91.80%
+Recall: 93.33%
+F1 Score: 92.56%
+FAR: 8.33%
+FRR: 6.67%
+
+Test Results for s037:
+Accuracy: 93.00%
+Precision: 91.35%
+Recall: 95.00%
+F1 Score: 93.14%
+FAR: 9.00%
+FRR: 5.00%
+
+Processing user: s028
+
+Tuning hyperparameters for user s028...
+Best parameters for s028:
+activation: relu
+alpha: 0.01
+hidden_layer_sizes: (100,)
+learning_rate_init: 0.1
+max_iter: 200
+Best cross-validation score: 0.9604
+Validating model for s028 on train validation set...
+Testing model for s028 on test set...
+
+Train Validation Results for s028:
+Accuracy: 93.33%
+Precision: 89.39%
+Recall: 98.33%
+F1 Score: 93.65%
+FAR: 11.67%
+FRR: 1.67%
+
+Test Results for s028:
+Accuracy: 96.00%
+Precision: 93.40%
+Recall: 99.00%
+F1 Score: 96.12%
+FAR: 7.00%
+FRR: 1.00%
+
+Processing user: s010
+
+Tuning hyperparameters for user s010...
+Best parameters for s010:
+activation: relu
+alpha: 0.0001
+hidden_layer_sizes: (50,)
+learning_rate_init: 0.1
+max_iter: 200
+Best cross-validation score: 0.9771
+Validating model for s010 on train validation set...
+Testing model for s010 on test set...
+
+Train Validation Results for s010:
+Accuracy: 97.50%
+Precision: 100.00%
+Recall: 95.00%
+F1 Score: 97.44%
+FAR: 0.00%
+FRR: 5.00%
+
+Test Results for s010:
+Accuracy: 94.50%
+Precision: 94.06%
+Recall: 95.00%
+F1 Score: 94.53%
+FAR: 6.00%
+FRR: 5.00%
+
+Processing user: s038
+
+Tuning hyperparameters for user s038...
+Best parameters for s038:
+activation: relu
+alpha: 0.0001
+hidden_layer_sizes: (50, 50)
+learning_rate_init: 0.1
+max_iter: 200
+Best cross-validation score: 0.9563
+Validating model for s038 on train validation set...
+Testing model for s038 on test set...
+
+Train Validation Results for s038:
+Accuracy: 96.67%
+Precision: 100.00%
+Recall: 93.33%
+F1 Score: 96.55%
+FAR: 0.00%
+FRR: 6.67%
+
+Test Results for s038:
+Accuracy: 94.50%
+Precision: 95.88%
+Recall: 93.00%
+F1 Score: 94.42%
+FAR: 4.00%
+FRR: 7.00%
+
+Processing user: s008
+
+Tuning hyperparameters for user s008...
+Best parameters for s008:
+activation: relu
+alpha: 0.0001
+hidden_layer_sizes: (50,)
+learning_rate_init: 0.1
+max_iter: 200
+Best cross-validation score: 0.9292
+Validating model for s008 on train validation set...
+Testing model for s008 on test set...
+
+Train Validation Results for s008:
+Accuracy: 88.33%
+Precision: 83.82%
+Recall: 95.00%
+F1 Score: 89.06%
+FAR: 18.33%
+FRR: 5.00%
+
+Test Results for s008:
+Accuracy: 88.00%
+Precision: 83.33%
+Recall: 95.00%
+F1 Score: 88.79%
+FAR: 19.00%
+FRR: 5.00%
+
+Processing user: s018
+
+Tuning hyperparameters for user s018...
+Best parameters for s018:
+activation: relu
+alpha: 0.001
+hidden_layer_sizes: (100,)
+learning_rate_init: 0.1
+max_iter: 200
+Best cross-validation score: 0.9208
+Validating model for s018 on train validation set...
+Testing model for s018 on test set...
+
+Train Validation Results for s018:
+Accuracy: 90.00%
+Precision: 92.86%
+Recall: 86.67%
+F1 Score: 89.66%
+FAR: 6.67%
+FRR: 13.33%
+
+Test Results for s018:
+Accuracy: 92.50%
+Precision: 94.74%
+Recall: 90.00%
+F1 Score: 92.31%
+FAR: 5.00%
+FRR: 10.00%
+
+Processing user: s047
+
+Tuning hyperparameters for user s047...
+Best parameters for s047:
+activation: tanh
+alpha: 0.0001
+hidden_layer_sizes: (100,)
+learning_rate_init: 0.01
+max_iter: 200
+Best cross-validation score: 0.9250
+Validating model for s047 on train validation set...
+Testing model for s047 on test set...
+
+Train Validation Results for s047:
+Accuracy: 95.83%
+Precision: 98.25%
+Recall: 93.33%
+F1 Score: 95.73%
+FAR: 1.67%
+FRR: 6.67%
+
+Test Results for s047:
+Accuracy: 90.50%
+Precision: 90.91%
+Recall: 90.00%
+F1 Score: 90.45%
+FAR: 9.00%
+FRR: 10.00%
+
+Processing user: s033
+
+Tuning hyperparameters for user s033...
+Best parameters for s033:
+activation: relu
+alpha: 0.001
+hidden_layer_sizes: (100, 50)
+learning_rate_init: 0.1
+max_iter: 200
+Best cross-validation score: 0.9854
+Validating model for s033 on train validation set...
+Testing model for s033 on test set...
+
+Train Validation Results for s033:
+Accuracy: 98.33%
+Precision: 100.00%
+Recall: 96.67%
+F1 Score: 98.31%
+FAR: 0.00%
+FRR: 3.33%
+
+Test Results for s033:
+Accuracy: 96.00%
+Precision: 98.94%
+Recall: 93.00%
+F1 Score: 95.88%
+FAR: 1.00%
+FRR: 7.00%
+
+Processing user: s026
+
+Tuning hyperparameters for user s026...
+Best parameters for s026:
+activation: relu
+alpha: 0.01
+hidden_layer_sizes: (100,)
+learning_rate_init: 0.1
+max_iter: 200
+Best cross-validation score: 0.9333
+Validating model for s026 on train validation set...
+Testing model for s026 on test set...
+
+Train Validation Results for s026:
+Accuracy: 92.50%
+Precision: 91.80%
+Recall: 93.33%
+F1 Score: 92.56%
+FAR: 8.33%
+FRR: 6.67%
+
+Test Results for s026:
+Accuracy: 94.00%
+Precision: 91.51%
+Recall: 97.00%
+F1 Score: 94.17%
+FAR: 9.00%
+FRR: 3.00%
+
+Processing user: s048
+
+Tuning hyperparameters for user s048...
+Best parameters for s048:
+activation: relu
+alpha: 0.001
+hidden_layer_sizes: (50,)
+learning_rate_init: 0.1
+max_iter: 200
+Best cross-validation score: 0.9354
+Validating model for s048 on train validation set...
+Testing model for s048 on test set...
+
+Train Validation Results for s048:
+Accuracy: 88.33%
+Precision: 87.10%
+Recall: 90.00%
+F1 Score: 88.52%
+FAR: 13.33%
+FRR: 10.00%
+
+Test Results for s048:
+Accuracy: 92.50%
+Precision: 92.93%
+Recall: 92.00%
+F1 Score: 92.46%
+FAR: 7.00%
+FRR: 8.00%
+
+Processing user: s055
+
+Tuning hyperparameters for user s055...
+Best parameters for s055:
+activation: relu
+alpha: 0.0001
+hidden_layer_sizes: (50,)
+learning_rate_init: 0.1
+max_iter: 200
+Best cross-validation score: 0.9771
+Validating model for s055 on train validation set...
+Testing model for s055 on test set...
+
+Train Validation Results for s055:
+Accuracy: 97.50%
+Precision: 98.31%
+Recall: 96.67%
+F1 Score: 97.48%
+FAR: 1.67%
+FRR: 3.33%
+
+Test Results for s055:
+Accuracy: 97.50%
+Precision: 97.03%
+Recall: 98.00%
+F1 Score: 97.51%
+FAR: 3.00%
+FRR: 2.00%
+
+Processing user: s024
+
+Tuning hyperparameters for user s024...
+Best parameters for s024:
+activation: relu
+alpha: 0.0001
+hidden_layer_sizes: (50,)
+learning_rate_init: 0.1
+max_iter: 200
+Best cross-validation score: 0.9792
+Validating model for s024 on train validation set...
+Testing model for s024 on test set...
+
+Train Validation Results for s024:
+Accuracy: 97.50%
+Precision: 96.72%
+Recall: 98.33%
+F1 Score: 97.52%
+FAR: 3.33%
+FRR: 1.67%
+
+Test Results for s024:
+Accuracy: 97.50%
+Precision: 98.97%
+Recall: 96.00%
+F1 Score: 97.46%
+FAR: 1.00%
+FRR: 4.00%
+
+Processing user: s016
+
+Tuning hyperparameters for user s016...
+Best parameters for s016:
+activation: relu
+alpha: 0.001
+hidden_layer_sizes: (50,)
+learning_rate_init: 0.1
+max_iter: 200
+Best cross-validation score: 0.9688
+Validating model for s016 on train validation set...
+Testing model for s016 on test set...
+
+Train Validation Results for s016:
+Accuracy: 94.17%
+Precision: 98.18%
+Recall: 90.00%
+F1 Score: 93.91%
+FAR: 1.67%
+FRR: 10.00%
+
+Test Results for s016:
+Accuracy: 95.50%
+Precision: 100.00%
+Recall: 91.00%
+F1 Score: 95.29%
+FAR: 0.00%
+FRR: 9.00%
+
+Processing user: s053
+
+Tuning hyperparameters for user s053...
+Best parameters for s053:
+activation: relu
+alpha: 0.0001
+hidden_layer_sizes: (50, 50)
+learning_rate_init: 0.1
+max_iter: 200
+Best cross-validation score: 0.9771
+Validating model for s053 on train validation set...
+Testing model for s053 on test set...
+
+Train Validation Results for s053:
+Accuracy: 96.67%
+Precision: 95.16%
+Recall: 98.33%
+F1 Score: 96.72%
+FAR: 5.00%
+FRR: 1.67%
+
+Test Results for s053:
+Accuracy: 94.50%
+Precision: 90.83%
+Recall: 99.00%
+F1 Score: 94.74%
+FAR: 10.00%
+FRR: 1.00%
+
+Processing user: s022
+
+Tuning hyperparameters for user s022...
+Best parameters for s022:
+activation: relu
+alpha: 0.01
+hidden_layer_sizes: (50,)
+learning_rate_init: 0.1
+max_iter: 200
+Best cross-validation score: 0.9833
+Validating model for s022 on train validation set...
+Testing model for s022 on test set...
+
+Train Validation Results for s022:
+Accuracy: 96.67%
+Precision: 93.75%
+Recall: 100.00%
+F1 Score: 96.77%
+FAR: 6.67%
+FRR: 0.00%
+
+Test Results for s022:
+Accuracy: 99.00%
+Precision: 98.04%
+Recall: 100.00%
+F1 Score: 99.01%
+FAR: 2.00%
+FRR: 0.00%
+
+Processing user: s052
+
+Tuning hyperparameters for user s052...
+Best parameters for s052:
+activation: tanh
+alpha: 0.01
+hidden_layer_sizes: (100,)
+learning_rate_init: 0.1
+max_iter: 200
+Best cross-validation score: 0.9938
+Validating model for s052 on train validation set...
+Testing model for s052 on test set...
+
+Train Validation Results for s052:
+Accuracy: 100.00%
+Precision: 100.00%
+Recall: 100.00%
+F1 Score: 100.00%
+FAR: 0.00%
+FRR: 0.00%
+
+Test Results for s052:
+Accuracy: 98.50%
+Precision: 98.99%
+Recall: 98.00%
+F1 Score: 98.49%
+FAR: 1.00%
+FRR: 2.00%
+
+Processing user: s021
+
+Tuning hyperparameters for user s021...
+Best parameters for s021:
+activation: relu
+alpha: 0.001
+hidden_layer_sizes: (100, 50)
+learning_rate_init: 0.1
+max_iter: 200
+Best cross-validation score: 0.9437
+Validating model for s021 on train validation set...
+Testing model for s021 on test set...
+
+Train Validation Results for s021:
+Accuracy: 87.50%
+Precision: 86.89%
+Recall: 88.33%
+F1 Score: 87.60%
+FAR: 13.33%
+FRR: 11.67%
+
+Test Results for s021:
+Accuracy: 90.00%
+Precision: 89.22%
+Recall: 91.00%
+F1 Score: 90.10%
+FAR: 11.00%
+FRR: 9.00%
+
+Processing user: s039
+
+Tuning hyperparameters for user s039...
+Best parameters for s039:
+activation: relu
+alpha: 0.0001
+hidden_layer_sizes: (50,)
+learning_rate_init: 0.1
+max_iter: 200
+Best cross-validation score: 0.9604
+Validating model for s039 on train validation set...
+Testing model for s039 on test set...
+
+Train Validation Results for s039:
+Accuracy: 95.00%
+Precision: 100.00%
+Recall: 90.00%
+F1 Score: 94.74%
+FAR: 0.00%
+FRR: 10.00%
+
+Test Results for s039:
+Accuracy: 93.00%
+Precision: 92.16%
+Recall: 94.00%
+F1 Score: 93.07%
+FAR: 8.00%
+FRR: 6.00%
+
+Processing user: s013
+
+Tuning hyperparameters for user s013...
+Best parameters for s013:
+activation: tanh
+alpha: 0.0001
+hidden_layer_sizes: (100,)
+learning_rate_init: 0.1
+max_iter: 200
+Best cross-validation score: 0.9479
+Validating model for s013 on train validation set...
+Testing model for s013 on test set...
+
+Train Validation Results for s013:
+Accuracy: 94.17%
+Precision: 94.92%
+Recall: 93.33%
+F1 Score: 94.12%
+FAR: 5.00%
+FRR: 6.67%
+
+Test Results for s013:
+Accuracy: 92.00%
+Precision: 91.18%
+Recall: 93.00%
+F1 Score: 92.08%
+FAR: 9.00%
+FRR: 7.00%
+
+Processing user: s046
+
+Tuning hyperparameters for user s046...
+Best parameters for s046:
+activation: relu
+alpha: 0.0001
+hidden_layer_sizes: (100, 50)
+learning_rate_init: 0.01
+max_iter: 200
+Best cross-validation score: 0.9271
+Validating model for s046 on train validation set...
+Testing model for s046 on test set...
+
+Train Validation Results for s046:
+Accuracy: 95.00%
+Precision: 93.55%
+Recall: 96.67%
+F1 Score: 95.08%
+FAR: 6.67%
+FRR: 3.33%
+
+Test Results for s046:
+Accuracy: 94.50%
+Precision: 93.20%
+Recall: 96.00%
+F1 Score: 94.58%
+FAR: 7.00%
+FRR: 4.00%
+
+Processing user: s041
+
+Tuning hyperparameters for user s041...
+Best parameters for s041:
+activation: relu
+alpha: 0.0001
+hidden_layer_sizes: (50, 50)
+learning_rate_init: 0.01
+max_iter: 200
+Best cross-validation score: 0.9667
+Validating model for s041 on train validation set...
+Testing model for s041 on test set...
+
+Train Validation Results for s041:
+Accuracy: 95.00%
+Precision: 95.00%
+Recall: 95.00%
+F1 Score: 95.00%
+FAR: 5.00%
+FRR: 5.00%
+
+Test Results for s041:
+Accuracy: 94.00%
+Precision: 91.51%
+Recall: 97.00%
+F1 Score: 94.17%
+FAR: 9.00%
+FRR: 3.00%
+
+Processing user: s002
+
+Tuning hyperparameters for user s002...
+Best parameters for s002:
+activation: relu
+alpha: 0.001
+hidden_layer_sizes: (100,)
+learning_rate_init: 0.1
+max_iter: 200
+Best cross-validation score: 0.9125
+Validating model for s002 on train validation set...
+Testing model for s002 on test set...
+
+Train Validation Results for s002:
+Accuracy: 90.00%
+Precision: 88.71%
+Recall: 91.67%
+F1 Score: 90.16%
+FAR: 11.67%
+FRR: 8.33%
+
+Test Results for s002:
+Accuracy: 93.50%
+Precision: 90.65%
+Recall: 97.00%
+F1 Score: 93.72%
+FAR: 10.00%
+FRR: 3.00%
+
+Processing user: s025
+
+Tuning hyperparameters for user s025...
+Best parameters for s025:
+activation: relu
+alpha: 0.01
+hidden_layer_sizes: (100, 50)
+learning_rate_init: 0.1
+max_iter: 200
+Best cross-validation score: 0.9708
+Validating model for s025 on train validation set...
+Testing model for s025 on test set...
+
+Train Validation Results for s025:
+Accuracy: 96.67%
+Precision: 96.67%
+Recall: 96.67%
+F1 Score: 96.67%
+FAR: 3.33%
+FRR: 3.33%
+
+Test Results for s025:
+Accuracy: 95.00%
+Precision: 95.00%
+Recall: 95.00%
+F1 Score: 95.00%
+FAR: 5.00%
+FRR: 5.00%
+
+Processing user: s007
+
+Tuning hyperparameters for user s007...
+Best parameters for s007:
+activation: relu
+alpha: 0.001
+hidden_layer_sizes: (50, 50)
+learning_rate_init: 0.1
+max_iter: 200
+Best cross-validation score: 0.9146
+Validating model for s007 on train validation set...
+Testing model for s007 on test set...
+
+Train Validation Results for s007:
+Accuracy: 88.33%
+Precision: 92.59%
+Recall: 83.33%
+F1 Score: 87.72%
+FAR: 6.67%
+FRR: 16.67%
+
+Test Results for s007:
+Accuracy: 88.50%
+Precision: 88.89%
+Recall: 88.00%
+F1 Score: 88.44%
+FAR: 11.00%
+FRR: 12.00%
+
+Processing user: s029
+
+Tuning hyperparameters for user s029...
+Best parameters for s029:
+activation: relu
+alpha: 0.0001
+hidden_layer_sizes: (50,)
+learning_rate_init: 0.1
+max_iter: 200
+Best cross-validation score: 0.9292
+Validating model for s029 on train validation set...
+Testing model for s029 on test set...
+
+Train Validation Results for s029:
+Accuracy: 94.17%
+Precision: 93.44%
+Recall: 95.00%
+F1 Score: 94.21%
+FAR: 6.67%
+FRR: 5.00%
+
+Test Results for s029:
+Accuracy: 93.50%
+Precision: 92.23%
+Recall: 95.00%
+F1 Score: 93.60%
+FAR: 8.00%
+FRR: 5.00%
+
+Processing user: s003
+
+Tuning hyperparameters for user s003...
+Best parameters for s003:
+activation: relu
+alpha: 0.01
+hidden_layer_sizes: (50,)
+learning_rate_init: 0.01
+max_iter: 200
+Best cross-validation score: 0.9458
+Validating model for s003 on train validation set...
+Testing model for s003 on test set...
+
+Train Validation Results for s003:
+Accuracy: 96.67%
+Precision: 95.16%
+Recall: 98.33%
+F1 Score: 96.72%
+FAR: 5.00%
+FRR: 1.67%
+
+Test Results for s003:
+Accuracy: 95.50%
+Precision: 96.91%
+Recall: 94.00%
+F1 Score: 95.43%
+FAR: 3.00%
+FRR: 6.00%
+
+Processing user: s040
+
+Tuning hyperparameters for user s040...
+Best parameters for s040:
+activation: relu
+alpha: 0.0001
+hidden_layer_sizes: (50, 50)
+learning_rate_init: 0.1
+max_iter: 200
+Best cross-validation score: 0.9792
+Validating model for s040 on train validation set...
+Testing model for s040 on test set...
+
+Train Validation Results for s040:
+Accuracy: 95.00%
+Precision: 95.00%
+Recall: 95.00%
+F1 Score: 95.00%
+FAR: 5.00%
+FRR: 5.00%
+
+Test Results for s040:
+Accuracy: 95.50%
+Precision: 95.05%
+Recall: 96.00%
+F1 Score: 95.52%
+FAR: 5.00%
+FRR: 4.00%
+
+Processing user: s057
+
+Tuning hyperparameters for user s057...
+Best parameters for s057:
+activation: relu
+alpha: 0.001
+hidden_layer_sizes: (50, 50)
+learning_rate_init: 0.1
+max_iter: 200
+Best cross-validation score: 0.9437
+Validating model for s057 on train validation set...
+Testing model for s057 on test set...
+
+Train Validation Results for s057:
+Accuracy: 93.33%
+Precision: 94.83%
+Recall: 91.67%
+F1 Score: 93.22%
+FAR: 5.00%
+FRR: 8.33%
+
+Test Results for s057:
+Accuracy: 89.50%
+Precision: 88.35%
+Recall: 91.00%
+F1 Score: 89.66%
+FAR: 12.00%
+FRR: 9.00%
+
+=== Train Validation Summary ===
+
+Overall Statistics:
+Total Users: 51
+Total Samples: 6120
+Overall Accuracy: 94.41%
+Average Precision: 94.69%
+Average Recall: 94.22%
+Average F1 Score: 94.38%
+Average FAR: 5.39%
+Average FRR: 5.78%
+
+Per-User Statistics:
+Login		Accuracy	Precision	Recall		F1 Score	FAR		FRR
+----------------------------------------------------------------------------------------------------
+s002		90.00%		88.71%		91.67%		90.16%		11.67%		8.33%
+s003		96.67%		95.16%		98.33%		96.72%		5.00%		1.67%
+s004		95.00%		93.55%		96.67%		95.08%		6.67%		3.33%
+s005		94.17%		94.92%		93.33%		94.12%		5.00%		6.67%
+s007		88.33%		92.59%		83.33%		87.72%		6.67%		16.67%
+s008		88.33%		83.82%		95.00%		89.06%		18.33%		5.00%
+s010		97.50%		100.00%		95.00%		97.44%		0.00%		5.00%
+s011		94.17%		94.92%		93.33%		94.12%		5.00%		6.67%
+s012		95.00%		95.00%		95.00%		95.00%		5.00%		5.00%
+s013		94.17%		94.92%		93.33%		94.12%		5.00%		6.67%
+s015		94.17%		93.44%		95.00%		94.21%		6.67%		5.00%
+s016		94.17%		98.18%		90.00%		93.91%		1.67%		10.00%
+s017		98.33%		100.00%		96.67%		98.31%		0.00%		3.33%
+s018		90.00%		92.86%		86.67%		89.66%		6.67%		13.33%
+s019		95.83%		98.25%		93.33%		95.73%		1.67%		6.67%
+s020		89.17%		89.83%		88.33%		89.08%		10.00%		11.67%
+s021		87.50%		86.89%		88.33%		87.60%		13.33%		11.67%
+s022		96.67%		93.75%		100.00%		96.77%		6.67%		0.00%
+s024		97.50%		96.72%		98.33%		97.52%		3.33%		1.67%
+s025		96.67%		96.67%		96.67%		96.67%		3.33%		3.33%
+s026		92.50%		91.80%		93.33%		92.56%		8.33%		6.67%
+s027		94.17%		90.77%		98.33%		94.40%		10.00%		1.67%
+s028		93.33%		89.39%		98.33%		93.65%		11.67%		1.67%
+s029		94.17%		93.44%		95.00%		94.21%		6.67%		5.00%
+s030		95.00%		95.00%		95.00%		95.00%		5.00%		5.00%
+s031		91.67%		94.64%		88.33%		91.38%		5.00%		11.67%
+s032		86.67%		92.31%		80.00%		85.71%		6.67%		20.00%
+s033		98.33%		100.00%		96.67%		98.31%		0.00%		3.33%
+s034		92.50%		90.48%		95.00%		92.68%		10.00%		5.00%
+s035		97.50%		95.24%		100.00%		97.56%		5.00%		0.00%
+s036		100.00%		100.00%		100.00%		100.00%		0.00%		0.00%
+s037		92.50%		91.80%		93.33%		92.56%		8.33%		6.67%
+s038		96.67%		100.00%		93.33%		96.55%		0.00%		6.67%
+s039		95.00%		100.00%		90.00%		94.74%		0.00%		10.00%
+s040		95.00%		95.00%		95.00%		95.00%		5.00%		5.00%
+s041		95.00%		95.00%		95.00%		95.00%		5.00%		5.00%
+s042		98.33%		98.33%		98.33%		98.33%		1.67%		1.67%
+s043		97.50%		96.72%		98.33%		97.52%		3.33%		1.67%
+s044		98.33%		100.00%		96.67%		98.31%		0.00%		3.33%
+s046		95.00%		93.55%		96.67%		95.08%		6.67%		3.33%
+s047		95.83%		98.25%		93.33%		95.73%		1.67%		6.67%
+s048		88.33%		87.10%		90.00%		88.52%		13.33%		10.00%
+s049		97.50%		96.72%		98.33%		97.52%		3.33%		1.67%
+s050		98.33%		98.33%		98.33%		98.33%		1.67%		1.67%
+s051		87.50%		90.91%		83.33%		86.96%		8.33%		16.67%
+s052		100.00%		100.00%		100.00%		100.00%		0.00%		0.00%
+s053		96.67%		95.16%		98.33%		96.72%		5.00%		1.67%
+s054		94.17%		89.55%		100.00%		94.49%		11.67%		0.00%
+s055		97.50%		98.31%		96.67%		97.48%		1.67%		3.33%
+s056		93.33%		96.43%		90.00%		93.10%		3.33%		10.00%
+s057		93.33%		94.83%		91.67%		93.22%		5.00%		8.33%
+
+=== Test Summary ===
+
+Overall Statistics:
+Total Users: 51
+Total Samples: 10200
+Overall Accuracy: 93.89%
+Average Precision: 93.65%
+Average Recall: 94.27%
+Average F1 Score: 93.92%
+Average FAR: 6.49%
+Average FRR: 5.73%
+
+Per-User Statistics:
+Login		Accuracy	Precision	Recall		F1 Score	FAR		FRR
+----------------------------------------------------------------------------------------------------
+s002		93.50%		90.65%		97.00%		93.72%		10.00%		3.00%
+s003		95.50%		96.91%		94.00%		95.43%		3.00%		6.00%
+s004		95.50%		95.96%		95.00%		95.48%		4.00%		5.00%
+s005		94.50%		94.95%		94.00%		94.47%		5.00%		6.00%
+s007		88.50%		88.89%		88.00%		88.44%		11.00%		12.00%
+s008		88.00%		83.33%		95.00%		88.79%		19.00%		5.00%
+s010		94.50%		94.06%		95.00%		94.53%		6.00%		5.00%
+s011		93.00%		95.74%		90.00%		92.78%		4.00%		10.00%
+s012		95.00%		93.27%		97.00%		95.10%		7.00%		3.00%
+s013		92.00%		91.18%		93.00%		92.08%		9.00%		7.00%
+s015		93.00%		93.00%		93.00%		93.00%		7.00%		7.00%
+s016		95.50%		100.00%		91.00%		95.29%		0.00%		9.00%
+s017		96.50%		96.97%		96.00%		96.48%		3.00%		4.00%
+s018		92.50%		94.74%		90.00%		92.31%		5.00%		10.00%
+s019		95.50%		98.92%		92.00%		95.34%		1.00%		8.00%
+s020		86.00%		87.50%		84.00%		85.71%		12.00%		16.00%
+s021		90.00%		89.22%		91.00%		90.10%		11.00%		9.00%
+s022		99.00%		98.04%		100.00%		99.01%		2.00%		0.00%
+s024		97.50%		98.97%		96.00%		97.46%		1.00%		4.00%
+s025		95.00%		95.00%		95.00%		95.00%		5.00%		5.00%
+s026		94.00%		91.51%		97.00%		94.17%		9.00%		3.00%
+s027		92.50%		90.48%		95.00%		92.68%		10.00%		5.00%
+s028		96.00%		93.40%		99.00%		96.12%		7.00%		1.00%
+s029		93.50%		92.23%		95.00%		93.60%		8.00%		5.00%
+s030		97.00%		97.00%		97.00%		97.00%		3.00%		3.00%
+s031		89.00%		90.62%		87.00%		88.78%		9.00%		13.00%
+s032		84.50%		87.10%		81.00%		83.94%		12.00%		19.00%
+s033		96.00%		98.94%		93.00%		95.88%		1.00%		7.00%
+s034		91.50%		88.07%		96.00%		91.87%		13.00%		4.00%
+s035		95.50%		94.17%		97.00%		95.57%		6.00%		3.00%
+s036		99.50%		99.01%		100.00%		99.50%		1.00%		0.00%
+s037		93.00%		91.35%		95.00%		93.14%		9.00%		5.00%
+s038		94.50%		95.88%		93.00%		94.42%		4.00%		7.00%
+s039		93.00%		92.16%		94.00%		93.07%		8.00%		6.00%
+s040		95.50%		95.05%		96.00%		95.52%		5.00%		4.00%
+s041		94.00%		91.51%		97.00%		94.17%		9.00%		3.00%
+s042		96.00%		96.00%		96.00%		96.00%		4.00%		4.00%
+s043		98.50%		98.02%		99.00%		98.51%		2.00%		1.00%
+s044		98.00%		98.00%		98.00%		98.00%		2.00%		2.00%
+s046		94.50%		93.20%		96.00%		94.58%		7.00%		4.00%
+s047		90.50%		90.91%		90.00%		90.45%		9.00%		10.00%
+s048		92.50%		92.93%		92.00%		92.46%		7.00%		8.00%
+s049		99.50%		100.00%		99.00%		99.50%		0.00%		1.00%
+s050		93.00%		94.79%		91.00%		92.86%		5.00%		9.00%
+s051		94.00%		94.00%		94.00%		94.00%		6.00%		6.00%
+s052		98.50%		98.99%		98.00%		98.49%		1.00%		2.00%
+s053		94.50%		90.83%		99.00%		94.74%		10.00%		1.00%
+s054		90.00%		87.04%		94.00%		90.38%		14.00%		6.00%
+s055		97.50%		97.03%		98.00%		97.51%		3.00%		2.00%
+s056		92.50%		90.48%		95.00%		92.68%		10.00%		5.00%
+s057		89.50%		88.35%		91.00%		89.66%		12.00%		9.00%
