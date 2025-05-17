@@ -1,0 +1,5 @@
+Starting model training and validation...
+
+
+Processing user: s030
+Epoch [10/100], Train Loss: 0.5097, Val Loss: 0.5401
