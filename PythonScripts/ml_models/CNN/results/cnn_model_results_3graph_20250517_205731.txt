@@ -1,0 +1,1556 @@
+Starting CNN model training and validation for 3-graph...
+
+
+Processing user: s030
+Training samples: 480
+Validation samples: 120
+Test samples: 200
+Early stopping at epoch 31
+Validating model for s030 on train validation set...
+Prediction distribution: [63 57]
+True labels distribution: [60 60]
+Testing model for s030 on test set...
+Test prediction distribution: [104  96]
+Test true labels distribution: [100 100]
+
+Train Validation Results for s030:
+Accuracy: 97.50%
+Precision: 100.00%
+Recall: 95.00%
+F1 Score: 97.44%
+FAR: 0.00%
+FRR: 5.00%
+
+Test Results for s030:
+Accuracy: 98.00%
+Precision: 100.00%
+Recall: 96.00%
+F1 Score: 97.96%
+FAR: 0.00%
+FRR: 4.00%
+
+Processing user: s056
+Training samples: 480
+Validation samples: 120
+Test samples: 200
+Early stopping at epoch 30
+Validating model for s056 on train validation set...
+Prediction distribution: [65 55]
+True labels distribution: [60 60]
+Testing model for s056 on test set...
+Test prediction distribution: [104  96]
+Test true labels distribution: [100 100]
+
+Train Validation Results for s056:
+Accuracy: 94.17%
+Precision: 98.18%
+Recall: 90.00%
+F1 Score: 93.91%
+FAR: 1.67%
+FRR: 10.00%
+
+Test Results for s056:
+Accuracy: 97.00%
+Precision: 98.96%
+Recall: 95.00%
+F1 Score: 96.94%
+FAR: 1.00%
+FRR: 5.00%
+
+Processing user: s043
+Training samples: 480
+Validation samples: 120
+Test samples: 200
+Early stopping at epoch 46
+Validating model for s043 on train validation set...
+Prediction distribution: [60 60]
+True labels distribution: [60 60]
+Testing model for s043 on test set...
+Test prediction distribution: [101  99]
+Test true labels distribution: [100 100]
+
+Train Validation Results for s043:
+Accuracy: 100.00%
+Precision: 100.00%
+Recall: 100.00%
+F1 Score: 100.00%
+FAR: 0.00%
+FRR: 0.00%
+
+Test Results for s043:
+Accuracy: 99.50%
+Precision: 100.00%
+Recall: 99.00%
+F1 Score: 99.50%
+FAR: 0.00%
+FRR: 1.00%
+
+Processing user: s004
+Training samples: 480
+Validation samples: 120
+Test samples: 200
+Validating model for s004 on train validation set...
+Prediction distribution: [62 58]
+True labels distribution: [60 60]
+Testing model for s004 on test set...
+Test prediction distribution: [101  99]
+Test true labels distribution: [100 100]
+
+Train Validation Results for s004:
+Accuracy: 98.33%
+Precision: 100.00%
+Recall: 96.67%
+F1 Score: 98.31%
+FAR: 0.00%
+FRR: 3.33%
+
+Test Results for s004:
+Accuracy: 99.50%
+Precision: 100.00%
+Recall: 99.00%
+F1 Score: 99.50%
+FAR: 0.00%
+FRR: 1.00%
+
+Processing user: s050
+Training samples: 480
+Validation samples: 120
+Test samples: 200
+Early stopping at epoch 48
+Validating model for s050 on train validation set...
+Prediction distribution: [60 60]
+True labels distribution: [60 60]
+Testing model for s050 on test set...
+Test prediction distribution: [106  94]
+Test true labels distribution: [100 100]
+
+Train Validation Results for s050:
+Accuracy: 98.33%
+Precision: 98.33%
+Recall: 98.33%
+F1 Score: 98.33%
+FAR: 1.67%
+FRR: 1.67%
+
+Test Results for s050:
+Accuracy: 96.00%
+Precision: 98.94%
+Recall: 93.00%
+F1 Score: 95.88%
+FAR: 1.00%
+FRR: 7.00%
+
+Processing user: s051
+Training samples: 480
+Validation samples: 120
+Test samples: 200
+Early stopping at epoch 36
+Validating model for s051 on train validation set...
+Prediction distribution: [63 57]
+True labels distribution: [60 60]
+Testing model for s051 on test set...
+Test prediction distribution: [102  98]
+Test true labels distribution: [100 100]
+
+Train Validation Results for s051:
+Accuracy: 97.50%
+Precision: 100.00%
+Recall: 95.00%
+F1 Score: 97.44%
+FAR: 0.00%
+FRR: 5.00%
+
+Test Results for s051:
+Accuracy: 99.00%
+Precision: 100.00%
+Recall: 98.00%
+F1 Score: 98.99%
+FAR: 0.00%
+FRR: 2.00%
+
+Processing user: s005
+Training samples: 480
+Validation samples: 120
+Test samples: 200
+Validating model for s005 on train validation set...
+Prediction distribution: [60 60]
+True labels distribution: [60 60]
+Testing model for s005 on test set...
+Test prediction distribution: [101  99]
+Test true labels distribution: [100 100]
+
+Train Validation Results for s005:
+Accuracy: 100.00%
+Precision: 100.00%
+Recall: 100.00%
+F1 Score: 100.00%
+FAR: 0.00%
+FRR: 0.00%
+
+Test Results for s005:
+Accuracy: 99.50%
+Precision: 100.00%
+Recall: 99.00%
+F1 Score: 99.50%
+FAR: 0.00%
+FRR: 1.00%
+
+Processing user: s020
+Training samples: 480
+Validation samples: 120
+Test samples: 200
+Early stopping at epoch 26
+Validating model for s020 on train validation set...
+Prediction distribution: [66 54]
+True labels distribution: [60 60]
+Testing model for s020 on test set...
+Test prediction distribution: [108  92]
+Test true labels distribution: [100 100]
+
+Train Validation Results for s020:
+Accuracy: 95.00%
+Precision: 100.00%
+Recall: 90.00%
+F1 Score: 94.74%
+FAR: 0.00%
+FRR: 10.00%
+
+Test Results for s020:
+Accuracy: 96.00%
+Precision: 100.00%
+Recall: 92.00%
+F1 Score: 95.83%
+FAR: 0.00%
+FRR: 8.00%
+
+Processing user: s027
+Training samples: 480
+Validation samples: 120
+Test samples: 200
+Validating model for s027 on train validation set...
+Prediction distribution: [60 60]
+True labels distribution: [60 60]
+Testing model for s027 on test set...
+Test prediction distribution: [103  97]
+Test true labels distribution: [100 100]
+
+Train Validation Results for s027:
+Accuracy: 100.00%
+Precision: 100.00%
+Recall: 100.00%
+F1 Score: 100.00%
+FAR: 0.00%
+FRR: 0.00%
+
+Test Results for s027:
+Accuracy: 98.50%
+Precision: 100.00%
+Recall: 97.00%
+F1 Score: 98.48%
+FAR: 0.00%
+FRR: 3.00%
+
+Processing user: s042
+Training samples: 480
+Validation samples: 120
+Test samples: 200
+Early stopping at epoch 32
+Validating model for s042 on train validation set...
+Prediction distribution: [60 60]
+True labels distribution: [60 60]
+Testing model for s042 on test set...
+Test prediction distribution: [104  96]
+Test true labels distribution: [100 100]
+
+Train Validation Results for s042:
+Accuracy: 100.00%
+Precision: 100.00%
+Recall: 100.00%
+F1 Score: 100.00%
+FAR: 0.00%
+FRR: 0.00%
+
+Test Results for s042:
+Accuracy: 98.00%
+Precision: 100.00%
+Recall: 96.00%
+F1 Score: 97.96%
+FAR: 0.00%
+FRR: 4.00%
+
+Processing user: s011
+Training samples: 480
+Validation samples: 120
+Test samples: 200
+Early stopping at epoch 31
+Validating model for s011 on train validation set...
+Prediction distribution: [63 57]
+True labels distribution: [60 60]
+Testing model for s011 on test set...
+Test prediction distribution: [102  98]
+Test true labels distribution: [100 100]
+
+Train Validation Results for s011:
+Accuracy: 97.50%
+Precision: 100.00%
+Recall: 95.00%
+F1 Score: 97.44%
+FAR: 0.00%
+FRR: 5.00%
+
+Test Results for s011:
+Accuracy: 99.00%
+Precision: 100.00%
+Recall: 98.00%
+F1 Score: 98.99%
+FAR: 0.00%
+FRR: 2.00%
+
+Processing user: s054
+Training samples: 480
+Validation samples: 120
+Test samples: 200
+Early stopping at epoch 41
+Validating model for s054 on train validation set...
+Prediction distribution: [60 60]
+True labels distribution: [60 60]
+Testing model for s054 on test set...
+Test prediction distribution: [105  95]
+Test true labels distribution: [100 100]
+
+Train Validation Results for s054:
+Accuracy: 100.00%
+Precision: 100.00%
+Recall: 100.00%
+F1 Score: 100.00%
+FAR: 0.00%
+FRR: 0.00%
+
+Test Results for s054:
+Accuracy: 97.50%
+Precision: 100.00%
+Recall: 95.00%
+F1 Score: 97.44%
+FAR: 0.00%
+FRR: 5.00%
+
+Processing user: s035
+Training samples: 480
+Validation samples: 120
+Test samples: 200
+Early stopping at epoch 36
+Validating model for s035 on train validation set...
+Prediction distribution: [60 60]
+True labels distribution: [60 60]
+Testing model for s035 on test set...
+Test prediction distribution: [101  99]
+Test true labels distribution: [100 100]
+
+Train Validation Results for s035:
+Accuracy: 100.00%
+Precision: 100.00%
+Recall: 100.00%
+F1 Score: 100.00%
+FAR: 0.00%
+FRR: 0.00%
+
+Test Results for s035:
+Accuracy: 99.50%
+Precision: 100.00%
+Recall: 99.00%
+F1 Score: 99.50%
+FAR: 0.00%
+FRR: 1.00%
+
+Processing user: s044
+Training samples: 480
+Validation samples: 120
+Test samples: 200
+Early stopping at epoch 42
+Validating model for s044 on train validation set...
+Prediction distribution: [60 60]
+True labels distribution: [60 60]
+Testing model for s044 on test set...
+Test prediction distribution: [101  99]
+Test true labels distribution: [100 100]
+
+Train Validation Results for s044:
+Accuracy: 100.00%
+Precision: 100.00%
+Recall: 100.00%
+F1 Score: 100.00%
+FAR: 0.00%
+FRR: 0.00%
+
+Test Results for s044:
+Accuracy: 99.50%
+Precision: 100.00%
+Recall: 99.00%
+F1 Score: 99.50%
+FAR: 0.00%
+FRR: 1.00%
+
+Processing user: s019
+Training samples: 480
+Validation samples: 120
+Test samples: 200
+Early stopping at epoch 23
+Validating model for s019 on train validation set...
+Prediction distribution: [63 57]
+True labels distribution: [60 60]
+Testing model for s019 on test set...
+Test prediction distribution: [103  97]
+Test true labels distribution: [100 100]
+
+Train Validation Results for s019:
+Accuracy: 97.50%
+Precision: 100.00%
+Recall: 95.00%
+F1 Score: 97.44%
+FAR: 0.00%
+FRR: 5.00%
+
+Test Results for s019:
+Accuracy: 98.50%
+Precision: 100.00%
+Recall: 97.00%
+F1 Score: 98.48%
+FAR: 0.00%
+FRR: 3.00%
+
+Processing user: s032
+Training samples: 480
+Validation samples: 120
+Test samples: 200
+Validating model for s032 on train validation set...
+Prediction distribution: [68 52]
+True labels distribution: [60 60]
+Testing model for s032 on test set...
+Test prediction distribution: [110  90]
+Test true labels distribution: [100 100]
+
+Train Validation Results for s032:
+Accuracy: 91.67%
+Precision: 98.08%
+Recall: 85.00%
+F1 Score: 91.07%
+FAR: 1.67%
+FRR: 15.00%
+
+Test Results for s032:
+Accuracy: 93.00%
+Precision: 97.78%
+Recall: 88.00%
+F1 Score: 92.63%
+FAR: 2.00%
+FRR: 12.00%
+
+Processing user: s036
+Training samples: 480
+Validation samples: 120
+Test samples: 200
+Early stopping at epoch 42
+Validating model for s036 on train validation set...
+Prediction distribution: [61 59]
+True labels distribution: [60 60]
+Testing model for s036 on test set...
+Test prediction distribution: [100 100]
+Test true labels distribution: [100 100]
+
+Train Validation Results for s036:
+Accuracy: 99.17%
+Precision: 100.00%
+Recall: 98.33%
+F1 Score: 99.16%
+FAR: 0.00%
+FRR: 1.67%
+
+Test Results for s036:
+Accuracy: 100.00%
+Precision: 100.00%
+Recall: 100.00%
+F1 Score: 100.00%
+FAR: 0.00%
+FRR: 0.00%
+
+Processing user: s049
+Training samples: 480
+Validation samples: 120
+Test samples: 200
+Early stopping at epoch 43
+Validating model for s049 on train validation set...
+Prediction distribution: [60 60]
+True labels distribution: [60 60]
+Testing model for s049 on test set...
+Test prediction distribution: [100 100]
+Test true labels distribution: [100 100]
+
+Train Validation Results for s049:
+Accuracy: 100.00%
+Precision: 100.00%
+Recall: 100.00%
+F1 Score: 100.00%
+FAR: 0.00%
+FRR: 0.00%
+
+Test Results for s049:
+Accuracy: 100.00%
+Precision: 100.00%
+Recall: 100.00%
+F1 Score: 100.00%
+FAR: 0.00%
+FRR: 0.00%
+
+Processing user: s012
+Training samples: 480
+Validation samples: 120
+Test samples: 200
+Early stopping at epoch 19
+Validating model for s012 on train validation set...
+Prediction distribution: [67 53]
+True labels distribution: [60 60]
+Testing model for s012 on test set...
+Test prediction distribution: [102  98]
+Test true labels distribution: [100 100]
+
+Train Validation Results for s012:
+Accuracy: 94.17%
+Precision: 100.00%
+Recall: 88.33%
+F1 Score: 93.81%
+FAR: 0.00%
+FRR: 11.67%
+
+Test Results for s012:
+Accuracy: 99.00%
+Precision: 100.00%
+Recall: 98.00%
+F1 Score: 98.99%
+FAR: 0.00%
+FRR: 2.00%
+
+Processing user: s017
+Training samples: 480
+Validation samples: 120
+Test samples: 200
+Validating model for s017 on train validation set...
+Prediction distribution: [60 60]
+True labels distribution: [60 60]
+Testing model for s017 on test set...
+Test prediction distribution: [103  97]
+Test true labels distribution: [100 100]
+
+Train Validation Results for s017:
+Accuracy: 100.00%
+Precision: 100.00%
+Recall: 100.00%
+F1 Score: 100.00%
+FAR: 0.00%
+FRR: 0.00%
+
+Test Results for s017:
+Accuracy: 98.50%
+Precision: 100.00%
+Recall: 97.00%
+F1 Score: 98.48%
+FAR: 0.00%
+FRR: 3.00%
+
+Processing user: s015
+Training samples: 480
+Validation samples: 120
+Test samples: 200
+Early stopping at epoch 41
+Validating model for s015 on train validation set...
+Prediction distribution: [60 60]
+True labels distribution: [60 60]
+Testing model for s015 on test set...
+Test prediction distribution: [106  94]
+Test true labels distribution: [100 100]
+
+Train Validation Results for s015:
+Accuracy: 100.00%
+Precision: 100.00%
+Recall: 100.00%
+F1 Score: 100.00%
+FAR: 0.00%
+FRR: 0.00%
+
+Test Results for s015:
+Accuracy: 97.00%
+Precision: 100.00%
+Recall: 94.00%
+F1 Score: 96.91%
+FAR: 0.00%
+FRR: 6.00%
+
+Processing user: s031
+Training samples: 480
+Validation samples: 120
+Test samples: 200
+Early stopping at epoch 33
+Validating model for s031 on train validation set...
+Prediction distribution: [61 59]
+True labels distribution: [60 60]
+Testing model for s031 on test set...
+Test prediction distribution: [106  94]
+Test true labels distribution: [100 100]
+
+Train Validation Results for s031:
+Accuracy: 99.17%
+Precision: 100.00%
+Recall: 98.33%
+F1 Score: 99.16%
+FAR: 0.00%
+FRR: 1.67%
+
+Test Results for s031:
+Accuracy: 97.00%
+Precision: 100.00%
+Recall: 94.00%
+F1 Score: 96.91%
+FAR: 0.00%
+FRR: 6.00%
+
+Processing user: s034
+Training samples: 480
+Validation samples: 120
+Test samples: 200
+Early stopping at epoch 20
+Validating model for s034 on train validation set...
+Prediction distribution: [65 55]
+True labels distribution: [60 60]
+Testing model for s034 on test set...
+Test prediction distribution: [106  94]
+Test true labels distribution: [100 100]
+
+Train Validation Results for s034:
+Accuracy: 95.83%
+Precision: 100.00%
+Recall: 91.67%
+F1 Score: 95.65%
+FAR: 0.00%
+FRR: 8.33%
+
+Test Results for s034:
+Accuracy: 97.00%
+Precision: 100.00%
+Recall: 94.00%
+F1 Score: 96.91%
+FAR: 0.00%
+FRR: 6.00%
+
+Processing user: s037
+Training samples: 480
+Validation samples: 120
+Test samples: 200
+Early stopping at epoch 48
+Validating model for s037 on train validation set...
+Prediction distribution: [63 57]
+True labels distribution: [60 60]
+Testing model for s037 on test set...
+Test prediction distribution: [104  96]
+Test true labels distribution: [100 100]
+
+Train Validation Results for s037:
+Accuracy: 97.50%
+Precision: 100.00%
+Recall: 95.00%
+F1 Score: 97.44%
+FAR: 0.00%
+FRR: 5.00%
+
+Test Results for s037:
+Accuracy: 98.00%
+Precision: 100.00%
+Recall: 96.00%
+F1 Score: 97.96%
+FAR: 0.00%
+FRR: 4.00%
+
+Processing user: s028
+Training samples: 480
+Validation samples: 120
+Test samples: 200
+Early stopping at epoch 49
+Validating model for s028 on train validation set...
+Prediction distribution: [60 60]
+True labels distribution: [60 60]
+Testing model for s028 on test set...
+Test prediction distribution: [103  97]
+Test true labels distribution: [100 100]
+
+Train Validation Results for s028:
+Accuracy: 100.00%
+Precision: 100.00%
+Recall: 100.00%
+F1 Score: 100.00%
+FAR: 0.00%
+FRR: 0.00%
+
+Test Results for s028:
+Accuracy: 98.50%
+Precision: 100.00%
+Recall: 97.00%
+F1 Score: 98.48%
+FAR: 0.00%
+FRR: 3.00%
+
+Processing user: s010
+Training samples: 480
+Validation samples: 120
+Test samples: 200
+Early stopping at epoch 28
+Validating model for s010 on train validation set...
+Prediction distribution: [61 59]
+True labels distribution: [60 60]
+Testing model for s010 on test set...
+Test prediction distribution: [103  97]
+Test true labels distribution: [100 100]
+
+Train Validation Results for s010:
+Accuracy: 99.17%
+Precision: 100.00%
+Recall: 98.33%
+F1 Score: 99.16%
+FAR: 0.00%
+FRR: 1.67%
+
+Test Results for s010:
+Accuracy: 98.50%
+Precision: 100.00%
+Recall: 97.00%
+F1 Score: 98.48%
+FAR: 0.00%
+FRR: 3.00%
+
+Processing user: s038
+Training samples: 480
+Validation samples: 120
+Test samples: 200
+Early stopping at epoch 38
+Validating model for s038 on train validation set...
+Prediction distribution: [61 59]
+True labels distribution: [60 60]
+Testing model for s038 on test set...
+Test prediction distribution: [102  98]
+Test true labels distribution: [100 100]
+
+Train Validation Results for s038:
+Accuracy: 99.17%
+Precision: 100.00%
+Recall: 98.33%
+F1 Score: 99.16%
+FAR: 0.00%
+FRR: 1.67%
+
+Test Results for s038:
+Accuracy: 99.00%
+Precision: 100.00%
+Recall: 98.00%
+F1 Score: 98.99%
+FAR: 0.00%
+FRR: 2.00%
+
+Processing user: s008
+Training samples: 480
+Validation samples: 120
+Test samples: 200
+Validating model for s008 on train validation set...
+Prediction distribution: [67 53]
+True labels distribution: [60 60]
+Testing model for s008 on test set...
+Test prediction distribution: [104  96]
+Test true labels distribution: [100 100]
+
+Train Validation Results for s008:
+Accuracy: 94.17%
+Precision: 100.00%
+Recall: 88.33%
+F1 Score: 93.81%
+FAR: 0.00%
+FRR: 11.67%
+
+Test Results for s008:
+Accuracy: 98.00%
+Precision: 100.00%
+Recall: 96.00%
+F1 Score: 97.96%
+FAR: 0.00%
+FRR: 4.00%
+
+Processing user: s018
+Training samples: 480
+Validation samples: 120
+Test samples: 200
+Early stopping at epoch 35
+Validating model for s018 on train validation set...
+Prediction distribution: [63 57]
+True labels distribution: [60 60]
+Testing model for s018 on test set...
+Test prediction distribution: [104  96]
+Test true labels distribution: [100 100]
+
+Train Validation Results for s018:
+Accuracy: 97.50%
+Precision: 100.00%
+Recall: 95.00%
+F1 Score: 97.44%
+FAR: 0.00%
+FRR: 5.00%
+
+Test Results for s018:
+Accuracy: 98.00%
+Precision: 100.00%
+Recall: 96.00%
+F1 Score: 97.96%
+FAR: 0.00%
+FRR: 4.00%
+
+Processing user: s047
+Training samples: 480
+Validation samples: 120
+Test samples: 200
+Early stopping at epoch 38
+Validating model for s047 on train validation set...
+Prediction distribution: [61 59]
+True labels distribution: [60 60]
+Testing model for s047 on test set...
+Test prediction distribution: [101  99]
+Test true labels distribution: [100 100]
+
+Train Validation Results for s047:
+Accuracy: 99.17%
+Precision: 100.00%
+Recall: 98.33%
+F1 Score: 99.16%
+FAR: 0.00%
+FRR: 1.67%
+
+Test Results for s047:
+Accuracy: 99.50%
+Precision: 100.00%
+Recall: 99.00%
+F1 Score: 99.50%
+FAR: 0.00%
+FRR: 1.00%
+
+Processing user: s033
+Training samples: 480
+Validation samples: 120
+Test samples: 200
+Validating model for s033 on train validation set...
+Prediction distribution: [60 60]
+True labels distribution: [60 60]
+Testing model for s033 on test set...
+Test prediction distribution: [100 100]
+Test true labels distribution: [100 100]
+
+Train Validation Results for s033:
+Accuracy: 100.00%
+Precision: 100.00%
+Recall: 100.00%
+F1 Score: 100.00%
+FAR: 0.00%
+FRR: 0.00%
+
+Test Results for s033:
+Accuracy: 100.00%
+Precision: 100.00%
+Recall: 100.00%
+F1 Score: 100.00%
+FAR: 0.00%
+FRR: 0.00%
+
+Processing user: s026
+Training samples: 480
+Validation samples: 120
+Test samples: 200
+Early stopping at epoch 44
+Validating model for s026 on train validation set...
+Prediction distribution: [63 57]
+True labels distribution: [60 60]
+Testing model for s026 on test set...
+Test prediction distribution: [101  99]
+Test true labels distribution: [100 100]
+
+Train Validation Results for s026:
+Accuracy: 97.50%
+Precision: 100.00%
+Recall: 95.00%
+F1 Score: 97.44%
+FAR: 0.00%
+FRR: 5.00%
+
+Test Results for s026:
+Accuracy: 99.50%
+Precision: 100.00%
+Recall: 99.00%
+F1 Score: 99.50%
+FAR: 0.00%
+FRR: 1.00%
+
+Processing user: s048
+Training samples: 480
+Validation samples: 120
+Test samples: 200
+Early stopping at epoch 22
+Validating model for s048 on train validation set...
+Prediction distribution: [64 56]
+True labels distribution: [60 60]
+Testing model for s048 on test set...
+Test prediction distribution: [ 99 101]
+Test true labels distribution: [100 100]
+
+Train Validation Results for s048:
+Accuracy: 95.00%
+Precision: 98.21%
+Recall: 91.67%
+F1 Score: 94.83%
+FAR: 1.67%
+FRR: 8.33%
+
+Test Results for s048:
+Accuracy: 97.50%
+Precision: 97.03%
+Recall: 98.00%
+F1 Score: 97.51%
+FAR: 3.00%
+FRR: 2.00%
+
+Processing user: s055
+Training samples: 480
+Validation samples: 120
+Test samples: 200
+Early stopping at epoch 33
+Validating model for s055 on train validation set...
+Prediction distribution: [62 58]
+True labels distribution: [60 60]
+Testing model for s055 on test set...
+Test prediction distribution: [105  95]
+Test true labels distribution: [100 100]
+
+Train Validation Results for s055:
+Accuracy: 98.33%
+Precision: 100.00%
+Recall: 96.67%
+F1 Score: 98.31%
+FAR: 0.00%
+FRR: 3.33%
+
+Test Results for s055:
+Accuracy: 97.50%
+Precision: 100.00%
+Recall: 95.00%
+F1 Score: 97.44%
+FAR: 0.00%
+FRR: 5.00%
+
+Processing user: s024
+Training samples: 480
+Validation samples: 120
+Test samples: 200
+Early stopping at epoch 18
+Validating model for s024 on train validation set...
+Prediction distribution: [61 59]
+True labels distribution: [60 60]
+Testing model for s024 on test set...
+Test prediction distribution: [102  98]
+Test true labels distribution: [100 100]
+
+Train Validation Results for s024:
+Accuracy: 99.17%
+Precision: 100.00%
+Recall: 98.33%
+F1 Score: 99.16%
+FAR: 0.00%
+FRR: 1.67%
+
+Test Results for s024:
+Accuracy: 99.00%
+Precision: 100.00%
+Recall: 98.00%
+F1 Score: 98.99%
+FAR: 0.00%
+FRR: 2.00%
+
+Processing user: s016
+Training samples: 480
+Validation samples: 120
+Test samples: 200
+Early stopping at epoch 50
+Validating model for s016 on train validation set...
+Prediction distribution: [60 60]
+True labels distribution: [60 60]
+Testing model for s016 on test set...
+Test prediction distribution: [104  96]
+Test true labels distribution: [100 100]
+
+Train Validation Results for s016:
+Accuracy: 100.00%
+Precision: 100.00%
+Recall: 100.00%
+F1 Score: 100.00%
+FAR: 0.00%
+FRR: 0.00%
+
+Test Results for s016:
+Accuracy: 98.00%
+Precision: 100.00%
+Recall: 96.00%
+F1 Score: 97.96%
+FAR: 0.00%
+FRR: 4.00%
+
+Processing user: s053
+Training samples: 480
+Validation samples: 120
+Test samples: 200
+Early stopping at epoch 37
+Validating model for s053 on train validation set...
+Prediction distribution: [60 60]
+True labels distribution: [60 60]
+Testing model for s053 on test set...
+Test prediction distribution: [102  98]
+Test true labels distribution: [100 100]
+
+Train Validation Results for s053:
+Accuracy: 100.00%
+Precision: 100.00%
+Recall: 100.00%
+F1 Score: 100.00%
+FAR: 0.00%
+FRR: 0.00%
+
+Test Results for s053:
+Accuracy: 99.00%
+Precision: 100.00%
+Recall: 98.00%
+F1 Score: 98.99%
+FAR: 0.00%
+FRR: 2.00%
+
+Processing user: s022
+Training samples: 480
+Validation samples: 120
+Test samples: 200
+Early stopping at epoch 49
+Validating model for s022 on train validation set...
+Prediction distribution: [60 60]
+True labels distribution: [60 60]
+Testing model for s022 on test set...
+Test prediction distribution: [100 100]
+Test true labels distribution: [100 100]
+
+Train Validation Results for s022:
+Accuracy: 100.00%
+Precision: 100.00%
+Recall: 100.00%
+F1 Score: 100.00%
+FAR: 0.00%
+FRR: 0.00%
+
+Test Results for s022:
+Accuracy: 100.00%
+Precision: 100.00%
+Recall: 100.00%
+F1 Score: 100.00%
+FAR: 0.00%
+FRR: 0.00%
+
+Processing user: s052
+Training samples: 480
+Validation samples: 120
+Test samples: 200
+Early stopping at epoch 43
+Validating model for s052 on train validation set...
+Prediction distribution: [60 60]
+True labels distribution: [60 60]
+Testing model for s052 on test set...
+Test prediction distribution: [101  99]
+Test true labels distribution: [100 100]
+
+Train Validation Results for s052:
+Accuracy: 100.00%
+Precision: 100.00%
+Recall: 100.00%
+F1 Score: 100.00%
+FAR: 0.00%
+FRR: 0.00%
+
+Test Results for s052:
+Accuracy: 99.50%
+Precision: 100.00%
+Recall: 99.00%
+F1 Score: 99.50%
+FAR: 0.00%
+FRR: 1.00%
+
+Processing user: s021
+Training samples: 480
+Validation samples: 120
+Test samples: 200
+Early stopping at epoch 42
+Validating model for s021 on train validation set...
+Prediction distribution: [61 59]
+True labels distribution: [60 60]
+Testing model for s021 on test set...
+Test prediction distribution: [102  98]
+Test true labels distribution: [100 100]
+
+Train Validation Results for s021:
+Accuracy: 99.17%
+Precision: 100.00%
+Recall: 98.33%
+F1 Score: 99.16%
+FAR: 0.00%
+FRR: 1.67%
+
+Test Results for s021:
+Accuracy: 99.00%
+Precision: 100.00%
+Recall: 98.00%
+F1 Score: 98.99%
+FAR: 0.00%
+FRR: 2.00%
+
+Processing user: s039
+Training samples: 480
+Validation samples: 120
+Test samples: 200
+Early stopping at epoch 21
+Validating model for s039 on train validation set...
+Prediction distribution: [63 57]
+True labels distribution: [60 60]
+Testing model for s039 on test set...
+Test prediction distribution: [104  96]
+Test true labels distribution: [100 100]
+
+Train Validation Results for s039:
+Accuracy: 97.50%
+Precision: 100.00%
+Recall: 95.00%
+F1 Score: 97.44%
+FAR: 0.00%
+FRR: 5.00%
+
+Test Results for s039:
+Accuracy: 98.00%
+Precision: 100.00%
+Recall: 96.00%
+F1 Score: 97.96%
+FAR: 0.00%
+FRR: 4.00%
+
+Processing user: s013
+Training samples: 480
+Validation samples: 120
+Test samples: 200
+Early stopping at epoch 42
+Validating model for s013 on train validation set...
+Prediction distribution: [61 59]
+True labels distribution: [60 60]
+Testing model for s013 on test set...
+Test prediction distribution: [101  99]
+Test true labels distribution: [100 100]
+
+Train Validation Results for s013:
+Accuracy: 99.17%
+Precision: 100.00%
+Recall: 98.33%
+F1 Score: 99.16%
+FAR: 0.00%
+FRR: 1.67%
+
+Test Results for s013:
+Accuracy: 99.50%
+Precision: 100.00%
+Recall: 99.00%
+F1 Score: 99.50%
+FAR: 0.00%
+FRR: 1.00%
+
+Processing user: s046
+Training samples: 480
+Validation samples: 120
+Test samples: 200
+Early stopping at epoch 36
+Validating model for s046 on train validation set...
+Prediction distribution: [62 58]
+True labels distribution: [60 60]
+Testing model for s046 on test set...
+Test prediction distribution: [104  96]
+Test true labels distribution: [100 100]
+
+Train Validation Results for s046:
+Accuracy: 98.33%
+Precision: 100.00%
+Recall: 96.67%
+F1 Score: 98.31%
+FAR: 0.00%
+FRR: 3.33%
+
+Test Results for s046:
+Accuracy: 98.00%
+Precision: 100.00%
+Recall: 96.00%
+F1 Score: 97.96%
+FAR: 0.00%
+FRR: 4.00%
+
+Processing user: s041
+Training samples: 480
+Validation samples: 120
+Test samples: 200
+Early stopping at epoch 39
+Validating model for s041 on train validation set...
+Prediction distribution: [62 58]
+True labels distribution: [60 60]
+Testing model for s041 on test set...
+Test prediction distribution: [104  96]
+Test true labels distribution: [100 100]
+
+Train Validation Results for s041:
+Accuracy: 98.33%
+Precision: 100.00%
+Recall: 96.67%
+F1 Score: 98.31%
+FAR: 0.00%
+FRR: 3.33%
+
+Test Results for s041:
+Accuracy: 98.00%
+Precision: 100.00%
+Recall: 96.00%
+F1 Score: 97.96%
+FAR: 0.00%
+FRR: 4.00%
+
+Processing user: s002
+Training samples: 480
+Validation samples: 120
+Test samples: 200
+Early stopping at epoch 44
+Validating model for s002 on train validation set...
+Prediction distribution: [62 58]
+True labels distribution: [60 60]
+Testing model for s002 on test set...
+Test prediction distribution: [105  95]
+Test true labels distribution: [100 100]
+
+Train Validation Results for s002:
+Accuracy: 96.67%
+Precision: 98.28%
+Recall: 95.00%
+F1 Score: 96.61%
+FAR: 1.67%
+FRR: 5.00%
+
+Test Results for s002:
+Accuracy: 96.50%
+Precision: 98.95%
+Recall: 94.00%
+F1 Score: 96.41%
+FAR: 1.00%
+FRR: 6.00%
+
+Processing user: s025
+Training samples: 480
+Validation samples: 120
+Test samples: 200
+Validating model for s025 on train validation set...
+Prediction distribution: [60 60]
+True labels distribution: [60 60]
+Testing model for s025 on test set...
+Test prediction distribution: [100 100]
+Test true labels distribution: [100 100]
+
+Train Validation Results for s025:
+Accuracy: 100.00%
+Precision: 100.00%
+Recall: 100.00%
+F1 Score: 100.00%
+FAR: 0.00%
+FRR: 0.00%
+
+Test Results for s025:
+Accuracy: 100.00%
+Precision: 100.00%
+Recall: 100.00%
+F1 Score: 100.00%
+FAR: 0.00%
+FRR: 0.00%
+
+Processing user: s007
+Training samples: 480
+Validation samples: 120
+Test samples: 200
+Early stopping at epoch 30
+Validating model for s007 on train validation set...
+Prediction distribution: [62 58]
+True labels distribution: [60 60]
+Testing model for s007 on test set...
+Test prediction distribution: [103  97]
+Test true labels distribution: [100 100]
+
+Train Validation Results for s007:
+Accuracy: 98.33%
+Precision: 100.00%
+Recall: 96.67%
+F1 Score: 98.31%
+FAR: 0.00%
+FRR: 3.33%
+
+Test Results for s007:
+Accuracy: 98.50%
+Precision: 100.00%
+Recall: 97.00%
+F1 Score: 98.48%
+FAR: 0.00%
+FRR: 3.00%
+
+Processing user: s029
+Training samples: 480
+Validation samples: 120
+Test samples: 200
+Early stopping at epoch 48
+Validating model for s029 on train validation set...
+Prediction distribution: [60 60]
+True labels distribution: [60 60]
+Testing model for s029 on test set...
+Test prediction distribution: [100 100]
+Test true labels distribution: [100 100]
+
+Train Validation Results for s029:
+Accuracy: 100.00%
+Precision: 100.00%
+Recall: 100.00%
+F1 Score: 100.00%
+FAR: 0.00%
+FRR: 0.00%
+
+Test Results for s029:
+Accuracy: 100.00%
+Precision: 100.00%
+Recall: 100.00%
+F1 Score: 100.00%
+FAR: 0.00%
+FRR: 0.00%
+
+Processing user: s003
+Training samples: 480
+Validation samples: 120
+Test samples: 200
+Early stopping at epoch 50
+Validating model for s003 on train validation set...
+Prediction distribution: [60 60]
+True labels distribution: [60 60]
+Testing model for s003 on test set...
+Test prediction distribution: [106  94]
+Test true labels distribution: [100 100]
+
+Train Validation Results for s003:
+Accuracy: 100.00%
+Precision: 100.00%
+Recall: 100.00%
+F1 Score: 100.00%
+FAR: 0.00%
+FRR: 0.00%
+
+Test Results for s003:
+Accuracy: 97.00%
+Precision: 100.00%
+Recall: 94.00%
+F1 Score: 96.91%
+FAR: 0.00%
+FRR: 6.00%
+
+Processing user: s040
+Training samples: 480
+Validation samples: 120
+Test samples: 200
+Early stopping at epoch 36
+Validating model for s040 on train validation set...
+Prediction distribution: [61 59]
+True labels distribution: [60 60]
+Testing model for s040 on test set...
+Test prediction distribution: [103  97]
+Test true labels distribution: [100 100]
+
+Train Validation Results for s040:
+Accuracy: 99.17%
+Precision: 100.00%
+Recall: 98.33%
+F1 Score: 99.16%
+FAR: 0.00%
+FRR: 1.67%
+
+Test Results for s040:
+Accuracy: 98.50%
+Precision: 100.00%
+Recall: 97.00%
+F1 Score: 98.48%
+FAR: 0.00%
+FRR: 3.00%
+
+Processing user: s057
+Training samples: 480
+Validation samples: 120
+Test samples: 200
+Early stopping at epoch 40
+Validating model for s057 on train validation set...
+Prediction distribution: [62 58]
+True labels distribution: [60 60]
+Testing model for s057 on test set...
+Test prediction distribution: [103  97]
+Test true labels distribution: [100 100]
+
+Train Validation Results for s057:
+Accuracy: 98.33%
+Precision: 100.00%
+Recall: 96.67%
+F1 Score: 98.31%
+FAR: 0.00%
+FRR: 3.33%
+
+Test Results for s057:
+Accuracy: 98.50%
+Precision: 100.00%
+Recall: 97.00%
+F1 Score: 98.48%
+FAR: 0.00%
+FRR: 3.00%
+
+=== Train Validation Summary ===
+
+Overall Statistics:
+Total Users: 51
+Total Samples: 6120
+Overall Accuracy: 98.38%
+Average Precision: 99.83%
+Average Recall: 96.93%
+Average F1 Score: 98.32%
+Average FAR: 0.16%
+Average FRR: 3.07%
+
+Per-User Statistics:
+Login		Accuracy	Precision	Recall		F1 Score	FAR		FRR
+----------------------------------------------------------------------------------------------------
+s002		96.67%		98.28%		95.00%		96.61%		1.67%		5.00%
+s003		100.00%		100.00%		100.00%		100.00%		0.00%		0.00%
+s004		98.33%		100.00%		96.67%		98.31%		0.00%		3.33%
+s005		100.00%		100.00%		100.00%		100.00%		0.00%		0.00%
+s007		98.33%		100.00%		96.67%		98.31%		0.00%		3.33%
+s008		94.17%		100.00%		88.33%		93.81%		0.00%		11.67%
+s010		99.17%		100.00%		98.33%		99.16%		0.00%		1.67%
+s011		97.50%		100.00%		95.00%		97.44%		0.00%		5.00%
+s012		94.17%		100.00%		88.33%		93.81%		0.00%		11.67%
+s013		99.17%		100.00%		98.33%		99.16%		0.00%		1.67%
+s015		100.00%		100.00%		100.00%		100.00%		0.00%		0.00%
+s016		100.00%		100.00%		100.00%		100.00%		0.00%		0.00%
+s017		100.00%		100.00%		100.00%		100.00%		0.00%		0.00%
+s018		97.50%		100.00%		95.00%		97.44%		0.00%		5.00%
+s019		97.50%		100.00%		95.00%		97.44%		0.00%		5.00%
+s020		95.00%		100.00%		90.00%		94.74%		0.00%		10.00%
+s021		99.17%		100.00%		98.33%		99.16%		0.00%		1.67%
+s022		100.00%		100.00%		100.00%		100.00%		0.00%		0.00%
+s024		99.17%		100.00%		98.33%		99.16%		0.00%		1.67%
+s025		100.00%		100.00%		100.00%		100.00%		0.00%		0.00%
+s026		97.50%		100.00%		95.00%		97.44%		0.00%		5.00%
+s027		100.00%		100.00%		100.00%		100.00%		0.00%		0.00%
+s028		100.00%		100.00%		100.00%		100.00%		0.00%		0.00%
+s029		100.00%		100.00%		100.00%		100.00%		0.00%		0.00%
+s030		97.50%		100.00%		95.00%		97.44%		0.00%		5.00%
+s031		99.17%		100.00%		98.33%		99.16%		0.00%		1.67%
+s032		91.67%		98.08%		85.00%		91.07%		1.67%		15.00%
+s033		100.00%		100.00%		100.00%		100.00%		0.00%		0.00%
+s034		95.83%		100.00%		91.67%		95.65%		0.00%		8.33%
+s035		100.00%		100.00%		100.00%		100.00%		0.00%		0.00%
+s036		99.17%		100.00%		98.33%		99.16%		0.00%		1.67%
+s037		97.50%		100.00%		95.00%		97.44%		0.00%		5.00%
+s038		99.17%		100.00%		98.33%		99.16%		0.00%		1.67%
+s039		97.50%		100.00%		95.00%		97.44%		0.00%		5.00%
+s040		99.17%		100.00%		98.33%		99.16%		0.00%		1.67%
+s041		98.33%		100.00%		96.67%		98.31%		0.00%		3.33%
+s042		100.00%		100.00%		100.00%		100.00%		0.00%		0.00%
+s043		100.00%		100.00%		100.00%		100.00%		0.00%		0.00%
+s044		100.00%		100.00%		100.00%		100.00%		0.00%		0.00%
+s046		98.33%		100.00%		96.67%		98.31%		0.00%		3.33%
+s047		99.17%		100.00%		98.33%		99.16%		0.00%		1.67%
+s048		95.00%		98.21%		91.67%		94.83%		1.67%		8.33%
+s049		100.00%		100.00%		100.00%		100.00%		0.00%		0.00%
+s050		98.33%		98.33%		98.33%		98.33%		1.67%		1.67%
+s051		97.50%		100.00%		95.00%		97.44%		0.00%		5.00%
+s052		100.00%		100.00%		100.00%		100.00%		0.00%		0.00%
+s053		100.00%		100.00%		100.00%		100.00%		0.00%		0.00%
+s054		100.00%		100.00%		100.00%		100.00%		0.00%		0.00%
+s055		98.33%		100.00%		96.67%		98.31%		0.00%		3.33%
+s056		94.17%		98.18%		90.00%		93.91%		1.67%		10.00%
+s057		98.33%		100.00%		96.67%		98.31%		0.00%		3.33%
+
+=== Test Summary ===
+
+Overall Statistics:
+Total Users: 51
+Total Samples: 10200
+Overall Accuracy: 98.38%
+Average Precision: 99.84%
+Average Recall: 96.92%
+Average F1 Score: 98.34%
+Average FAR: 0.16%
+Average FRR: 3.08%
+
+Per-User Statistics:
+Login		Accuracy	Precision	Recall		F1 Score	FAR		FRR
+----------------------------------------------------------------------------------------------------
+s002		96.50%		98.95%		94.00%		96.41%		1.00%		6.00%
+s003		97.00%		100.00%		94.00%		96.91%		0.00%		6.00%
+s004		99.50%		100.00%		99.00%		99.50%		0.00%		1.00%
+s005		99.50%		100.00%		99.00%		99.50%		0.00%		1.00%
+s007		98.50%		100.00%		97.00%		98.48%		0.00%		3.00%
+s008		98.00%		100.00%		96.00%		97.96%		0.00%		4.00%
+s010		98.50%		100.00%		97.00%		98.48%		0.00%		3.00%
+s011		99.00%		100.00%		98.00%		98.99%		0.00%		2.00%
+s012		99.00%		100.00%		98.00%		98.99%		0.00%		2.00%
+s013		99.50%		100.00%		99.00%		99.50%		0.00%		1.00%
+s015		97.00%		100.00%		94.00%		96.91%		0.00%		6.00%
+s016		98.00%		100.00%		96.00%		97.96%		0.00%		4.00%
+s017		98.50%		100.00%		97.00%		98.48%		0.00%		3.00%
+s018		98.00%		100.00%		96.00%		97.96%		0.00%		4.00%
+s019		98.50%		100.00%		97.00%		98.48%		0.00%		3.00%
+s020		96.00%		100.00%		92.00%		95.83%		0.00%		8.00%
+s021		99.00%		100.00%		98.00%		98.99%		0.00%		2.00%
+s022		100.00%		100.00%		100.00%		100.00%		0.00%		0.00%
+s024		99.00%		100.00%		98.00%		98.99%		0.00%		2.00%
+s025		100.00%		100.00%		100.00%		100.00%		0.00%		0.00%
+s026		99.50%		100.00%		99.00%		99.50%		0.00%		1.00%
+s027		98.50%		100.00%		97.00%		98.48%		0.00%		3.00%
+s028		98.50%		100.00%		97.00%		98.48%		0.00%		3.00%
+s029		100.00%		100.00%		100.00%		100.00%		0.00%		0.00%
+s030		98.00%		100.00%		96.00%		97.96%		0.00%		4.00%
+s031		97.00%		100.00%		94.00%		96.91%		0.00%		6.00%
+s032		93.00%		97.78%		88.00%		92.63%		2.00%		12.00%
+s033		100.00%		100.00%		100.00%		100.00%		0.00%		0.00%
+s034		97.00%		100.00%		94.00%		96.91%		0.00%		6.00%
+s035		99.50%		100.00%		99.00%		99.50%		0.00%		1.00%
+s036		100.00%		100.00%		100.00%		100.00%		0.00%		0.00%
+s037		98.00%		100.00%		96.00%		97.96%		0.00%		4.00%
+s038		99.00%		100.00%		98.00%		98.99%		0.00%		2.00%
+s039		98.00%		100.00%		96.00%		97.96%		0.00%		4.00%
+s040		98.50%		100.00%		97.00%		98.48%		0.00%		3.00%
+s041		98.00%		100.00%		96.00%		97.96%		0.00%		4.00%
+s042		98.00%		100.00%		96.00%		97.96%		0.00%		4.00%
+s043		99.50%		100.00%		99.00%		99.50%		0.00%		1.00%
+s044		99.50%		100.00%		99.00%		99.50%		0.00%		1.00%
+s046		98.00%		100.00%		96.00%		97.96%		0.00%		4.00%
+s047		99.50%		100.00%		99.00%		99.50%		0.00%		1.00%
+s048		97.50%		97.03%		98.00%		97.51%		3.00%		2.00%
+s049		100.00%		100.00%		100.00%		100.00%		0.00%		0.00%
+s050		96.00%		98.94%		93.00%		95.88%		1.00%		7.00%
+s051		99.00%		100.00%		98.00%		98.99%		0.00%		2.00%
+s052		99.50%		100.00%		99.00%		99.50%		0.00%		1.00%
+s053		99.00%		100.00%		98.00%		98.99%		0.00%		2.00%
+s054		97.50%		100.00%		95.00%		97.44%		0.00%		5.00%
+s055		97.50%		100.00%		95.00%		97.44%		0.00%		5.00%
+s056		97.00%		98.96%		95.00%		96.94%		1.00%		5.00%
+s057		98.50%		100.00%		97.00%		98.48%		0.00%		3.00%

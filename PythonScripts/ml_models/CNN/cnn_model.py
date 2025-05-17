@@ -22,15 +22,24 @@ else:
 
 # Define paths
 SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
-WEIGHTS_DIR = os.path.join(SCRIPT_DIR, 'weights')
-RESULTS_DIR = os.path.join(SCRIPT_DIR, 'results')
-TRAIN_DATA_PATH = os.path.join(os.path.dirname(os.path.dirname(os.path.dirname(SCRIPT_DIR))), 'PythonScripts', 'data', 'ML_KeystrokeData_train.csv')
-TRAIN_VAL_DATA_PATH = os.path.join(os.path.dirname(os.path.dirname(os.path.dirname(SCRIPT_DIR))), 'PythonScripts', 'data', 'ML_KeystrokeData_train_val.csv')
-TEST_DATA_PATH = os.path.join(os.path.dirname(os.path.dirname(os.path.dirname(SCRIPT_DIR))), 'PythonScripts', 'data', 'ML_KeystrokeData_test.csv')
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.dirname(SCRIPT_DIR)))
+DATA_DIR = os.path.join(BASE_DIR, 'PythonScripts', 'data')
 
-# Create directories if they don't exist
-os.makedirs(WEIGHTS_DIR, exist_ok=True)
-os.makedirs(RESULTS_DIR, exist_ok=True)
+def get_data_paths(n_graph: int) -> Tuple[str, str, str]:
+    """Get data paths for specific n-graph level"""
+    return (
+        os.path.join(DATA_DIR, f'ML_KeystrokeData_train_{n_graph}graph.csv'),
+        os.path.join(DATA_DIR, f'ML_KeystrokeData_train_val_{n_graph}graph.csv'),
+        os.path.join(DATA_DIR, f'ML_KeystrokeData_test_{n_graph}graph.csv')
+    )
+
+def get_model_paths(n_graph: int) -> Tuple[str, str]:
+    """Get model paths for specific n-graph level"""
+    weights_dir = os.path.join(SCRIPT_DIR, 'weights', f'N_{n_graph}')
+    results_dir = os.path.join(SCRIPT_DIR, 'results')
+    os.makedirs(weights_dir, exist_ok=True)
+    os.makedirs(results_dir, exist_ok=True)
+    return weights_dir, results_dir
 
 # Set device
 device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
@@ -90,21 +99,31 @@ class KeystrokeCNN1D(nn.Module):
         return x
 
 class KeystrokeCNNModel:
-    def __init__(self, seq_length=1, num_features=40, dropout=0.3, learning_rate=0.001):
+    def __init__(self, n_graph: int = 1, seq_length=1, dropout=0.3, learning_rate=0.001):
+        self.n_graph = n_graph
         self.scalers = {}
         self.models = {}
         self.validation_results = []
         self.test_results = []
         self.results_file = None
         self.seq_length = seq_length
-        self.num_features = num_features
         self.dropout = dropout
         self.learning_rate = learning_rate
         self.best_params = {}
 
+        # Set up paths for this n-graph level
+        self.weights_dir, self.results_dir = get_model_paths(n_graph)
+        self.train_data_path, self.train_val_data_path, self.test_data_path = get_data_paths(n_graph)
+
+        # Calculate number of features based on n-graph level
+        if n_graph == 1:
+            self.num_features = 40  # H and UD features
+        else:
+            self.num_features = 80  # H, DD, UU, and UD features
+
     def _open_results_file(self):
         timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
-        results_path = os.path.join(RESULTS_DIR, f'cnn_model_results_{timestamp}.txt')
+        results_path = os.path.join(self.results_dir, f'cnn_model_results_{self.n_graph}graph_{timestamp}.txt')
         self.results_file = open(results_path, 'w', encoding='utf-8')
 
     def _close_results_file(self):
@@ -117,10 +136,18 @@ class KeystrokeCNNModel:
         if self.results_file:
             self.results_file.write(text + '\n')
 
-    def _prepare_features(self, h_values, ud_values):
-        h_array = np.array([float(x) for x in h_values.split()])
-        ud_array = np.array([float(x) for x in ud_values.split()])
-        return np.concatenate([h_array, ud_array])
+    def _prepare_features(self, row):
+        """Prepare features based on n-graph level"""
+        if self.n_graph == 1:
+            h_array = np.array([float(x) for x in row['H'].split()])
+            ud_array = np.array([float(x) for x in row['UD'].split()])
+            return np.concatenate([h_array, ud_array])
+        else:
+            h_array = np.array([float(x) for x in row['H'].split()])
+            dd_array = np.array([float(x) for x in row['DD'].split()])
+            uu_array = np.array([float(x) for x in row['UU'].split()])
+            ud_array = np.array([float(x) for x in row['UD'].split()])
+            return np.concatenate([h_array, dd_array, uu_array, ud_array])
 
     def _calculate_metrics(self, y_true, y_pred):
         y_true = np.array(y_true)
@@ -188,10 +215,10 @@ class KeystrokeCNNModel:
 
     def train_and_validate(self):
         self._open_results_file()
-        self._write_to_results("Starting CNN model training and validation...\n")
-        train_df = pd.read_csv(TRAIN_DATA_PATH)
-        train_val_df = pd.read_csv(TRAIN_VAL_DATA_PATH)
-        test_df = pd.read_csv(TEST_DATA_PATH)
+        self._write_to_results(f"Starting CNN model training and validation for {self.n_graph}-graph...\n")
+        train_df = pd.read_csv(self.train_data_path)
+        train_val_df = pd.read_csv(self.train_val_data_path)
+        test_df = pd.read_csv(self.test_data_path)
         unique_users = train_df['Login'].unique()
         for login in unique_users:
             self._write_to_results(f"\nProcessing user: {login}")
@@ -201,17 +228,17 @@ class KeystrokeCNNModel:
             self._write_to_results(f"Training samples: {len(user_train_data)}")
             self._write_to_results(f"Validation samples: {len(user_train_val_data)}")
             self._write_to_results(f"Test samples: {len(user_test_data)}")
-            X_train = np.array([self._prepare_features(row['H'], row['UD']) for _, row in user_train_data.iterrows()])
+            X_train = np.array([self._prepare_features(row) for _, row in user_train_data.iterrows()])
             y_train = user_train_data['IsLegalUser'].values
-            X_train_val = np.array([self._prepare_features(row['H'], row['UD']) for _, row in user_train_val_data.iterrows()])
+            X_train_val = np.array([self._prepare_features(row) for _, row in user_train_val_data.iterrows()])
             y_train_val = user_train_val_data['IsLegalUser'].values
-            X_test = np.array([self._prepare_features(row['H'], row['UD']) for _, row in user_test_data.iterrows()])
+            X_test = np.array([self._prepare_features(row) for _, row in user_test_data.iterrows()])
             y_test = user_test_data['IsLegalUser'].values
             scaler = StandardScaler()
             X_train_scaled = scaler.fit_transform(X_train)
             X_train_val_scaled = scaler.transform(X_train_val)
             X_test_scaled = scaler.transform(X_test)
-            # For 1D-CNN, treat each sample as (seq_len, num_features). Here, seq_len=1, num_features=40
+            # For 1D-CNN, treat each sample as (seq_len, num_features)
             X_train_reshaped = X_train_scaled.reshape(-1, 1, X_train_scaled.shape[1])
             X_train_val_reshaped = X_train_val_scaled.reshape(-1, 1, X_train_val_scaled.shape[1])
             X_test_reshaped = X_test_scaled.reshape(-1, 1, X_test_scaled.shape[1])
@@ -286,7 +313,7 @@ class KeystrokeCNNModel:
             self._write_to_results(f"FRR: {test_metrics.FRR:.2f}%")
             self.models[login] = model
             self.scalers[login] = scaler
-            user_weights_dir = os.path.join(WEIGHTS_DIR, login)
+            user_weights_dir = os.path.join(self.weights_dir, login)
             os.makedirs(user_weights_dir, exist_ok=True)
             torch.save(model.state_dict(), os.path.join(user_weights_dir, 'model.pth'))
             joblib.dump(scaler, os.path.join(user_weights_dir, 'scaler.pkl'))
@@ -323,10 +350,16 @@ class KeystrokeCNNModel:
         for r in sorted(results, key=lambda x: x.login):
             self._write_to_results(f"{r.login}\t\t{r.metrics.Accuracy:.2f}%\t\t{r.metrics.Precision:.2f}%\t\t{r.metrics.Recall:.2f}%\t\t{r.metrics.F1Score:.2f}%\t\t{r.metrics.FAR:.2f}%\t\t{r.metrics.FRR:.2f}%")
 
-    def predict(self, login: str, h_values: str, ud_values: str) -> Tuple[float, bool]:
+    def predict(self, login: str, features_dict: Dict[str, str]) -> Tuple[float, bool]:
         if login not in self.models:
             raise ValueError(f"No model found for user: {login}")
-        features = self._prepare_features(h_values, ud_values)
+
+        # Prepare features based on n-graph level
+        if self.n_graph == 1:
+            features = self._prepare_features({'H': features_dict['H'], 'UD': features_dict['UD']})
+        else:
+            features = self._prepare_features(features_dict)
+
         features = features.reshape(1, 1, -1)
         features = torch.FloatTensor(features).to(device)
         features_scaled = self.scalers[login].transform(features.reshape(1, -1))
@@ -341,9 +374,11 @@ class KeystrokeCNNModel:
         return probability, is_authenticated
 
 def main():
-    cnn = KeystrokeCNNModel()
-    print("Training and validating CNN models...")
-    cnn.train_and_validate()
+    # Train models for each n-graph level
+    for n_graph in [1, 2, 3]:
+        print(f"\nTraining and validating CNN models for {n_graph}-graph...")
+        cnn = KeystrokeCNNModel(n_graph=n_graph)
+        cnn.train_and_validate()
 
 if __name__ == "__main__":
     main()

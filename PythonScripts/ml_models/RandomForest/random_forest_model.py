@@ -9,17 +9,32 @@ from dataclasses import dataclass
 from typing import Dict, List, Tuple
 from datetime import datetime
 
-# Define paths
+# Define base directory
 SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.dirname(SCRIPT_DIR)))
+DATA_DIR = os.path.join(BASE_DIR, 'PythonScripts', 'data')
 WEIGHTS_DIR = os.path.join(SCRIPT_DIR, 'weights')
 RESULTS_DIR = os.path.join(SCRIPT_DIR, 'results')
-TRAIN_DATA_PATH = os.path.join(os.path.dirname(os.path.dirname(os.path.dirname(SCRIPT_DIR))), 'PythonScripts', 'data', 'ML_KeystrokeData_train.csv')
-TRAIN_VAL_DATA_PATH = os.path.join(os.path.dirname(os.path.dirname(os.path.dirname(SCRIPT_DIR))), 'PythonScripts', 'data', 'ML_KeystrokeData_train_val.csv')
-TEST_DATA_PATH = os.path.join(os.path.dirname(os.path.dirname(os.path.dirname(SCRIPT_DIR))), 'PythonScripts', 'data', 'ML_KeystrokeData_test.csv')
 
 # Create directories if they don't exist
 os.makedirs(WEIGHTS_DIR, exist_ok=True)
 os.makedirs(RESULTS_DIR, exist_ok=True)
+
+def get_data_paths(n_graph: int) -> Tuple[str, str, str]:
+    """Get paths for n-graph data files"""
+    return (
+        os.path.join(DATA_DIR, f'ML_KeystrokeData_train_{n_graph}graph.csv'),
+        os.path.join(DATA_DIR, f'ML_KeystrokeData_train_val_{n_graph}graph.csv'),
+        os.path.join(DATA_DIR, f'ML_KeystrokeData_test_{n_graph}graph.csv')
+    )
+
+def get_model_paths(n_graph: int) -> Tuple[str, str]:
+    """Get paths for model weights and results"""
+    weights_dir = os.path.join(WEIGHTS_DIR, f'N_{n_graph}')
+    os.makedirs(weights_dir, exist_ok=True)
+    timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
+    results_file = os.path.join(RESULTS_DIR, f'random_forest_model_results_{n_graph}graph_{timestamp}.txt')
+    return weights_dir, results_file
 
 @dataclass
 class ModelMetrics:
@@ -38,7 +53,8 @@ class ValidationResult:
     correct_predictions: int
 
 class KeystrokeRandomForest:
-    def __init__(self, n_estimators=100, max_depth=None, min_samples_split=2, min_samples_leaf=1):
+    def __init__(self, n_graph: int = 1, n_estimators=100, max_depth=None, min_samples_split=2, min_samples_leaf=1):
+        self.n_graph = n_graph
         self.scalers = {}  # Dictionary to store scalers for each user
         self.models = {}   # Dictionary to store models for each user
         self.validation_results = []  # Store validation results
@@ -52,8 +68,7 @@ class KeystrokeRandomForest:
 
     def _open_results_file(self):
         """Open a new results file with timestamp"""
-        timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
-        results_path = os.path.join(RESULTS_DIR, f'model_results_{timestamp}.txt')
+        weights_dir, results_path = get_model_paths(self.n_graph)
         self.results_file = open(results_path, 'w', encoding='utf-8')
 
     def _close_results_file(self):
@@ -68,11 +83,18 @@ class KeystrokeRandomForest:
         if self.results_file:
             self.results_file.write(text + '\n')
 
-    def _prepare_features(self, h_values, ud_values):
+    def _prepare_features(self, features: Dict[str, str]) -> np.ndarray:
         """Convert string arrays to numpy arrays of features"""
-        h_array = np.array([float(x) for x in h_values.split()])
-        ud_array = np.array([float(x) for x in ud_values.split()])
-        return np.concatenate([h_array, ud_array])
+        if self.n_graph == 1:
+            h_array = np.array([float(x) for x in features['H'].split()])
+            ud_array = np.array([float(x) for x in features['UD'].split()])
+            return np.concatenate([h_array, ud_array])
+        else:
+            h_array = np.array([float(x) for x in features['H'].split()])
+            dd_array = np.array([float(x) for x in features['DD'].split()])
+            uu_array = np.array([float(x) for x in features['UU'].split()])
+            ud_array = np.array([float(x) for x in features['UD'].split()])
+            return np.concatenate([h_array, dd_array, uu_array, ud_array])
 
     def _calculate_metrics(self, y_true, y_pred):
         """Calculate all relevant metrics"""
@@ -156,12 +178,13 @@ class KeystrokeRandomForest:
         """
         # Open results file
         self._open_results_file()
-        self._write_to_results("Starting model training and validation...\n")
+        self._write_to_results(f"Starting model training and validation for {self.n_graph}-graph...\n")
 
         # Load training, train validation, and test data
-        train_df = pd.read_csv(TRAIN_DATA_PATH)
-        train_val_df = pd.read_csv(TRAIN_VAL_DATA_PATH)
-        test_df = pd.read_csv(TEST_DATA_PATH)
+        train_path, train_val_path, test_path = get_data_paths(self.n_graph)
+        train_df = pd.read_csv(train_path)
+        train_val_df = pd.read_csv(train_val_path)
+        test_df = pd.read_csv(test_path)
 
         # Get unique users
         unique_users = train_df['Login'].unique()
@@ -175,15 +198,15 @@ class KeystrokeRandomForest:
             user_test_data = test_df[test_df['Login'] == login]
 
             # Prepare training features
-            X_train = np.array([self._prepare_features(row['H'], row['UD']) for _, row in user_train_data.iterrows()])
+            X_train = np.array([self._prepare_features(row) for _, row in user_train_data.iterrows()])
             y_train = user_train_data['IsLegalUser'].values
 
             # Prepare train validation features
-            X_train_val = np.array([self._prepare_features(row['H'], row['UD']) for _, row in user_train_val_data.iterrows()])
+            X_train_val = np.array([self._prepare_features(row) for _, row in user_train_val_data.iterrows()])
             y_train_val = user_train_val_data['IsLegalUser'].values
 
             # Prepare test features
-            X_test = np.array([self._prepare_features(row['H'], row['UD']) for _, row in user_test_data.iterrows()])
+            X_test = np.array([self._prepare_features(row) for _, row in user_test_data.iterrows()])
             y_test = user_test_data['IsLegalUser'].values
 
             # Create and fit scaler for this user
@@ -258,7 +281,8 @@ class KeystrokeRandomForest:
             self.scalers[login] = scaler
 
             # Save model and scaler
-            user_weights_dir = os.path.join(WEIGHTS_DIR, login)
+            weights_dir, _ = get_model_paths(self.n_graph)
+            user_weights_dir = os.path.join(weights_dir, login)
             os.makedirs(user_weights_dir, exist_ok=True)
 
             joblib.dump(model, os.path.join(user_weights_dir, 'model.pkl'))
@@ -308,20 +332,23 @@ class KeystrokeRandomForest:
         for r in sorted(results, key=lambda x: x.login):
             self._write_to_results(f"{r.login}\t\t{r.metrics.Accuracy:.2f}%\t\t{r.metrics.Precision:.2f}%\t\t{r.metrics.Recall:.2f}%\t\t{r.metrics.F1Score:.2f}%\t\t{r.metrics.FAR:.2f}%\t\t{r.metrics.FRR:.2f}%")
 
-    def predict(self, login: str, h_values: str, ud_values: str) -> Tuple[float, bool]:
+    def predict(self, login: str, features: Dict[str, str]) -> Tuple[float, bool]:
         """
         Predict if the keystroke pattern belongs to the specified user
+        Args:
+            login: User login
+            features: Dictionary containing feature arrays as space-separated strings
         Returns: (probability, is_authenticated)
         """
         if login not in self.models:
             raise ValueError(f"No model found for user: {login}")
 
         # Prepare input features
-        features = self._prepare_features(h_values, ud_values)
-        features = features.reshape(1, -1)
+        features_array = self._prepare_features(features)
+        features_array = features_array.reshape(1, -1)
 
         # Scale features using user's scaler
-        features_scaled = self.scalers[login].transform(features)
+        features_scaled = self.scalers[login].transform(features_array)
 
         # Make prediction
         probability = self.models[login].predict_proba(features_scaled)[0][1]  # Probability of class 1
@@ -330,12 +357,11 @@ class KeystrokeRandomForest:
         return probability, is_authenticated
 
 def main():
-    # Example usage with hyperparameter tuning
-    rf = KeystrokeRandomForest()
-
-    # Train and validate models with hyperparameter tuning
-    print("Training and validating models with hyperparameter tuning...")
-    rf.train_and_validate(tune_hyperparameters=True)
+    # Train models for all n-graph levels
+    for n in [1, 2, 3]:
+        print(f"\nTraining Random Forest model for {n}-graph...")
+        rf = KeystrokeRandomForest(n_graph=n)
+        rf.train_and_validate(tune_hyperparameters=True)
 
 if __name__ == "__main__":
     main()
