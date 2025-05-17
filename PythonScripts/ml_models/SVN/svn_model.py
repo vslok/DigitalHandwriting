@@ -314,18 +314,5 @@ def main():
     print("Training and validating models...")
     svm.train_and_validate()
 
-    # Example prediction
-    test_login = "user1"  # Example user login
-    test_h = "0.123 0.456 0.789"  # Example hold times
-    test_ud = "0.234 0.567 0.890"  # Example up-down times
-
-    try:
-        probability, is_authenticated = svm.predict(test_login, test_h, test_ud)
-        print(f"\nPrediction for user {test_login}:")
-        print(f"Probability: {probability:.4f}")
-        print(f"Authenticated: {is_authenticated}")
-    except ValueError as e:
-        print(f"Error: {e}")
-
 if __name__ == "__main__":
     main()
