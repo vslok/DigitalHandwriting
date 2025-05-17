@@ -1,0 +1,2296 @@
+Starting model training and validation...
+
+
+Processing user: s030
+Training samples: 480
+Validation samples: 120
+Test samples: 200
+X_train shape: (480, 40)
+y_train distribution: [240 240]
+X_train_val shape: (120, 40)
+y_train_val distribution: [60 60]
+
+Tuning hyperparameters for user s030...
+Early stopping at epoch 20
+Early stopping at epoch 27
+Early stopping at epoch 20
+Early stopping at epoch 23
+Best parameters for s030:
+hidden_size: 64
+num_layers: 2
+dropout: 0.2
+learning_rate: 0.001
+Best validation score: 0.9792
+Validating model for s030 on train validation set...
+Prediction distribution: [58 62]
+True labels distribution: [60 60]
+Testing model for s030 on test set...
+Test prediction distribution: [101  99]
+Test true labels distribution: [100 100]
+
+Train Validation Results for s030:
+Accuracy: 96.67%
+Precision: 95.16%
+Recall: 98.33%
+F1 Score: 96.72%
+FAR: 5.00%
+FRR: 1.67%
+
+Test Results for s030:
+Accuracy: 97.50%
+Precision: 97.98%
+Recall: 97.00%
+F1 Score: 97.49%
+FAR: 2.00%
+FRR: 3.00%
+
+Processing user: s056
+Training samples: 480
+Validation samples: 120
+Test samples: 200
+X_train shape: (480, 40)
+y_train distribution: [240 240]
+X_train_val shape: (120, 40)
+y_train_val distribution: [60 60]
+
+Tuning hyperparameters for user s056...
+Early stopping at epoch 20
+Early stopping at epoch 16
+Early stopping at epoch 18
+Early stopping at epoch 16
+Best parameters for s056:
+hidden_size: 128
+num_layers: 2
+dropout: 0.3
+learning_rate: 0.001
+Best validation score: 0.9479
+Validating model for s056 on train validation set...
+Prediction distribution: [65 55]
+True labels distribution: [60 60]
+Testing model for s056 on test set...
+Test prediction distribution: [ 91 109]
+Test true labels distribution: [100 100]
+
+Train Validation Results for s056:
+Accuracy: 92.50%
+Precision: 96.36%
+Recall: 88.33%
+F1 Score: 92.17%
+FAR: 3.33%
+FRR: 11.67%
+
+Test Results for s056:
+Accuracy: 93.50%
+Precision: 89.91%
+Recall: 98.00%
+F1 Score: 93.78%
+FAR: 11.00%
+FRR: 2.00%
+
+Processing user: s043
+Training samples: 480
+Validation samples: 120
+Test samples: 200
+X_train shape: (480, 40)
+y_train distribution: [240 240]
+X_train_val shape: (120, 40)
+y_train_val distribution: [60 60]
+
+Tuning hyperparameters for user s043...
+Early stopping at epoch 23
+Early stopping at epoch 21
+Early stopping at epoch 21
+Early stopping at epoch 17
+Best parameters for s043:
+hidden_size: 64
+num_layers: 2
+dropout: 0.2
+learning_rate: 0.001
+Best validation score: 0.9896
+Validating model for s043 on train validation set...
+Prediction distribution: [60 60]
+True labels distribution: [60 60]
+Testing model for s043 on test set...
+Test prediction distribution: [ 99 101]
+Test true labels distribution: [100 100]
+
+Train Validation Results for s043:
+Accuracy: 100.00%
+Precision: 100.00%
+Recall: 100.00%
+F1 Score: 100.00%
+FAR: 0.00%
+FRR: 0.00%
+
+Test Results for s043:
+Accuracy: 98.50%
+Precision: 98.02%
+Recall: 99.00%
+F1 Score: 98.51%
+FAR: 2.00%
+FRR: 1.00%
+
+Processing user: s004
+Training samples: 480
+Validation samples: 120
+Test samples: 200
+X_train shape: (480, 40)
+y_train distribution: [240 240]
+X_train_val shape: (120, 40)
+y_train_val distribution: [60 60]
+
+Tuning hyperparameters for user s004...
+Early stopping at epoch 22
+Early stopping at epoch 19
+Best parameters for s004:
+hidden_size: 64
+num_layers: 2
+dropout: 0.3
+learning_rate: 0.001
+Best validation score: 0.9688
+Validating model for s004 on train validation set...
+Prediction distribution: [58 62]
+True labels distribution: [60 60]
+Testing model for s004 on test set...
+Test prediction distribution: [ 99 101]
+Test true labels distribution: [100 100]
+
+Train Validation Results for s004:
+Accuracy: 96.67%
+Precision: 95.16%
+Recall: 98.33%
+F1 Score: 96.72%
+FAR: 5.00%
+FRR: 1.67%
+
+Test Results for s004:
+Accuracy: 97.50%
+Precision: 97.03%
+Recall: 98.00%
+F1 Score: 97.51%
+FAR: 3.00%
+FRR: 2.00%
+
+Processing user: s050
+Training samples: 480
+Validation samples: 120
+Test samples: 200
+X_train shape: (480, 40)
+y_train distribution: [240 240]
+X_train_val shape: (120, 40)
+y_train_val distribution: [60 60]
+
+Tuning hyperparameters for user s050...
+Early stopping at epoch 25
+Early stopping at epoch 25
+Best parameters for s050:
+hidden_size: 64
+num_layers: 2
+dropout: 0.2
+learning_rate: 0.001
+Best validation score: 0.9792
+Validating model for s050 on train validation set...
+Prediction distribution: [60 60]
+True labels distribution: [60 60]
+Testing model for s050 on test set...
+Test prediction distribution: [ 96 104]
+Test true labels distribution: [100 100]
+
+Train Validation Results for s050:
+Accuracy: 100.00%
+Precision: 100.00%
+Recall: 100.00%
+F1 Score: 100.00%
+FAR: 0.00%
+FRR: 0.00%
+
+Test Results for s050:
+Accuracy: 94.00%
+Precision: 92.31%
+Recall: 96.00%
+F1 Score: 94.12%
+FAR: 8.00%
+FRR: 4.00%
+
+Processing user: s051
+Training samples: 480
+Validation samples: 120
+Test samples: 200
+X_train shape: (480, 40)
+y_train distribution: [240 240]
+X_train_val shape: (120, 40)
+y_train_val distribution: [60 60]
+
+Tuning hyperparameters for user s051...
+Early stopping at epoch 18
+Early stopping at epoch 23
+Early stopping at epoch 17
+Early stopping at epoch 18
+Best parameters for s051:
+hidden_size: 64
+num_layers: 2
+dropout: 0.2
+learning_rate: 0.001
+Best validation score: 0.8958
+Validating model for s051 on train validation set...
+Prediction distribution: [58 62]
+True labels distribution: [60 60]
+Testing model for s051 on test set...
+Test prediction distribution: [ 95 105]
+Test true labels distribution: [100 100]
+
+Train Validation Results for s051:
+Accuracy: 91.67%
+Precision: 90.32%
+Recall: 93.33%
+F1 Score: 91.80%
+FAR: 10.00%
+FRR: 6.67%
+
+Test Results for s051:
+Accuracy: 95.50%
+Precision: 93.33%
+Recall: 98.00%
+F1 Score: 95.61%
+FAR: 7.00%
+FRR: 2.00%
+
+Processing user: s005
+Training samples: 480
+Validation samples: 120
+Test samples: 200
+X_train shape: (480, 40)
+y_train distribution: [240 240]
+X_train_val shape: (120, 40)
+y_train_val distribution: [60 60]
+
+Tuning hyperparameters for user s005...
+Early stopping at epoch 24
+Early stopping at epoch 19
+Early stopping at epoch 18
+Early stopping at epoch 22
+Best parameters for s005:
+hidden_size: 128
+num_layers: 2
+dropout: 0.2
+learning_rate: 0.001
+Best validation score: 0.9479
+Validating model for s005 on train validation set...
+Prediction distribution: [56 64]
+True labels distribution: [60 60]
+Testing model for s005 on test set...
+Test prediction distribution: [ 93 107]
+Test true labels distribution: [100 100]
+
+Train Validation Results for s005:
+Accuracy: 95.00%
+Precision: 92.19%
+Recall: 98.33%
+F1 Score: 95.16%
+FAR: 8.33%
+FRR: 1.67%
+
+Test Results for s005:
+Accuracy: 95.50%
+Precision: 92.52%
+Recall: 99.00%
+F1 Score: 95.65%
+FAR: 8.00%
+FRR: 1.00%
+
+Processing user: s020
+Training samples: 480
+Validation samples: 120
+Test samples: 200
+X_train shape: (480, 40)
+y_train distribution: [240 240]
+X_train_val shape: (120, 40)
+y_train_val distribution: [60 60]
+
+Tuning hyperparameters for user s020...
+Early stopping at epoch 29
+Early stopping at epoch 25
+Best parameters for s020:
+hidden_size: 128
+num_layers: 2
+dropout: 0.2
+learning_rate: 0.001
+Best validation score: 0.9896
+Validating model for s020 on train validation set...
+Prediction distribution: [61 59]
+True labels distribution: [60 60]
+Testing model for s020 on test set...
+Test prediction distribution: [101  99]
+Test true labels distribution: [100 100]
+
+Train Validation Results for s020:
+Accuracy: 94.17%
+Precision: 94.92%
+Recall: 93.33%
+F1 Score: 94.12%
+FAR: 5.00%
+FRR: 6.67%
+
+Test Results for s020:
+Accuracy: 92.50%
+Precision: 92.93%
+Recall: 92.00%
+F1 Score: 92.46%
+FAR: 7.00%
+FRR: 8.00%
+
+Processing user: s027
+Training samples: 480
+Validation samples: 120
+Test samples: 200
+X_train shape: (480, 40)
+y_train distribution: [240 240]
+X_train_val shape: (120, 40)
+y_train_val distribution: [60 60]
+
+Tuning hyperparameters for user s027...
+Early stopping at epoch 22
+Early stopping at epoch 23
+Early stopping at epoch 18
+Early stopping at epoch 16
+Best parameters for s027:
+hidden_size: 64
+num_layers: 2
+dropout: 0.2
+learning_rate: 0.001
+Best validation score: 0.9896
+Validating model for s027 on train validation set...
+Prediction distribution: [62 58]
+True labels distribution: [60 60]
+Testing model for s027 on test set...
+Test prediction distribution: [100 100]
+Test true labels distribution: [100 100]
+
+Train Validation Results for s027:
+Accuracy: 98.33%
+Precision: 100.00%
+Recall: 96.67%
+F1 Score: 98.31%
+FAR: 0.00%
+FRR: 3.33%
+
+Test Results for s027:
+Accuracy: 96.00%
+Precision: 96.00%
+Recall: 96.00%
+F1 Score: 96.00%
+FAR: 4.00%
+FRR: 4.00%
+
+Processing user: s042
+Training samples: 480
+Validation samples: 120
+Test samples: 200
+X_train shape: (480, 40)
+y_train distribution: [240 240]
+X_train_val shape: (120, 40)
+y_train_val distribution: [60 60]
+
+Tuning hyperparameters for user s042...
+Early stopping at epoch 23
+Early stopping at epoch 18
+Early stopping at epoch 20
+Early stopping at epoch 17
+Best parameters for s042:
+hidden_size: 128
+num_layers: 2
+dropout: 0.3
+learning_rate: 0.001
+Best validation score: 0.9688
+Validating model for s042 on train validation set...
+Prediction distribution: [62 58]
+True labels distribution: [60 60]
+Testing model for s042 on test set...
+Test prediction distribution: [ 98 102]
+Test true labels distribution: [100 100]
+
+Train Validation Results for s042:
+Accuracy: 98.33%
+Precision: 100.00%
+Recall: 96.67%
+F1 Score: 98.31%
+FAR: 0.00%
+FRR: 3.33%
+
+Test Results for s042:
+Accuracy: 97.00%
+Precision: 96.08%
+Recall: 98.00%
+F1 Score: 97.03%
+FAR: 4.00%
+FRR: 2.00%
+
+Processing user: s011
+Training samples: 480
+Validation samples: 120
+Test samples: 200
+X_train shape: (480, 40)
+y_train distribution: [240 240]
+X_train_val shape: (120, 40)
+y_train_val distribution: [60 60]
+
+Tuning hyperparameters for user s011...
+Early stopping at epoch 20
+Early stopping at epoch 19
+Early stopping at epoch 18
+Early stopping at epoch 18
+Best parameters for s011:
+hidden_size: 64
+num_layers: 2
+dropout: 0.2
+learning_rate: 0.001
+Best validation score: 0.9479
+Validating model for s011 on train validation set...
+Prediction distribution: [59 61]
+True labels distribution: [60 60]
+Testing model for s011 on test set...
+Test prediction distribution: [102  98]
+Test true labels distribution: [100 100]
+
+Train Validation Results for s011:
+Accuracy: 95.83%
+Precision: 95.08%
+Recall: 96.67%
+F1 Score: 95.87%
+FAR: 5.00%
+FRR: 3.33%
+
+Test Results for s011:
+Accuracy: 97.00%
+Precision: 97.96%
+Recall: 96.00%
+F1 Score: 96.97%
+FAR: 2.00%
+FRR: 4.00%
+
+Processing user: s054
+Training samples: 480
+Validation samples: 120
+Test samples: 200
+X_train shape: (480, 40)
+y_train distribution: [240 240]
+X_train_val shape: (120, 40)
+y_train_val distribution: [60 60]
+
+Tuning hyperparameters for user s054...
+Early stopping at epoch 26
+Early stopping at epoch 21
+Early stopping at epoch 21
+Best parameters for s054:
+hidden_size: 64
+num_layers: 2
+dropout: 0.2
+learning_rate: 0.001
+Best validation score: 0.9375
+Validating model for s054 on train validation set...
+Prediction distribution: [55 65]
+True labels distribution: [60 60]
+Testing model for s054 on test set...
+Test prediction distribution: [ 98 102]
+Test true labels distribution: [100 100]
+
+Train Validation Results for s054:
+Accuracy: 94.17%
+Precision: 90.77%
+Recall: 98.33%
+F1 Score: 94.40%
+FAR: 10.00%
+FRR: 1.67%
+
+Test Results for s054:
+Accuracy: 90.00%
+Precision: 89.22%
+Recall: 91.00%
+F1 Score: 90.10%
+FAR: 11.00%
+FRR: 9.00%
+
+Processing user: s035
+Training samples: 480
+Validation samples: 120
+Test samples: 200
+X_train shape: (480, 40)
+y_train distribution: [240 240]
+X_train_val shape: (120, 40)
+y_train_val distribution: [60 60]
+
+Tuning hyperparameters for user s035...
+Early stopping at epoch 24
+Early stopping at epoch 22
+Best parameters for s035:
+hidden_size: 64
+num_layers: 2
+dropout: 0.2
+learning_rate: 0.001
+Best validation score: 0.9896
+Validating model for s035 on train validation set...
+Prediction distribution: [58 62]
+True labels distribution: [60 60]
+Testing model for s035 on test set...
+Test prediction distribution: [ 95 105]
+Test true labels distribution: [100 100]
+
+Train Validation Results for s035:
+Accuracy: 98.33%
+Precision: 96.77%
+Recall: 100.00%
+F1 Score: 98.36%
+FAR: 3.33%
+FRR: 0.00%
+
+Test Results for s035:
+Accuracy: 96.50%
+Precision: 94.29%
+Recall: 99.00%
+F1 Score: 96.59%
+FAR: 6.00%
+FRR: 1.00%
+
+Processing user: s044
+Training samples: 480
+Validation samples: 120
+Test samples: 200
+X_train shape: (480, 40)
+y_train distribution: [240 240]
+X_train_val shape: (120, 40)
+y_train_val distribution: [60 60]
+
+Tuning hyperparameters for user s044...
+Early stopping at epoch 18
+Early stopping at epoch 26
+Early stopping at epoch 23
+Best parameters for s044:
+hidden_size: 128
+num_layers: 2
+dropout: 0.3
+learning_rate: 0.001
+Best validation score: 0.9896
+Validating model for s044 on train validation set...
+Prediction distribution: [59 61]
+True labels distribution: [60 60]
+Testing model for s044 on test set...
+Test prediction distribution: [ 97 103]
+Test true labels distribution: [100 100]
+
+Train Validation Results for s044:
+Accuracy: 99.17%
+Precision: 98.36%
+Recall: 100.00%
+F1 Score: 99.17%
+FAR: 1.67%
+FRR: 0.00%
+
+Test Results for s044:
+Accuracy: 96.50%
+Precision: 95.15%
+Recall: 98.00%
+F1 Score: 96.55%
+FAR: 5.00%
+FRR: 2.00%
+
+Processing user: s019
+Training samples: 480
+Validation samples: 120
+Test samples: 200
+X_train shape: (480, 40)
+y_train distribution: [240 240]
+X_train_val shape: (120, 40)
+y_train_val distribution: [60 60]
+
+Tuning hyperparameters for user s019...
+Early stopping at epoch 26
+Early stopping at epoch 22
+Best parameters for s019:
+hidden_size: 64
+num_layers: 2
+dropout: 0.2
+learning_rate: 0.001
+Best validation score: 0.9792
+Validating model for s019 on train validation set...
+Prediction distribution: [62 58]
+True labels distribution: [60 60]
+Testing model for s019 on test set...
+Test prediction distribution: [100 100]
+Test true labels distribution: [100 100]
+
+Train Validation Results for s019:
+Accuracy: 95.00%
+Precision: 96.55%
+Recall: 93.33%
+F1 Score: 94.92%
+FAR: 3.33%
+FRR: 6.67%
+
+Test Results for s019:
+Accuracy: 97.00%
+Precision: 97.00%
+Recall: 97.00%
+F1 Score: 97.00%
+FAR: 3.00%
+FRR: 3.00%
+
+Processing user: s032
+Training samples: 480
+Validation samples: 120
+Test samples: 200
+X_train shape: (480, 40)
+y_train distribution: [240 240]
+X_train_val shape: (120, 40)
+y_train_val distribution: [60 60]
+
+Tuning hyperparameters for user s032...
+Early stopping at epoch 27
+Early stopping at epoch 23
+Early stopping at epoch 18
+Early stopping at epoch 20
+Best parameters for s032:
+hidden_size: 128
+num_layers: 2
+dropout: 0.2
+learning_rate: 0.001
+Best validation score: 0.8750
+Validating model for s032 on train validation set...
+Prediction distribution: [59 61]
+True labels distribution: [60 60]
+Testing model for s032 on test set...
+Test prediction distribution: [ 99 101]
+Test true labels distribution: [100 100]
+
+Train Validation Results for s032:
+Accuracy: 85.83%
+Precision: 85.25%
+Recall: 86.67%
+F1 Score: 85.95%
+FAR: 15.00%
+FRR: 13.33%
+
+Test Results for s032:
+Accuracy: 87.50%
+Precision: 87.13%
+Recall: 88.00%
+F1 Score: 87.56%
+FAR: 13.00%
+FRR: 12.00%
+
+Processing user: s036
+Training samples: 480
+Validation samples: 120
+Test samples: 200
+X_train shape: (480, 40)
+y_train distribution: [240 240]
+X_train_val shape: (120, 40)
+y_train_val distribution: [60 60]
+
+Tuning hyperparameters for user s036...
+Early stopping at epoch 26
+Early stopping at epoch 24
+Best parameters for s036:
+hidden_size: 64
+num_layers: 2
+dropout: 0.2
+learning_rate: 0.001
+Best validation score: 1.0000
+Validating model for s036 on train validation set...
+Prediction distribution: [61 59]
+True labels distribution: [60 60]
+Testing model for s036 on test set...
+Test prediction distribution: [100 100]
+Test true labels distribution: [100 100]
+
+Train Validation Results for s036:
+Accuracy: 99.17%
+Precision: 100.00%
+Recall: 98.33%
+F1 Score: 99.16%
+FAR: 0.00%
+FRR: 1.67%
+
+Test Results for s036:
+Accuracy: 100.00%
+Precision: 100.00%
+Recall: 100.00%
+F1 Score: 100.00%
+FAR: 0.00%
+FRR: 0.00%
+
+Processing user: s049
+Training samples: 480
+Validation samples: 120
+Test samples: 200
+X_train shape: (480, 40)
+y_train distribution: [240 240]
+X_train_val shape: (120, 40)
+y_train_val distribution: [60 60]
+
+Tuning hyperparameters for user s049...
+Early stopping at epoch 19
+Early stopping at epoch 20
+Early stopping at epoch 19
+Early stopping at epoch 19
+Best parameters for s049:
+hidden_size: 64
+num_layers: 2
+dropout: 0.3
+learning_rate: 0.001
+Best validation score: 0.9688
+Validating model for s049 on train validation set...
+Prediction distribution: [59 61]
+True labels distribution: [60 60]
+Testing model for s049 on test set...
+Test prediction distribution: [ 98 102]
+Test true labels distribution: [100 100]
+
+Train Validation Results for s049:
+Accuracy: 97.50%
+Precision: 96.72%
+Recall: 98.33%
+F1 Score: 97.52%
+FAR: 3.33%
+FRR: 1.67%
+
+Test Results for s049:
+Accuracy: 99.00%
+Precision: 98.04%
+Recall: 100.00%
+F1 Score: 99.01%
+FAR: 2.00%
+FRR: 0.00%
+
+Processing user: s012
+Training samples: 480
+Validation samples: 120
+Test samples: 200
+X_train shape: (480, 40)
+y_train distribution: [240 240]
+X_train_val shape: (120, 40)
+y_train_val distribution: [60 60]
+
+Tuning hyperparameters for user s012...
+Early stopping at epoch 20
+Early stopping at epoch 23
+Early stopping at epoch 19
+Best parameters for s012:
+hidden_size: 64
+num_layers: 2
+dropout: 0.2
+learning_rate: 0.001
+Best validation score: 0.9792
+Validating model for s012 on train validation set...
+Prediction distribution: [59 61]
+True labels distribution: [60 60]
+Testing model for s012 on test set...
+Test prediction distribution: [ 98 102]
+Test true labels distribution: [100 100]
+
+Train Validation Results for s012:
+Accuracy: 95.83%
+Precision: 95.08%
+Recall: 96.67%
+F1 Score: 95.87%
+FAR: 5.00%
+FRR: 3.33%
+
+Test Results for s012:
+Accuracy: 95.00%
+Precision: 94.12%
+Recall: 96.00%
+F1 Score: 95.05%
+FAR: 6.00%
+FRR: 4.00%
+
+Processing user: s017
+Training samples: 480
+Validation samples: 120
+Test samples: 200
+X_train shape: (480, 40)
+y_train distribution: [240 240]
+X_train_val shape: (120, 40)
+y_train_val distribution: [60 60]
+
+Tuning hyperparameters for user s017...
+Early stopping at epoch 24
+Early stopping at epoch 20
+Early stopping at epoch 19
+Early stopping at epoch 22
+Best parameters for s017:
+hidden_size: 64
+num_layers: 2
+dropout: 0.2
+learning_rate: 0.001
+Best validation score: 0.9896
+Validating model for s017 on train validation set...
+Prediction distribution: [59 61]
+True labels distribution: [60 60]
+Testing model for s017 on test set...
+Test prediction distribution: [ 98 102]
+Test true labels distribution: [100 100]
+
+Train Validation Results for s017:
+Accuracy: 95.83%
+Precision: 95.08%
+Recall: 96.67%
+F1 Score: 95.87%
+FAR: 5.00%
+FRR: 3.33%
+
+Test Results for s017:
+Accuracy: 95.00%
+Precision: 94.12%
+Recall: 96.00%
+F1 Score: 95.05%
+FAR: 6.00%
+FRR: 4.00%
+
+Processing user: s015
+Training samples: 480
+Validation samples: 120
+Test samples: 200
+X_train shape: (480, 40)
+y_train distribution: [240 240]
+X_train_val shape: (120, 40)
+y_train_val distribution: [60 60]
+
+Tuning hyperparameters for user s015...
+Early stopping at epoch 29
+Early stopping at epoch 24
+Early stopping at epoch 22
+Best parameters for s015:
+hidden_size: 128
+num_layers: 2
+dropout: 0.2
+learning_rate: 0.001
+Best validation score: 0.9583
+Validating model for s015 on train validation set...
+Prediction distribution: [51 69]
+True labels distribution: [60 60]
+Testing model for s015 on test set...
+Test prediction distribution: [ 93 107]
+Test true labels distribution: [100 100]
+
+Train Validation Results for s015:
+Accuracy: 92.50%
+Precision: 86.96%
+Recall: 100.00%
+F1 Score: 93.02%
+FAR: 15.00%
+FRR: 0.00%
+
+Test Results for s015:
+Accuracy: 91.50%
+Precision: 88.79%
+Recall: 95.00%
+F1 Score: 91.79%
+FAR: 12.00%
+FRR: 5.00%
+
+Processing user: s031
+Training samples: 480
+Validation samples: 120
+Test samples: 200
+X_train shape: (480, 40)
+y_train distribution: [240 240]
+X_train_val shape: (120, 40)
+y_train_val distribution: [60 60]
+
+Tuning hyperparameters for user s031...
+Early stopping at epoch 23
+Early stopping at epoch 24
+Early stopping at epoch 19
+Early stopping at epoch 28
+Best parameters for s031:
+hidden_size: 128
+num_layers: 2
+dropout: 0.3
+learning_rate: 0.001
+Best validation score: 0.9167
+Validating model for s031 on train validation set...
+Prediction distribution: [59 61]
+True labels distribution: [60 60]
+Testing model for s031 on test set...
+Test prediction distribution: [ 95 105]
+Test true labels distribution: [100 100]
+
+Train Validation Results for s031:
+Accuracy: 95.83%
+Precision: 95.08%
+Recall: 96.67%
+F1 Score: 95.87%
+FAR: 5.00%
+FRR: 3.33%
+
+Test Results for s031:
+Accuracy: 92.50%
+Precision: 90.48%
+Recall: 95.00%
+F1 Score: 92.68%
+FAR: 10.00%
+FRR: 5.00%
+
+Processing user: s034
+Training samples: 480
+Validation samples: 120
+Test samples: 200
+X_train shape: (480, 40)
+y_train distribution: [240 240]
+X_train_val shape: (120, 40)
+y_train_val distribution: [60 60]
+
+Tuning hyperparameters for user s034...
+Early stopping at epoch 23
+Early stopping at epoch 20
+Early stopping at epoch 24
+Early stopping at epoch 22
+Best parameters for s034:
+hidden_size: 64
+num_layers: 2
+dropout: 0.3
+learning_rate: 0.001
+Best validation score: 0.9271
+Validating model for s034 on train validation set...
+Prediction distribution: [60 60]
+True labels distribution: [60 60]
+Testing model for s034 on test set...
+Test prediction distribution: [ 99 101]
+Test true labels distribution: [100 100]
+
+Train Validation Results for s034:
+Accuracy: 96.67%
+Precision: 96.67%
+Recall: 96.67%
+F1 Score: 96.67%
+FAR: 3.33%
+FRR: 3.33%
+
+Test Results for s034:
+Accuracy: 93.50%
+Precision: 93.07%
+Recall: 94.00%
+F1 Score: 93.53%
+FAR: 7.00%
+FRR: 6.00%
+
+Processing user: s037
+Training samples: 480
+Validation samples: 120
+Test samples: 200
+X_train shape: (480, 40)
+y_train distribution: [240 240]
+X_train_val shape: (120, 40)
+y_train_val distribution: [60 60]
+
+Tuning hyperparameters for user s037...
+Early stopping at epoch 26
+Early stopping at epoch 28
+Early stopping at epoch 27
+Best parameters for s037:
+hidden_size: 64
+num_layers: 2
+dropout: 0.3
+learning_rate: 0.001
+Best validation score: 0.9792
+Validating model for s037 on train validation set...
+Prediction distribution: [59 61]
+True labels distribution: [60 60]
+Testing model for s037 on test set...
+Test prediction distribution: [101  99]
+Test true labels distribution: [100 100]
+
+Train Validation Results for s037:
+Accuracy: 94.17%
+Precision: 93.44%
+Recall: 95.00%
+F1 Score: 94.21%
+FAR: 6.67%
+FRR: 5.00%
+
+Test Results for s037:
+Accuracy: 95.50%
+Precision: 95.96%
+Recall: 95.00%
+F1 Score: 95.48%
+FAR: 4.00%
+FRR: 5.00%
+
+Processing user: s028
+Training samples: 480
+Validation samples: 120
+Test samples: 200
+X_train shape: (480, 40)
+y_train distribution: [240 240]
+X_train_val shape: (120, 40)
+y_train_val distribution: [60 60]
+
+Tuning hyperparameters for user s028...
+Early stopping at epoch 20
+Early stopping at epoch 21
+Early stopping at epoch 23
+Early stopping at epoch 19
+Best parameters for s028:
+hidden_size: 64
+num_layers: 2
+dropout: 0.3
+learning_rate: 0.001
+Best validation score: 0.9792
+Validating model for s028 on train validation set...
+Prediction distribution: [57 63]
+True labels distribution: [60 60]
+Testing model for s028 on test set...
+Test prediction distribution: [ 96 104]
+Test true labels distribution: [100 100]
+
+Train Validation Results for s028:
+Accuracy: 97.50%
+Precision: 95.24%
+Recall: 100.00%
+F1 Score: 97.56%
+FAR: 5.00%
+FRR: 0.00%
+
+Test Results for s028:
+Accuracy: 97.00%
+Precision: 95.19%
+Recall: 99.00%
+F1 Score: 97.06%
+FAR: 5.00%
+FRR: 1.00%
+
+Processing user: s010
+Training samples: 480
+Validation samples: 120
+Test samples: 200
+X_train shape: (480, 40)
+y_train distribution: [240 240]
+X_train_val shape: (120, 40)
+y_train_val distribution: [60 60]
+
+Tuning hyperparameters for user s010...
+Early stopping at epoch 21
+Early stopping at epoch 24
+Early stopping at epoch 26
+Best parameters for s010:
+hidden_size: 64
+num_layers: 2
+dropout: 0.2
+learning_rate: 0.001
+Best validation score: 0.9896
+Validating model for s010 on train validation set...
+Prediction distribution: [62 58]
+True labels distribution: [60 60]
+Testing model for s010 on test set...
+Test prediction distribution: [102  98]
+Test true labels distribution: [100 100]
+
+Train Validation Results for s010:
+Accuracy: 98.33%
+Precision: 100.00%
+Recall: 96.67%
+F1 Score: 98.31%
+FAR: 0.00%
+FRR: 3.33%
+
+Test Results for s010:
+Accuracy: 96.00%
+Precision: 96.94%
+Recall: 95.00%
+F1 Score: 95.96%
+FAR: 3.00%
+FRR: 5.00%
+
+Processing user: s038
+Training samples: 480
+Validation samples: 120
+Test samples: 200
+X_train shape: (480, 40)
+y_train distribution: [240 240]
+X_train_val shape: (120, 40)
+y_train_val distribution: [60 60]
+
+Tuning hyperparameters for user s038...
+Early stopping at epoch 26
+Early stopping at epoch 28
+Early stopping at epoch 19
+Best parameters for s038:
+hidden_size: 64
+num_layers: 2
+dropout: 0.3
+learning_rate: 0.001
+Best validation score: 0.9896
+Validating model for s038 on train validation set...
+Prediction distribution: [59 61]
+True labels distribution: [60 60]
+Testing model for s038 on test set...
+Test prediction distribution: [ 98 102]
+Test true labels distribution: [100 100]
+
+Train Validation Results for s038:
+Accuracy: 95.83%
+Precision: 95.08%
+Recall: 96.67%
+F1 Score: 95.87%
+FAR: 5.00%
+FRR: 3.33%
+
+Test Results for s038:
+Accuracy: 97.00%
+Precision: 96.08%
+Recall: 98.00%
+F1 Score: 97.03%
+FAR: 4.00%
+FRR: 2.00%
+
+Processing user: s008
+Training samples: 480
+Validation samples: 120
+Test samples: 200
+X_train shape: (480, 40)
+y_train distribution: [240 240]
+X_train_val shape: (120, 40)
+y_train_val distribution: [60 60]
+
+Tuning hyperparameters for user s008...
+Early stopping at epoch 24
+Early stopping at epoch 21
+Early stopping at epoch 26
+Early stopping at epoch 27
+Best parameters for s008:
+hidden_size: 64
+num_layers: 2
+dropout: 0.2
+learning_rate: 0.001
+Best validation score: 0.9479
+Validating model for s008 on train validation set...
+Prediction distribution: [56 64]
+True labels distribution: [60 60]
+Testing model for s008 on test set...
+Test prediction distribution: [ 99 101]
+Test true labels distribution: [100 100]
+
+Train Validation Results for s008:
+Accuracy: 93.33%
+Precision: 90.62%
+Recall: 96.67%
+F1 Score: 93.55%
+FAR: 10.00%
+FRR: 3.33%
+
+Test Results for s008:
+Accuracy: 90.50%
+Precision: 90.10%
+Recall: 91.00%
+F1 Score: 90.55%
+FAR: 10.00%
+FRR: 9.00%
+
+Processing user: s018
+Training samples: 480
+Validation samples: 120
+Test samples: 200
+X_train shape: (480, 40)
+y_train distribution: [240 240]
+X_train_val shape: (120, 40)
+y_train_val distribution: [60 60]
+
+Tuning hyperparameters for user s018...
+Early stopping at epoch 20
+Early stopping at epoch 21
+Early stopping at epoch 19
+Early stopping at epoch 17
+Best parameters for s018:
+hidden_size: 64
+num_layers: 2
+dropout: 0.3
+learning_rate: 0.001
+Best validation score: 0.9167
+Validating model for s018 on train validation set...
+Prediction distribution: [61 59]
+True labels distribution: [60 60]
+Testing model for s018 on test set...
+Test prediction distribution: [ 97 103]
+Test true labels distribution: [100 100]
+
+Train Validation Results for s018:
+Accuracy: 94.17%
+Precision: 94.92%
+Recall: 93.33%
+F1 Score: 94.12%
+FAR: 5.00%
+FRR: 6.67%
+
+Test Results for s018:
+Accuracy: 92.50%
+Precision: 91.26%
+Recall: 94.00%
+F1 Score: 92.61%
+FAR: 9.00%
+FRR: 6.00%
+
+Processing user: s047
+Training samples: 480
+Validation samples: 120
+Test samples: 200
+X_train shape: (480, 40)
+y_train distribution: [240 240]
+X_train_val shape: (120, 40)
+y_train_val distribution: [60 60]
+
+Tuning hyperparameters for user s047...
+Early stopping at epoch 18
+Early stopping at epoch 26
+Early stopping at epoch 16
+Early stopping at epoch 20
+Best parameters for s047:
+hidden_size: 128
+num_layers: 2
+dropout: 0.3
+learning_rate: 0.001
+Best validation score: 0.9479
+Validating model for s047 on train validation set...
+Prediction distribution: [62 58]
+True labels distribution: [60 60]
+Testing model for s047 on test set...
+Test prediction distribution: [100 100]
+Test true labels distribution: [100 100]
+
+Train Validation Results for s047:
+Accuracy: 98.33%
+Precision: 100.00%
+Recall: 96.67%
+F1 Score: 98.31%
+FAR: 0.00%
+FRR: 3.33%
+
+Test Results for s047:
+Accuracy: 95.00%
+Precision: 95.00%
+Recall: 95.00%
+F1 Score: 95.00%
+FAR: 5.00%
+FRR: 5.00%
+
+Processing user: s033
+Training samples: 480
+Validation samples: 120
+Test samples: 200
+X_train shape: (480, 40)
+y_train distribution: [240 240]
+X_train_val shape: (120, 40)
+y_train_val distribution: [60 60]
+
+Tuning hyperparameters for user s033...
+Early stopping at epoch 21
+Early stopping at epoch 26
+Early stopping at epoch 21
+Early stopping at epoch 19
+Best parameters for s033:
+hidden_size: 64
+num_layers: 2
+dropout: 0.2
+learning_rate: 0.001
+Best validation score: 1.0000
+Validating model for s033 on train validation set...
+Prediction distribution: [60 60]
+True labels distribution: [60 60]
+Testing model for s033 on test set...
+Test prediction distribution: [100 100]
+Test true labels distribution: [100 100]
+
+Train Validation Results for s033:
+Accuracy: 100.00%
+Precision: 100.00%
+Recall: 100.00%
+F1 Score: 100.00%
+FAR: 0.00%
+FRR: 0.00%
+
+Test Results for s033:
+Accuracy: 100.00%
+Precision: 100.00%
+Recall: 100.00%
+F1 Score: 100.00%
+FAR: 0.00%
+FRR: 0.00%
+
+Processing user: s026
+Training samples: 480
+Validation samples: 120
+Test samples: 200
+X_train shape: (480, 40)
+y_train distribution: [240 240]
+X_train_val shape: (120, 40)
+y_train_val distribution: [60 60]
+
+Tuning hyperparameters for user s026...
+Early stopping at epoch 28
+Early stopping at epoch 22
+Early stopping at epoch 22
+Early stopping at epoch 28
+Best parameters for s026:
+hidden_size: 128
+num_layers: 2
+dropout: 0.3
+learning_rate: 0.001
+Best validation score: 0.9792
+Validating model for s026 on train validation set...
+Prediction distribution: [54 66]
+True labels distribution: [60 60]
+Testing model for s026 on test set...
+Test prediction distribution: [ 98 102]
+Test true labels distribution: [100 100]
+
+Train Validation Results for s026:
+Accuracy: 91.67%
+Precision: 87.88%
+Recall: 96.67%
+F1 Score: 92.06%
+FAR: 13.33%
+FRR: 3.33%
+
+Test Results for s026:
+Accuracy: 96.00%
+Precision: 95.10%
+Recall: 97.00%
+F1 Score: 96.04%
+FAR: 5.00%
+FRR: 3.00%
+
+Processing user: s048
+Training samples: 480
+Validation samples: 120
+Test samples: 200
+X_train shape: (480, 40)
+y_train distribution: [240 240]
+X_train_val shape: (120, 40)
+y_train_val distribution: [60 60]
+
+Tuning hyperparameters for user s048...
+Early stopping at epoch 21
+Best parameters for s048:
+hidden_size: 64
+num_layers: 2
+dropout: 0.2
+learning_rate: 0.001
+Best validation score: 0.9688
+Validating model for s048 on train validation set...
+Prediction distribution: [60 60]
+True labels distribution: [60 60]
+Testing model for s048 on test set...
+Test prediction distribution: [ 99 101]
+Test true labels distribution: [100 100]
+
+Train Validation Results for s048:
+Accuracy: 91.67%
+Precision: 91.67%
+Recall: 91.67%
+F1 Score: 91.67%
+FAR: 8.33%
+FRR: 8.33%
+
+Test Results for s048:
+Accuracy: 96.50%
+Precision: 96.04%
+Recall: 97.00%
+F1 Score: 96.52%
+FAR: 4.00%
+FRR: 3.00%
+
+Processing user: s055
+Training samples: 480
+Validation samples: 120
+Test samples: 200
+X_train shape: (480, 40)
+y_train distribution: [240 240]
+X_train_val shape: (120, 40)
+y_train_val distribution: [60 60]
+
+Tuning hyperparameters for user s055...
+Early stopping at epoch 24
+Early stopping at epoch 22
+Best parameters for s055:
+hidden_size: 64
+num_layers: 2
+dropout: 0.2
+learning_rate: 0.001
+Best validation score: 1.0000
+Validating model for s055 on train validation set...
+Prediction distribution: [62 58]
+True labels distribution: [60 60]
+Testing model for s055 on test set...
+Test prediction distribution: [100 100]
+Test true labels distribution: [100 100]
+
+Train Validation Results for s055:
+Accuracy: 98.33%
+Precision: 100.00%
+Recall: 96.67%
+F1 Score: 98.31%
+FAR: 0.00%
+FRR: 3.33%
+
+Test Results for s055:
+Accuracy: 97.00%
+Precision: 97.00%
+Recall: 97.00%
+F1 Score: 97.00%
+FAR: 3.00%
+FRR: 3.00%
+
+Processing user: s024
+Training samples: 480
+Validation samples: 120
+Test samples: 200
+X_train shape: (480, 40)
+y_train distribution: [240 240]
+X_train_val shape: (120, 40)
+y_train_val distribution: [60 60]
+
+Tuning hyperparameters for user s024...
+Early stopping at epoch 18
+Early stopping at epoch 19
+Early stopping at epoch 15
+Early stopping at epoch 16
+Best parameters for s024:
+hidden_size: 64
+num_layers: 2
+dropout: 0.2
+learning_rate: 0.001
+Best validation score: 0.9792
+Validating model for s024 on train validation set...
+Prediction distribution: [58 62]
+True labels distribution: [60 60]
+Testing model for s024 on test set...
+Test prediction distribution: [ 99 101]
+Test true labels distribution: [100 100]
+
+Train Validation Results for s024:
+Accuracy: 98.33%
+Precision: 96.77%
+Recall: 100.00%
+F1 Score: 98.36%
+FAR: 3.33%
+FRR: 0.00%
+
+Test Results for s024:
+Accuracy: 98.50%
+Precision: 98.02%
+Recall: 99.00%
+F1 Score: 98.51%
+FAR: 2.00%
+FRR: 1.00%
+
+Processing user: s016
+Training samples: 480
+Validation samples: 120
+Test samples: 200
+X_train shape: (480, 40)
+y_train distribution: [240 240]
+X_train_val shape: (120, 40)
+y_train_val distribution: [60 60]
+
+Tuning hyperparameters for user s016...
+Early stopping at epoch 28
+Early stopping at epoch 26
+Early stopping at epoch 29
+Best parameters for s016:
+hidden_size: 64
+num_layers: 2
+dropout: 0.2
+learning_rate: 0.001
+Best validation score: 1.0000
+Validating model for s016 on train validation set...
+Prediction distribution: [60 60]
+True labels distribution: [60 60]
+Testing model for s016 on test set...
+Test prediction distribution: [101  99]
+Test true labels distribution: [100 100]
+
+Train Validation Results for s016:
+Accuracy: 100.00%
+Precision: 100.00%
+Recall: 100.00%
+F1 Score: 100.00%
+FAR: 0.00%
+FRR: 0.00%
+
+Test Results for s016:
+Accuracy: 98.50%
+Precision: 98.99%
+Recall: 98.00%
+F1 Score: 98.49%
+FAR: 1.00%
+FRR: 2.00%
+
+Processing user: s053
+Training samples: 480
+Validation samples: 120
+Test samples: 200
+X_train shape: (480, 40)
+y_train distribution: [240 240]
+X_train_val shape: (120, 40)
+y_train_val distribution: [60 60]
+
+Tuning hyperparameters for user s053...
+Early stopping at epoch 20
+Early stopping at epoch 24
+Early stopping at epoch 18
+Early stopping at epoch 22
+Best parameters for s053:
+hidden_size: 64
+num_layers: 2
+dropout: 0.3
+learning_rate: 0.001
+Best validation score: 0.9896
+Validating model for s053 on train validation set...
+Prediction distribution: [62 58]
+True labels distribution: [60 60]
+Testing model for s053 on test set...
+Test prediction distribution: [ 99 101]
+Test true labels distribution: [100 100]
+
+Train Validation Results for s053:
+Accuracy: 98.33%
+Precision: 100.00%
+Recall: 96.67%
+F1 Score: 98.31%
+FAR: 0.00%
+FRR: 3.33%
+
+Test Results for s053:
+Accuracy: 98.50%
+Precision: 98.02%
+Recall: 99.00%
+F1 Score: 98.51%
+FAR: 2.00%
+FRR: 1.00%
+
+Processing user: s022
+Training samples: 480
+Validation samples: 120
+Test samples: 200
+X_train shape: (480, 40)
+y_train distribution: [240 240]
+X_train_val shape: (120, 40)
+y_train_val distribution: [60 60]
+
+Tuning hyperparameters for user s022...
+Early stopping at epoch 24
+Early stopping at epoch 27
+Early stopping at epoch 23
+Best parameters for s022:
+hidden_size: 64
+num_layers: 2
+dropout: 0.2
+learning_rate: 0.001
+Best validation score: 1.0000
+Validating model for s022 on train validation set...
+Prediction distribution: [58 62]
+True labels distribution: [60 60]
+Testing model for s022 on test set...
+Test prediction distribution: [ 99 101]
+Test true labels distribution: [100 100]
+
+Train Validation Results for s022:
+Accuracy: 98.33%
+Precision: 96.77%
+Recall: 100.00%
+F1 Score: 98.36%
+FAR: 3.33%
+FRR: 0.00%
+
+Test Results for s022:
+Accuracy: 98.50%
+Precision: 98.02%
+Recall: 99.00%
+F1 Score: 98.51%
+FAR: 2.00%
+FRR: 1.00%
+
+Processing user: s052
+Training samples: 480
+Validation samples: 120
+Test samples: 200
+X_train shape: (480, 40)
+y_train distribution: [240 240]
+X_train_val shape: (120, 40)
+y_train_val distribution: [60 60]
+
+Tuning hyperparameters for user s052...
+Early stopping at epoch 29
+Early stopping at epoch 19
+Early stopping at epoch 19
+Best parameters for s052:
+hidden_size: 64
+num_layers: 2
+dropout: 0.2
+learning_rate: 0.001
+Best validation score: 0.9792
+Validating model for s052 on train validation set...
+Prediction distribution: [59 61]
+True labels distribution: [60 60]
+Testing model for s052 on test set...
+Test prediction distribution: [ 99 101]
+Test true labels distribution: [100 100]
+
+Train Validation Results for s052:
+Accuracy: 99.17%
+Precision: 98.36%
+Recall: 100.00%
+F1 Score: 99.17%
+FAR: 1.67%
+FRR: 0.00%
+
+Test Results for s052:
+Accuracy: 97.50%
+Precision: 97.03%
+Recall: 98.00%
+F1 Score: 97.51%
+FAR: 3.00%
+FRR: 2.00%
+
+Processing user: s021
+Training samples: 480
+Validation samples: 120
+Test samples: 200
+X_train shape: (480, 40)
+y_train distribution: [240 240]
+X_train_val shape: (120, 40)
+y_train_val distribution: [60 60]
+
+Tuning hyperparameters for user s021...
+Early stopping at epoch 23
+Early stopping at epoch 29
+Early stopping at epoch 29
+Early stopping at epoch 21
+Best parameters for s021:
+hidden_size: 128
+num_layers: 2
+dropout: 0.2
+learning_rate: 0.001
+Best validation score: 0.9792
+Validating model for s021 on train validation set...
+Prediction distribution: [62 58]
+True labels distribution: [60 60]
+Testing model for s021 on test set...
+Test prediction distribution: [ 98 102]
+Test true labels distribution: [100 100]
+
+Train Validation Results for s021:
+Accuracy: 93.33%
+Precision: 94.83%
+Recall: 91.67%
+F1 Score: 93.22%
+FAR: 5.00%
+FRR: 8.33%
+
+Test Results for s021:
+Accuracy: 94.00%
+Precision: 93.14%
+Recall: 95.00%
+F1 Score: 94.06%
+FAR: 7.00%
+FRR: 5.00%
+
+Processing user: s039
+Training samples: 480
+Validation samples: 120
+Test samples: 200
+X_train shape: (480, 40)
+y_train distribution: [240 240]
+X_train_val shape: (120, 40)
+y_train_val distribution: [60 60]
+
+Tuning hyperparameters for user s039...
+Early stopping at epoch 22
+Early stopping at epoch 17
+Early stopping at epoch 22
+Early stopping at epoch 17
+Best parameters for s039:
+hidden_size: 64
+num_layers: 2
+dropout: 0.2
+learning_rate: 0.001
+Best validation score: 0.9583
+Validating model for s039 on train validation set...
+Prediction distribution: [59 61]
+True labels distribution: [60 60]
+Testing model for s039 on test set...
+Test prediction distribution: [ 96 104]
+Test true labels distribution: [100 100]
+
+Train Validation Results for s039:
+Accuracy: 97.50%
+Precision: 96.72%
+Recall: 98.33%
+F1 Score: 97.52%
+FAR: 3.33%
+FRR: 1.67%
+
+Test Results for s039:
+Accuracy: 93.00%
+Precision: 91.35%
+Recall: 95.00%
+F1 Score: 93.14%
+FAR: 9.00%
+FRR: 5.00%
+
+Processing user: s013
+Training samples: 480
+Validation samples: 120
+Test samples: 200
+X_train shape: (480, 40)
+y_train distribution: [240 240]
+X_train_val shape: (120, 40)
+y_train_val distribution: [60 60]
+
+Tuning hyperparameters for user s013...
+Early stopping at epoch 18
+Early stopping at epoch 20
+Early stopping at epoch 18
+Early stopping at epoch 19
+Best parameters for s013:
+hidden_size: 64
+num_layers: 2
+dropout: 0.3
+learning_rate: 0.001
+Best validation score: 0.9583
+Validating model for s013 on train validation set...
+Prediction distribution: [60 60]
+True labels distribution: [60 60]
+Testing model for s013 on test set...
+Test prediction distribution: [ 98 102]
+Test true labels distribution: [100 100]
+
+Train Validation Results for s013:
+Accuracy: 95.00%
+Precision: 95.00%
+Recall: 95.00%
+F1 Score: 95.00%
+FAR: 5.00%
+FRR: 5.00%
+
+Test Results for s013:
+Accuracy: 96.00%
+Precision: 95.10%
+Recall: 97.00%
+F1 Score: 96.04%
+FAR: 5.00%
+FRR: 3.00%
+
+Processing user: s046
+Training samples: 480
+Validation samples: 120
+Test samples: 200
+X_train shape: (480, 40)
+y_train distribution: [240 240]
+X_train_val shape: (120, 40)
+y_train_val distribution: [60 60]
+
+Tuning hyperparameters for user s046...
+Early stopping at epoch 26
+Early stopping at epoch 24
+Best parameters for s046:
+hidden_size: 64
+num_layers: 2
+dropout: 0.2
+learning_rate: 0.001
+Best validation score: 1.0000
+Validating model for s046 on train validation set...
+Prediction distribution: [58 62]
+True labels distribution: [60 60]
+Testing model for s046 on test set...
+Test prediction distribution: [ 97 103]
+Test true labels distribution: [100 100]
+
+Train Validation Results for s046:
+Accuracy: 93.33%
+Precision: 91.94%
+Recall: 95.00%
+F1 Score: 93.44%
+FAR: 8.33%
+FRR: 5.00%
+
+Test Results for s046:
+Accuracy: 95.50%
+Precision: 94.17%
+Recall: 97.00%
+F1 Score: 95.57%
+FAR: 6.00%
+FRR: 3.00%
+
+Processing user: s041
+Training samples: 480
+Validation samples: 120
+Test samples: 200
+X_train shape: (480, 40)
+y_train distribution: [240 240]
+X_train_val shape: (120, 40)
+y_train_val distribution: [60 60]
+
+Tuning hyperparameters for user s041...
+Early stopping at epoch 20
+Early stopping at epoch 23
+Early stopping at epoch 16
+Early stopping at epoch 19
+Best parameters for s041:
+hidden_size: 64
+num_layers: 2
+dropout: 0.2
+learning_rate: 0.001
+Best validation score: 0.9792
+Validating model for s041 on train validation set...
+Prediction distribution: [60 60]
+True labels distribution: [60 60]
+Testing model for s041 on test set...
+Test prediction distribution: [ 97 103]
+Test true labels distribution: [100 100]
+
+Train Validation Results for s041:
+Accuracy: 95.00%
+Precision: 95.00%
+Recall: 95.00%
+F1 Score: 95.00%
+FAR: 5.00%
+FRR: 5.00%
+
+Test Results for s041:
+Accuracy: 96.50%
+Precision: 95.15%
+Recall: 98.00%
+F1 Score: 96.55%
+FAR: 5.00%
+FRR: 2.00%
+
+Processing user: s002
+Training samples: 480
+Validation samples: 120
+Test samples: 200
+X_train shape: (480, 40)
+y_train distribution: [240 240]
+X_train_val shape: (120, 40)
+y_train_val distribution: [60 60]
+
+Tuning hyperparameters for user s002...
+Early stopping at epoch 24
+Early stopping at epoch 28
+Early stopping at epoch 22
+Best parameters for s002:
+hidden_size: 128
+num_layers: 2
+dropout: 0.3
+learning_rate: 0.001
+Best validation score: 0.9479
+Validating model for s002 on train validation set...
+Prediction distribution: [56 64]
+True labels distribution: [60 60]
+Testing model for s002 on test set...
+Test prediction distribution: [ 95 105]
+Test true labels distribution: [100 100]
+
+Train Validation Results for s002:
+Accuracy: 88.33%
+Precision: 85.94%
+Recall: 91.67%
+F1 Score: 88.71%
+FAR: 15.00%
+FRR: 8.33%
+
+Test Results for s002:
+Accuracy: 92.50%
+Precision: 90.48%
+Recall: 95.00%
+F1 Score: 92.68%
+FAR: 10.00%
+FRR: 5.00%
+
+Processing user: s025
+Training samples: 480
+Validation samples: 120
+Test samples: 200
+X_train shape: (480, 40)
+y_train distribution: [240 240]
+X_train_val shape: (120, 40)
+y_train_val distribution: [60 60]
+
+Tuning hyperparameters for user s025...
+Early stopping at epoch 17
+Early stopping at epoch 17
+Early stopping at epoch 16
+Early stopping at epoch 16
+Best parameters for s025:
+hidden_size: 64
+num_layers: 2
+dropout: 0.2
+learning_rate: 0.001
+Best validation score: 0.9792
+Validating model for s025 on train validation set...
+Prediction distribution: [58 62]
+True labels distribution: [60 60]
+Testing model for s025 on test set...
+Test prediction distribution: [ 98 102]
+Test true labels distribution: [100 100]
+
+Train Validation Results for s025:
+Accuracy: 98.33%
+Precision: 96.77%
+Recall: 100.00%
+F1 Score: 98.36%
+FAR: 3.33%
+FRR: 0.00%
+
+Test Results for s025:
+Accuracy: 99.00%
+Precision: 98.04%
+Recall: 100.00%
+F1 Score: 99.01%
+FAR: 2.00%
+FRR: 0.00%
+
+Processing user: s007
+Training samples: 480
+Validation samples: 120
+Test samples: 200
+X_train shape: (480, 40)
+y_train distribution: [240 240]
+X_train_val shape: (120, 40)
+y_train_val distribution: [60 60]
+
+Tuning hyperparameters for user s007...
+Early stopping at epoch 25
+Early stopping at epoch 21
+Best parameters for s007:
+hidden_size: 128
+num_layers: 2
+dropout: 0.2
+learning_rate: 0.001
+Best validation score: 0.9583
+Validating model for s007 on train validation set...
+Prediction distribution: [62 58]
+True labels distribution: [60 60]
+Testing model for s007 on test set...
+Test prediction distribution: [ 95 105]
+Test true labels distribution: [100 100]
+
+Train Validation Results for s007:
+Accuracy: 90.00%
+Precision: 91.38%
+Recall: 88.33%
+F1 Score: 89.83%
+FAR: 8.33%
+FRR: 11.67%
+
+Test Results for s007:
+Accuracy: 92.50%
+Precision: 90.48%
+Recall: 95.00%
+F1 Score: 92.68%
+FAR: 10.00%
+FRR: 5.00%
+
+Processing user: s029
+Training samples: 480
+Validation samples: 120
+Test samples: 200
+X_train shape: (480, 40)
+y_train distribution: [240 240]
+X_train_val shape: (120, 40)
+y_train_val distribution: [60 60]
+
+Tuning hyperparameters for user s029...
+Early stopping at epoch 23
+Early stopping at epoch 27
+Early stopping at epoch 23
+Best parameters for s029:
+hidden_size: 128
+num_layers: 2
+dropout: 0.2
+learning_rate: 0.001
+Best validation score: 0.9583
+Validating model for s029 on train validation set...
+Prediction distribution: [56 64]
+True labels distribution: [60 60]
+Testing model for s029 on test set...
+Test prediction distribution: [ 97 103]
+Test true labels distribution: [100 100]
+
+Train Validation Results for s029:
+Accuracy: 95.00%
+Precision: 92.19%
+Recall: 98.33%
+F1 Score: 95.16%
+FAR: 8.33%
+FRR: 1.67%
+
+Test Results for s029:
+Accuracy: 93.50%
+Precision: 92.23%
+Recall: 95.00%
+F1 Score: 93.60%
+FAR: 8.00%
+FRR: 5.00%
+
+Processing user: s003
+Training samples: 480
+Validation samples: 120
+Test samples: 200
+X_train shape: (480, 40)
+y_train distribution: [240 240]
+X_train_val shape: (120, 40)
+y_train_val distribution: [60 60]
+
+Tuning hyperparameters for user s003...
+Early stopping at epoch 20
+Early stopping at epoch 18
+Early stopping at epoch 20
+Early stopping at epoch 19
+Best parameters for s003:
+hidden_size: 128
+num_layers: 2
+dropout: 0.2
+learning_rate: 0.001
+Best validation score: 0.9479
+Validating model for s003 on train validation set...
+Prediction distribution: [56 64]
+True labels distribution: [60 60]
+Testing model for s003 on test set...
+Test prediction distribution: [101  99]
+Test true labels distribution: [100 100]
+
+Train Validation Results for s003:
+Accuracy: 96.67%
+Precision: 93.75%
+Recall: 100.00%
+F1 Score: 96.77%
+FAR: 6.67%
+FRR: 0.00%
+
+Test Results for s003:
+Accuracy: 95.50%
+Precision: 95.96%
+Recall: 95.00%
+F1 Score: 95.48%
+FAR: 4.00%
+FRR: 5.00%
+
+Processing user: s040
+Training samples: 480
+Validation samples: 120
+Test samples: 200
+X_train shape: (480, 40)
+y_train distribution: [240 240]
+X_train_val shape: (120, 40)
+y_train_val distribution: [60 60]
+
+Tuning hyperparameters for user s040...
+Early stopping at epoch 26
+Early stopping at epoch 21
+Early stopping at epoch 22
+Early stopping at epoch 23
+Best parameters for s040:
+hidden_size: 128
+num_layers: 2
+dropout: 0.2
+learning_rate: 0.001
+Best validation score: 0.9896
+Validating model for s040 on train validation set...
+Prediction distribution: [62 58]
+True labels distribution: [60 60]
+Testing model for s040 on test set...
+Test prediction distribution: [101  99]
+Test true labels distribution: [100 100]
+
+Train Validation Results for s040:
+Accuracy: 96.67%
+Precision: 98.28%
+Recall: 95.00%
+F1 Score: 96.61%
+FAR: 1.67%
+FRR: 5.00%
+
+Test Results for s040:
+Accuracy: 96.50%
+Precision: 96.97%
+Recall: 96.00%
+F1 Score: 96.48%
+FAR: 3.00%
+FRR: 4.00%
+
+Processing user: s057
+Training samples: 480
+Validation samples: 120
+Test samples: 200
+X_train shape: (480, 40)
+y_train distribution: [240 240]
+X_train_val shape: (120, 40)
+y_train_val distribution: [60 60]
+
+Tuning hyperparameters for user s057...
+Early stopping at epoch 17
+Early stopping at epoch 19
+Early stopping at epoch 16
+Early stopping at epoch 17
+Best parameters for s057:
+hidden_size: 64
+num_layers: 2
+dropout: 0.2
+learning_rate: 0.001
+Best validation score: 0.9583
+Validating model for s057 on train validation set...
+Prediction distribution: [60 60]
+True labels distribution: [60 60]
+Testing model for s057 on test set...
+Test prediction distribution: [ 97 103]
+Test true labels distribution: [100 100]
+
+Train Validation Results for s057:
+Accuracy: 95.00%
+Precision: 95.00%
+Recall: 95.00%
+F1 Score: 95.00%
+FAR: 5.00%
+FRR: 5.00%
+
+Test Results for s057:
+Accuracy: 92.50%
+Precision: 91.26%
+Recall: 94.00%
+F1 Score: 92.61%
+FAR: 9.00%
+FRR: 6.00%
+
+=== Train Validation Summary ===
+
+Overall Statistics:
+Total Users: 51
+Total Samples: 6120
+Overall Accuracy: 95.82%
+Average Precision: 95.29%
+Average Recall: 96.50%
+Average F1 Score: 95.86%
+Average FAR: 4.87%
+Average FRR: 3.50%
+
+Per-User Statistics:
+Login		Accuracy	Precision	Recall		F1 Score	FAR		FRR
+----------------------------------------------------------------------------------------------------
+s002		88.33%		85.94%		91.67%		88.71%		15.00%		8.33%
+s003		96.67%		93.75%		100.00%		96.77%		6.67%		0.00%
+s004		96.67%		95.16%		98.33%		96.72%		5.00%		1.67%
+s005		95.00%		92.19%		98.33%		95.16%		8.33%		1.67%
+s007		90.00%		91.38%		88.33%		89.83%		8.33%		11.67%
+s008		93.33%		90.62%		96.67%		93.55%		10.00%		3.33%
+s010		98.33%		100.00%		96.67%		98.31%		0.00%		3.33%
+s011		95.83%		95.08%		96.67%		95.87%		5.00%		3.33%
+s012		95.83%		95.08%		96.67%		95.87%		5.00%		3.33%
+s013		95.00%		95.00%		95.00%		95.00%		5.00%		5.00%
+s015		92.50%		86.96%		100.00%		93.02%		15.00%		0.00%
+s016		100.00%		100.00%		100.00%		100.00%		0.00%		0.00%
+s017		95.83%		95.08%		96.67%		95.87%		5.00%		3.33%
+s018		94.17%		94.92%		93.33%		94.12%		5.00%		6.67%
+s019		95.00%		96.55%		93.33%		94.92%		3.33%		6.67%
+s020		94.17%		94.92%		93.33%		94.12%		5.00%		6.67%
+s021		93.33%		94.83%		91.67%		93.22%		5.00%		8.33%
+s022		98.33%		96.77%		100.00%		98.36%		3.33%		0.00%
+s024		98.33%		96.77%		100.00%		98.36%		3.33%		0.00%
+s025		98.33%		96.77%		100.00%		98.36%		3.33%		0.00%
+s026		91.67%		87.88%		96.67%		92.06%		13.33%		3.33%
+s027		98.33%		100.00%		96.67%		98.31%		0.00%		3.33%
+s028		97.50%		95.24%		100.00%		97.56%		5.00%		0.00%
+s029		95.00%		92.19%		98.33%		95.16%		8.33%		1.67%
+s030		96.67%		95.16%		98.33%		96.72%		5.00%		1.67%
+s031		95.83%		95.08%		96.67%		95.87%		5.00%		3.33%
+s032		85.83%		85.25%		86.67%		85.95%		15.00%		13.33%
+s033		100.00%		100.00%		100.00%		100.00%		0.00%		0.00%
+s034		96.67%		96.67%		96.67%		96.67%		3.33%		3.33%
+s035		98.33%		96.77%		100.00%		98.36%		3.33%		0.00%
+s036		99.17%		100.00%		98.33%		99.16%		0.00%		1.67%
+s037		94.17%		93.44%		95.00%		94.21%		6.67%		5.00%
+s038		95.83%		95.08%		96.67%		95.87%		5.00%		3.33%
+s039		97.50%		96.72%		98.33%		97.52%		3.33%		1.67%
+s040		96.67%		98.28%		95.00%		96.61%		1.67%		5.00%
+s041		95.00%		95.00%		95.00%		95.00%		5.00%		5.00%
+s042		98.33%		100.00%		96.67%		98.31%		0.00%		3.33%
+s043		100.00%		100.00%		100.00%		100.00%		0.00%		0.00%
+s044		99.17%		98.36%		100.00%		99.17%		1.67%		0.00%
+s046		93.33%		91.94%		95.00%		93.44%		8.33%		5.00%
+s047		98.33%		100.00%		96.67%		98.31%		0.00%		3.33%
+s048		91.67%		91.67%		91.67%		91.67%		8.33%		8.33%
+s049		97.50%		96.72%		98.33%		97.52%		3.33%		1.67%
+s050		100.00%		100.00%		100.00%		100.00%		0.00%		0.00%
+s051		91.67%		90.32%		93.33%		91.80%		10.00%		6.67%
+s052		99.17%		98.36%		100.00%		99.17%		1.67%		0.00%
+s053		98.33%		100.00%		96.67%		98.31%		0.00%		3.33%
+s054		94.17%		90.77%		98.33%		94.40%		10.00%		1.67%
+s055		98.33%		100.00%		96.67%		98.31%		0.00%		3.33%
+s056		92.50%		96.36%		88.33%		92.17%		3.33%		11.67%
+s057		95.00%		95.00%		95.00%		95.00%		5.00%		5.00%
+
+=== Test Summary ===
+
+Overall Statistics:
+Total Users: 51
+Total Samples: 10200
+Overall Accuracy: 95.49%
+Average Precision: 94.68%
+Average Recall: 96.45%
+Average F1 Score: 95.54%
+Average FAR: 5.47%
+Average FRR: 3.55%
+
+Per-User Statistics:
+Login		Accuracy	Precision	Recall		F1 Score	FAR		FRR
+----------------------------------------------------------------------------------------------------
+s002		92.50%		90.48%		95.00%		92.68%		10.00%		5.00%
+s003		95.50%		95.96%		95.00%		95.48%		4.00%		5.00%
+s004		97.50%		97.03%		98.00%		97.51%		3.00%		2.00%
+s005		95.50%		92.52%		99.00%		95.65%		8.00%		1.00%
+s007		92.50%		90.48%		95.00%		92.68%		10.00%		5.00%
+s008		90.50%		90.10%		91.00%		90.55%		10.00%		9.00%
+s010		96.00%		96.94%		95.00%		95.96%		3.00%		5.00%
+s011		97.00%		97.96%		96.00%		96.97%		2.00%		4.00%
+s012		95.00%		94.12%		96.00%		95.05%		6.00%		4.00%
+s013		96.00%		95.10%		97.00%		96.04%		5.00%		3.00%
+s015		91.50%		88.79%		95.00%		91.79%		12.00%		5.00%
+s016		98.50%		98.99%		98.00%		98.49%		1.00%		2.00%
+s017		95.00%		94.12%		96.00%		95.05%		6.00%		4.00%
+s018		92.50%		91.26%		94.00%		92.61%		9.00%		6.00%
+s019		97.00%		97.00%		97.00%		97.00%		3.00%		3.00%
+s020		92.50%		92.93%		92.00%		92.46%		7.00%		8.00%
+s021		94.00%		93.14%		95.00%		94.06%		7.00%		5.00%
+s022		98.50%		98.02%		99.00%		98.51%		2.00%		1.00%
+s024		98.50%		98.02%		99.00%		98.51%		2.00%		1.00%
+s025		99.00%		98.04%		100.00%		99.01%		2.00%		0.00%
+s026		96.00%		95.10%		97.00%		96.04%		5.00%		3.00%
+s027		96.00%		96.00%		96.00%		96.00%		4.00%		4.00%
+s028		97.00%		95.19%		99.00%		97.06%		5.00%		1.00%
+s029		93.50%		92.23%		95.00%		93.60%		8.00%		5.00%
+s030		97.50%		97.98%		97.00%		97.49%		2.00%		3.00%
+s031		92.50%		90.48%		95.00%		92.68%		10.00%		5.00%
+s032		87.50%		87.13%		88.00%		87.56%		13.00%		12.00%
+s033		100.00%		100.00%		100.00%		100.00%		0.00%		0.00%
+s034		93.50%		93.07%		94.00%		93.53%		7.00%		6.00%
+s035		96.50%		94.29%		99.00%		96.59%		6.00%		1.00%
+s036		100.00%		100.00%		100.00%		100.00%		0.00%		0.00%
+s037		95.50%		95.96%		95.00%		95.48%		4.00%		5.00%
+s038		97.00%		96.08%		98.00%		97.03%		4.00%		2.00%
+s039		93.00%		91.35%		95.00%		93.14%		9.00%		5.00%
+s040		96.50%		96.97%		96.00%		96.48%		3.00%		4.00%
+s041		96.50%		95.15%		98.00%		96.55%		5.00%		2.00%
+s042		97.00%		96.08%		98.00%		97.03%		4.00%		2.00%
+s043		98.50%		98.02%		99.00%		98.51%		2.00%		1.00%
+s044		96.50%		95.15%		98.00%		96.55%		5.00%		2.00%
+s046		95.50%		94.17%		97.00%		95.57%		6.00%		3.00%
+s047		95.00%		95.00%		95.00%		95.00%		5.00%		5.00%
+s048		96.50%		96.04%		97.00%		96.52%		4.00%		3.00%
+s049		99.00%		98.04%		100.00%		99.01%		2.00%		0.00%
+s050		94.00%		92.31%		96.00%		94.12%		8.00%		4.00%
+s051		95.50%		93.33%		98.00%		95.61%		7.00%		2.00%
+s052		97.50%		97.03%		98.00%		97.51%		3.00%		2.00%
+s053		98.50%		98.02%		99.00%		98.51%		2.00%		1.00%
+s054		90.00%		89.22%		91.00%		90.10%		11.00%		9.00%
+s055		97.00%		97.00%		97.00%		97.00%		3.00%		3.00%
+s056		93.50%		89.91%		98.00%		93.78%		11.00%		2.00%
+s057		92.50%		91.26%		94.00%		92.61%		9.00%		6.00%

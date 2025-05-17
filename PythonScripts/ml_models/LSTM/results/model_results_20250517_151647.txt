@@ -1,0 +1,4543 @@
+Starting model training and validation...
+
+
+Processing user: s030
+Training samples: 480
+Validation samples: 120
+Test samples: 200
+X_train shape: (480, 40)
+y_train distribution: [240 240]
+X_train_val shape: (120, 40)
+y_train_val distribution: [60 60]
+
+Tuning hyperparameters for user s030...
+Early stopping at epoch 21
+Early stopping at epoch 31
+Early stopping at epoch 22
+Early stopping at epoch 31
+Early stopping at epoch 21
+Early stopping at epoch 33
+Early stopping at epoch 21
+Early stopping at epoch 27
+Early stopping at epoch 20
+Early stopping at epoch 29
+Early stopping at epoch 22
+Early stopping at epoch 30
+Early stopping at epoch 19
+Early stopping at epoch 29
+Early stopping at epoch 19
+Early stopping at epoch 27
+Early stopping at epoch 19
+Early stopping at epoch 30
+Early stopping at epoch 19
+Early stopping at epoch 28
+Early stopping at epoch 20
+Early stopping at epoch 27
+Early stopping at epoch 19
+Early stopping at epoch 26
+Early stopping at epoch 17
+Early stopping at epoch 23
+Early stopping at epoch 18
+Early stopping at epoch 24
+Early stopping at epoch 18
+Early stopping at epoch 23
+Early stopping at epoch 17
+Early stopping at epoch 21
+Early stopping at epoch 16
+Early stopping at epoch 21
+Early stopping at epoch 17
+Early stopping at epoch 22
+Early stopping at epoch 16
+Early stopping at epoch 22
+Early stopping at epoch 17
+Early stopping at epoch 24
+Early stopping at epoch 17
+Early stopping at epoch 22
+Early stopping at epoch 15
+Early stopping at epoch 19
+Early stopping at epoch 15
+Early stopping at epoch 20
+Early stopping at epoch 15
+Early stopping at epoch 19
+Early stopping at epoch 15
+Early stopping at epoch 18
+Early stopping at epoch 46
+Early stopping at epoch 15
+Early stopping at epoch 19
+Early stopping at epoch 45
+Early stopping at epoch 15
+Early stopping at epoch 19
+Early stopping at epoch 45
+Best parameters for s030:
+hidden_size: 32
+num_layers: 1
+dropout: 0.1
+learning_rate: 0.001
+Best validation score: 0.9792
+Validating model for s030 on train validation set...
+Prediction distribution: [58 62]
+True labels distribution: [60 60]
+Testing model for s030 on test set...
+Test prediction distribution: [ 98 102]
+Test true labels distribution: [100 100]
+
+Train Validation Results for s030:
+Accuracy: 95.00%
+Precision: 93.55%
+Recall: 96.67%
+F1 Score: 95.08%
+FAR: 6.67%
+FRR: 3.33%
+
+Test Results for s030:
+Accuracy: 97.00%
+Precision: 96.08%
+Recall: 98.00%
+F1 Score: 97.03%
+FAR: 4.00%
+FRR: 2.00%
+
+Processing user: s056
+Training samples: 480
+Validation samples: 120
+Test samples: 200
+X_train shape: (480, 40)
+y_train distribution: [240 240]
+X_train_val shape: (120, 40)
+y_train_val distribution: [60 60]
+
+Tuning hyperparameters for user s056...
+Early stopping at epoch 22
+Early stopping at epoch 35
+Early stopping at epoch 39
+Early stopping at epoch 34
+Early stopping at epoch 46
+Early stopping at epoch 49
+Early stopping at epoch 19
+Early stopping at epoch 29
+Early stopping at epoch 20
+Early stopping at epoch 30
+Early stopping at epoch 19
+Early stopping at epoch 50
+Early stopping at epoch 20
+Early stopping at epoch 45
+Early stopping at epoch 27
+Early stopping at epoch 36
+Early stopping at epoch 46
+Early stopping at epoch 27
+Early stopping at epoch 29
+Early stopping at epoch 39
+Early stopping at epoch 22
+Early stopping at epoch 40
+Early stopping at epoch 26
+Early stopping at epoch 39
+Early stopping at epoch 29
+Early stopping at epoch 23
+Early stopping at epoch 17
+Early stopping at epoch 24
+Early stopping at epoch 34
+Early stopping at epoch 25
+Early stopping at epoch 17
+Early stopping at epoch 22
+Early stopping at epoch 37
+Early stopping at epoch 26
+Early stopping at epoch 17
+Early stopping at epoch 29
+Early stopping at epoch 23
+Early stopping at epoch 27
+Early stopping at epoch 22
+Early stopping at epoch 35
+Early stopping at epoch 26
+Early stopping at epoch 27
+Early stopping at epoch 15
+Early stopping at epoch 20
+Early stopping at epoch 50
+Early stopping at epoch 15
+Early stopping at epoch 19
+Early stopping at epoch 16
+Early stopping at epoch 21
+Early stopping at epoch 20
+Early stopping at epoch 18
+Early stopping at epoch 46
+Early stopping at epoch 29
+Early stopping at epoch 31
+Early stopping at epoch 47
+Early stopping at epoch 31
+Early stopping at epoch 20
+Early stopping at epoch 45
+Best parameters for s056:
+hidden_size: 64
+num_layers: 2
+dropout: 0.1
+learning_rate: 0.001
+Best validation score: 0.9479
+Validating model for s056 on train validation set...
+Prediction distribution: [65 55]
+True labels distribution: [60 60]
+Testing model for s056 on test set...
+Test prediction distribution: [ 96 104]
+Test true labels distribution: [100 100]
+
+Train Validation Results for s056:
+Accuracy: 92.50%
+Precision: 96.36%
+Recall: 88.33%
+F1 Score: 92.17%
+FAR: 3.33%
+FRR: 11.67%
+
+Test Results for s056:
+Accuracy: 95.00%
+Precision: 93.27%
+Recall: 97.00%
+F1 Score: 95.10%
+FAR: 7.00%
+FRR: 3.00%
+
+Processing user: s043
+Training samples: 480
+Validation samples: 120
+Test samples: 200
+X_train shape: (480, 40)
+y_train distribution: [240 240]
+X_train_val shape: (120, 40)
+y_train_val distribution: [60 60]
+
+Tuning hyperparameters for user s043...
+Early stopping at epoch 25
+Early stopping at epoch 40
+Early stopping at epoch 26
+Early stopping at epoch 39
+Early stopping at epoch 26
+Early stopping at epoch 37
+Early stopping at epoch 22
+Early stopping at epoch 34
+Early stopping at epoch 25
+Early stopping at epoch 34
+Early stopping at epoch 24
+Early stopping at epoch 36
+Early stopping at epoch 22
+Early stopping at epoch 32
+Early stopping at epoch 23
+Early stopping at epoch 36
+Early stopping at epoch 11
+Early stopping at epoch 24
+Early stopping at epoch 32
+Early stopping at epoch 11
+Early stopping at epoch 21
+Early stopping at epoch 31
+Early stopping at epoch 24
+Early stopping at epoch 33
+Early stopping at epoch 22
+Early stopping at epoch 34
+Early stopping at epoch 21
+Early stopping at epoch 29
+Early stopping at epoch 20
+Early stopping at epoch 30
+Early stopping at epoch 22
+Early stopping at epoch 30
+Early stopping at epoch 20
+Early stopping at epoch 27
+Early stopping at epoch 20
+Early stopping at epoch 27
+Early stopping at epoch 21
+Early stopping at epoch 29
+Early stopping at epoch 20
+Early stopping at epoch 33
+Early stopping at epoch 20
+Early stopping at epoch 33
+Early stopping at epoch 20
+Early stopping at epoch 31
+Early stopping at epoch 18
+Early stopping at epoch 25
+Early stopping at epoch 19
+Early stopping at epoch 27
+Early stopping at epoch 20
+Early stopping at epoch 27
+Early stopping at epoch 19
+Early stopping at epoch 23
+Early stopping at epoch 19
+Early stopping at epoch 25
+Early stopping at epoch 20
+Early stopping at epoch 25
+Best parameters for s043:
+hidden_size: 32
+num_layers: 1
+dropout: 0.1
+learning_rate: 0.001
+Best validation score: 0.9896
+Validating model for s043 on train validation set...
+Prediction distribution: [59 61]
+True labels distribution: [60 60]
+Testing model for s043 on test set...
+Test prediction distribution: [ 99 101]
+Test true labels distribution: [100 100]
+
+Train Validation Results for s043:
+Accuracy: 99.17%
+Precision: 98.36%
+Recall: 100.00%
+F1 Score: 99.17%
+FAR: 1.67%
+FRR: 0.00%
+
+Test Results for s043:
+Accuracy: 98.50%
+Precision: 98.02%
+Recall: 99.00%
+F1 Score: 98.51%
+FAR: 2.00%
+FRR: 1.00%
+
+Processing user: s004
+Training samples: 480
+Validation samples: 120
+Test samples: 200
+X_train shape: (480, 40)
+y_train distribution: [240 240]
+X_train_val shape: (120, 40)
+y_train_val distribution: [60 60]
+
+Tuning hyperparameters for user s004...
+Early stopping at epoch 40
+Early stopping at epoch 48
+Early stopping at epoch 38
+Early stopping at epoch 43
+Early stopping at epoch 39
+Early stopping at epoch 34
+Early stopping at epoch 44
+Early stopping at epoch 39
+Early stopping at epoch 42
+Early stopping at epoch 47
+Early stopping at epoch 40
+Early stopping at epoch 41
+Early stopping at epoch 38
+Early stopping at epoch 45
+Early stopping at epoch 39
+Early stopping at epoch 41
+Early stopping at epoch 31
+Early stopping at epoch 36
+Early stopping at epoch 30
+Early stopping at epoch 27
+Early stopping at epoch 19
+Early stopping at epoch 27
+Early stopping at epoch 38
+Early stopping at epoch 35
+Early stopping at epoch 42
+Early stopping at epoch 29
+Early stopping at epoch 47
+Early stopping at epoch 31
+Early stopping at epoch 27
+Early stopping at epoch 30
+Early stopping at epoch 25
+Early stopping at epoch 31
+Early stopping at epoch 39
+Early stopping at epoch 30
+Early stopping at epoch 23
+Early stopping at epoch 31
+Early stopping at epoch 22
+Best parameters for s004:
+hidden_size: 32
+num_layers: 3
+dropout: 0.1
+learning_rate: 0.0005
+Best validation score: 0.9792
+Validating model for s004 on train validation set...
+Prediction distribution: [59 61]
+True labels distribution: [60 60]
+Testing model for s004 on test set...
+Test prediction distribution: [ 98 102]
+Test true labels distribution: [100 100]
+
+Train Validation Results for s004:
+Accuracy: 95.83%
+Precision: 95.08%
+Recall: 96.67%
+F1 Score: 95.87%
+FAR: 5.00%
+FRR: 3.33%
+
+Test Results for s004:
+Accuracy: 98.00%
+Precision: 97.06%
+Recall: 99.00%
+F1 Score: 98.02%
+FAR: 3.00%
+FRR: 1.00%
+
+Processing user: s050
+Training samples: 480
+Validation samples: 120
+Test samples: 200
+X_train shape: (480, 40)
+y_train distribution: [240 240]
+X_train_val shape: (120, 40)
+y_train_val distribution: [60 60]
+
+Tuning hyperparameters for user s050...
+Early stopping at epoch 37
+Early stopping at epoch 39
+Early stopping at epoch 41
+Early stopping at epoch 30
+Early stopping at epoch 44
+Early stopping at epoch 11
+Early stopping at epoch 45
+Early stopping at epoch 39
+Early stopping at epoch 30
+Early stopping at epoch 42
+Early stopping at epoch 11
+Early stopping at epoch 41
+Early stopping at epoch 11
+Early stopping at epoch 36
+Early stopping at epoch 11
+Early stopping at epoch 11
+Early stopping at epoch 35
+Early stopping at epoch 36
+Early stopping at epoch 30
+Early stopping at epoch 27
+Early stopping at epoch 41
+Early stopping at epoch 36
+Early stopping at epoch 49
+Early stopping at epoch 11
+Early stopping at epoch 18
+Early stopping at epoch 29
+Early stopping at epoch 46
+Early stopping at epoch 11
+Early stopping at epoch 29
+Early stopping at epoch 49
+Early stopping at epoch 11
+Early stopping at epoch 46
+Early stopping at epoch 43
+Early stopping at epoch 11
+Early stopping at epoch 24
+Early stopping at epoch 41
+Early stopping at epoch 27
+Early stopping at epoch 46
+Early stopping at epoch 33
+Early stopping at epoch 42
+Early stopping at epoch 25
+Early stopping at epoch 35
+Early stopping at epoch 30
+Early stopping at epoch 41
+Early stopping at epoch 29
+Early stopping at epoch 41
+Early stopping at epoch 15
+Early stopping at epoch 19
+Early stopping at epoch 11
+Early stopping at epoch 30
+Early stopping at epoch 19
+Early stopping at epoch 11
+Early stopping at epoch 35
+Early stopping at epoch 21
+Early stopping at epoch 11
+Best parameters for s050:
+hidden_size: 32
+num_layers: 1
+dropout: 0.1
+learning_rate: 0.001
+Best validation score: 0.9688
+Validating model for s050 on train validation set...
+Prediction distribution: [60 60]
+True labels distribution: [60 60]
+Testing model for s050 on test set...
+Test prediction distribution: [101  99]
+Test true labels distribution: [100 100]
+
+Train Validation Results for s050:
+Accuracy: 96.67%
+Precision: 96.67%
+Recall: 96.67%
+F1 Score: 96.67%
+FAR: 3.33%
+FRR: 3.33%
+
+Test Results for s050:
+Accuracy: 93.50%
+Precision: 93.94%
+Recall: 93.00%
+F1 Score: 93.47%
+FAR: 6.00%
+FRR: 7.00%
+
+Processing user: s051
+Training samples: 480
+Validation samples: 120
+Test samples: 200
+X_train shape: (480, 40)
+y_train distribution: [240 240]
+X_train_val shape: (120, 40)
+y_train_val distribution: [60 60]
+
+Tuning hyperparameters for user s051...
+Early stopping at epoch 20
+Early stopping at epoch 30
+Early stopping at epoch 19
+Early stopping at epoch 28
+Early stopping at epoch 21
+Early stopping at epoch 29
+Early stopping at epoch 19
+Early stopping at epoch 27
+Early stopping at epoch 19
+Early stopping at epoch 26
+Early stopping at epoch 19
+Early stopping at epoch 28
+Early stopping at epoch 19
+Early stopping at epoch 29
+Early stopping at epoch 11
+Early stopping at epoch 20
+Early stopping at epoch 28
+Early stopping at epoch 11
+Early stopping at epoch 20
+Early stopping at epoch 27
+Early stopping at epoch 18
+Early stopping at epoch 25
+Early stopping at epoch 18
+Early stopping at epoch 25
+Early stopping at epoch 19
+Early stopping at epoch 26
+Early stopping at epoch 17
+Early stopping at epoch 22
+Early stopping at epoch 17
+Early stopping at epoch 22
+Early stopping at epoch 17
+Early stopping at epoch 23
+Early stopping at epoch 17
+Early stopping at epoch 21
+Early stopping at epoch 11
+Early stopping at epoch 17
+Early stopping at epoch 23
+Early stopping at epoch 11
+Early stopping at epoch 17
+Early stopping at epoch 21
+Early stopping at epoch 11
+Early stopping at epoch 16
+Early stopping at epoch 21
+Early stopping at epoch 17
+Early stopping at epoch 23
+Early stopping at epoch 16
+Early stopping at epoch 23
+Early stopping at epoch 15
+Early stopping at epoch 19
+Early stopping at epoch 48
+Early stopping at epoch 16
+Early stopping at epoch 19
+Early stopping at epoch 16
+Early stopping at epoch 20
+Early stopping at epoch 15
+Early stopping at epoch 18
+Early stopping at epoch 45
+Early stopping at epoch 16
+Early stopping at epoch 19
+Early stopping at epoch 46
+Early stopping at epoch 15
+Early stopping at epoch 18
+Early stopping at epoch 46
+Best parameters for s051:
+hidden_size: 128
+num_layers: 2
+dropout: 0.3
+learning_rate: 0.0001
+Best validation score: 0.9167
+Validating model for s051 on train validation set...
+Prediction distribution: [59 61]
+True labels distribution: [60 60]
+Testing model for s051 on test set...
+Test prediction distribution: [ 99 101]
+Test true labels distribution: [100 100]
+
+Train Validation Results for s051:
+Accuracy: 89.17%
+Precision: 88.52%
+Recall: 90.00%
+F1 Score: 89.26%
+FAR: 11.67%
+FRR: 10.00%
+
+Test Results for s051:
+Accuracy: 95.50%
+Precision: 95.05%
+Recall: 96.00%
+F1 Score: 95.52%
+FAR: 5.00%
+FRR: 4.00%
+
+Processing user: s005
+Training samples: 480
+Validation samples: 120
+Test samples: 200
+X_train shape: (480, 40)
+y_train distribution: [240 240]
+X_train_val shape: (120, 40)
+y_train_val distribution: [60 60]
+
+Tuning hyperparameters for user s005...
+Early stopping at epoch 35
+Early stopping at epoch 31
+Early stopping at epoch 35
+Early stopping at epoch 45
+Early stopping at epoch 23
+Early stopping at epoch 31
+Early stopping at epoch 43
+Early stopping at epoch 43
+Early stopping at epoch 32
+Early stopping at epoch 30
+Early stopping at epoch 11
+Early stopping at epoch 27
+Early stopping at epoch 42
+Early stopping at epoch 11
+Early stopping at epoch 21
+Early stopping at epoch 31
+Early stopping at epoch 38
+Early stopping at epoch 27
+Early stopping at epoch 28
+Early stopping at epoch 41
+Early stopping at epoch 32
+Early stopping at epoch 34
+Early stopping at epoch 33
+Early stopping at epoch 45
+Early stopping at epoch 30
+Early stopping at epoch 22
+Early stopping at epoch 18
+Early stopping at epoch 37
+Early stopping at epoch 33
+Early stopping at epoch 23
+Early stopping at epoch 36
+Early stopping at epoch 25
+Early stopping at epoch 36
+Early stopping at epoch 25
+Early stopping at epoch 41
+Early stopping at epoch 28
+Early stopping at epoch 41
+Early stopping at epoch 30
+Early stopping at epoch 37
+Early stopping at epoch 29
+Early stopping at epoch 35
+Early stopping at epoch 28
+Early stopping at epoch 32
+Early stopping at epoch 25
+Early stopping at epoch 46
+Early stopping at epoch 27
+Early stopping at epoch 47
+Best parameters for s005:
+hidden_size: 64
+num_layers: 2
+dropout: 0.1
+learning_rate: 0.001
+Best validation score: 0.9688
+Validating model for s005 on train validation set...
+Prediction distribution: [57 63]
+True labels distribution: [60 60]
+Testing model for s005 on test set...
+Test prediction distribution: [ 94 106]
+Test true labels distribution: [100 100]
+
+Train Validation Results for s005:
+Accuracy: 94.17%
+Precision: 92.06%
+Recall: 96.67%
+F1 Score: 94.31%
+FAR: 8.33%
+FRR: 3.33%
+
+Test Results for s005:
+Accuracy: 95.00%
+Precision: 92.45%
+Recall: 98.00%
+F1 Score: 95.15%
+FAR: 8.00%
+FRR: 2.00%
+
+Processing user: s020
+Training samples: 480
+Validation samples: 120
+Test samples: 200
+X_train shape: (480, 40)
+y_train distribution: [240 240]
+X_train_val shape: (120, 40)
+y_train_val distribution: [60 60]
+
+Tuning hyperparameters for user s020...
+Early stopping at epoch 31
+Early stopping at epoch 49
+Early stopping at epoch 32
+Early stopping at epoch 48
+Early stopping at epoch 31
+Early stopping at epoch 48
+Early stopping at epoch 31
+Early stopping at epoch 45
+Early stopping at epoch 40
+Early stopping at epoch 50
+Early stopping at epoch 28
+Early stopping at epoch 23
+Early stopping at epoch 42
+Early stopping at epoch 11
+Early stopping at epoch 26
+Early stopping at epoch 31
+Early stopping at epoch 31
+Early stopping at epoch 44
+Early stopping at epoch 31
+Early stopping at epoch 41
+Early stopping at epoch 29
+Early stopping at epoch 50
+Early stopping at epoch 23
+Early stopping at epoch 41
+Early stopping at epoch 20
+Early stopping at epoch 40
+Early stopping at epoch 26
+Early stopping at epoch 28
+Early stopping at epoch 28
+Early stopping at epoch 27
+Early stopping at epoch 36
+Early stopping at epoch 25
+Early stopping at epoch 31
+Early stopping at epoch 24
+Early stopping at epoch 42
+Early stopping at epoch 26
+Early stopping at epoch 42
+Early stopping at epoch 29
+Early stopping at epoch 39
+Early stopping at epoch 20
+Early stopping at epoch 27
+Early stopping at epoch 21
+Early stopping at epoch 26
+Early stopping at epoch 24
+Early stopping at epoch 37
+Early stopping at epoch 20
+Early stopping at epoch 30
+Early stopping at epoch 21
+Early stopping at epoch 29
+Early stopping at epoch 21
+Early stopping at epoch 36
+Best parameters for s020:
+hidden_size: 32
+num_layers: 2
+dropout: 0.2
+learning_rate: 0.001
+Best validation score: 0.9792
+Validating model for s020 on train validation set...
+Prediction distribution: [61 59]
+True labels distribution: [60 60]
+Testing model for s020 on test set...
+Test prediction distribution: [102  98]
+Test true labels distribution: [100 100]
+
+Train Validation Results for s020:
+Accuracy: 90.83%
+Precision: 91.53%
+Recall: 90.00%
+F1 Score: 90.76%
+FAR: 8.33%
+FRR: 10.00%
+
+Test Results for s020:
+Accuracy: 90.00%
+Precision: 90.82%
+Recall: 89.00%
+F1 Score: 89.90%
+FAR: 9.00%
+FRR: 11.00%
+
+Processing user: s027
+Training samples: 480
+Validation samples: 120
+Test samples: 200
+X_train shape: (480, 40)
+y_train distribution: [240 240]
+X_train_val shape: (120, 40)
+y_train_val distribution: [60 60]
+
+Tuning hyperparameters for user s027...
+Early stopping at epoch 23
+Early stopping at epoch 36
+Early stopping at epoch 23
+Early stopping at epoch 37
+Early stopping at epoch 23
+Early stopping at epoch 38
+Early stopping at epoch 21
+Early stopping at epoch 32
+Early stopping at epoch 21
+Early stopping at epoch 32
+Early stopping at epoch 21
+Early stopping at epoch 34
+Early stopping at epoch 20
+Early stopping at epoch 28
+Early stopping at epoch 21
+Early stopping at epoch 30
+Early stopping at epoch 21
+Early stopping at epoch 29
+Early stopping at epoch 20
+Early stopping at epoch 29
+Early stopping at epoch 21
+Early stopping at epoch 30
+Early stopping at epoch 21
+Early stopping at epoch 32
+Early stopping at epoch 18
+Early stopping at epoch 25
+Early stopping at epoch 18
+Early stopping at epoch 26
+Early stopping at epoch 19
+Early stopping at epoch 24
+Early stopping at epoch 18
+Early stopping at epoch 22
+Early stopping at epoch 17
+Early stopping at epoch 22
+Early stopping at epoch 18
+Early stopping at epoch 26
+Early stopping at epoch 17
+Early stopping at epoch 25
+Early stopping at epoch 18
+Early stopping at epoch 26
+Early stopping at epoch 18
+Early stopping at epoch 27
+Early stopping at epoch 16
+Early stopping at epoch 21
+Early stopping at epoch 16
+Early stopping at epoch 22
+Early stopping at epoch 16
+Early stopping at epoch 21
+Early stopping at epoch 15
+Early stopping at epoch 20
+Early stopping at epoch 47
+Early stopping at epoch 16
+Early stopping at epoch 21
+Early stopping at epoch 15
+Early stopping at epoch 19
+Early stopping at epoch 49
+Best parameters for s027:
+hidden_size: 32
+num_layers: 1
+dropout: 0.1
+learning_rate: 0.001
+Best validation score: 0.9896
+Validating model for s027 on train validation set...
+Prediction distribution: [60 60]
+True labels distribution: [60 60]
+Testing model for s027 on test set...
+Test prediction distribution: [ 96 104]
+Test true labels distribution: [100 100]
+
+Train Validation Results for s027:
+Accuracy: 100.00%
+Precision: 100.00%
+Recall: 100.00%
+F1 Score: 100.00%
+FAR: 0.00%
+FRR: 0.00%
+
+Test Results for s027:
+Accuracy: 95.00%
+Precision: 93.27%
+Recall: 97.00%
+F1 Score: 95.10%
+FAR: 7.00%
+FRR: 3.00%
+
+Processing user: s042
+Training samples: 480
+Validation samples: 120
+Test samples: 200
+X_train shape: (480, 40)
+y_train distribution: [240 240]
+X_train_val shape: (120, 40)
+y_train_val distribution: [60 60]
+
+Tuning hyperparameters for user s042...
+Early stopping at epoch 20
+Early stopping at epoch 34
+Early stopping at epoch 22
+Early stopping at epoch 33
+Early stopping at epoch 22
+Early stopping at epoch 34
+Early stopping at epoch 21
+Early stopping at epoch 28
+Early stopping at epoch 21
+Early stopping at epoch 31
+Early stopping at epoch 22
+Early stopping at epoch 30
+Early stopping at epoch 21
+Early stopping at epoch 28
+Early stopping at epoch 11
+Early stopping at epoch 20
+Early stopping at epoch 29
+Early stopping at epoch 11
+Early stopping at epoch 20
+Early stopping at epoch 29
+Early stopping at epoch 11
+Early stopping at epoch 19
+Early stopping at epoch 30
+Early stopping at epoch 19
+Early stopping at epoch 28
+Early stopping at epoch 19
+Early stopping at epoch 29
+Early stopping at epoch 19
+Early stopping at epoch 23
+Early stopping at epoch 19
+Early stopping at epoch 24
+Early stopping at epoch 19
+Early stopping at epoch 24
+Early stopping at epoch 17
+Early stopping at epoch 24
+Early stopping at epoch 17
+Early stopping at epoch 24
+Early stopping at epoch 18
+Early stopping at epoch 24
+Early stopping at epoch 17
+Early stopping at epoch 23
+Early stopping at epoch 18
+Early stopping at epoch 24
+Early stopping at epoch 18
+Early stopping at epoch 25
+Early stopping at epoch 17
+Early stopping at epoch 22
+Early stopping at epoch 16
+Early stopping at epoch 21
+Early stopping at epoch 16
+Early stopping at epoch 20
+Early stopping at epoch 16
+Early stopping at epoch 19
+Early stopping at epoch 49
+Early stopping at epoch 16
+Early stopping at epoch 20
+Early stopping at epoch 49
+Early stopping at epoch 16
+Early stopping at epoch 19
+Early stopping at epoch 50
+Best parameters for s042:
+hidden_size: 32
+num_layers: 2
+dropout: 0.3
+learning_rate: 0.001
+Best validation score: 0.9688
+Validating model for s042 on train validation set...
+Prediction distribution: [60 60]
+True labels distribution: [60 60]
+Testing model for s042 on test set...
+Test prediction distribution: [ 99 101]
+Test true labels distribution: [100 100]
+
+Train Validation Results for s042:
+Accuracy: 98.33%
+Precision: 98.33%
+Recall: 98.33%
+F1 Score: 98.33%
+FAR: 1.67%
+FRR: 1.67%
+
+Test Results for s042:
+Accuracy: 97.50%
+Precision: 97.03%
+Recall: 98.00%
+F1 Score: 97.51%
+FAR: 3.00%
+FRR: 2.00%
+
+Processing user: s011
+Training samples: 480
+Validation samples: 120
+Test samples: 200
+X_train shape: (480, 40)
+y_train distribution: [240 240]
+X_train_val shape: (120, 40)
+y_train_val distribution: [60 60]
+
+Tuning hyperparameters for user s011...
+Early stopping at epoch 24
+Early stopping at epoch 39
+Early stopping at epoch 27
+Early stopping at epoch 41
+Early stopping at epoch 25
+Early stopping at epoch 35
+Early stopping at epoch 24
+Early stopping at epoch 32
+Early stopping at epoch 23
+Early stopping at epoch 40
+Early stopping at epoch 24
+Early stopping at epoch 35
+Early stopping at epoch 23
+Early stopping at epoch 31
+Early stopping at epoch 23
+Early stopping at epoch 33
+Early stopping at epoch 22
+Early stopping at epoch 35
+Early stopping at epoch 11
+Early stopping at epoch 21
+Early stopping at epoch 33
+Early stopping at epoch 21
+Early stopping at epoch 32
+Early stopping at epoch 22
+Early stopping at epoch 34
+Early stopping at epoch 20
+Early stopping at epoch 27
+Early stopping at epoch 21
+Early stopping at epoch 27
+Early stopping at epoch 22
+Early stopping at epoch 28
+Early stopping at epoch 21
+Early stopping at epoch 29
+Early stopping at epoch 20
+Early stopping at epoch 27
+Early stopping at epoch 20
+Early stopping at epoch 28
+Early stopping at epoch 19
+Early stopping at epoch 29
+Early stopping at epoch 21
+Early stopping at epoch 29
+Early stopping at epoch 21
+Early stopping at epoch 29
+Early stopping at epoch 18
+Early stopping at epoch 24
+Early stopping at epoch 19
+Early stopping at epoch 25
+Early stopping at epoch 20
+Early stopping at epoch 25
+Early stopping at epoch 18
+Early stopping at epoch 24
+Early stopping at epoch 18
+Early stopping at epoch 24
+Early stopping at epoch 18
+Early stopping at epoch 25
+Best parameters for s011:
+hidden_size: 32
+num_layers: 1
+dropout: 0.1
+learning_rate: 0.001
+Best validation score: 0.9583
+Validating model for s011 on train validation set...
+Prediction distribution: [57 63]
+True labels distribution: [60 60]
+Testing model for s011 on test set...
+Test prediction distribution: [104  96]
+Test true labels distribution: [100 100]
+
+Train Validation Results for s011:
+Accuracy: 94.17%
+Precision: 92.06%
+Recall: 96.67%
+F1 Score: 94.31%
+FAR: 8.33%
+FRR: 3.33%
+
+Test Results for s011:
+Accuracy: 95.00%
+Precision: 96.88%
+Recall: 93.00%
+F1 Score: 94.90%
+FAR: 3.00%
+FRR: 7.00%
+
+Processing user: s054
+Training samples: 480
+Validation samples: 120
+Test samples: 200
+X_train shape: (480, 40)
+y_train distribution: [240 240]
+X_train_val shape: (120, 40)
+y_train_val distribution: [60 60]
+
+Tuning hyperparameters for user s054...
+Early stopping at epoch 26
+Early stopping at epoch 42
+Early stopping at epoch 29
+Early stopping at epoch 25
+Early stopping at epoch 48
+Early stopping at epoch 33
+Early stopping at epoch 39
+Early stopping at epoch 26
+Early stopping at epoch 37
+Early stopping at epoch 30
+Early stopping at epoch 41
+Early stopping at epoch 24
+Early stopping at epoch 34
+Early stopping at epoch 11
+Early stopping at epoch 29
+Early stopping at epoch 46
+Early stopping at epoch 24
+Early stopping at epoch 24
+Early stopping at epoch 40
+Early stopping at epoch 25
+Early stopping at epoch 35
+Early stopping at epoch 23
+Early stopping at epoch 49
+Early stopping at epoch 22
+Early stopping at epoch 31
+Early stopping at epoch 24
+Early stopping at epoch 30
+Early stopping at epoch 22
+Early stopping at epoch 30
+Early stopping at epoch 25
+Early stopping at epoch 30
+Early stopping at epoch 21
+Early stopping at epoch 32
+Early stopping at epoch 27
+Early stopping at epoch 29
+Early stopping at epoch 23
+Early stopping at epoch 35
+Early stopping at epoch 22
+Early stopping at epoch 32
+Early stopping at epoch 20
+Early stopping at epoch 37
+Early stopping at epoch 17
+Early stopping at epoch 22
+Early stopping at epoch 21
+Early stopping at epoch 23
+Early stopping at epoch 21
+Early stopping at epoch 23
+Early stopping at epoch 22
+Early stopping at epoch 22
+Early stopping at epoch 22
+Early stopping at epoch 28
+Early stopping at epoch 20
+Early stopping at epoch 25
+Best parameters for s054:
+hidden_size: 32
+num_layers: 1
+dropout: 0.1
+learning_rate: 0.0005
+Best validation score: 0.9062
+Validating model for s054 on train validation set...
+Prediction distribution: [54 66]
+True labels distribution: [60 60]
+Testing model for s054 on test set...
+Test prediction distribution: [ 96 104]
+Test true labels distribution: [100 100]
+
+Train Validation Results for s054:
+Accuracy: 93.33%
+Precision: 89.39%
+Recall: 98.33%
+F1 Score: 93.65%
+FAR: 11.67%
+FRR: 1.67%
+
+Test Results for s054:
+Accuracy: 90.00%
+Precision: 88.46%
+Recall: 92.00%
+F1 Score: 90.20%
+FAR: 12.00%
+FRR: 8.00%
+
+Processing user: s035
+Training samples: 480
+Validation samples: 120
+Test samples: 200
+X_train shape: (480, 40)
+y_train distribution: [240 240]
+X_train_val shape: (120, 40)
+y_train_val distribution: [60 60]
+
+Tuning hyperparameters for user s035...
+Early stopping at epoch 33
+Early stopping at epoch 31
+Early stopping at epoch 29
+Early stopping at epoch 42
+Early stopping at epoch 33
+Early stopping at epoch 49
+Early stopping at epoch 50
+Early stopping at epoch 26
+Early stopping at epoch 48
+Early stopping at epoch 34
+Early stopping at epoch 48
+Early stopping at epoch 40
+Early stopping at epoch 26
+Early stopping at epoch 39
+Early stopping at epoch 34
+Early stopping at epoch 32
+Early stopping at epoch 44
+Early stopping at epoch 38
+Early stopping at epoch 41
+Early stopping at epoch 29
+Early stopping at epoch 46
+Early stopping at epoch 26
+Early stopping at epoch 41
+Early stopping at epoch 29
+Early stopping at epoch 45
+Early stopping at epoch 36
+Early stopping at epoch 33
+Early stopping at epoch 40
+Early stopping at epoch 32
+Early stopping at epoch 26
+Early stopping at epoch 49
+Early stopping at epoch 43
+Early stopping at epoch 49
+Early stopping at epoch 28
+Early stopping at epoch 42
+Early stopping at epoch 26
+Early stopping at epoch 36
+Early stopping at epoch 24
+Early stopping at epoch 38
+Early stopping at epoch 27
+Early stopping at epoch 41
+Best parameters for s035:
+hidden_size: 64
+num_layers: 1
+dropout: 0.2
+learning_rate: 0.0005
+Best validation score: 1.0000
+Validating model for s035 on train validation set...
+Prediction distribution: [56 64]
+True labels distribution: [60 60]
+Testing model for s035 on test set...
+Test prediction distribution: [ 98 102]
+Test true labels distribution: [100 100]
+
+Train Validation Results for s035:
+Accuracy: 96.67%
+Precision: 93.75%
+Recall: 100.00%
+F1 Score: 96.77%
+FAR: 6.67%
+FRR: 0.00%
+
+Test Results for s035:
+Accuracy: 95.00%
+Precision: 94.12%
+Recall: 96.00%
+F1 Score: 95.05%
+FAR: 6.00%
+FRR: 4.00%
+
+Processing user: s044
+Training samples: 480
+Validation samples: 120
+Test samples: 200
+X_train shape: (480, 40)
+y_train distribution: [240 240]
+X_train_val shape: (120, 40)
+y_train_val distribution: [60 60]
+
+Tuning hyperparameters for user s044...
+Early stopping at epoch 33
+Early stopping at epoch 35
+Early stopping at epoch 29
+Early stopping at epoch 28
+Early stopping at epoch 35
+Early stopping at epoch 31
+Early stopping at epoch 38
+Early stopping at epoch 40
+Early stopping at epoch 43
+Early stopping at epoch 24
+Early stopping at epoch 36
+Early stopping at epoch 28
+Early stopping at epoch 44
+Early stopping at epoch 30
+Early stopping at epoch 28
+Early stopping at epoch 43
+Early stopping at epoch 33
+Early stopping at epoch 45
+Early stopping at epoch 29
+Early stopping at epoch 49
+Early stopping at epoch 37
+Early stopping at epoch 30
+Early stopping at epoch 22
+Early stopping at epoch 35
+Early stopping at epoch 22
+Early stopping at epoch 36
+Early stopping at epoch 24
+Early stopping at epoch 31
+Early stopping at epoch 22
+Early stopping at epoch 39
+Early stopping at epoch 29
+Early stopping at epoch 31
+Early stopping at epoch 20
+Early stopping at epoch 38
+Early stopping at epoch 25
+Early stopping at epoch 35
+Early stopping at epoch 22
+Early stopping at epoch 38
+Early stopping at epoch 20
+Early stopping at epoch 29
+Early stopping at epoch 23
+Early stopping at epoch 32
+Early stopping at epoch 20
+Early stopping at epoch 34
+Early stopping at epoch 23
+Early stopping at epoch 27
+Early stopping at epoch 20
+Early stopping at epoch 33
+Early stopping at epoch 22
+Early stopping at epoch 29
+Best parameters for s044:
+hidden_size: 32
+num_layers: 1
+dropout: 0.2
+learning_rate: 0.001
+Best validation score: 0.9896
+Validating model for s044 on train validation set...
+Prediction distribution: [59 61]
+True labels distribution: [60 60]
+Testing model for s044 on test set...
+Test prediction distribution: [ 98 102]
+Test true labels distribution: [100 100]
+
+Train Validation Results for s044:
+Accuracy: 99.17%
+Precision: 98.36%
+Recall: 100.00%
+F1 Score: 99.17%
+FAR: 1.67%
+FRR: 0.00%
+
+Test Results for s044:
+Accuracy: 95.00%
+Precision: 94.12%
+Recall: 96.00%
+F1 Score: 95.05%
+FAR: 6.00%
+FRR: 4.00%
+
+Processing user: s019
+Training samples: 480
+Validation samples: 120
+Test samples: 200
+X_train shape: (480, 40)
+y_train distribution: [240 240]
+X_train_val shape: (120, 40)
+y_train_val distribution: [60 60]
+
+Tuning hyperparameters for user s019...
+Early stopping at epoch 35
+Early stopping at epoch 50
+Early stopping at epoch 39
+Early stopping at epoch 23
+Early stopping at epoch 45
+Early stopping at epoch 27
+Early stopping at epoch 39
+Early stopping at epoch 28
+Early stopping at epoch 33
+Early stopping at epoch 11
+Early stopping at epoch 29
+Early stopping at epoch 35
+Early stopping at epoch 11
+Early stopping at epoch 24
+Early stopping at epoch 11
+Early stopping at epoch 28
+Early stopping at epoch 37
+Early stopping at epoch 48
+Early stopping at epoch 34
+Early stopping at epoch 50
+Early stopping at epoch 20
+Early stopping at epoch 35
+Early stopping at epoch 23
+Early stopping at epoch 35
+Early stopping at epoch 28
+Early stopping at epoch 29
+Early stopping at epoch 19
+Early stopping at epoch 28
+Early stopping at epoch 11
+Early stopping at epoch 20
+Early stopping at epoch 27
+Early stopping at epoch 11
+Early stopping at epoch 19
+Early stopping at epoch 31
+Early stopping at epoch 29
+Early stopping at epoch 29
+Early stopping at epoch 44
+Early stopping at epoch 30
+Early stopping at epoch 42
+Early stopping at epoch 17
+Early stopping at epoch 28
+Early stopping at epoch 17
+Early stopping at epoch 24
+Early stopping at epoch 20
+Early stopping at epoch 27
+Early stopping at epoch 17
+Early stopping at epoch 28
+Early stopping at epoch 17
+Early stopping at epoch 25
+Early stopping at epoch 17
+Early stopping at epoch 29
+Best parameters for s019:
+hidden_size: 32
+num_layers: 2
+dropout: 0.1
+learning_rate: 0.001
+Best validation score: 1.0000
+Validating model for s019 on train validation set...
+Prediction distribution: [63 57]
+True labels distribution: [60 60]
+Testing model for s019 on test set...
+Test prediction distribution: [101  99]
+Test true labels distribution: [100 100]
+
+Train Validation Results for s019:
+Accuracy: 95.83%
+Precision: 98.25%
+Recall: 93.33%
+F1 Score: 95.73%
+FAR: 1.67%
+FRR: 6.67%
+
+Test Results for s019:
+Accuracy: 96.50%
+Precision: 96.97%
+Recall: 96.00%
+F1 Score: 96.48%
+FAR: 3.00%
+FRR: 4.00%
+
+Processing user: s032
+Training samples: 480
+Validation samples: 120
+Test samples: 200
+X_train shape: (480, 40)
+y_train distribution: [240 240]
+X_train_val shape: (120, 40)
+y_train_val distribution: [60 60]
+
+Tuning hyperparameters for user s032...
+Early stopping at epoch 26
+Early stopping at epoch 25
+Early stopping at epoch 39
+Early stopping at epoch 25
+Early stopping at epoch 41
+Early stopping at epoch 25
+Early stopping at epoch 40
+Early stopping at epoch 11
+Early stopping at epoch 27
+Early stopping at epoch 44
+Early stopping at epoch 35
+Early stopping at epoch 39
+Early stopping at epoch 11
+Early stopping at epoch 30
+Early stopping at epoch 38
+Early stopping at epoch 11
+Early stopping at epoch 36
+Early stopping at epoch 46
+Early stopping at epoch 14
+Early stopping at epoch 31
+Early stopping at epoch 46
+Early stopping at epoch 23
+Early stopping at epoch 42
+Early stopping at epoch 24
+Early stopping at epoch 35
+Early stopping at epoch 24
+Early stopping at epoch 38
+Early stopping at epoch 21
+Early stopping at epoch 35
+Early stopping at epoch 26
+Early stopping at epoch 40
+Early stopping at epoch 19
+Early stopping at epoch 35
+Early stopping at epoch 26
+Early stopping at epoch 25
+Early stopping at epoch 11
+Early stopping at epoch 24
+Early stopping at epoch 37
+Early stopping at epoch 11
+Early stopping at epoch 29
+Early stopping at epoch 39
+Early stopping at epoch 11
+Early stopping at epoch 18
+Early stopping at epoch 27
+Early stopping at epoch 19
+Early stopping at epoch 31
+Early stopping at epoch 21
+Early stopping at epoch 35
+Early stopping at epoch 24
+Early stopping at epoch 34
+Early stopping at epoch 23
+Early stopping at epoch 35
+Early stopping at epoch 23
+Early stopping at epoch 34
+Early stopping at epoch 21
+Early stopping at epoch 37
+Early stopping at epoch 24
+Early stopping at epoch 36
+Early stopping at epoch 24
+Early stopping at epoch 28
+Best parameters for s032:
+hidden_size: 32
+num_layers: 2
+dropout: 0.1
+learning_rate: 0.001
+Best validation score: 0.9167
+Validating model for s032 on train validation set...
+Prediction distribution: [63 57]
+True labels distribution: [60 60]
+Testing model for s032 on test set...
+Test prediction distribution: [100 100]
+Test true labels distribution: [100 100]
+
+Train Validation Results for s032:
+Accuracy: 85.83%
+Precision: 87.72%
+Recall: 83.33%
+F1 Score: 85.47%
+FAR: 11.67%
+FRR: 16.67%
+
+Test Results for s032:
+Accuracy: 88.00%
+Precision: 88.00%
+Recall: 88.00%
+F1 Score: 88.00%
+FAR: 12.00%
+FRR: 12.00%
+
+Processing user: s036
+Training samples: 480
+Validation samples: 120
+Test samples: 200
+X_train shape: (480, 40)
+y_train distribution: [240 240]
+X_train_val shape: (120, 40)
+y_train_val distribution: [60 60]
+
+Tuning hyperparameters for user s036...
+Best parameters for s036:
+hidden_size: 32
+num_layers: 1
+dropout: 0.1
+learning_rate: 0.001
+Best validation score: 1.0000
+Validating model for s036 on train validation set...
+Prediction distribution: [60 60]
+True labels distribution: [60 60]
+Testing model for s036 on test set...
+Test prediction distribution: [100 100]
+Test true labels distribution: [100 100]
+
+Train Validation Results for s036:
+Accuracy: 100.00%
+Precision: 100.00%
+Recall: 100.00%
+F1 Score: 100.00%
+FAR: 0.00%
+FRR: 0.00%
+
+Test Results for s036:
+Accuracy: 100.00%
+Precision: 100.00%
+Recall: 100.00%
+F1 Score: 100.00%
+FAR: 0.00%
+FRR: 0.00%
+
+Processing user: s049
+Training samples: 480
+Validation samples: 120
+Test samples: 200
+X_train shape: (480, 40)
+y_train distribution: [240 240]
+X_train_val shape: (120, 40)
+y_train_val distribution: [60 60]
+
+Tuning hyperparameters for user s049...
+Early stopping at epoch 25
+Early stopping at epoch 35
+Early stopping at epoch 30
+Early stopping at epoch 38
+Early stopping at epoch 27
+Early stopping at epoch 39
+Early stopping at epoch 22
+Early stopping at epoch 31
+Early stopping at epoch 24
+Early stopping at epoch 32
+Early stopping at epoch 24
+Early stopping at epoch 30
+Early stopping at epoch 21
+Early stopping at epoch 31
+Early stopping at epoch 20
+Early stopping at epoch 32
+Early stopping at epoch 23
+Early stopping at epoch 31
+Early stopping at epoch 22
+Early stopping at epoch 37
+Early stopping at epoch 20
+Early stopping at epoch 36
+Early stopping at epoch 22
+Early stopping at epoch 33
+Early stopping at epoch 17
+Early stopping at epoch 24
+Early stopping at epoch 17
+Early stopping at epoch 31
+Early stopping at epoch 20
+Early stopping at epoch 34
+Early stopping at epoch 19
+Early stopping at epoch 22
+Early stopping at epoch 19
+Early stopping at epoch 22
+Early stopping at epoch 17
+Early stopping at epoch 22
+Early stopping at epoch 23
+Early stopping at epoch 31
+Early stopping at epoch 21
+Early stopping at epoch 30
+Early stopping at epoch 23
+Early stopping at epoch 33
+Early stopping at epoch 15
+Early stopping at epoch 21
+Early stopping at epoch 15
+Early stopping at epoch 22
+Early stopping at epoch 15
+Early stopping at epoch 24
+Early stopping at epoch 16
+Early stopping at epoch 20
+Early stopping at epoch 17
+Early stopping at epoch 21
+Early stopping at epoch 48
+Early stopping at epoch 15
+Early stopping at epoch 22
+Best parameters for s049:
+hidden_size: 32
+num_layers: 1
+dropout: 0.1
+learning_rate: 0.001
+Best validation score: 0.9896
+Validating model for s049 on train validation set...
+Prediction distribution: [59 61]
+True labels distribution: [60 60]
+Testing model for s049 on test set...
+Test prediction distribution: [ 98 102]
+Test true labels distribution: [100 100]
+
+Train Validation Results for s049:
+Accuracy: 97.50%
+Precision: 96.72%
+Recall: 98.33%
+F1 Score: 97.52%
+FAR: 3.33%
+FRR: 1.67%
+
+Test Results for s049:
+Accuracy: 99.00%
+Precision: 98.04%
+Recall: 100.00%
+F1 Score: 99.01%
+FAR: 2.00%
+FRR: 0.00%
+
+Processing user: s012
+Training samples: 480
+Validation samples: 120
+Test samples: 200
+X_train shape: (480, 40)
+y_train distribution: [240 240]
+X_train_val shape: (120, 40)
+y_train_val distribution: [60 60]
+
+Tuning hyperparameters for user s012...
+Early stopping at epoch 32
+Early stopping at epoch 40
+Early stopping at epoch 28
+Early stopping at epoch 45
+Early stopping at epoch 33
+Early stopping at epoch 23
+Early stopping at epoch 30
+Early stopping at epoch 21
+Early stopping at epoch 30
+Early stopping at epoch 22
+Early stopping at epoch 33
+Early stopping at epoch 20
+Early stopping at epoch 30
+Early stopping at epoch 21
+Early stopping at epoch 30
+Early stopping at epoch 20
+Early stopping at epoch 27
+Early stopping at epoch 23
+Early stopping at epoch 38
+Early stopping at epoch 23
+Early stopping at epoch 42
+Early stopping at epoch 23
+Early stopping at epoch 37
+Early stopping at epoch 21
+Early stopping at epoch 34
+Early stopping at epoch 19
+Early stopping at epoch 33
+Early stopping at epoch 17
+Early stopping at epoch 28
+Early stopping at epoch 20
+Early stopping at epoch 24
+Early stopping at epoch 20
+Early stopping at epoch 25
+Early stopping at epoch 21
+Early stopping at epoch 25
+Early stopping at epoch 21
+Early stopping at epoch 32
+Early stopping at epoch 23
+Early stopping at epoch 34
+Early stopping at epoch 23
+Early stopping at epoch 34
+Early stopping at epoch 20
+Early stopping at epoch 29
+Early stopping at epoch 20
+Early stopping at epoch 24
+Early stopping at epoch 19
+Early stopping at epoch 27
+Early stopping at epoch 18
+Early stopping at epoch 24
+Early stopping at epoch 17
+Early stopping at epoch 25
+Early stopping at epoch 18
+Early stopping at epoch 24
+Best parameters for s012:
+hidden_size: 32
+num_layers: 1
+dropout: 0.1
+learning_rate: 0.001
+Best validation score: 0.9792
+Validating model for s012 on train validation set...
+Prediction distribution: [59 61]
+True labels distribution: [60 60]
+Testing model for s012 on test set...
+Test prediction distribution: [ 98 102]
+Test true labels distribution: [100 100]
+
+Train Validation Results for s012:
+Accuracy: 95.83%
+Precision: 95.08%
+Recall: 96.67%
+F1 Score: 95.87%
+FAR: 5.00%
+FRR: 3.33%
+
+Test Results for s012:
+Accuracy: 96.00%
+Precision: 95.10%
+Recall: 97.00%
+F1 Score: 96.04%
+FAR: 5.00%
+FRR: 3.00%
+
+Processing user: s017
+Training samples: 480
+Validation samples: 120
+Test samples: 200
+X_train shape: (480, 40)
+y_train distribution: [240 240]
+X_train_val shape: (120, 40)
+y_train_val distribution: [60 60]
+
+Tuning hyperparameters for user s017...
+Early stopping at epoch 40
+Early stopping at epoch 40
+Early stopping at epoch 30
+Early stopping at epoch 50
+Early stopping at epoch 37
+Early stopping at epoch 50
+Early stopping at epoch 39
+Early stopping at epoch 40
+Early stopping at epoch 36
+Early stopping at epoch 47
+Early stopping at epoch 41
+Early stopping at epoch 41
+Early stopping at epoch 33
+Early stopping at epoch 30
+Early stopping at epoch 30
+Early stopping at epoch 49
+Early stopping at epoch 29
+Early stopping at epoch 42
+Early stopping at epoch 36
+Early stopping at epoch 37
+Early stopping at epoch 39
+Early stopping at epoch 33
+Early stopping at epoch 45
+Early stopping at epoch 37
+Early stopping at epoch 43
+Early stopping at epoch 30
+Early stopping at epoch 35
+Early stopping at epoch 31
+Early stopping at epoch 44
+Early stopping at epoch 26
+Early stopping at epoch 43
+Early stopping at epoch 39
+Early stopping at epoch 49
+Early stopping at epoch 30
+Early stopping at epoch 29
+Early stopping at epoch 30
+Early stopping at epoch 27
+Early stopping at epoch 43
+Early stopping at epoch 30
+Early stopping at epoch 40
+Best parameters for s017:
+hidden_size: 32
+num_layers: 1
+dropout: 0.1
+learning_rate: 0.0005
+Best validation score: 1.0000
+Validating model for s017 on train validation set...
+Prediction distribution: [59 61]
+True labels distribution: [60 60]
+Testing model for s017 on test set...
+Test prediction distribution: [ 98 102]
+Test true labels distribution: [100 100]
+
+Train Validation Results for s017:
+Accuracy: 97.50%
+Precision: 96.72%
+Recall: 98.33%
+F1 Score: 97.52%
+FAR: 3.33%
+FRR: 1.67%
+
+Test Results for s017:
+Accuracy: 95.00%
+Precision: 94.12%
+Recall: 96.00%
+F1 Score: 95.05%
+FAR: 6.00%
+FRR: 4.00%
+
+Processing user: s015
+Training samples: 480
+Validation samples: 120
+Test samples: 200
+X_train shape: (480, 40)
+y_train distribution: [240 240]
+X_train_val shape: (120, 40)
+y_train_val distribution: [60 60]
+
+Tuning hyperparameters for user s015...
+Early stopping at epoch 32
+Early stopping at epoch 32
+Early stopping at epoch 30
+Early stopping at epoch 22
+Early stopping at epoch 34
+Early stopping at epoch 22
+Early stopping at epoch 32
+Early stopping at epoch 23
+Early stopping at epoch 31
+Early stopping at epoch 22
+Early stopping at epoch 30
+Early stopping at epoch 27
+Early stopping at epoch 29
+Early stopping at epoch 22
+Early stopping at epoch 33
+Early stopping at epoch 28
+Early stopping at epoch 37
+Early stopping at epoch 26
+Early stopping at epoch 32
+Early stopping at epoch 28
+Early stopping at epoch 19
+Early stopping at epoch 26
+Early stopping at epoch 20
+Early stopping at epoch 25
+Early stopping at epoch 20
+Early stopping at epoch 27
+Early stopping at epoch 19
+Early stopping at epoch 26
+Early stopping at epoch 19
+Early stopping at epoch 27
+Early stopping at epoch 20
+Early stopping at epoch 31
+Early stopping at epoch 30
+Early stopping at epoch 42
+Early stopping at epoch 26
+Early stopping at epoch 24
+Early stopping at epoch 37
+Early stopping at epoch 16
+Early stopping at epoch 22
+Early stopping at epoch 17
+Early stopping at epoch 21
+Early stopping at epoch 20
+Early stopping at epoch 25
+Early stopping at epoch 17
+Early stopping at epoch 22
+Early stopping at epoch 16
+Early stopping at epoch 21
+Early stopping at epoch 16
+Early stopping at epoch 22
+Best parameters for s015:
+hidden_size: 32
+num_layers: 1
+dropout: 0.2
+learning_rate: 0.001
+Best validation score: 0.9479
+Validating model for s015 on train validation set...
+Prediction distribution: [56 64]
+True labels distribution: [60 60]
+Testing model for s015 on test set...
+Test prediction distribution: [ 93 107]
+Test true labels distribution: [100 100]
+
+Train Validation Results for s015:
+Accuracy: 93.33%
+Precision: 90.62%
+Recall: 96.67%
+F1 Score: 93.55%
+FAR: 10.00%
+FRR: 3.33%
+
+Test Results for s015:
+Accuracy: 91.50%
+Precision: 88.79%
+Recall: 95.00%
+F1 Score: 91.79%
+FAR: 12.00%
+FRR: 5.00%
+
+Processing user: s031
+Training samples: 480
+Validation samples: 120
+Test samples: 200
+X_train shape: (480, 40)
+y_train distribution: [240 240]
+X_train_val shape: (120, 40)
+y_train_val distribution: [60 60]
+
+Tuning hyperparameters for user s031...
+Early stopping at epoch 35
+Early stopping at epoch 45
+Early stopping at epoch 34
+Early stopping at epoch 49
+Early stopping at epoch 11
+Early stopping at epoch 42
+Early stopping at epoch 11
+Early stopping at epoch 45
+Early stopping at epoch 49
+Early stopping at epoch 49
+Early stopping at epoch 34
+Early stopping at epoch 32
+Early stopping at epoch 37
+Early stopping at epoch 31
+Early stopping at epoch 42
+Early stopping at epoch 50
+Early stopping at epoch 39
+Early stopping at epoch 35
+Early stopping at epoch 41
+Early stopping at epoch 28
+Early stopping at epoch 44
+Early stopping at epoch 38
+Early stopping at epoch 45
+Early stopping at epoch 29
+Early stopping at epoch 35
+Early stopping at epoch 49
+Best parameters for s031:
+hidden_size: 64
+num_layers: 1
+dropout: 0.3
+learning_rate: 0.001
+Best validation score: 0.9375
+Validating model for s031 on train validation set...
+Prediction distribution: [59 61]
+True labels distribution: [60 60]
+Testing model for s031 on test set...
+Test prediction distribution: [ 93 107]
+Test true labels distribution: [100 100]
+
+Train Validation Results for s031:
+Accuracy: 94.17%
+Precision: 93.44%
+Recall: 95.00%
+F1 Score: 94.21%
+FAR: 6.67%
+FRR: 5.00%
+
+Test Results for s031:
+Accuracy: 87.50%
+Precision: 85.05%
+Recall: 91.00%
+F1 Score: 87.92%
+FAR: 16.00%
+FRR: 9.00%
+
+Processing user: s034
+Training samples: 480
+Validation samples: 120
+Test samples: 200
+X_train shape: (480, 40)
+y_train distribution: [240 240]
+X_train_val shape: (120, 40)
+y_train_val distribution: [60 60]
+
+Tuning hyperparameters for user s034...
+Early stopping at epoch 23
+Early stopping at epoch 32
+Early stopping at epoch 30
+Early stopping at epoch 34
+Early stopping at epoch 23
+Early stopping at epoch 39
+Early stopping at epoch 24
+Early stopping at epoch 32
+Early stopping at epoch 21
+Early stopping at epoch 29
+Early stopping at epoch 24
+Early stopping at epoch 31
+Early stopping at epoch 20
+Early stopping at epoch 28
+Early stopping at epoch 20
+Early stopping at epoch 29
+Early stopping at epoch 21
+Early stopping at epoch 35
+Early stopping at epoch 24
+Early stopping at epoch 28
+Early stopping at epoch 21
+Early stopping at epoch 25
+Early stopping at epoch 21
+Early stopping at epoch 31
+Early stopping at epoch 20
+Early stopping at epoch 25
+Early stopping at epoch 17
+Early stopping at epoch 26
+Early stopping at epoch 22
+Early stopping at epoch 25
+Early stopping at epoch 18
+Early stopping at epoch 25
+Early stopping at epoch 18
+Early stopping at epoch 25
+Early stopping at epoch 19
+Early stopping at epoch 25
+Early stopping at epoch 18
+Early stopping at epoch 24
+Early stopping at epoch 18
+Early stopping at epoch 24
+Early stopping at epoch 19
+Early stopping at epoch 26
+Early stopping at epoch 17
+Early stopping at epoch 23
+Early stopping at epoch 18
+Early stopping at epoch 22
+Early stopping at epoch 17
+Early stopping at epoch 22
+Early stopping at epoch 16
+Early stopping at epoch 20
+Early stopping at epoch 17
+Early stopping at epoch 21
+Early stopping at epoch 16
+Early stopping at epoch 22
+Best parameters for s034:
+hidden_size: 32
+num_layers: 1
+dropout: 0.2
+learning_rate: 0.001
+Best validation score: 0.9375
+Validating model for s034 on train validation set...
+Prediction distribution: [61 59]
+True labels distribution: [60 60]
+Testing model for s034 on test set...
+Test prediction distribution: [ 99 101]
+Test true labels distribution: [100 100]
+
+Train Validation Results for s034:
+Accuracy: 95.83%
+Precision: 96.61%
+Recall: 95.00%
+F1 Score: 95.80%
+FAR: 3.33%
+FRR: 5.00%
+
+Test Results for s034:
+Accuracy: 92.50%
+Precision: 92.08%
+Recall: 93.00%
+F1 Score: 92.54%
+FAR: 8.00%
+FRR: 7.00%
+
+Processing user: s037
+Training samples: 480
+Validation samples: 120
+Test samples: 200
+X_train shape: (480, 40)
+y_train distribution: [240 240]
+X_train_val shape: (120, 40)
+y_train_val distribution: [60 60]
+
+Tuning hyperparameters for user s037...
+Early stopping at epoch 29
+Early stopping at epoch 45
+Early stopping at epoch 30
+Early stopping at epoch 49
+Early stopping at epoch 27
+Early stopping at epoch 31
+Early stopping at epoch 44
+Early stopping at epoch 32
+Early stopping at epoch 44
+Early stopping at epoch 31
+Early stopping at epoch 45
+Early stopping at epoch 31
+Early stopping at epoch 46
+Early stopping at epoch 11
+Early stopping at epoch 30
+Early stopping at epoch 12
+Early stopping at epoch 34
+Early stopping at epoch 48
+Early stopping at epoch 11
+Early stopping at epoch 25
+Early stopping at epoch 39
+Early stopping at epoch 27
+Early stopping at epoch 40
+Early stopping at epoch 26
+Early stopping at epoch 39
+Early stopping at epoch 27
+Early stopping at epoch 38
+Early stopping at epoch 28
+Early stopping at epoch 41
+Early stopping at epoch 29
+Early stopping at epoch 43
+Early stopping at epoch 27
+Early stopping at epoch 36
+Early stopping at epoch 11
+Early stopping at epoch 28
+Early stopping at epoch 41
+Early stopping at epoch 11
+Early stopping at epoch 27
+Early stopping at epoch 42
+Early stopping at epoch 24
+Early stopping at epoch 35
+Early stopping at epoch 24
+Early stopping at epoch 33
+Early stopping at epoch 25
+Early stopping at epoch 39
+Early stopping at epoch 23
+Early stopping at epoch 31
+Early stopping at epoch 26
+Early stopping at epoch 36
+Early stopping at epoch 25
+Early stopping at epoch 32
+Early stopping at epoch 23
+Early stopping at epoch 35
+Early stopping at epoch 22
+Early stopping at epoch 35
+Early stopping at epoch 25
+Early stopping at epoch 37
+Best parameters for s037:
+hidden_size: 32
+num_layers: 3
+dropout: 0.3
+learning_rate: 0.001
+Best validation score: 0.9688
+Validating model for s037 on train validation set...
+Prediction distribution: [60 60]
+True labels distribution: [60 60]
+Testing model for s037 on test set...
+Test prediction distribution: [ 94 106]
+Test true labels distribution: [100 100]
+
+Train Validation Results for s037:
+Accuracy: 93.33%
+Precision: 93.33%
+Recall: 93.33%
+F1 Score: 93.33%
+FAR: 6.67%
+FRR: 6.67%
+
+Test Results for s037:
+Accuracy: 92.00%
+Precision: 89.62%
+Recall: 95.00%
+F1 Score: 92.23%
+FAR: 11.00%
+FRR: 5.00%
+
+Processing user: s028
+Training samples: 480
+Validation samples: 120
+Test samples: 200
+X_train shape: (480, 40)
+y_train distribution: [240 240]
+X_train_val shape: (120, 40)
+y_train_val distribution: [60 60]
+
+Tuning hyperparameters for user s028...
+Early stopping at epoch 50
+Early stopping at epoch 22
+Early stopping at epoch 25
+Early stopping at epoch 35
+Early stopping at epoch 24
+Early stopping at epoch 32
+Early stopping at epoch 11
+Early stopping at epoch 50
+Early stopping at epoch 33
+Early stopping at epoch 26
+Early stopping at epoch 47
+Early stopping at epoch 11
+Early stopping at epoch 23
+Early stopping at epoch 32
+Early stopping at epoch 44
+Early stopping at epoch 32
+Early stopping at epoch 20
+Early stopping at epoch 33
+Early stopping at epoch 22
+Early stopping at epoch 31
+Early stopping at epoch 19
+Early stopping at epoch 27
+Early stopping at epoch 21
+Early stopping at epoch 27
+Early stopping at epoch 20
+Early stopping at epoch 27
+Early stopping at epoch 19
+Early stopping at epoch 26
+Early stopping at epoch 21
+Early stopping at epoch 28
+Early stopping at epoch 18
+Early stopping at epoch 23
+Early stopping at epoch 19
+Early stopping at epoch 36
+Early stopping at epoch 28
+Early stopping at epoch 17
+Early stopping at epoch 22
+Early stopping at epoch 18
+Early stopping at epoch 25
+Early stopping at epoch 17
+Early stopping at epoch 37
+Best parameters for s028:
+hidden_size: 32
+num_layers: 1
+dropout: 0.2
+learning_rate: 0.001
+Best validation score: 0.9896
+Validating model for s028 on train validation set...
+Prediction distribution: [56 64]
+True labels distribution: [60 60]
+Testing model for s028 on test set...
+Test prediction distribution: [ 97 103]
+Test true labels distribution: [100 100]
+
+Train Validation Results for s028:
+Accuracy: 96.67%
+Precision: 93.75%
+Recall: 100.00%
+F1 Score: 96.77%
+FAR: 6.67%
+FRR: 0.00%
+
+Test Results for s028:
+Accuracy: 96.50%
+Precision: 95.15%
+Recall: 98.00%
+F1 Score: 96.55%
+FAR: 5.00%
+FRR: 2.00%
+
+Processing user: s010
+Training samples: 480
+Validation samples: 120
+Test samples: 200
+X_train shape: (480, 40)
+y_train distribution: [240 240]
+X_train_val shape: (120, 40)
+y_train_val distribution: [60 60]
+
+Tuning hyperparameters for user s010...
+Early stopping at epoch 31
+Early stopping at epoch 46
+Early stopping at epoch 38
+Early stopping at epoch 39
+Early stopping at epoch 32
+Early stopping at epoch 24
+Early stopping at epoch 33
+Early stopping at epoch 23
+Early stopping at epoch 39
+Early stopping at epoch 21
+Early stopping at epoch 37
+Early stopping at epoch 21
+Early stopping at epoch 29
+Early stopping at epoch 22
+Early stopping at epoch 32
+Early stopping at epoch 35
+Early stopping at epoch 30
+Early stopping at epoch 35
+Early stopping at epoch 30
+Early stopping at epoch 26
+Early stopping at epoch 19
+Early stopping at epoch 45
+Early stopping at epoch 19
+Early stopping at epoch 33
+Early stopping at epoch 23
+Early stopping at epoch 28
+Early stopping at epoch 20
+Early stopping at epoch 25
+Early stopping at epoch 19
+Early stopping at epoch 24
+Early stopping at epoch 28
+Early stopping at epoch 43
+Early stopping at epoch 31
+Early stopping at epoch 39
+Early stopping at epoch 30
+Early stopping at epoch 44
+Early stopping at epoch 25
+Early stopping at epoch 22
+Early stopping at epoch 26
+Early stopping at epoch 22
+Early stopping at epoch 25
+Early stopping at epoch 24
+Early stopping at epoch 16
+Early stopping at epoch 21
+Early stopping at epoch 16
+Early stopping at epoch 21
+Early stopping at epoch 17
+Early stopping at epoch 21
+Best parameters for s010:
+hidden_size: 32
+num_layers: 1
+dropout: 0.1
+learning_rate: 0.0005
+Best validation score: 0.9896
+Validating model for s010 on train validation set...
+Prediction distribution: [62 58]
+True labels distribution: [60 60]
+Testing model for s010 on test set...
+Test prediction distribution: [ 98 102]
+Test true labels distribution: [100 100]
+
+Train Validation Results for s010:
+Accuracy: 98.33%
+Precision: 100.00%
+Recall: 96.67%
+F1 Score: 98.31%
+FAR: 0.00%
+FRR: 3.33%
+
+Test Results for s010:
+Accuracy: 96.00%
+Precision: 95.10%
+Recall: 97.00%
+F1 Score: 96.04%
+FAR: 5.00%
+FRR: 3.00%
+
+Processing user: s038
+Training samples: 480
+Validation samples: 120
+Test samples: 200
+X_train shape: (480, 40)
+y_train distribution: [240 240]
+X_train_val shape: (120, 40)
+y_train_val distribution: [60 60]
+
+Tuning hyperparameters for user s038...
+Early stopping at epoch 50
+Early stopping at epoch 50
+Early stopping at epoch 38
+Early stopping at epoch 47
+Early stopping at epoch 33
+Early stopping at epoch 47
+Early stopping at epoch 35
+Early stopping at epoch 41
+Early stopping at epoch 36
+Early stopping at epoch 44
+Early stopping at epoch 11
+Early stopping at epoch 29
+Early stopping at epoch 39
+Early stopping at epoch 33
+Early stopping at epoch 38
+Early stopping at epoch 38
+Early stopping at epoch 23
+Early stopping at epoch 36
+Early stopping at epoch 28
+Early stopping at epoch 24
+Early stopping at epoch 40
+Early stopping at epoch 29
+Early stopping at epoch 44
+Early stopping at epoch 26
+Early stopping at epoch 39
+Early stopping at epoch 26
+Early stopping at epoch 49
+Early stopping at epoch 33
+Early stopping at epoch 43
+Early stopping at epoch 40
+Early stopping at epoch 28
+Early stopping at epoch 25
+Early stopping at epoch 37
+Early stopping at epoch 30
+Early stopping at epoch 35
+Early stopping at epoch 23
+Early stopping at epoch 35
+Early stopping at epoch 34
+Early stopping at epoch 29
+Early stopping at epoch 29
+Early stopping at epoch 33
+Best parameters for s038:
+hidden_size: 32
+num_layers: 2
+dropout: 0.2
+learning_rate: 0.001
+Best validation score: 1.0000
+Validating model for s038 on train validation set...
+Prediction distribution: [60 60]
+True labels distribution: [60 60]
+Testing model for s038 on test set...
+Test prediction distribution: [100 100]
+Test true labels distribution: [100 100]
+
+Train Validation Results for s038:
+Accuracy: 95.00%
+Precision: 95.00%
+Recall: 95.00%
+F1 Score: 95.00%
+FAR: 5.00%
+FRR: 5.00%
+
+Test Results for s038:
+Accuracy: 98.00%
+Precision: 98.00%
+Recall: 98.00%
+F1 Score: 98.00%
+FAR: 2.00%
+FRR: 2.00%
+
+Processing user: s008
+Training samples: 480
+Validation samples: 120
+Test samples: 200
+X_train shape: (480, 40)
+y_train distribution: [240 240]
+X_train_val shape: (120, 40)
+y_train_val distribution: [60 60]
+
+Tuning hyperparameters for user s008...
+Early stopping at epoch 28
+Early stopping at epoch 47
+Early stopping at epoch 32
+Early stopping at epoch 47
+Early stopping at epoch 28
+Early stopping at epoch 46
+Early stopping at epoch 26
+Early stopping at epoch 42
+Early stopping at epoch 27
+Early stopping at epoch 41
+Early stopping at epoch 29
+Early stopping at epoch 26
+Early stopping at epoch 48
+Early stopping at epoch 26
+Early stopping at epoch 34
+Early stopping at epoch 27
+Early stopping at epoch 43
+Early stopping at epoch 27
+Early stopping at epoch 39
+Early stopping at epoch 25
+Early stopping at epoch 36
+Early stopping at epoch 28
+Early stopping at epoch 33
+Early stopping at epoch 20
+Early stopping at epoch 30
+Early stopping at epoch 20
+Early stopping at epoch 31
+Early stopping at epoch 22
+Early stopping at epoch 35
+Early stopping at epoch 22
+Early stopping at epoch 32
+Early stopping at epoch 24
+Early stopping at epoch 30
+Early stopping at epoch 22
+Early stopping at epoch 35
+Early stopping at epoch 21
+Early stopping at epoch 30
+Early stopping at epoch 23
+Early stopping at epoch 32
+Early stopping at epoch 27
+Early stopping at epoch 33
+Early stopping at epoch 21
+Early stopping at epoch 27
+Early stopping at epoch 19
+Early stopping at epoch 27
+Early stopping at epoch 19
+Early stopping at epoch 32
+Early stopping at epoch 21
+Early stopping at epoch 25
+Early stopping at epoch 20
+Early stopping at epoch 25
+Early stopping at epoch 19
+Early stopping at epoch 27
+Best parameters for s008:
+hidden_size: 32
+num_layers: 2
+dropout: 0.3
+learning_rate: 0.0005
+Best validation score: 0.9688
+Validating model for s008 on train validation set...
+Prediction distribution: [58 62]
+True labels distribution: [60 60]
+Testing model for s008 on test set...
+Test prediction distribution: [ 97 103]
+Test true labels distribution: [100 100]
+
+Train Validation Results for s008:
+Accuracy: 91.67%
+Precision: 90.32%
+Recall: 93.33%
+F1 Score: 91.80%
+FAR: 10.00%
+FRR: 6.67%
+
+Test Results for s008:
+Accuracy: 89.50%
+Precision: 88.35%
+Recall: 91.00%
+F1 Score: 89.66%
+FAR: 12.00%
+FRR: 9.00%
+
+Processing user: s018
+Training samples: 480
+Validation samples: 120
+Test samples: 200
+X_train shape: (480, 40)
+y_train distribution: [240 240]
+X_train_val shape: (120, 40)
+y_train_val distribution: [60 60]
+
+Tuning hyperparameters for user s018...
+Early stopping at epoch 23
+Early stopping at epoch 37
+Early stopping at epoch 22
+Early stopping at epoch 34
+Early stopping at epoch 26
+Early stopping at epoch 32
+Early stopping at epoch 23
+Early stopping at epoch 33
+Early stopping at epoch 23
+Early stopping at epoch 35
+Early stopping at epoch 27
+Early stopping at epoch 37
+Early stopping at epoch 23
+Early stopping at epoch 32
+Early stopping at epoch 11
+Early stopping at epoch 28
+Early stopping at epoch 40
+Early stopping at epoch 11
+Early stopping at epoch 24
+Early stopping at epoch 35
+Early stopping at epoch 11
+Early stopping at epoch 23
+Early stopping at epoch 32
+Early stopping at epoch 21
+Early stopping at epoch 36
+Early stopping at epoch 24
+Early stopping at epoch 33
+Early stopping at epoch 22
+Early stopping at epoch 27
+Early stopping at epoch 21
+Early stopping at epoch 32
+Early stopping at epoch 26
+Early stopping at epoch 33
+Early stopping at epoch 21
+Early stopping at epoch 27
+Early stopping at epoch 11
+Early stopping at epoch 24
+Early stopping at epoch 39
+Early stopping at epoch 23
+Early stopping at epoch 37
+Early stopping at epoch 23
+Early stopping at epoch 29
+Early stopping at epoch 21
+Early stopping at epoch 31
+Early stopping at epoch 23
+Early stopping at epoch 32
+Early stopping at epoch 20
+Early stopping at epoch 34
+Early stopping at epoch 19
+Early stopping at epoch 31
+Early stopping at epoch 26
+Early stopping at epoch 30
+Early stopping at epoch 21
+Early stopping at epoch 26
+Early stopping at epoch 19
+Early stopping at epoch 25
+Early stopping at epoch 18
+Early stopping at epoch 29
+Best parameters for s018:
+hidden_size: 32
+num_layers: 1
+dropout: 0.3
+learning_rate: 0.001
+Best validation score: 0.9167
+Validating model for s018 on train validation set...
+Prediction distribution: [63 57]
+True labels distribution: [60 60]
+Testing model for s018 on test set...
+Test prediction distribution: [101  99]
+Test true labels distribution: [100 100]
+
+Train Validation Results for s018:
+Accuracy: 92.50%
+Precision: 94.74%
+Recall: 90.00%
+F1 Score: 92.31%
+FAR: 5.00%
+FRR: 10.00%
+
+Test Results for s018:
+Accuracy: 92.50%
+Precision: 92.93%
+Recall: 92.00%
+F1 Score: 92.46%
+FAR: 7.00%
+FRR: 8.00%
+
+Processing user: s047
+Training samples: 480
+Validation samples: 120
+Test samples: 200
+X_train shape: (480, 40)
+y_train distribution: [240 240]
+X_train_val shape: (120, 40)
+y_train_val distribution: [60 60]
+
+Tuning hyperparameters for user s047...
+Early stopping at epoch 21
+Early stopping at epoch 32
+Early stopping at epoch 22
+Early stopping at epoch 33
+Early stopping at epoch 22
+Early stopping at epoch 36
+Early stopping at epoch 20
+Early stopping at epoch 29
+Early stopping at epoch 20
+Early stopping at epoch 29
+Early stopping at epoch 20
+Early stopping at epoch 28
+Early stopping at epoch 19
+Early stopping at epoch 26
+Early stopping at epoch 11
+Early stopping at epoch 19
+Early stopping at epoch 26
+Early stopping at epoch 11
+Early stopping at epoch 20
+Early stopping at epoch 29
+Early stopping at epoch 18
+Early stopping at epoch 27
+Early stopping at epoch 19
+Early stopping at epoch 28
+Early stopping at epoch 19
+Early stopping at epoch 26
+Early stopping at epoch 17
+Early stopping at epoch 23
+Early stopping at epoch 17
+Early stopping at epoch 23
+Early stopping at epoch 17
+Early stopping at epoch 23
+Early stopping at epoch 17
+Early stopping at epoch 22
+Early stopping at epoch 17
+Early stopping at epoch 22
+Early stopping at epoch 17
+Early stopping at epoch 22
+Early stopping at epoch 11
+Early stopping at epoch 16
+Early stopping at epoch 23
+Early stopping at epoch 17
+Early stopping at epoch 22
+Early stopping at epoch 16
+Early stopping at epoch 24
+Early stopping at epoch 15
+Early stopping at epoch 20
+Early stopping at epoch 16
+Early stopping at epoch 19
+Early stopping at epoch 16
+Early stopping at epoch 20
+Early stopping at epoch 15
+Early stopping at epoch 18
+Early stopping at epoch 42
+Early stopping at epoch 15
+Early stopping at epoch 19
+Early stopping at epoch 46
+Early stopping at epoch 15
+Early stopping at epoch 18
+Early stopping at epoch 43
+Best parameters for s047:
+hidden_size: 64
+num_layers: 2
+dropout: 0.2
+learning_rate: 0.0001
+Best validation score: 0.9583
+Validating model for s047 on train validation set...
+Prediction distribution: [63 57]
+True labels distribution: [60 60]
+Testing model for s047 on test set...
+Test prediction distribution: [ 99 101]
+Test true labels distribution: [100 100]
+
+Train Validation Results for s047:
+Accuracy: 95.83%
+Precision: 98.25%
+Recall: 93.33%
+F1 Score: 95.73%
+FAR: 1.67%
+FRR: 6.67%
+
+Test Results for s047:
+Accuracy: 91.50%
+Precision: 91.09%
+Recall: 92.00%
+F1 Score: 91.54%
+FAR: 9.00%
+FRR: 8.00%
+
+Processing user: s033
+Training samples: 480
+Validation samples: 120
+Test samples: 200
+X_train shape: (480, 40)
+y_train distribution: [240 240]
+X_train_val shape: (120, 40)
+y_train_val distribution: [60 60]
+
+Tuning hyperparameters for user s033...
+Early stopping at epoch 38
+Early stopping at epoch 27
+Early stopping at epoch 26
+Early stopping at epoch 31
+Early stopping at epoch 46
+Early stopping at epoch 34
+Early stopping at epoch 26
+Early stopping at epoch 30
+Early stopping at epoch 19
+Early stopping at epoch 30
+Early stopping at epoch 47
+Early stopping at epoch 32
+Early stopping at epoch 40
+Early stopping at epoch 32
+Early stopping at epoch 49
+Early stopping at epoch 28
+Early stopping at epoch 31
+Early stopping at epoch 31
+Early stopping at epoch 36
+Early stopping at epoch 37
+Early stopping at epoch 30
+Early stopping at epoch 21
+Early stopping at epoch 31
+Early stopping at epoch 28
+Early stopping at epoch 28
+Early stopping at epoch 37
+Early stopping at epoch 26
+Early stopping at epoch 26
+Early stopping at epoch 35
+Early stopping at epoch 21
+Early stopping at epoch 25
+Early stopping at epoch 19
+Early stopping at epoch 26
+Early stopping at epoch 17
+Early stopping at epoch 25
+Early stopping at epoch 19
+Early stopping at epoch 24
+Best parameters for s033:
+hidden_size: 32
+num_layers: 1
+dropout: 0.1
+learning_rate: 0.0001
+Best validation score: 1.0000
+Validating model for s033 on train validation set...
+Prediction distribution: [58 62]
+True labels distribution: [60 60]
+Testing model for s033 on test set...
+Test prediction distribution: [ 97 103]
+Test true labels distribution: [100 100]
+
+Train Validation Results for s033:
+Accuracy: 98.33%
+Precision: 96.77%
+Recall: 100.00%
+F1 Score: 98.36%
+FAR: 3.33%
+FRR: 0.00%
+
+Test Results for s033:
+Accuracy: 97.50%
+Precision: 96.12%
+Recall: 99.00%
+F1 Score: 97.54%
+FAR: 4.00%
+FRR: 1.00%
+
+Processing user: s026
+Training samples: 480
+Validation samples: 120
+Test samples: 200
+X_train shape: (480, 40)
+y_train distribution: [240 240]
+X_train_val shape: (120, 40)
+y_train_val distribution: [60 60]
+
+Tuning hyperparameters for user s026...
+Early stopping at epoch 41
+Early stopping at epoch 40
+Early stopping at epoch 11
+Early stopping at epoch 12
+Early stopping at epoch 42
+Early stopping at epoch 50
+Early stopping at epoch 49
+Early stopping at epoch 46
+Early stopping at epoch 50
+Early stopping at epoch 49
+Early stopping at epoch 28
+Early stopping at epoch 26
+Early stopping at epoch 41
+Early stopping at epoch 47
+Early stopping at epoch 46
+Early stopping at epoch 40
+Early stopping at epoch 44
+Early stopping at epoch 40
+Early stopping at epoch 45
+Early stopping at epoch 45
+Early stopping at epoch 41
+Early stopping at epoch 33
+Early stopping at epoch 35
+Early stopping at epoch 32
+Early stopping at epoch 38
+Early stopping at epoch 40
+Early stopping at epoch 43
+Best parameters for s026:
+hidden_size: 64
+num_layers: 1
+dropout: 0.1
+learning_rate: 0.001
+Best validation score: 0.9792
+Validating model for s026 on train validation set...
+Prediction distribution: [55 65]
+True labels distribution: [60 60]
+Testing model for s026 on test set...
+Test prediction distribution: [ 96 104]
+Test true labels distribution: [100 100]
+
+Train Validation Results for s026:
+Accuracy: 90.83%
+Precision: 87.69%
+Recall: 95.00%
+F1 Score: 91.20%
+FAR: 13.33%
+FRR: 5.00%
+
+Test Results for s026:
+Accuracy: 96.00%
+Precision: 94.23%
+Recall: 98.00%
+F1 Score: 96.08%
+FAR: 6.00%
+FRR: 2.00%
+
+Processing user: s048
+Training samples: 480
+Validation samples: 120
+Test samples: 200
+X_train shape: (480, 40)
+y_train distribution: [240 240]
+X_train_val shape: (120, 40)
+y_train_val distribution: [60 60]
+
+Tuning hyperparameters for user s048...
+Early stopping at epoch 44
+Early stopping at epoch 46
+Early stopping at epoch 37
+Early stopping at epoch 11
+Early stopping at epoch 38
+Early stopping at epoch 11
+Early stopping at epoch 11
+Early stopping at epoch 37
+Early stopping at epoch 44
+Early stopping at epoch 41
+Early stopping at epoch 34
+Early stopping at epoch 50
+Early stopping at epoch 37
+Early stopping at epoch 48
+Early stopping at epoch 30
+Early stopping at epoch 24
+Early stopping at epoch 35
+Early stopping at epoch 48
+Early stopping at epoch 37
+Early stopping at epoch 11
+Early stopping at epoch 11
+Early stopping at epoch 46
+Early stopping at epoch 41
+Early stopping at epoch 43
+Early stopping at epoch 23
+Early stopping at epoch 33
+Early stopping at epoch 35
+Early stopping at epoch 50
+Early stopping at epoch 24
+Early stopping at epoch 34
+Early stopping at epoch 11
+Early stopping at epoch 24
+Early stopping at epoch 33
+Early stopping at epoch 24
+Early stopping at epoch 36
+Best parameters for s048:
+hidden_size: 64
+num_layers: 3
+dropout: 0.2
+learning_rate: 0.001
+Best validation score: 0.9583
+Validating model for s048 on train validation set...
+Prediction distribution: [64 56]
+True labels distribution: [60 60]
+Testing model for s048 on test set...
+Test prediction distribution: [100 100]
+Test true labels distribution: [100 100]
+
+Train Validation Results for s048:
+Accuracy: 95.00%
+Precision: 98.21%
+Recall: 91.67%
+F1 Score: 94.83%
+FAR: 1.67%
+FRR: 8.33%
+
+Test Results for s048:
+Accuracy: 96.00%
+Precision: 96.00%
+Recall: 96.00%
+F1 Score: 96.00%
+FAR: 4.00%
+FRR: 4.00%
+
+Processing user: s055
+Training samples: 480
+Validation samples: 120
+Test samples: 200
+X_train shape: (480, 40)
+y_train distribution: [240 240]
+X_train_val shape: (120, 40)
+y_train_val distribution: [60 60]
+
+Tuning hyperparameters for user s055...
+Early stopping at epoch 43
+Early stopping at epoch 35
+Early stopping at epoch 45
+Early stopping at epoch 44
+Early stopping at epoch 38
+Early stopping at epoch 50
+Early stopping at epoch 40
+Early stopping at epoch 38
+Early stopping at epoch 41
+Early stopping at epoch 35
+Early stopping at epoch 33
+Early stopping at epoch 48
+Early stopping at epoch 37
+Early stopping at epoch 40
+Early stopping at epoch 45
+Early stopping at epoch 31
+Early stopping at epoch 45
+Early stopping at epoch 46
+Early stopping at epoch 42
+Early stopping at epoch 45
+Early stopping at epoch 31
+Early stopping at epoch 46
+Early stopping at epoch 30
+Early stopping at epoch 48
+Early stopping at epoch 32
+Early stopping at epoch 48
+Early stopping at epoch 30
+Early stopping at epoch 38
+Early stopping at epoch 29
+Early stopping at epoch 45
+Early stopping at epoch 29
+Early stopping at epoch 46
+Best parameters for s055:
+hidden_size: 32
+num_layers: 1
+dropout: 0.1
+learning_rate: 0.001
+Best validation score: 1.0000
+Validating model for s055 on train validation set...
+Prediction distribution: [62 58]
+True labels distribution: [60 60]
+Testing model for s055 on test set...
+Test prediction distribution: [101  99]
+Test true labels distribution: [100 100]
+
+Train Validation Results for s055:
+Accuracy: 98.33%
+Precision: 100.00%
+Recall: 96.67%
+F1 Score: 98.31%
+FAR: 0.00%
+FRR: 3.33%
+
+Test Results for s055:
+Accuracy: 98.50%
+Precision: 98.99%
+Recall: 98.00%
+F1 Score: 98.49%
+FAR: 1.00%
+FRR: 2.00%
+
+Processing user: s024
+Training samples: 480
+Validation samples: 120
+Test samples: 200
+X_train shape: (480, 40)
+y_train distribution: [240 240]
+X_train_val shape: (120, 40)
+y_train_val distribution: [60 60]
+
+Tuning hyperparameters for user s024...
+Early stopping at epoch 26
+Early stopping at epoch 36
+Early stopping at epoch 30
+Early stopping at epoch 46
+Early stopping at epoch 23
+Early stopping at epoch 44
+Early stopping at epoch 20
+Early stopping at epoch 41
+Early stopping at epoch 21
+Early stopping at epoch 31
+Early stopping at epoch 21
+Early stopping at epoch 39
+Early stopping at epoch 26
+Early stopping at epoch 35
+Early stopping at epoch 21
+Early stopping at epoch 39
+Early stopping at epoch 23
+Early stopping at epoch 29
+Early stopping at epoch 25
+Early stopping at epoch 36
+Early stopping at epoch 22
+Early stopping at epoch 38
+Early stopping at epoch 25
+Early stopping at epoch 39
+Early stopping at epoch 26
+Early stopping at epoch 32
+Early stopping at epoch 21
+Early stopping at epoch 26
+Early stopping at epoch 19
+Early stopping at epoch 27
+Early stopping at epoch 24
+Early stopping at epoch 25
+Early stopping at epoch 19
+Early stopping at epoch 25
+Early stopping at epoch 27
+Early stopping at epoch 28
+Early stopping at epoch 23
+Early stopping at epoch 33
+Early stopping at epoch 23
+Early stopping at epoch 34
+Early stopping at epoch 23
+Early stopping at epoch 37
+Early stopping at epoch 18
+Early stopping at epoch 24
+Early stopping at epoch 18
+Early stopping at epoch 25
+Early stopping at epoch 19
+Early stopping at epoch 24
+Early stopping at epoch 20
+Early stopping at epoch 22
+Early stopping at epoch 18
+Early stopping at epoch 22
+Early stopping at epoch 24
+Early stopping at epoch 23
+Best parameters for s024:
+hidden_size: 32
+num_layers: 2
+dropout: 0.1
+learning_rate: 0.0005
+Best validation score: 0.9896
+Validating model for s024 on train validation set...
+Prediction distribution: [60 60]
+True labels distribution: [60 60]
+Testing model for s024 on test set...
+Test prediction distribution: [102  98]
+Test true labels distribution: [100 100]
+
+Train Validation Results for s024:
+Accuracy: 98.33%
+Precision: 98.33%
+Recall: 98.33%
+F1 Score: 98.33%
+FAR: 1.67%
+FRR: 1.67%
+
+Test Results for s024:
+Accuracy: 99.00%
+Precision: 100.00%
+Recall: 98.00%
+F1 Score: 98.99%
+FAR: 0.00%
+FRR: 2.00%
+
+Processing user: s016
+Training samples: 480
+Validation samples: 120
+Test samples: 200
+X_train shape: (480, 40)
+y_train distribution: [240 240]
+X_train_val shape: (120, 40)
+y_train_val distribution: [60 60]
+
+Tuning hyperparameters for user s016...
+Early stopping at epoch 40
+Early stopping at epoch 42
+Early stopping at epoch 47
+Early stopping at epoch 49
+Early stopping at epoch 33
+Early stopping at epoch 28
+Early stopping at epoch 34
+Early stopping at epoch 48
+Early stopping at epoch 35
+Early stopping at epoch 35
+Early stopping at epoch 50
+Early stopping at epoch 45
+Early stopping at epoch 41
+Early stopping at epoch 26
+Early stopping at epoch 47
+Early stopping at epoch 20
+Early stopping at epoch 33
+Early stopping at epoch 37
+Early stopping at epoch 23
+Early stopping at epoch 34
+Early stopping at epoch 31
+Early stopping at epoch 30
+Early stopping at epoch 30
+Early stopping at epoch 22
+Early stopping at epoch 27
+Early stopping at epoch 21
+Early stopping at epoch 31
+Early stopping at epoch 23
+Early stopping at epoch 29
+Early stopping at epoch 20
+Early stopping at epoch 25
+Early stopping at epoch 18
+Early stopping at epoch 27
+Early stopping at epoch 23
+Early stopping at epoch 29
+Best parameters for s016:
+hidden_size: 32
+num_layers: 1
+dropout: 0.2
+learning_rate: 0.001
+Best validation score: 1.0000
+Validating model for s016 on train validation set...
+Prediction distribution: [59 61]
+True labels distribution: [60 60]
+Testing model for s016 on test set...
+Test prediction distribution: [100 100]
+Test true labels distribution: [100 100]
+
+Train Validation Results for s016:
+Accuracy: 99.17%
+Precision: 98.36%
+Recall: 100.00%
+F1 Score: 99.17%
+FAR: 1.67%
+FRR: 0.00%
+
+Test Results for s016:
+Accuracy: 99.00%
+Precision: 99.00%
+Recall: 99.00%
+F1 Score: 99.00%
+FAR: 1.00%
+FRR: 1.00%
+
+Processing user: s053
+Training samples: 480
+Validation samples: 120
+Test samples: 200
+X_train shape: (480, 40)
+y_train distribution: [240 240]
+X_train_val shape: (120, 40)
+y_train_val distribution: [60 60]
+
+Tuning hyperparameters for user s053...
+Early stopping at epoch 25
+Early stopping at epoch 39
+Early stopping at epoch 23
+Early stopping at epoch 39
+Early stopping at epoch 23
+Early stopping at epoch 37
+Early stopping at epoch 22
+Early stopping at epoch 33
+Early stopping at epoch 20
+Early stopping at epoch 33
+Early stopping at epoch 21
+Early stopping at epoch 30
+Early stopping at epoch 20
+Early stopping at epoch 27
+Early stopping at epoch 19
+Early stopping at epoch 33
+Early stopping at epoch 19
+Early stopping at epoch 33
+Early stopping at epoch 20
+Early stopping at epoch 31
+Early stopping at epoch 19
+Early stopping at epoch 33
+Early stopping at epoch 24
+Early stopping at epoch 33
+Early stopping at epoch 17
+Early stopping at epoch 26
+Early stopping at epoch 17
+Early stopping at epoch 26
+Early stopping at epoch 18
+Early stopping at epoch 28
+Early stopping at epoch 17
+Early stopping at epoch 21
+Early stopping at epoch 19
+Early stopping at epoch 24
+Early stopping at epoch 20
+Early stopping at epoch 22
+Early stopping at epoch 17
+Early stopping at epoch 27
+Early stopping at epoch 17
+Early stopping at epoch 30
+Early stopping at epoch 19
+Early stopping at epoch 29
+Early stopping at epoch 16
+Early stopping at epoch 20
+Early stopping at epoch 16
+Early stopping at epoch 21
+Early stopping at epoch 17
+Early stopping at epoch 21
+Early stopping at epoch 15
+Early stopping at epoch 19
+Early stopping at epoch 15
+Early stopping at epoch 19
+Early stopping at epoch 15
+Early stopping at epoch 22
+Best parameters for s053:
+hidden_size: 32
+num_layers: 1
+dropout: 0.1
+learning_rate: 0.0001
+Best validation score: 0.9896
+Validating model for s053 on train validation set...
+Prediction distribution: [60 60]
+True labels distribution: [60 60]
+Testing model for s053 on test set...
+Test prediction distribution: [ 96 104]
+Test true labels distribution: [100 100]
+
+Train Validation Results for s053:
+Accuracy: 98.33%
+Precision: 98.33%
+Recall: 98.33%
+F1 Score: 98.33%
+FAR: 1.67%
+FRR: 1.67%
+
+Test Results for s053:
+Accuracy: 98.00%
+Precision: 96.15%
+Recall: 100.00%
+F1 Score: 98.04%
+FAR: 4.00%
+FRR: 0.00%
+
+Processing user: s022
+Training samples: 480
+Validation samples: 120
+Test samples: 200
+X_train shape: (480, 40)
+y_train distribution: [240 240]
+X_train_val shape: (120, 40)
+y_train_val distribution: [60 60]
+
+Tuning hyperparameters for user s022...
+Early stopping at epoch 40
+Best parameters for s022:
+hidden_size: 32
+num_layers: 1
+dropout: 0.1
+learning_rate: 0.001
+Best validation score: 1.0000
+Validating model for s022 on train validation set...
+Prediction distribution: [59 61]
+True labels distribution: [60 60]
+Testing model for s022 on test set...
+Test prediction distribution: [ 99 101]
+Test true labels distribution: [100 100]
+
+Train Validation Results for s022:
+Accuracy: 97.50%
+Precision: 96.72%
+Recall: 98.33%
+F1 Score: 97.52%
+FAR: 3.33%
+FRR: 1.67%
+
+Test Results for s022:
+Accuracy: 99.50%
+Precision: 99.01%
+Recall: 100.00%
+F1 Score: 99.50%
+FAR: 1.00%
+FRR: 0.00%
+
+Processing user: s052
+Training samples: 480
+Validation samples: 120
+Test samples: 200
+X_train shape: (480, 40)
+y_train distribution: [240 240]
+X_train_val shape: (120, 40)
+y_train_val distribution: [60 60]
+
+Tuning hyperparameters for user s052...
+Early stopping at epoch 22
+Early stopping at epoch 34
+Early stopping at epoch 23
+Early stopping at epoch 36
+Early stopping at epoch 22
+Early stopping at epoch 35
+Early stopping at epoch 20
+Early stopping at epoch 30
+Early stopping at epoch 20
+Early stopping at epoch 29
+Early stopping at epoch 20
+Early stopping at epoch 29
+Early stopping at epoch 20
+Early stopping at epoch 27
+Early stopping at epoch 19
+Early stopping at epoch 27
+Early stopping at epoch 19
+Early stopping at epoch 27
+Early stopping at epoch 18
+Early stopping at epoch 29
+Early stopping at epoch 19
+Early stopping at epoch 29
+Early stopping at epoch 20
+Early stopping at epoch 28
+Early stopping at epoch 17
+Early stopping at epoch 25
+Early stopping at epoch 18
+Early stopping at epoch 24
+Early stopping at epoch 18
+Early stopping at epoch 24
+Early stopping at epoch 16
+Early stopping at epoch 21
+Early stopping at epoch 17
+Early stopping at epoch 22
+Early stopping at epoch 17
+Early stopping at epoch 22
+Early stopping at epoch 17
+Early stopping at epoch 26
+Early stopping at epoch 17
+Early stopping at epoch 25
+Early stopping at epoch 17
+Early stopping at epoch 26
+Early stopping at epoch 15
+Early stopping at epoch 19
+Early stopping at epoch 15
+Early stopping at epoch 19
+Early stopping at epoch 15
+Early stopping at epoch 20
+Early stopping at epoch 14
+Early stopping at epoch 17
+Early stopping at epoch 48
+Early stopping at epoch 14
+Early stopping at epoch 18
+Early stopping at epoch 49
+Early stopping at epoch 15
+Early stopping at epoch 18
+Early stopping at epoch 50
+Best parameters for s052:
+hidden_size: 32
+num_layers: 1
+dropout: 0.1
+learning_rate: 0.0001
+Best validation score: 0.9896
+Validating model for s052 on train validation set...
+Prediction distribution: [59 61]
+True labels distribution: [60 60]
+Testing model for s052 on test set...
+Test prediction distribution: [102  98]
+Test true labels distribution: [100 100]
+
+Train Validation Results for s052:
+Accuracy: 99.17%
+Precision: 98.36%
+Recall: 100.00%
+F1 Score: 99.17%
+FAR: 1.67%
+FRR: 0.00%
+
+Test Results for s052:
+Accuracy: 99.00%
+Precision: 100.00%
+Recall: 98.00%
+F1 Score: 98.99%
+FAR: 0.00%
+FRR: 2.00%
+
+Processing user: s021
+Training samples: 480
+Validation samples: 120
+Test samples: 200
+X_train shape: (480, 40)
+y_train distribution: [240 240]
+X_train_val shape: (120, 40)
+y_train_val distribution: [60 60]
+
+Tuning hyperparameters for user s021...
+Early stopping at epoch 29
+Early stopping at epoch 46
+Early stopping at epoch 43
+Early stopping at epoch 24
+Early stopping at epoch 27
+Early stopping at epoch 36
+Early stopping at epoch 22
+Early stopping at epoch 38
+Early stopping at epoch 22
+Early stopping at epoch 37
+Early stopping at epoch 11
+Early stopping at epoch 26
+Early stopping at epoch 32
+Early stopping at epoch 23
+Early stopping at epoch 33
+Early stopping at epoch 11
+Early stopping at epoch 22
+Early stopping at epoch 44
+Early stopping at epoch 20
+Early stopping at epoch 31
+Early stopping at epoch 21
+Early stopping at epoch 32
+Early stopping at epoch 23
+Early stopping at epoch 28
+Early stopping at epoch 21
+Early stopping at epoch 33
+Early stopping at epoch 11
+Early stopping at epoch 26
+Early stopping at epoch 29
+Early stopping at epoch 24
+Early stopping at epoch 32
+Early stopping at epoch 39
+Early stopping at epoch 21
+Early stopping at epoch 44
+Early stopping at epoch 20
+Early stopping at epoch 25
+Early stopping at epoch 19
+Early stopping at epoch 28
+Early stopping at epoch 17
+Early stopping at epoch 26
+Early stopping at epoch 19
+Early stopping at epoch 25
+Early stopping at epoch 21
+Early stopping at epoch 25
+Early stopping at epoch 17
+Early stopping at epoch 29
+Best parameters for s021:
+hidden_size: 32
+num_layers: 1
+dropout: 0.2
+learning_rate: 0.0005
+Best validation score: 0.9792
+Validating model for s021 on train validation set...
+Prediction distribution: [57 63]
+True labels distribution: [60 60]
+Testing model for s021 on test set...
+Test prediction distribution: [ 97 103]
+Test true labels distribution: [100 100]
+
+Train Validation Results for s021:
+Accuracy: 90.83%
+Precision: 88.89%
+Recall: 93.33%
+F1 Score: 91.06%
+FAR: 11.67%
+FRR: 6.67%
+
+Test Results for s021:
+Accuracy: 94.50%
+Precision: 93.20%
+Recall: 96.00%
+F1 Score: 94.58%
+FAR: 7.00%
+FRR: 4.00%
+
+Processing user: s039
+Training samples: 480
+Validation samples: 120
+Test samples: 200
+X_train shape: (480, 40)
+y_train distribution: [240 240]
+X_train_val shape: (120, 40)
+y_train_val distribution: [60 60]
+
+Tuning hyperparameters for user s039...
+Early stopping at epoch 28
+Early stopping at epoch 44
+Early stopping at epoch 29
+Early stopping at epoch 40
+Early stopping at epoch 26
+Early stopping at epoch 42
+Early stopping at epoch 22
+Early stopping at epoch 37
+Early stopping at epoch 25
+Early stopping at epoch 40
+Early stopping at epoch 25
+Early stopping at epoch 44
+Early stopping at epoch 25
+Early stopping at epoch 31
+Early stopping at epoch 25
+Early stopping at epoch 32
+Early stopping at epoch 25
+Early stopping at epoch 39
+Early stopping at epoch 23
+Early stopping at epoch 33
+Early stopping at epoch 23
+Early stopping at epoch 37
+Early stopping at epoch 24
+Early stopping at epoch 34
+Early stopping at epoch 21
+Early stopping at epoch 29
+Early stopping at epoch 21
+Early stopping at epoch 33
+Early stopping at epoch 22
+Early stopping at epoch 28
+Early stopping at epoch 19
+Early stopping at epoch 29
+Early stopping at epoch 21
+Early stopping at epoch 29
+Early stopping at epoch 23
+Early stopping at epoch 31
+Early stopping at epoch 22
+Early stopping at epoch 31
+Early stopping at epoch 21
+Early stopping at epoch 29
+Early stopping at epoch 22
+Early stopping at epoch 28
+Early stopping at epoch 18
+Early stopping at epoch 24
+Early stopping at epoch 18
+Early stopping at epoch 23
+Early stopping at epoch 19
+Early stopping at epoch 24
+Early stopping at epoch 18
+Early stopping at epoch 23
+Early stopping at epoch 18
+Early stopping at epoch 22
+Early stopping at epoch 19
+Early stopping at epoch 24
+Best parameters for s039:
+hidden_size: 32
+num_layers: 1
+dropout: 0.1
+learning_rate: 0.0005
+Best validation score: 0.9688
+Validating model for s039 on train validation set...
+Prediction distribution: [63 57]
+True labels distribution: [60 60]
+Testing model for s039 on test set...
+Test prediction distribution: [ 96 104]
+Test true labels distribution: [100 100]
+
+Train Validation Results for s039:
+Accuracy: 95.83%
+Precision: 98.25%
+Recall: 93.33%
+F1 Score: 95.73%
+FAR: 1.67%
+FRR: 6.67%
+
+Test Results for s039:
+Accuracy: 94.00%
+Precision: 92.31%
+Recall: 96.00%
+F1 Score: 94.12%
+FAR: 8.00%
+FRR: 4.00%
+
+Processing user: s013
+Training samples: 480
+Validation samples: 120
+Test samples: 200
+X_train shape: (480, 40)
+y_train distribution: [240 240]
+X_train_val shape: (120, 40)
+y_train_val distribution: [60 60]
+
+Tuning hyperparameters for user s013...
+Early stopping at epoch 22
+Early stopping at epoch 39
+Early stopping at epoch 24
+Early stopping at epoch 39
+Early stopping at epoch 27
+Early stopping at epoch 41
+Early stopping at epoch 22
+Early stopping at epoch 33
+Early stopping at epoch 26
+Early stopping at epoch 35
+Early stopping at epoch 25
+Early stopping at epoch 34
+Early stopping at epoch 23
+Early stopping at epoch 35
+Early stopping at epoch 24
+Early stopping at epoch 38
+Early stopping at epoch 26
+Early stopping at epoch 38
+Early stopping at epoch 22
+Early stopping at epoch 29
+Early stopping at epoch 21
+Early stopping at epoch 32
+Early stopping at epoch 22
+Early stopping at epoch 31
+Early stopping at epoch 19
+Early stopping at epoch 27
+Early stopping at epoch 19
+Early stopping at epoch 30
+Early stopping at epoch 21
+Early stopping at epoch 30
+Early stopping at epoch 19
+Early stopping at epoch 28
+Early stopping at epoch 21
+Early stopping at epoch 28
+Early stopping at epoch 20
+Early stopping at epoch 28
+Early stopping at epoch 19
+Early stopping at epoch 27
+Early stopping at epoch 18
+Early stopping at epoch 26
+Early stopping at epoch 19
+Early stopping at epoch 27
+Early stopping at epoch 18
+Early stopping at epoch 24
+Early stopping at epoch 19
+Early stopping at epoch 24
+Early stopping at epoch 18
+Early stopping at epoch 26
+Early stopping at epoch 17
+Early stopping at epoch 22
+Early stopping at epoch 18
+Early stopping at epoch 23
+Early stopping at epoch 18
+Early stopping at epoch 23
+Best parameters for s013:
+hidden_size: 32
+num_layers: 1
+dropout: 0.1
+learning_rate: 0.0005
+Best validation score: 0.9688
+Validating model for s013 on train validation set...
+Prediction distribution: [60 60]
+True labels distribution: [60 60]
+Testing model for s013 on test set...
+Test prediction distribution: [ 96 104]
+Test true labels distribution: [100 100]
+
+Train Validation Results for s013:
+Accuracy: 95.00%
+Precision: 95.00%
+Recall: 95.00%
+F1 Score: 95.00%
+FAR: 5.00%
+FRR: 5.00%
+
+Test Results for s013:
+Accuracy: 96.00%
+Precision: 94.23%
+Recall: 98.00%
+F1 Score: 96.08%
+FAR: 6.00%
+FRR: 2.00%
+
+Processing user: s046
+Training samples: 480
+Validation samples: 120
+Test samples: 200
+X_train shape: (480, 40)
+y_train distribution: [240 240]
+X_train_val shape: (120, 40)
+y_train_val distribution: [60 60]
+
+Tuning hyperparameters for user s046...
+Early stopping at epoch 43
+Early stopping at epoch 41
+Early stopping at epoch 41
+Early stopping at epoch 45
+Early stopping at epoch 41
+Early stopping at epoch 45
+Early stopping at epoch 11
+Early stopping at epoch 32
+Early stopping at epoch 11
+Early stopping at epoch 47
+Early stopping at epoch 42
+Early stopping at epoch 48
+Early stopping at epoch 39
+Early stopping at epoch 35
+Early stopping at epoch 46
+Early stopping at epoch 11
+Early stopping at epoch 43
+Early stopping at epoch 42
+Early stopping at epoch 49
+Early stopping at epoch 45
+Early stopping at epoch 45
+Early stopping at epoch 33
+Early stopping at epoch 44
+Early stopping at epoch 30
+Early stopping at epoch 38
+Early stopping at epoch 44
+Early stopping at epoch 47
+Best parameters for s046:
+hidden_size: 32
+num_layers: 2
+dropout: 0.1
+learning_rate: 0.001
+Best validation score: 0.9896
+Validating model for s046 on train validation set...
+Prediction distribution: [58 62]
+True labels distribution: [60 60]
+Testing model for s046 on test set...
+Test prediction distribution: [ 97 103]
+Test true labels distribution: [100 100]
+
+Train Validation Results for s046:
+Accuracy: 95.00%
+Precision: 93.55%
+Recall: 96.67%
+F1 Score: 95.08%
+FAR: 6.67%
+FRR: 3.33%
+
+Test Results for s046:
+Accuracy: 95.50%
+Precision: 94.17%
+Recall: 97.00%
+F1 Score: 95.57%
+FAR: 6.00%
+FRR: 3.00%
+
+Processing user: s041
+Training samples: 480
+Validation samples: 120
+Test samples: 200
+X_train shape: (480, 40)
+y_train distribution: [240 240]
+X_train_val shape: (120, 40)
+y_train_val distribution: [60 60]
+
+Tuning hyperparameters for user s041...
+Early stopping at epoch 36
+Early stopping at epoch 34
+Early stopping at epoch 35
+Early stopping at epoch 31
+Early stopping at epoch 30
+Early stopping at epoch 47
+Early stopping at epoch 29
+Early stopping at epoch 29
+Early stopping at epoch 47
+Early stopping at epoch 30
+Early stopping at epoch 38
+Early stopping at epoch 26
+Early stopping at epoch 31
+Early stopping at epoch 46
+Early stopping at epoch 30
+Early stopping at epoch 46
+Early stopping at epoch 32
+Early stopping at epoch 49
+Early stopping at epoch 29
+Early stopping at epoch 44
+Early stopping at epoch 30
+Early stopping at epoch 46
+Early stopping at epoch 28
+Early stopping at epoch 35
+Early stopping at epoch 28
+Early stopping at epoch 31
+Early stopping at epoch 21
+Early stopping at epoch 32
+Early stopping at epoch 21
+Early stopping at epoch 29
+Early stopping at epoch 28
+Early stopping at epoch 39
+Early stopping at epoch 27
+Early stopping at epoch 42
+Early stopping at epoch 26
+Early stopping at epoch 41
+Early stopping at epoch 25
+Early stopping at epoch 29
+Early stopping at epoch 25
+Early stopping at epoch 37
+Early stopping at epoch 21
+Early stopping at epoch 25
+Early stopping at epoch 17
+Early stopping at epoch 25
+Early stopping at epoch 25
+Early stopping at epoch 24
+Early stopping at epoch 18
+Early stopping at epoch 24
+Best parameters for s041:
+hidden_size: 32
+num_layers: 1
+dropout: 0.1
+learning_rate: 0.0005
+Best validation score: 0.9792
+Validating model for s041 on train validation set...
+Prediction distribution: [61 59]
+True labels distribution: [60 60]
+Testing model for s041 on test set...
+Test prediction distribution: [100 100]
+Test true labels distribution: [100 100]
+
+Train Validation Results for s041:
+Accuracy: 95.83%
+Precision: 96.61%
+Recall: 95.00%
+F1 Score: 95.80%
+FAR: 3.33%
+FRR: 5.00%
+
+Test Results for s041:
+Accuracy: 95.00%
+Precision: 95.00%
+Recall: 95.00%
+F1 Score: 95.00%
+FAR: 5.00%
+FRR: 5.00%
+
+Processing user: s002
+Training samples: 480
+Validation samples: 120
+Test samples: 200
+X_train shape: (480, 40)
+y_train distribution: [240 240]
+X_train_val shape: (120, 40)
+y_train_val distribution: [60 60]
+
+Tuning hyperparameters for user s002...
+Early stopping at epoch 28
+Early stopping at epoch 27
+Early stopping at epoch 40
+Early stopping at epoch 26
+Early stopping at epoch 33
+Early stopping at epoch 44
+Early stopping at epoch 11
+Early stopping at epoch 30
+Early stopping at epoch 43
+Early stopping at epoch 11
+Early stopping at epoch 40
+Early stopping at epoch 45
+Early stopping at epoch 11
+Early stopping at epoch 23
+Early stopping at epoch 44
+Early stopping at epoch 11
+Early stopping at epoch 27
+Early stopping at epoch 21
+Early stopping at epoch 11
+Early stopping at epoch 11
+Early stopping at epoch 23
+Early stopping at epoch 40
+Early stopping at epoch 23
+Early stopping at epoch 39
+Early stopping at epoch 22
+Early stopping at epoch 46
+Early stopping at epoch 20
+Early stopping at epoch 45
+Early stopping at epoch 33
+Early stopping at epoch 44
+Early stopping at epoch 11
+Early stopping at epoch 31
+Early stopping at epoch 35
+Early stopping at epoch 11
+Early stopping at epoch 17
+Early stopping at epoch 26
+Early stopping at epoch 24
+Early stopping at epoch 49
+Early stopping at epoch 31
+Early stopping at epoch 35
+Early stopping at epoch 11
+Early stopping at epoch 28
+Early stopping at epoch 35
+Early stopping at epoch 27
+Early stopping at epoch 50
+Early stopping at epoch 31
+Early stopping at epoch 24
+Early stopping at epoch 37
+Early stopping at epoch 26
+Early stopping at epoch 33
+Early stopping at epoch 34
+Early stopping at epoch 50
+Early stopping at epoch 21
+Early stopping at epoch 30
+Early stopping at epoch 11
+Early stopping at epoch 23
+Early stopping at epoch 41
+Early stopping at epoch 11
+Early stopping at epoch 22
+Early stopping at epoch 39
+Early stopping at epoch 11
+Best parameters for s002:
+hidden_size: 32
+num_layers: 2
+dropout: 0.1
+learning_rate: 0.0005
+Best validation score: 0.9583
+Validating model for s002 on train validation set...
+Prediction distribution: [57 63]
+True labels distribution: [60 60]
+Testing model for s002 on test set...
+Test prediction distribution: [ 93 107]
+Test true labels distribution: [100 100]
+
+Train Validation Results for s002:
+Accuracy: 87.50%
+Precision: 85.71%
+Recall: 90.00%
+F1 Score: 87.80%
+FAR: 15.00%
+FRR: 10.00%
+
+Test Results for s002:
+Accuracy: 93.50%
+Precision: 90.65%
+Recall: 97.00%
+F1 Score: 93.72%
+FAR: 10.00%
+FRR: 3.00%
+
+Processing user: s025
+Training samples: 480
+Validation samples: 120
+Test samples: 200
+X_train shape: (480, 40)
+y_train distribution: [240 240]
+X_train_val shape: (120, 40)
+y_train_val distribution: [60 60]
+
+Tuning hyperparameters for user s025...
+Early stopping at epoch 28
+Early stopping at epoch 41
+Early stopping at epoch 30
+Early stopping at epoch 47
+Early stopping at epoch 28
+Early stopping at epoch 41
+Early stopping at epoch 24
+Early stopping at epoch 38
+Early stopping at epoch 24
+Early stopping at epoch 35
+Early stopping at epoch 27
+Early stopping at epoch 42
+Early stopping at epoch 24
+Early stopping at epoch 30
+Early stopping at epoch 20
+Early stopping at epoch 31
+Early stopping at epoch 32
+Early stopping at epoch 39
+Early stopping at epoch 25
+Early stopping at epoch 38
+Early stopping at epoch 25
+Early stopping at epoch 38
+Early stopping at epoch 26
+Early stopping at epoch 34
+Early stopping at epoch 18
+Early stopping at epoch 31
+Early stopping at epoch 22
+Early stopping at epoch 27
+Early stopping at epoch 22
+Early stopping at epoch 32
+Early stopping at epoch 20
+Early stopping at epoch 24
+Early stopping at epoch 26
+Early stopping at epoch 26
+Early stopping at epoch 22
+Early stopping at epoch 28
+Early stopping at epoch 21
+Early stopping at epoch 34
+Early stopping at epoch 22
+Early stopping at epoch 32
+Early stopping at epoch 22
+Early stopping at epoch 32
+Early stopping at epoch 21
+Early stopping at epoch 25
+Early stopping at epoch 16
+Early stopping at epoch 24
+Early stopping at epoch 19
+Early stopping at epoch 29
+Early stopping at epoch 24
+Early stopping at epoch 24
+Early stopping at epoch 20
+Early stopping at epoch 20
+Early stopping at epoch 20
+Early stopping at epoch 34
+Best parameters for s025:
+hidden_size: 32
+num_layers: 1
+dropout: 0.2
+learning_rate: 0.001
+Best validation score: 0.9896
+Validating model for s025 on train validation set...
+Prediction distribution: [58 62]
+True labels distribution: [60 60]
+Testing model for s025 on test set...
+Test prediction distribution: [ 96 104]
+Test true labels distribution: [100 100]
+
+Train Validation Results for s025:
+Accuracy: 98.33%
+Precision: 96.77%
+Recall: 100.00%
+F1 Score: 98.36%
+FAR: 3.33%
+FRR: 0.00%
+
+Test Results for s025:
+Accuracy: 97.00%
+Precision: 95.19%
+Recall: 99.00%
+F1 Score: 97.06%
+FAR: 5.00%
+FRR: 1.00%
+
+Processing user: s007
+Training samples: 480
+Validation samples: 120
+Test samples: 200
+X_train shape: (480, 40)
+y_train distribution: [240 240]
+X_train_val shape: (120, 40)
+y_train_val distribution: [60 60]
+
+Tuning hyperparameters for user s007...
+Early stopping at epoch 39
+Early stopping at epoch 29
+Early stopping at epoch 49
+Early stopping at epoch 33
+Early stopping at epoch 43
+Early stopping at epoch 41
+Early stopping at epoch 45
+Early stopping at epoch 28
+Early stopping at epoch 42
+Early stopping at epoch 26
+Early stopping at epoch 40
+Early stopping at epoch 11
+Early stopping at epoch 27
+Early stopping at epoch 11
+Early stopping at epoch 31
+Early stopping at epoch 30
+Early stopping at epoch 44
+Early stopping at epoch 32
+Early stopping at epoch 41
+Early stopping at epoch 22
+Early stopping at epoch 31
+Early stopping at epoch 24
+Early stopping at epoch 31
+Early stopping at epoch 11
+Early stopping at epoch 38
+Early stopping at epoch 35
+Early stopping at epoch 11
+Early stopping at epoch 27
+Early stopping at epoch 34
+Early stopping at epoch 29
+Early stopping at epoch 41
+Early stopping at epoch 28
+Early stopping at epoch 42
+Early stopping at epoch 19
+Early stopping at epoch 26
+Early stopping at epoch 21
+Early stopping at epoch 32
+Early stopping at epoch 22
+Early stopping at epoch 35
+Best parameters for s007:
+hidden_size: 128
+num_layers: 1
+dropout: 0.3
+learning_rate: 0.001
+Best validation score: 0.9583
+Validating model for s007 on train validation set...
+Prediction distribution: [61 59]
+True labels distribution: [60 60]
+Testing model for s007 on test set...
+Test prediction distribution: [ 89 111]
+Test true labels distribution: [100 100]
+
+Train Validation Results for s007:
+Accuracy: 89.17%
+Precision: 89.83%
+Recall: 88.33%
+F1 Score: 89.08%
+FAR: 10.00%
+FRR: 11.67%
+
+Test Results for s007:
+Accuracy: 89.50%
+Precision: 85.59%
+Recall: 95.00%
+F1 Score: 90.05%
+FAR: 16.00%
+FRR: 5.00%
+
+Processing user: s029
+Training samples: 480
+Validation samples: 120
+Test samples: 200
+X_train shape: (480, 40)
+y_train distribution: [240 240]
+X_train_val shape: (120, 40)
+y_train_val distribution: [60 60]
+
+Tuning hyperparameters for user s029...
+Early stopping at epoch 34
+Early stopping at epoch 32
+Early stopping at epoch 47
+Early stopping at epoch 31
+Early stopping at epoch 49
+Early stopping at epoch 32
+Early stopping at epoch 45
+Early stopping at epoch 33
+Early stopping at epoch 43
+Early stopping at epoch 38
+Early stopping at epoch 44
+Early stopping at epoch 35
+Early stopping at epoch 47
+Early stopping at epoch 34
+Early stopping at epoch 30
+Early stopping at epoch 43
+Early stopping at epoch 28
+Early stopping at epoch 43
+Early stopping at epoch 26
+Early stopping at epoch 46
+Early stopping at epoch 28
+Early stopping at epoch 36
+Early stopping at epoch 26
+Early stopping at epoch 42
+Early stopping at epoch 30
+Early stopping at epoch 48
+Early stopping at epoch 29
+Early stopping at epoch 37
+Early stopping at epoch 26
+Early stopping at epoch 39
+Early stopping at epoch 34
+Early stopping at epoch 48
+Early stopping at epoch 29
+Early stopping at epoch 40
+Early stopping at epoch 25
+Early stopping at epoch 37
+Early stopping at epoch 26
+Early stopping at epoch 41
+Early stopping at epoch 22
+Early stopping at epoch 35
+Early stopping at epoch 23
+Early stopping at epoch 38
+Early stopping at epoch 25
+Early stopping at epoch 32
+Early stopping at epoch 25
+Early stopping at epoch 30
+Early stopping at epoch 24
+Early stopping at epoch 31
+Early stopping at epoch 25
+Early stopping at epoch 26
+Best parameters for s029:
+hidden_size: 32
+num_layers: 2
+dropout: 0.2
+learning_rate: 0.0005
+Best validation score: 0.9688
+Validating model for s029 on train validation set...
+Prediction distribution: [58 62]
+True labels distribution: [60 60]
+Testing model for s029 on test set...
+Test prediction distribution: [ 95 105]
+Test true labels distribution: [100 100]
+
+Train Validation Results for s029:
+Accuracy: 93.33%
+Precision: 91.94%
+Recall: 95.00%
+F1 Score: 93.44%
+FAR: 8.33%
+FRR: 5.00%
+
+Test Results for s029:
+Accuracy: 91.50%
+Precision: 89.52%
+Recall: 94.00%
+F1 Score: 91.71%
+FAR: 11.00%
+FRR: 6.00%
+
+Processing user: s003
+Training samples: 480
+Validation samples: 120
+Test samples: 200
+X_train shape: (480, 40)
+y_train distribution: [240 240]
+X_train_val shape: (120, 40)
+y_train_val distribution: [60 60]
+
+Tuning hyperparameters for user s003...
+Early stopping at epoch 22
+Early stopping at epoch 36
+Early stopping at epoch 25
+Early stopping at epoch 39
+Early stopping at epoch 24
+Early stopping at epoch 37
+Early stopping at epoch 23
+Early stopping at epoch 34
+Early stopping at epoch 23
+Early stopping at epoch 37
+Early stopping at epoch 22
+Early stopping at epoch 33
+Early stopping at epoch 22
+Early stopping at epoch 28
+Early stopping at epoch 23
+Early stopping at epoch 33
+Early stopping at epoch 24
+Early stopping at epoch 34
+Early stopping at epoch 22
+Early stopping at epoch 32
+Early stopping at epoch 22
+Early stopping at epoch 32
+Early stopping at epoch 21
+Early stopping at epoch 29
+Early stopping at epoch 20
+Early stopping at epoch 28
+Early stopping at epoch 21
+Early stopping at epoch 28
+Early stopping at epoch 21
+Early stopping at epoch 28
+Early stopping at epoch 20
+Early stopping at epoch 27
+Early stopping at epoch 21
+Early stopping at epoch 27
+Early stopping at epoch 21
+Early stopping at epoch 28
+Early stopping at epoch 20
+Early stopping at epoch 30
+Early stopping at epoch 19
+Early stopping at epoch 29
+Early stopping at epoch 19
+Early stopping at epoch 30
+Early stopping at epoch 18
+Early stopping at epoch 25
+Early stopping at epoch 19
+Early stopping at epoch 25
+Early stopping at epoch 19
+Early stopping at epoch 26
+Early stopping at epoch 20
+Early stopping at epoch 24
+Early stopping at epoch 18
+Early stopping at epoch 24
+Early stopping at epoch 20
+Early stopping at epoch 25
+Best parameters for s003:
+hidden_size: 32
+num_layers: 1
+dropout: 0.2
+learning_rate: 0.001
+Best validation score: 0.9167
+Validating model for s003 on train validation set...
+Prediction distribution: [59 61]
+True labels distribution: [60 60]
+Testing model for s003 on test set...
+Test prediction distribution: [103  97]
+Test true labels distribution: [100 100]
+
+Train Validation Results for s003:
+Accuracy: 95.83%
+Precision: 95.08%
+Recall: 96.67%
+F1 Score: 95.87%
+FAR: 5.00%
+FRR: 3.33%
+
+Test Results for s003:
+Accuracy: 95.50%
+Precision: 96.91%
+Recall: 94.00%
+F1 Score: 95.43%
+FAR: 3.00%
+FRR: 6.00%
+
+Processing user: s040
+Training samples: 480
+Validation samples: 120
+Test samples: 200
+X_train shape: (480, 40)
+y_train distribution: [240 240]
+X_train_val shape: (120, 40)
+y_train_val distribution: [60 60]
+
+Tuning hyperparameters for user s040...
+Early stopping at epoch 30
+Early stopping at epoch 41
+Early stopping at epoch 29
+Early stopping at epoch 42
+Early stopping at epoch 30
+Early stopping at epoch 45
+Early stopping at epoch 24
+Early stopping at epoch 45
+Early stopping at epoch 25
+Early stopping at epoch 41
+Early stopping at epoch 25
+Early stopping at epoch 42
+Early stopping at epoch 24
+Early stopping at epoch 38
+Early stopping at epoch 27
+Early stopping at epoch 43
+Early stopping at epoch 24
+Early stopping at epoch 42
+Early stopping at epoch 11
+Early stopping at epoch 23
+Early stopping at epoch 35
+Early stopping at epoch 24
+Early stopping at epoch 37
+Early stopping at epoch 23
+Early stopping at epoch 37
+Early stopping at epoch 22
+Early stopping at epoch 32
+Early stopping at epoch 23
+Early stopping at epoch 33
+Early stopping at epoch 23
+Early stopping at epoch 35
+Early stopping at epoch 21
+Early stopping at epoch 30
+Early stopping at epoch 22
+Early stopping at epoch 31
+Early stopping at epoch 24
+Early stopping at epoch 33
+Early stopping at epoch 22
+Early stopping at epoch 31
+Early stopping at epoch 22
+Early stopping at epoch 32
+Early stopping at epoch 22
+Early stopping at epoch 32
+Early stopping at epoch 20
+Early stopping at epoch 28
+Early stopping at epoch 21
+Early stopping at epoch 28
+Early stopping at epoch 21
+Early stopping at epoch 28
+Early stopping at epoch 19
+Early stopping at epoch 26
+Early stopping at epoch 20
+Early stopping at epoch 26
+Early stopping at epoch 21
+Early stopping at epoch 26
+Best parameters for s040:
+hidden_size: 32
+num_layers: 2
+dropout: 0.1
+learning_rate: 0.0005
+Best validation score: 0.9896
+Validating model for s040 on train validation set...
+Prediction distribution: [63 57]
+True labels distribution: [60 60]
+Testing model for s040 on test set...
+Test prediction distribution: [100 100]
+Test true labels distribution: [100 100]
+
+Train Validation Results for s040:
+Accuracy: 97.50%
+Precision: 100.00%
+Recall: 95.00%
+F1 Score: 97.44%
+FAR: 0.00%
+FRR: 5.00%
+
+Test Results for s040:
+Accuracy: 98.00%
+Precision: 98.00%
+Recall: 98.00%
+F1 Score: 98.00%
+FAR: 2.00%
+FRR: 2.00%
+
+Processing user: s057
+Training samples: 480
+Validation samples: 120
+Test samples: 200
+X_train shape: (480, 40)
+y_train distribution: [240 240]
+X_train_val shape: (120, 40)
+y_train_val distribution: [60 60]
+
+Tuning hyperparameters for user s057...
+Early stopping at epoch 19
+Early stopping at epoch 29
+Early stopping at epoch 19
+Early stopping at epoch 27
+Early stopping at epoch 19
+Early stopping at epoch 29
+Early stopping at epoch 19
+Early stopping at epoch 26
+Early stopping at epoch 19
+Early stopping at epoch 26
+Early stopping at epoch 19
+Early stopping at epoch 28
+Early stopping at epoch 18
+Early stopping at epoch 25
+Early stopping at epoch 20
+Early stopping at epoch 25
+Early stopping at epoch 19
+Early stopping at epoch 26
+Early stopping at epoch 17
+Early stopping at epoch 23
+Early stopping at epoch 18
+Early stopping at epoch 23
+Early stopping at epoch 17
+Early stopping at epoch 24
+Early stopping at epoch 16
+Early stopping at epoch 21
+Early stopping at epoch 17
+Early stopping at epoch 22
+Early stopping at epoch 17
+Early stopping at epoch 22
+Early stopping at epoch 16
+Early stopping at epoch 20
+Early stopping at epoch 16
+Early stopping at epoch 21
+Early stopping at epoch 17
+Early stopping at epoch 21
+Early stopping at epoch 16
+Early stopping at epoch 22
+Early stopping at epoch 16
+Early stopping at epoch 20
+Early stopping at epoch 16
+Early stopping at epoch 21
+Early stopping at epoch 15
+Early stopping at epoch 18
+Early stopping at epoch 47
+Early stopping at epoch 15
+Early stopping at epoch 19
+Early stopping at epoch 50
+Early stopping at epoch 15
+Early stopping at epoch 19
+Early stopping at epoch 14
+Early stopping at epoch 17
+Early stopping at epoch 40
+Early stopping at epoch 15
+Early stopping at epoch 18
+Early stopping at epoch 40
+Early stopping at epoch 15
+Early stopping at epoch 18
+Early stopping at epoch 41
+Best parameters for s057:
+hidden_size: 32
+num_layers: 1
+dropout: 0.1
+learning_rate: 0.0001
+Best validation score: 0.9583
+Validating model for s057 on train validation set...
+Prediction distribution: [56 64]
+True labels distribution: [60 60]
+Testing model for s057 on test set...
+Test prediction distribution: [ 92 108]
+Test true labels distribution: [100 100]
+
+Train Validation Results for s057:
+Accuracy: 95.00%
+Precision: 92.19%
+Recall: 98.33%
+F1 Score: 95.16%
+FAR: 8.33%
+FRR: 1.67%
+
+Test Results for s057:
+Accuracy: 90.00%
+Precision: 87.04%
+Recall: 94.00%
+F1 Score: 90.38%
+FAR: 14.00%
+FRR: 6.00%
+
+=== Train Validation Summary ===
+
+Overall Statistics:
+Total Users: 51
+Total Samples: 6120
+Overall Accuracy: 95.26%
+Average Precision: 94.93%
+Average Recall: 95.72%
+Average F1 Score: 95.28%
+Average FAR: 5.20%
+Average FRR: 4.28%
+
+Per-User Statistics:
+Login		Accuracy	Precision	Recall		F1 Score	FAR		FRR
+----------------------------------------------------------------------------------------------------
+s002		87.50%		85.71%		90.00%		87.80%		15.00%		10.00%
+s003		95.83%		95.08%		96.67%		95.87%		5.00%		3.33%
+s004		95.83%		95.08%		96.67%		95.87%		5.00%		3.33%
+s005		94.17%		92.06%		96.67%		94.31%		8.33%		3.33%
+s007		89.17%		89.83%		88.33%		89.08%		10.00%		11.67%
+s008		91.67%		90.32%		93.33%		91.80%		10.00%		6.67%
+s010		98.33%		100.00%		96.67%		98.31%		0.00%		3.33%
+s011		94.17%		92.06%		96.67%		94.31%		8.33%		3.33%
+s012		95.83%		95.08%		96.67%		95.87%		5.00%		3.33%
+s013		95.00%		95.00%		95.00%		95.00%		5.00%		5.00%
+s015		93.33%		90.62%		96.67%		93.55%		10.00%		3.33%
+s016		99.17%		98.36%		100.00%		99.17%		1.67%		0.00%
+s017		97.50%		96.72%		98.33%		97.52%		3.33%		1.67%
+s018		92.50%		94.74%		90.00%		92.31%		5.00%		10.00%
+s019		95.83%		98.25%		93.33%		95.73%		1.67%		6.67%
+s020		90.83%		91.53%		90.00%		90.76%		8.33%		10.00%
+s021		90.83%		88.89%		93.33%		91.06%		11.67%		6.67%
+s022		97.50%		96.72%		98.33%		97.52%		3.33%		1.67%
+s024		98.33%		98.33%		98.33%		98.33%		1.67%		1.67%
+s025		98.33%		96.77%		100.00%		98.36%		3.33%		0.00%
+s026		90.83%		87.69%		95.00%		91.20%		13.33%		5.00%
+s027		100.00%		100.00%		100.00%		100.00%		0.00%		0.00%
+s028		96.67%		93.75%		100.00%		96.77%		6.67%		0.00%
+s029		93.33%		91.94%		95.00%		93.44%		8.33%		5.00%
+s030		95.00%		93.55%		96.67%		95.08%		6.67%		3.33%
+s031		94.17%		93.44%		95.00%		94.21%		6.67%		5.00%
+s032		85.83%		87.72%		83.33%		85.47%		11.67%		16.67%
+s033		98.33%		96.77%		100.00%		98.36%		3.33%		0.00%
+s034		95.83%		96.61%		95.00%		95.80%		3.33%		5.00%
+s035		96.67%		93.75%		100.00%		96.77%		6.67%		0.00%
+s036		100.00%		100.00%		100.00%		100.00%		0.00%		0.00%
+s037		93.33%		93.33%		93.33%		93.33%		6.67%		6.67%
+s038		95.00%		95.00%		95.00%		95.00%		5.00%		5.00%
+s039		95.83%		98.25%		93.33%		95.73%		1.67%		6.67%
+s040		97.50%		100.00%		95.00%		97.44%		0.00%		5.00%
+s041		95.83%		96.61%		95.00%		95.80%		3.33%		5.00%
+s042		98.33%		98.33%		98.33%		98.33%		1.67%		1.67%
+s043		99.17%		98.36%		100.00%		99.17%		1.67%		0.00%
+s044		99.17%		98.36%		100.00%		99.17%		1.67%		0.00%
+s046		95.00%		93.55%		96.67%		95.08%		6.67%		3.33%
+s047		95.83%		98.25%		93.33%		95.73%		1.67%		6.67%
+s048		95.00%		98.21%		91.67%		94.83%		1.67%		8.33%
+s049		97.50%		96.72%		98.33%		97.52%		3.33%		1.67%
+s050		96.67%		96.67%		96.67%		96.67%		3.33%		3.33%
+s051		89.17%		88.52%		90.00%		89.26%		11.67%		10.00%
+s052		99.17%		98.36%		100.00%		99.17%		1.67%		0.00%
+s053		98.33%		98.33%		98.33%		98.33%		1.67%		1.67%
+s054		93.33%		89.39%		98.33%		93.65%		11.67%		1.67%
+s055		98.33%		100.00%		96.67%		98.31%		0.00%		3.33%
+s056		92.50%		96.36%		88.33%		92.17%		3.33%		11.67%
+s057		95.00%		92.19%		98.33%		95.16%		8.33%		1.67%
+
+=== Test Summary ===
+
+Overall Statistics:
+Total Users: 51
+Total Samples: 10200
+Overall Accuracy: 94.99%
+Average Precision: 94.12%
+Average Recall: 96.06%
+Average F1 Score: 95.06%
+Average FAR: 6.08%
+Average FRR: 3.94%
+
+Per-User Statistics:
+Login		Accuracy	Precision	Recall		F1 Score	FAR		FRR
+----------------------------------------------------------------------------------------------------
+s002		93.50%		90.65%		97.00%		93.72%		10.00%		3.00%
+s003		95.50%		96.91%		94.00%		95.43%		3.00%		6.00%
+s004		98.00%		97.06%		99.00%		98.02%		3.00%		1.00%
+s005		95.00%		92.45%		98.00%		95.15%		8.00%		2.00%
+s007		89.50%		85.59%		95.00%		90.05%		16.00%		5.00%
+s008		89.50%		88.35%		91.00%		89.66%		12.00%		9.00%
+s010		96.00%		95.10%		97.00%		96.04%		5.00%		3.00%
+s011		95.00%		96.88%		93.00%		94.90%		3.00%		7.00%
+s012		96.00%		95.10%		97.00%		96.04%		5.00%		3.00%
+s013		96.00%		94.23%		98.00%		96.08%		6.00%		2.00%
+s015		91.50%		88.79%		95.00%		91.79%		12.00%		5.00%
+s016		99.00%		99.00%		99.00%		99.00%		1.00%		1.00%
+s017		95.00%		94.12%		96.00%		95.05%		6.00%		4.00%
+s018		92.50%		92.93%		92.00%		92.46%		7.00%		8.00%
+s019		96.50%		96.97%		96.00%		96.48%		3.00%		4.00%
+s020		90.00%		90.82%		89.00%		89.90%		9.00%		11.00%
+s021		94.50%		93.20%		96.00%		94.58%		7.00%		4.00%
+s022		99.50%		99.01%		100.00%		99.50%		1.00%		0.00%
+s024		99.00%		100.00%		98.00%		98.99%		0.00%		2.00%
+s025		97.00%		95.19%		99.00%		97.06%		5.00%		1.00%
+s026		96.00%		94.23%		98.00%		96.08%		6.00%		2.00%
+s027		95.00%		93.27%		97.00%		95.10%		7.00%		3.00%
+s028		96.50%		95.15%		98.00%		96.55%		5.00%		2.00%
+s029		91.50%		89.52%		94.00%		91.71%		11.00%		6.00%
+s030		97.00%		96.08%		98.00%		97.03%		4.00%		2.00%
+s031		87.50%		85.05%		91.00%		87.92%		16.00%		9.00%
+s032		88.00%		88.00%		88.00%		88.00%		12.00%		12.00%
+s033		97.50%		96.12%		99.00%		97.54%		4.00%		1.00%
+s034		92.50%		92.08%		93.00%		92.54%		8.00%		7.00%
+s035		95.00%		94.12%		96.00%		95.05%		6.00%		4.00%
+s036		100.00%		100.00%		100.00%		100.00%		0.00%		0.00%
+s037		92.00%		89.62%		95.00%		92.23%		11.00%		5.00%
+s038		98.00%		98.00%		98.00%		98.00%		2.00%		2.00%
+s039		94.00%		92.31%		96.00%		94.12%		8.00%		4.00%
+s040		98.00%		98.00%		98.00%		98.00%		2.00%		2.00%
+s041		95.00%		95.00%		95.00%		95.00%		5.00%		5.00%
+s042		97.50%		97.03%		98.00%		97.51%		3.00%		2.00%
+s043		98.50%		98.02%		99.00%		98.51%		2.00%		1.00%
+s044		95.00%		94.12%		96.00%		95.05%		6.00%		4.00%
+s046		95.50%		94.17%		97.00%		95.57%		6.00%		3.00%
+s047		91.50%		91.09%		92.00%		91.54%		9.00%		8.00%
+s048		96.00%		96.00%		96.00%		96.00%		4.00%		4.00%
+s049		99.00%		98.04%		100.00%		99.01%		2.00%		0.00%
+s050		93.50%		93.94%		93.00%		93.47%		6.00%		7.00%
+s051		95.50%		95.05%		96.00%		95.52%		5.00%		4.00%
+s052		99.00%		100.00%		98.00%		98.99%		0.00%		2.00%
+s053		98.00%		96.15%		100.00%		98.04%		4.00%		0.00%
+s054		90.00%		88.46%		92.00%		90.20%		12.00%		8.00%
+s055		98.50%		98.99%		98.00%		98.49%		1.00%		2.00%
+s056		95.00%		93.27%		97.00%		95.10%		7.00%		3.00%
+s057		90.00%		87.04%		94.00%		90.38%		14.00%		6.00%
