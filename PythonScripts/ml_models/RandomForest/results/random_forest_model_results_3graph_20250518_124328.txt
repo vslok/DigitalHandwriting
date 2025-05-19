@@ -1,0 +1,1666 @@
+Starting model training and validation for 3-graph...
+
+
+Processing user: s030
+
+Tuning hyperparameters for user s030...
+Best parameters for s030:
+criterion: entropy
+max_depth: None
+max_features: sqrt
+min_samples_leaf: 1
+min_samples_split: 5
+n_estimators: 100
+Best cross-validation score: 0.9542
+Validating model for s030 on train validation set...
+Testing model for s030 on test set...
+
+Train Validation Results for s030:
+Accuracy: 96.67%
+Precision: 100.00%
+Recall: 93.33%
+F1 Score: 96.55%
+FAR: 0.00%
+FRR: 6.67%
+
+Test Results for s030:
+Accuracy: 98.00%
+Precision: 100.00%
+Recall: 96.00%
+F1 Score: 97.96%
+FAR: 0.00%
+FRR: 4.00%
+
+Processing user: s056
+
+Tuning hyperparameters for user s056...
+Best parameters for s056:
+criterion: gini
+max_depth: 10
+max_features: sqrt
+min_samples_leaf: 1
+min_samples_split: 2
+n_estimators: 200
+Best cross-validation score: 0.9354
+Validating model for s056 on train validation set...
+Testing model for s056 on test set...
+
+Train Validation Results for s056:
+Accuracy: 91.67%
+Precision: 100.00%
+Recall: 83.33%
+F1 Score: 90.91%
+FAR: 0.00%
+FRR: 16.67%
+
+Test Results for s056:
+Accuracy: 97.00%
+Precision: 100.00%
+Recall: 94.00%
+F1 Score: 96.91%
+FAR: 0.00%
+FRR: 6.00%
+
+Processing user: s043
+
+Tuning hyperparameters for user s043...
+Best parameters for s043:
+criterion: gini
+max_depth: None
+max_features: sqrt
+min_samples_leaf: 1
+min_samples_split: 2
+n_estimators: 100
+Best cross-validation score: 0.9958
+Validating model for s043 on train validation set...
+Testing model for s043 on test set...
+
+Train Validation Results for s043:
+Accuracy: 100.00%
+Precision: 100.00%
+Recall: 100.00%
+F1 Score: 100.00%
+FAR: 0.00%
+FRR: 0.00%
+
+Test Results for s043:
+Accuracy: 100.00%
+Precision: 100.00%
+Recall: 100.00%
+F1 Score: 100.00%
+FAR: 0.00%
+FRR: 0.00%
+
+Processing user: s004
+
+Tuning hyperparameters for user s004...
+Best parameters for s004:
+criterion: entropy
+max_depth: None
+max_features: sqrt
+min_samples_leaf: 1
+min_samples_split: 2
+n_estimators: 100
+Best cross-validation score: 0.9417
+Validating model for s004 on train validation set...
+Testing model for s004 on test set...
+
+Train Validation Results for s004:
+Accuracy: 97.50%
+Precision: 100.00%
+Recall: 95.00%
+F1 Score: 97.44%
+FAR: 0.00%
+FRR: 5.00%
+
+Test Results for s004:
+Accuracy: 97.50%
+Precision: 100.00%
+Recall: 95.00%
+F1 Score: 97.44%
+FAR: 0.00%
+FRR: 5.00%
+
+Processing user: s050
+
+Tuning hyperparameters for user s050...
+Best parameters for s050:
+criterion: gini
+max_depth: None
+max_features: sqrt
+min_samples_leaf: 1
+min_samples_split: 3
+n_estimators: 200
+Best cross-validation score: 0.9417
+Validating model for s050 on train validation set...
+Testing model for s050 on test set...
+
+Train Validation Results for s050:
+Accuracy: 100.00%
+Precision: 100.00%
+Recall: 100.00%
+F1 Score: 100.00%
+FAR: 0.00%
+FRR: 0.00%
+
+Test Results for s050:
+Accuracy: 96.50%
+Precision: 100.00%
+Recall: 93.00%
+F1 Score: 96.37%
+FAR: 0.00%
+FRR: 7.00%
+
+Processing user: s051
+
+Tuning hyperparameters for user s051...
+Best parameters for s051:
+criterion: entropy
+max_depth: 10
+max_features: log2
+min_samples_leaf: 1
+min_samples_split: 5
+n_estimators: 100
+Best cross-validation score: 0.9229
+Validating model for s051 on train validation set...
+Testing model for s051 on test set...
+
+Train Validation Results for s051:
+Accuracy: 97.50%
+Precision: 100.00%
+Recall: 95.00%
+F1 Score: 97.44%
+FAR: 0.00%
+FRR: 5.00%
+
+Test Results for s051:
+Accuracy: 96.50%
+Precision: 100.00%
+Recall: 93.00%
+F1 Score: 96.37%
+FAR: 0.00%
+FRR: 7.00%
+
+Processing user: s005
+
+Tuning hyperparameters for user s005...
+Best parameters for s005:
+criterion: entropy
+max_depth: None
+max_features: log2
+min_samples_leaf: 1
+min_samples_split: 2
+n_estimators: 100
+Best cross-validation score: 0.9750
+Validating model for s005 on train validation set...
+Testing model for s005 on test set...
+
+Train Validation Results for s005:
+Accuracy: 99.17%
+Precision: 100.00%
+Recall: 98.33%
+F1 Score: 99.16%
+FAR: 0.00%
+FRR: 1.67%
+
+Test Results for s005:
+Accuracy: 99.50%
+Precision: 100.00%
+Recall: 99.00%
+F1 Score: 99.50%
+FAR: 0.00%
+FRR: 1.00%
+
+Processing user: s020
+
+Tuning hyperparameters for user s020...
+Best parameters for s020:
+criterion: gini
+max_depth: None
+max_features: log2
+min_samples_leaf: 1
+min_samples_split: 2
+n_estimators: 300
+Best cross-validation score: 0.9500
+Validating model for s020 on train validation set...
+Testing model for s020 on test set...
+
+Train Validation Results for s020:
+Accuracy: 95.83%
+Precision: 100.00%
+Recall: 91.67%
+F1 Score: 95.65%
+FAR: 0.00%
+FRR: 8.33%
+
+Test Results for s020:
+Accuracy: 97.00%
+Precision: 100.00%
+Recall: 94.00%
+F1 Score: 96.91%
+FAR: 0.00%
+FRR: 6.00%
+
+Processing user: s027
+
+Tuning hyperparameters for user s027...
+Best parameters for s027:
+criterion: gini
+max_depth: None
+max_features: sqrt
+min_samples_leaf: 1
+min_samples_split: 3
+n_estimators: 200
+Best cross-validation score: 0.9708
+Validating model for s027 on train validation set...
+Testing model for s027 on test set...
+
+Train Validation Results for s027:
+Accuracy: 99.17%
+Precision: 100.00%
+Recall: 98.33%
+F1 Score: 99.16%
+FAR: 0.00%
+FRR: 1.67%
+
+Test Results for s027:
+Accuracy: 95.50%
+Precision: 100.00%
+Recall: 91.00%
+F1 Score: 95.29%
+FAR: 0.00%
+FRR: 9.00%
+
+Processing user: s042
+
+Tuning hyperparameters for user s042...
+Best parameters for s042:
+criterion: gini
+max_depth: None
+max_features: log2
+min_samples_leaf: 1
+min_samples_split: 3
+n_estimators: 300
+Best cross-validation score: 0.9896
+Validating model for s042 on train validation set...
+Testing model for s042 on test set...
+
+Train Validation Results for s042:
+Accuracy: 99.17%
+Precision: 100.00%
+Recall: 98.33%
+F1 Score: 99.16%
+FAR: 0.00%
+FRR: 1.67%
+
+Test Results for s042:
+Accuracy: 98.00%
+Precision: 100.00%
+Recall: 96.00%
+F1 Score: 97.96%
+FAR: 0.00%
+FRR: 4.00%
+
+Processing user: s011
+
+Tuning hyperparameters for user s011...
+Best parameters for s011:
+criterion: entropy
+max_depth: 10
+max_features: log2
+min_samples_leaf: 1
+min_samples_split: 5
+n_estimators: 200
+Best cross-validation score: 0.9479
+Validating model for s011 on train validation set...
+Testing model for s011 on test set...
+
+Train Validation Results for s011:
+Accuracy: 95.00%
+Precision: 100.00%
+Recall: 90.00%
+F1 Score: 94.74%
+FAR: 0.00%
+FRR: 10.00%
+
+Test Results for s011:
+Accuracy: 95.50%
+Precision: 100.00%
+Recall: 91.00%
+F1 Score: 95.29%
+FAR: 0.00%
+FRR: 9.00%
+
+Processing user: s054
+
+Tuning hyperparameters for user s054...
+Best parameters for s054:
+criterion: gini
+max_depth: None
+max_features: sqrt
+min_samples_leaf: 1
+min_samples_split: 3
+n_estimators: 200
+Best cross-validation score: 0.9437
+Validating model for s054 on train validation set...
+Testing model for s054 on test set...
+
+Train Validation Results for s054:
+Accuracy: 97.50%
+Precision: 100.00%
+Recall: 95.00%
+F1 Score: 97.44%
+FAR: 0.00%
+FRR: 5.00%
+
+Test Results for s054:
+Accuracy: 95.50%
+Precision: 100.00%
+Recall: 91.00%
+F1 Score: 95.29%
+FAR: 0.00%
+FRR: 9.00%
+
+Processing user: s035
+
+Tuning hyperparameters for user s035...
+Best parameters for s035:
+criterion: entropy
+max_depth: None
+max_features: sqrt
+min_samples_leaf: 2
+min_samples_split: 5
+n_estimators: 300
+Best cross-validation score: 0.9625
+Validating model for s035 on train validation set...
+Testing model for s035 on test set...
+
+Train Validation Results for s035:
+Accuracy: 98.33%
+Precision: 100.00%
+Recall: 96.67%
+F1 Score: 98.31%
+FAR: 0.00%
+FRR: 3.33%
+
+Test Results for s035:
+Accuracy: 97.00%
+Precision: 100.00%
+Recall: 94.00%
+F1 Score: 96.91%
+FAR: 0.00%
+FRR: 6.00%
+
+Processing user: s044
+
+Tuning hyperparameters for user s044...
+Best parameters for s044:
+criterion: gini
+max_depth: None
+max_features: log2
+min_samples_leaf: 1
+min_samples_split: 2
+n_estimators: 300
+Best cross-validation score: 0.9771
+Validating model for s044 on train validation set...
+Testing model for s044 on test set...
+
+Train Validation Results for s044:
+Accuracy: 99.17%
+Precision: 100.00%
+Recall: 98.33%
+F1 Score: 99.16%
+FAR: 0.00%
+FRR: 1.67%
+
+Test Results for s044:
+Accuracy: 100.00%
+Precision: 100.00%
+Recall: 100.00%
+F1 Score: 100.00%
+FAR: 0.00%
+FRR: 0.00%
+
+Processing user: s019
+
+Tuning hyperparameters for user s019...
+Best parameters for s019:
+criterion: entropy
+max_depth: None
+max_features: log2
+min_samples_leaf: 2
+min_samples_split: 5
+n_estimators: 300
+Best cross-validation score: 0.9833
+Validating model for s019 on train validation set...
+Testing model for s019 on test set...
+
+Train Validation Results for s019:
+Accuracy: 98.33%
+Precision: 100.00%
+Recall: 96.67%
+F1 Score: 98.31%
+FAR: 0.00%
+FRR: 3.33%
+
+Test Results for s019:
+Accuracy: 98.00%
+Precision: 100.00%
+Recall: 96.00%
+F1 Score: 97.96%
+FAR: 0.00%
+FRR: 4.00%
+
+Processing user: s032
+
+Tuning hyperparameters for user s032...
+Best parameters for s032:
+criterion: entropy
+max_depth: None
+max_features: log2
+min_samples_leaf: 1
+min_samples_split: 2
+n_estimators: 200
+Best cross-validation score: 0.8708
+Validating model for s032 on train validation set...
+Testing model for s032 on test set...
+
+Train Validation Results for s032:
+Accuracy: 92.50%
+Precision: 100.00%
+Recall: 85.00%
+F1 Score: 91.89%
+FAR: 0.00%
+FRR: 15.00%
+
+Test Results for s032:
+Accuracy: 95.50%
+Precision: 100.00%
+Recall: 91.00%
+F1 Score: 95.29%
+FAR: 0.00%
+FRR: 9.00%
+
+Processing user: s036
+
+Tuning hyperparameters for user s036...
+Best parameters for s036:
+criterion: gini
+max_depth: None
+max_features: sqrt
+min_samples_leaf: 1
+min_samples_split: 2
+n_estimators: 100
+Best cross-validation score: 1.0000
+Validating model for s036 on train validation set...
+Testing model for s036 on test set...
+
+Train Validation Results for s036:
+Accuracy: 100.00%
+Precision: 100.00%
+Recall: 100.00%
+F1 Score: 100.00%
+FAR: 0.00%
+FRR: 0.00%
+
+Test Results for s036:
+Accuracy: 100.00%
+Precision: 100.00%
+Recall: 100.00%
+F1 Score: 100.00%
+FAR: 0.00%
+FRR: 0.00%
+
+Processing user: s049
+
+Tuning hyperparameters for user s049...
+Best parameters for s049:
+criterion: entropy
+max_depth: None
+max_features: sqrt
+min_samples_leaf: 1
+min_samples_split: 2
+n_estimators: 100
+Best cross-validation score: 0.9833
+Validating model for s049 on train validation set...
+Testing model for s049 on test set...
+
+Train Validation Results for s049:
+Accuracy: 99.17%
+Precision: 100.00%
+Recall: 98.33%
+F1 Score: 99.16%
+FAR: 0.00%
+FRR: 1.67%
+
+Test Results for s049:
+Accuracy: 100.00%
+Precision: 100.00%
+Recall: 100.00%
+F1 Score: 100.00%
+FAR: 0.00%
+FRR: 0.00%
+
+Processing user: s012
+
+Tuning hyperparameters for user s012...
+Best parameters for s012:
+criterion: entropy
+max_depth: None
+max_features: log2
+min_samples_leaf: 2
+min_samples_split: 2
+n_estimators: 200
+Best cross-validation score: 0.9729
+Validating model for s012 on train validation set...
+Testing model for s012 on test set...
+
+Train Validation Results for s012:
+Accuracy: 98.33%
+Precision: 100.00%
+Recall: 96.67%
+F1 Score: 98.31%
+FAR: 0.00%
+FRR: 3.33%
+
+Test Results for s012:
+Accuracy: 99.50%
+Precision: 100.00%
+Recall: 99.00%
+F1 Score: 99.50%
+FAR: 0.00%
+FRR: 1.00%
+
+Processing user: s017
+
+Tuning hyperparameters for user s017...
+Best parameters for s017:
+criterion: gini
+max_depth: None
+max_features: sqrt
+min_samples_leaf: 1
+min_samples_split: 5
+n_estimators: 100
+Best cross-validation score: 0.9896
+Validating model for s017 on train validation set...
+Testing model for s017 on test set...
+
+Train Validation Results for s017:
+Accuracy: 99.17%
+Precision: 100.00%
+Recall: 98.33%
+F1 Score: 99.16%
+FAR: 0.00%
+FRR: 1.67%
+
+Test Results for s017:
+Accuracy: 98.00%
+Precision: 100.00%
+Recall: 96.00%
+F1 Score: 97.96%
+FAR: 0.00%
+FRR: 4.00%
+
+Processing user: s015
+
+Tuning hyperparameters for user s015...
+Best parameters for s015:
+criterion: gini
+max_depth: None
+max_features: log2
+min_samples_leaf: 1
+min_samples_split: 2
+n_estimators: 200
+Best cross-validation score: 0.9396
+Validating model for s015 on train validation set...
+Testing model for s015 on test set...
+
+Train Validation Results for s015:
+Accuracy: 99.17%
+Precision: 100.00%
+Recall: 98.33%
+F1 Score: 99.16%
+FAR: 0.00%
+FRR: 1.67%
+
+Test Results for s015:
+Accuracy: 96.50%
+Precision: 100.00%
+Recall: 93.00%
+F1 Score: 96.37%
+FAR: 0.00%
+FRR: 7.00%
+
+Processing user: s031
+
+Tuning hyperparameters for user s031...
+Best parameters for s031:
+criterion: entropy
+max_depth: None
+max_features: sqrt
+min_samples_leaf: 1
+min_samples_split: 2
+n_estimators: 200
+Best cross-validation score: 0.8896
+Validating model for s031 on train validation set...
+Testing model for s031 on test set...
+
+Train Validation Results for s031:
+Accuracy: 95.83%
+Precision: 100.00%
+Recall: 91.67%
+F1 Score: 95.65%
+FAR: 0.00%
+FRR: 8.33%
+
+Test Results for s031:
+Accuracy: 96.00%
+Precision: 100.00%
+Recall: 92.00%
+F1 Score: 95.83%
+FAR: 0.00%
+FRR: 8.00%
+
+Processing user: s034
+
+Tuning hyperparameters for user s034...
+Best parameters for s034:
+criterion: entropy
+max_depth: 10
+max_features: log2
+min_samples_leaf: 1
+min_samples_split: 5
+n_estimators: 200
+Best cross-validation score: 0.9396
+Validating model for s034 on train validation set...
+Testing model for s034 on test set...
+
+Train Validation Results for s034:
+Accuracy: 95.83%
+Precision: 100.00%
+Recall: 91.67%
+F1 Score: 95.65%
+FAR: 0.00%
+FRR: 8.33%
+
+Test Results for s034:
+Accuracy: 96.00%
+Precision: 100.00%
+Recall: 92.00%
+F1 Score: 95.83%
+FAR: 0.00%
+FRR: 8.00%
+
+Processing user: s037
+
+Tuning hyperparameters for user s037...
+Best parameters for s037:
+criterion: gini
+max_depth: None
+max_features: log2
+min_samples_leaf: 1
+min_samples_split: 3
+n_estimators: 100
+Best cross-validation score: 0.9396
+Validating model for s037 on train validation set...
+Testing model for s037 on test set...
+
+Train Validation Results for s037:
+Accuracy: 92.50%
+Precision: 100.00%
+Recall: 85.00%
+F1 Score: 91.89%
+FAR: 0.00%
+FRR: 15.00%
+
+Test Results for s037:
+Accuracy: 96.00%
+Precision: 100.00%
+Recall: 92.00%
+F1 Score: 95.83%
+FAR: 0.00%
+FRR: 8.00%
+
+Processing user: s028
+
+Tuning hyperparameters for user s028...
+Best parameters for s028:
+criterion: gini
+max_depth: None
+max_features: log2
+min_samples_leaf: 1
+min_samples_split: 5
+n_estimators: 100
+Best cross-validation score: 0.9896
+Validating model for s028 on train validation set...
+Testing model for s028 on test set...
+
+Train Validation Results for s028:
+Accuracy: 100.00%
+Precision: 100.00%
+Recall: 100.00%
+F1 Score: 100.00%
+FAR: 0.00%
+FRR: 0.00%
+
+Test Results for s028:
+Accuracy: 99.00%
+Precision: 100.00%
+Recall: 98.00%
+F1 Score: 98.99%
+FAR: 0.00%
+FRR: 2.00%
+
+Processing user: s010
+
+Tuning hyperparameters for user s010...
+Best parameters for s010:
+criterion: entropy
+max_depth: None
+max_features: log2
+min_samples_leaf: 3
+min_samples_split: 2
+n_estimators: 200
+Best cross-validation score: 0.9792
+Validating model for s010 on train validation set...
+Testing model for s010 on test set...
+
+Train Validation Results for s010:
+Accuracy: 98.33%
+Precision: 100.00%
+Recall: 96.67%
+F1 Score: 98.31%
+FAR: 0.00%
+FRR: 3.33%
+
+Test Results for s010:
+Accuracy: 98.50%
+Precision: 100.00%
+Recall: 97.00%
+F1 Score: 98.48%
+FAR: 0.00%
+FRR: 3.00%
+
+Processing user: s038
+
+Tuning hyperparameters for user s038...
+Best parameters for s038:
+criterion: gini
+max_depth: None
+max_features: sqrt
+min_samples_leaf: 1
+min_samples_split: 3
+n_estimators: 200
+Best cross-validation score: 0.9812
+Validating model for s038 on train validation set...
+Testing model for s038 on test set...
+
+Train Validation Results for s038:
+Accuracy: 99.17%
+Precision: 100.00%
+Recall: 98.33%
+F1 Score: 99.16%
+FAR: 0.00%
+FRR: 1.67%
+
+Test Results for s038:
+Accuracy: 99.50%
+Precision: 100.00%
+Recall: 99.00%
+F1 Score: 99.50%
+FAR: 0.00%
+FRR: 1.00%
+
+Processing user: s008
+
+Tuning hyperparameters for user s008...
+Best parameters for s008:
+criterion: entropy
+max_depth: None
+max_features: log2
+min_samples_leaf: 2
+min_samples_split: 2
+n_estimators: 200
+Best cross-validation score: 0.9146
+Validating model for s008 on train validation set...
+Testing model for s008 on test set...
+
+Train Validation Results for s008:
+Accuracy: 90.83%
+Precision: 100.00%
+Recall: 81.67%
+F1 Score: 89.91%
+FAR: 0.00%
+FRR: 18.33%
+
+Test Results for s008:
+Accuracy: 98.00%
+Precision: 100.00%
+Recall: 96.00%
+F1 Score: 97.96%
+FAR: 0.00%
+FRR: 4.00%
+
+Processing user: s018
+
+Tuning hyperparameters for user s018...
+Best parameters for s018:
+criterion: entropy
+max_depth: None
+max_features: sqrt
+min_samples_leaf: 1
+min_samples_split: 5
+n_estimators: 100
+Best cross-validation score: 0.9354
+Validating model for s018 on train validation set...
+Testing model for s018 on test set...
+
+Train Validation Results for s018:
+Accuracy: 97.50%
+Precision: 100.00%
+Recall: 95.00%
+F1 Score: 97.44%
+FAR: 0.00%
+FRR: 5.00%
+
+Test Results for s018:
+Accuracy: 96.50%
+Precision: 100.00%
+Recall: 93.00%
+F1 Score: 96.37%
+FAR: 0.00%
+FRR: 7.00%
+
+Processing user: s047
+
+Tuning hyperparameters for user s047...
+Best parameters for s047:
+criterion: entropy
+max_depth: None
+max_features: log2
+min_samples_leaf: 1
+min_samples_split: 2
+n_estimators: 100
+Best cross-validation score: 0.9479
+Validating model for s047 on train validation set...
+Testing model for s047 on test set...
+
+Train Validation Results for s047:
+Accuracy: 97.50%
+Precision: 100.00%
+Recall: 95.00%
+F1 Score: 97.44%
+FAR: 0.00%
+FRR: 5.00%
+
+Test Results for s047:
+Accuracy: 98.00%
+Precision: 100.00%
+Recall: 96.00%
+F1 Score: 97.96%
+FAR: 0.00%
+FRR: 4.00%
+
+Processing user: s033
+
+Tuning hyperparameters for user s033...
+Best parameters for s033:
+criterion: gini
+max_depth: None
+max_features: sqrt
+min_samples_leaf: 1
+min_samples_split: 2
+n_estimators: 100
+Best cross-validation score: 0.9896
+Validating model for s033 on train validation set...
+Testing model for s033 on test set...
+
+Train Validation Results for s033:
+Accuracy: 98.33%
+Precision: 100.00%
+Recall: 96.67%
+F1 Score: 98.31%
+FAR: 0.00%
+FRR: 3.33%
+
+Test Results for s033:
+Accuracy: 99.00%
+Precision: 100.00%
+Recall: 98.00%
+F1 Score: 98.99%
+FAR: 0.00%
+FRR: 2.00%
+
+Processing user: s026
+
+Tuning hyperparameters for user s026...
+Best parameters for s026:
+criterion: entropy
+max_depth: 10
+max_features: log2
+min_samples_leaf: 2
+min_samples_split: 5
+n_estimators: 200
+Best cross-validation score: 0.9479
+Validating model for s026 on train validation set...
+Testing model for s026 on test set...
+
+Train Validation Results for s026:
+Accuracy: 99.17%
+Precision: 98.36%
+Recall: 100.00%
+F1 Score: 99.17%
+FAR: 1.67%
+FRR: 0.00%
+
+Test Results for s026:
+Accuracy: 98.00%
+Precision: 98.98%
+Recall: 97.00%
+F1 Score: 97.98%
+FAR: 1.00%
+FRR: 3.00%
+
+Processing user: s048
+
+Tuning hyperparameters for user s048...
+Best parameters for s048:
+criterion: entropy
+max_depth: 10
+max_features: log2
+min_samples_leaf: 1
+min_samples_split: 3
+n_estimators: 100
+Best cross-validation score: 0.9271
+Validating model for s048 on train validation set...
+Testing model for s048 on test set...
+
+Train Validation Results for s048:
+Accuracy: 96.67%
+Precision: 100.00%
+Recall: 93.33%
+F1 Score: 96.55%
+FAR: 0.00%
+FRR: 6.67%
+
+Test Results for s048:
+Accuracy: 97.00%
+Precision: 100.00%
+Recall: 94.00%
+F1 Score: 96.91%
+FAR: 0.00%
+FRR: 6.00%
+
+Processing user: s055
+
+Tuning hyperparameters for user s055...
+Best parameters for s055:
+criterion: gini
+max_depth: None
+max_features: sqrt
+min_samples_leaf: 3
+min_samples_split: 2
+n_estimators: 200
+Best cross-validation score: 0.9771
+Validating model for s055 on train validation set...
+Testing model for s055 on test set...
+
+Train Validation Results for s055:
+Accuracy: 98.33%
+Precision: 100.00%
+Recall: 96.67%
+F1 Score: 98.31%
+FAR: 0.00%
+FRR: 3.33%
+
+Test Results for s055:
+Accuracy: 97.50%
+Precision: 100.00%
+Recall: 95.00%
+F1 Score: 97.44%
+FAR: 0.00%
+FRR: 5.00%
+
+Processing user: s024
+
+Tuning hyperparameters for user s024...
+Best parameters for s024:
+criterion: gini
+max_depth: None
+max_features: log2
+min_samples_leaf: 1
+min_samples_split: 5
+n_estimators: 300
+Best cross-validation score: 0.9896
+Validating model for s024 on train validation set...
+Testing model for s024 on test set...
+
+Train Validation Results for s024:
+Accuracy: 99.17%
+Precision: 100.00%
+Recall: 98.33%
+F1 Score: 99.16%
+FAR: 0.00%
+FRR: 1.67%
+
+Test Results for s024:
+Accuracy: 99.00%
+Precision: 100.00%
+Recall: 98.00%
+F1 Score: 98.99%
+FAR: 0.00%
+FRR: 2.00%
+
+Processing user: s016
+
+Tuning hyperparameters for user s016...
+Best parameters for s016:
+criterion: entropy
+max_depth: None
+max_features: log2
+min_samples_leaf: 2
+min_samples_split: 5
+n_estimators: 100
+Best cross-validation score: 0.9708
+Validating model for s016 on train validation set...
+Testing model for s016 on test set...
+
+Train Validation Results for s016:
+Accuracy: 99.17%
+Precision: 98.36%
+Recall: 100.00%
+F1 Score: 99.17%
+FAR: 1.67%
+FRR: 0.00%
+
+Test Results for s016:
+Accuracy: 98.50%
+Precision: 98.99%
+Recall: 98.00%
+F1 Score: 98.49%
+FAR: 1.00%
+FRR: 2.00%
+
+Processing user: s053
+
+Tuning hyperparameters for user s053...
+Best parameters for s053:
+criterion: entropy
+max_depth: None
+max_features: log2
+min_samples_leaf: 1
+min_samples_split: 2
+n_estimators: 100
+Best cross-validation score: 0.9792
+Validating model for s053 on train validation set...
+Testing model for s053 on test set...
+
+Train Validation Results for s053:
+Accuracy: 98.33%
+Precision: 100.00%
+Recall: 96.67%
+F1 Score: 98.31%
+FAR: 0.00%
+FRR: 3.33%
+
+Test Results for s053:
+Accuracy: 99.00%
+Precision: 100.00%
+Recall: 98.00%
+F1 Score: 98.99%
+FAR: 0.00%
+FRR: 2.00%
+
+Processing user: s022
+
+Tuning hyperparameters for user s022...
+Best parameters for s022:
+criterion: gini
+max_depth: None
+max_features: sqrt
+min_samples_leaf: 1
+min_samples_split: 2
+n_estimators: 200
+Best cross-validation score: 0.9896
+Validating model for s022 on train validation set...
+Testing model for s022 on test set...
+
+Train Validation Results for s022:
+Accuracy: 100.00%
+Precision: 100.00%
+Recall: 100.00%
+F1 Score: 100.00%
+FAR: 0.00%
+FRR: 0.00%
+
+Test Results for s022:
+Accuracy: 100.00%
+Precision: 100.00%
+Recall: 100.00%
+F1 Score: 100.00%
+FAR: 0.00%
+FRR: 0.00%
+
+Processing user: s052
+
+Tuning hyperparameters for user s052...
+Best parameters for s052:
+criterion: gini
+max_depth: None
+max_features: sqrt
+min_samples_leaf: 3
+min_samples_split: 2
+n_estimators: 100
+Best cross-validation score: 0.9938
+Validating model for s052 on train validation set...
+Testing model for s052 on test set...
+
+Train Validation Results for s052:
+Accuracy: 99.17%
+Precision: 100.00%
+Recall: 98.33%
+F1 Score: 99.16%
+FAR: 0.00%
+FRR: 1.67%
+
+Test Results for s052:
+Accuracy: 99.50%
+Precision: 100.00%
+Recall: 99.00%
+F1 Score: 99.50%
+FAR: 0.00%
+FRR: 1.00%
+
+Processing user: s021
+
+Tuning hyperparameters for user s021...
+Best parameters for s021:
+criterion: gini
+max_depth: None
+max_features: sqrt
+min_samples_leaf: 1
+min_samples_split: 3
+n_estimators: 100
+Best cross-validation score: 0.9583
+Validating model for s021 on train validation set...
+Testing model for s021 on test set...
+
+Train Validation Results for s021:
+Accuracy: 97.50%
+Precision: 100.00%
+Recall: 95.00%
+F1 Score: 97.44%
+FAR: 0.00%
+FRR: 5.00%
+
+Test Results for s021:
+Accuracy: 97.50%
+Precision: 100.00%
+Recall: 95.00%
+F1 Score: 97.44%
+FAR: 0.00%
+FRR: 5.00%
+
+Processing user: s039
+
+Tuning hyperparameters for user s039...
+Best parameters for s039:
+criterion: entropy
+max_depth: None
+max_features: log2
+min_samples_leaf: 1
+min_samples_split: 3
+n_estimators: 300
+Best cross-validation score: 0.9771
+Validating model for s039 on train validation set...
+Testing model for s039 on test set...
+
+Train Validation Results for s039:
+Accuracy: 96.67%
+Precision: 100.00%
+Recall: 93.33%
+F1 Score: 96.55%
+FAR: 0.00%
+FRR: 6.67%
+
+Test Results for s039:
+Accuracy: 98.00%
+Precision: 100.00%
+Recall: 96.00%
+F1 Score: 97.96%
+FAR: 0.00%
+FRR: 4.00%
+
+Processing user: s013
+
+Tuning hyperparameters for user s013...
+Best parameters for s013:
+criterion: gini
+max_depth: None
+max_features: log2
+min_samples_leaf: 1
+min_samples_split: 5
+n_estimators: 300
+Best cross-validation score: 0.9625
+Validating model for s013 on train validation set...
+Testing model for s013 on test set...
+
+Train Validation Results for s013:
+Accuracy: 99.17%
+Precision: 100.00%
+Recall: 98.33%
+F1 Score: 99.16%
+FAR: 0.00%
+FRR: 1.67%
+
+Test Results for s013:
+Accuracy: 99.00%
+Precision: 100.00%
+Recall: 98.00%
+F1 Score: 98.99%
+FAR: 0.00%
+FRR: 2.00%
+
+Processing user: s046
+
+Tuning hyperparameters for user s046...
+Best parameters for s046:
+criterion: entropy
+max_depth: 15
+max_features: log2
+min_samples_leaf: 1
+min_samples_split: 2
+n_estimators: 100
+Best cross-validation score: 0.9292
+Validating model for s046 on train validation set...
+Testing model for s046 on test set...
+
+Train Validation Results for s046:
+Accuracy: 94.17%
+Precision: 100.00%
+Recall: 88.33%
+F1 Score: 93.81%
+FAR: 0.00%
+FRR: 11.67%
+
+Test Results for s046:
+Accuracy: 95.00%
+Precision: 100.00%
+Recall: 90.00%
+F1 Score: 94.74%
+FAR: 0.00%
+FRR: 10.00%
+
+Processing user: s041
+
+Tuning hyperparameters for user s041...
+Best parameters for s041:
+criterion: entropy
+max_depth: None
+max_features: sqrt
+min_samples_leaf: 2
+min_samples_split: 2
+n_estimators: 100
+Best cross-validation score: 0.9625
+Validating model for s041 on train validation set...
+Testing model for s041 on test set...
+
+Train Validation Results for s041:
+Accuracy: 97.50%
+Precision: 100.00%
+Recall: 95.00%
+F1 Score: 97.44%
+FAR: 0.00%
+FRR: 5.00%
+
+Test Results for s041:
+Accuracy: 98.50%
+Precision: 100.00%
+Recall: 97.00%
+F1 Score: 98.48%
+FAR: 0.00%
+FRR: 3.00%
+
+Processing user: s002
+
+Tuning hyperparameters for user s002...
+Best parameters for s002:
+criterion: entropy
+max_depth: 15
+max_features: log2
+min_samples_leaf: 1
+min_samples_split: 5
+n_estimators: 100
+Best cross-validation score: 0.9000
+Validating model for s002 on train validation set...
+Testing model for s002 on test set...
+
+Train Validation Results for s002:
+Accuracy: 97.50%
+Precision: 100.00%
+Recall: 95.00%
+F1 Score: 97.44%
+FAR: 0.00%
+FRR: 5.00%
+
+Test Results for s002:
+Accuracy: 98.00%
+Precision: 100.00%
+Recall: 96.00%
+F1 Score: 97.96%
+FAR: 0.00%
+FRR: 4.00%
+
+Processing user: s025
+
+Tuning hyperparameters for user s025...
+Best parameters for s025:
+criterion: gini
+max_depth: None
+max_features: sqrt
+min_samples_leaf: 1
+min_samples_split: 2
+n_estimators: 100
+Best cross-validation score: 0.9854
+Validating model for s025 on train validation set...
+Testing model for s025 on test set...
+
+Train Validation Results for s025:
+Accuracy: 100.00%
+Precision: 100.00%
+Recall: 100.00%
+F1 Score: 100.00%
+FAR: 0.00%
+FRR: 0.00%
+
+Test Results for s025:
+Accuracy: 99.50%
+Precision: 100.00%
+Recall: 99.00%
+F1 Score: 99.50%
+FAR: 0.00%
+FRR: 1.00%
+
+Processing user: s007
+
+Tuning hyperparameters for user s007...
+Best parameters for s007:
+criterion: gini
+max_depth: 10
+max_features: log2
+min_samples_leaf: 1
+min_samples_split: 2
+n_estimators: 200
+Best cross-validation score: 0.9146
+Validating model for s007 on train validation set...
+Testing model for s007 on test set...
+
+Train Validation Results for s007:
+Accuracy: 95.00%
+Precision: 100.00%
+Recall: 90.00%
+F1 Score: 94.74%
+FAR: 0.00%
+FRR: 10.00%
+
+Test Results for s007:
+Accuracy: 97.00%
+Precision: 100.00%
+Recall: 94.00%
+F1 Score: 96.91%
+FAR: 0.00%
+FRR: 6.00%
+
+Processing user: s029
+
+Tuning hyperparameters for user s029...
+Best parameters for s029:
+criterion: gini
+max_depth: 10
+max_features: log2
+min_samples_leaf: 1
+min_samples_split: 2
+n_estimators: 100
+Best cross-validation score: 0.9583
+Validating model for s029 on train validation set...
+Testing model for s029 on test set...
+
+Train Validation Results for s029:
+Accuracy: 98.33%
+Precision: 100.00%
+Recall: 96.67%
+F1 Score: 98.31%
+FAR: 0.00%
+FRR: 3.33%
+
+Test Results for s029:
+Accuracy: 96.00%
+Precision: 100.00%
+Recall: 92.00%
+F1 Score: 95.83%
+FAR: 0.00%
+FRR: 8.00%
+
+Processing user: s003
+
+Tuning hyperparameters for user s003...
+Best parameters for s003:
+criterion: entropy
+max_depth: 10
+max_features: sqrt
+min_samples_leaf: 1
+min_samples_split: 3
+n_estimators: 100
+Best cross-validation score: 0.9521
+Validating model for s003 on train validation set...
+Testing model for s003 on test set...
+
+Train Validation Results for s003:
+Accuracy: 98.33%
+Precision: 100.00%
+Recall: 96.67%
+F1 Score: 98.31%
+FAR: 0.00%
+FRR: 3.33%
+
+Test Results for s003:
+Accuracy: 98.50%
+Precision: 100.00%
+Recall: 97.00%
+F1 Score: 98.48%
+FAR: 0.00%
+FRR: 3.00%
+
+Processing user: s040
+
+Tuning hyperparameters for user s040...
+Best parameters for s040:
+criterion: gini
+max_depth: None
+max_features: sqrt
+min_samples_leaf: 1
+min_samples_split: 2
+n_estimators: 300
+Best cross-validation score: 0.9750
+Validating model for s040 on train validation set...
+Testing model for s040 on test set...
+
+Train Validation Results for s040:
+Accuracy: 98.33%
+Precision: 100.00%
+Recall: 96.67%
+F1 Score: 98.31%
+FAR: 0.00%
+FRR: 3.33%
+
+Test Results for s040:
+Accuracy: 99.00%
+Precision: 100.00%
+Recall: 98.00%
+F1 Score: 98.99%
+FAR: 0.00%
+FRR: 2.00%
+
+Processing user: s057
+
+Tuning hyperparameters for user s057...
+Best parameters for s057:
+criterion: entropy
+max_depth: None
+max_features: log2
+min_samples_leaf: 1
+min_samples_split: 5
+n_estimators: 200
+Best cross-validation score: 0.9187
+Validating model for s057 on train validation set...
+Testing model for s057 on test set...
+
+Train Validation Results for s057:
+Accuracy: 95.00%
+Precision: 100.00%
+Recall: 90.00%
+F1 Score: 94.74%
+FAR: 0.00%
+FRR: 10.00%
+
+Test Results for s057:
+Accuracy: 95.00%
+Precision: 100.00%
+Recall: 90.00%
+F1 Score: 94.74%
+FAR: 0.00%
+FRR: 10.00%
+
+=== Train Validation Summary ===
+
+Overall Statistics:
+Total Users: 51
+Total Samples: 6120
+Overall Accuracy: 97.58%
+Average Precision: 99.94%
+Average Recall: 95.23%
+Average F1 Score: 97.47%
+Average FAR: 0.07%
+Average FRR: 4.77%
+
+Per-User Statistics:
+Login		Accuracy	Precision	Recall		F1 Score	FAR		FRR
+----------------------------------------------------------------------------------------------------
+s002		97.50%		100.00%		95.00%		97.44%		0.00%		5.00%
+s003		98.33%		100.00%		96.67%		98.31%		0.00%		3.33%
+s004		97.50%		100.00%		95.00%		97.44%		0.00%		5.00%
+s005		99.17%		100.00%		98.33%		99.16%		0.00%		1.67%
+s007		95.00%		100.00%		90.00%		94.74%		0.00%		10.00%
+s008		90.83%		100.00%		81.67%		89.91%		0.00%		18.33%
+s010		98.33%		100.00%		96.67%		98.31%		0.00%		3.33%
+s011		95.00%		100.00%		90.00%		94.74%		0.00%		10.00%
+s012		98.33%		100.00%		96.67%		98.31%		0.00%		3.33%
+s013		99.17%		100.00%		98.33%		99.16%		0.00%		1.67%
+s015		99.17%		100.00%		98.33%		99.16%		0.00%		1.67%
+s016		99.17%		98.36%		100.00%		99.17%		1.67%		0.00%
+s017		99.17%		100.00%		98.33%		99.16%		0.00%		1.67%
+s018		97.50%		100.00%		95.00%		97.44%		0.00%		5.00%
+s019		98.33%		100.00%		96.67%		98.31%		0.00%		3.33%
+s020		95.83%		100.00%		91.67%		95.65%		0.00%		8.33%
+s021		97.50%		100.00%		95.00%		97.44%		0.00%		5.00%
+s022		100.00%		100.00%		100.00%		100.00%		0.00%		0.00%
+s024		99.17%		100.00%		98.33%		99.16%		0.00%		1.67%
+s025		100.00%		100.00%		100.00%		100.00%		0.00%		0.00%
+s026		99.17%		98.36%		100.00%		99.17%		1.67%		0.00%
+s027		99.17%		100.00%		98.33%		99.16%		0.00%		1.67%
+s028		100.00%		100.00%		100.00%		100.00%		0.00%		0.00%
+s029		98.33%		100.00%		96.67%		98.31%		0.00%		3.33%
+s030		96.67%		100.00%		93.33%		96.55%		0.00%		6.67%
+s031		95.83%		100.00%		91.67%		95.65%		0.00%		8.33%
+s032		92.50%		100.00%		85.00%		91.89%		0.00%		15.00%
+s033		98.33%		100.00%		96.67%		98.31%		0.00%		3.33%
+s034		95.83%		100.00%		91.67%		95.65%		0.00%		8.33%
+s035		98.33%		100.00%		96.67%		98.31%		0.00%		3.33%
+s036		100.00%		100.00%		100.00%		100.00%		0.00%		0.00%
+s037		92.50%		100.00%		85.00%		91.89%		0.00%		15.00%
+s038		99.17%		100.00%		98.33%		99.16%		0.00%		1.67%
+s039		96.67%		100.00%		93.33%		96.55%		0.00%		6.67%
+s040		98.33%		100.00%		96.67%		98.31%		0.00%		3.33%
+s041		97.50%		100.00%		95.00%		97.44%		0.00%		5.00%
+s042		99.17%		100.00%		98.33%		99.16%		0.00%		1.67%
+s043		100.00%		100.00%		100.00%		100.00%		0.00%		0.00%
+s044		99.17%		100.00%		98.33%		99.16%		0.00%		1.67%
+s046		94.17%		100.00%		88.33%		93.81%		0.00%		11.67%
+s047		97.50%		100.00%		95.00%		97.44%		0.00%		5.00%
+s048		96.67%		100.00%		93.33%		96.55%		0.00%		6.67%
+s049		99.17%		100.00%		98.33%		99.16%		0.00%		1.67%
+s050		100.00%		100.00%		100.00%		100.00%		0.00%		0.00%
+s051		97.50%		100.00%		95.00%		97.44%		0.00%		5.00%
+s052		99.17%		100.00%		98.33%		99.16%		0.00%		1.67%
+s053		98.33%		100.00%		96.67%		98.31%		0.00%		3.33%
+s054		97.50%		100.00%		95.00%		97.44%		0.00%		5.00%
+s055		98.33%		100.00%		96.67%		98.31%		0.00%		3.33%
+s056		91.67%		100.00%		83.33%		90.91%		0.00%		16.67%
+s057		95.00%		100.00%		90.00%		94.74%		0.00%		10.00%
+
+=== Test Summary ===
+
+Overall Statistics:
+Total Users: 51
+Total Samples: 10200
+Overall Accuracy: 97.78%
+Average Precision: 99.96%
+Average Recall: 95.61%
+Average F1 Score: 97.71%
+Average FAR: 0.04%
+Average FRR: 4.39%
+
+Per-User Statistics:
+Login		Accuracy	Precision	Recall		F1 Score	FAR		FRR
+----------------------------------------------------------------------------------------------------
+s002		98.00%		100.00%		96.00%		97.96%		0.00%		4.00%
+s003		98.50%		100.00%		97.00%		98.48%		0.00%		3.00%
+s004		97.50%		100.00%		95.00%		97.44%		0.00%		5.00%
+s005		99.50%		100.00%		99.00%		99.50%		0.00%		1.00%
+s007		97.00%		100.00%		94.00%		96.91%		0.00%		6.00%
+s008		98.00%		100.00%		96.00%		97.96%		0.00%		4.00%
+s010		98.50%		100.00%		97.00%		98.48%		0.00%		3.00%
+s011		95.50%		100.00%		91.00%		95.29%		0.00%		9.00%
+s012		99.50%		100.00%		99.00%		99.50%		0.00%		1.00%
+s013		99.00%		100.00%		98.00%		98.99%		0.00%		2.00%
+s015		96.50%		100.00%		93.00%		96.37%		0.00%		7.00%
+s016		98.50%		98.99%		98.00%		98.49%		1.00%		2.00%
+s017		98.00%		100.00%		96.00%		97.96%		0.00%		4.00%
+s018		96.50%		100.00%		93.00%		96.37%		0.00%		7.00%
+s019		98.00%		100.00%		96.00%		97.96%		0.00%		4.00%
+s020		97.00%		100.00%		94.00%		96.91%		0.00%		6.00%
+s021		97.50%		100.00%		95.00%		97.44%		0.00%		5.00%
+s022		100.00%		100.00%		100.00%		100.00%		0.00%		0.00%
+s024		99.00%		100.00%		98.00%		98.99%		0.00%		2.00%
+s025		99.50%		100.00%		99.00%		99.50%		0.00%		1.00%
+s026		98.00%		98.98%		97.00%		97.98%		1.00%		3.00%
+s027		95.50%		100.00%		91.00%		95.29%		0.00%		9.00%
+s028		99.00%		100.00%		98.00%		98.99%		0.00%		2.00%
+s029		96.00%		100.00%		92.00%		95.83%		0.00%		8.00%
+s030		98.00%		100.00%		96.00%		97.96%		0.00%		4.00%
+s031		96.00%		100.00%		92.00%		95.83%		0.00%		8.00%
+s032		95.50%		100.00%		91.00%		95.29%		0.00%		9.00%
+s033		99.00%		100.00%		98.00%		98.99%		0.00%		2.00%
+s034		96.00%		100.00%		92.00%		95.83%		0.00%		8.00%
+s035		97.00%		100.00%		94.00%		96.91%		0.00%		6.00%
+s036		100.00%		100.00%		100.00%		100.00%		0.00%		0.00%
+s037		96.00%		100.00%		92.00%		95.83%		0.00%		8.00%
+s038		99.50%		100.00%		99.00%		99.50%		0.00%		1.00%
+s039		98.00%		100.00%		96.00%		97.96%		0.00%		4.00%
+s040		99.00%		100.00%		98.00%		98.99%		0.00%		2.00%
+s041		98.50%		100.00%		97.00%		98.48%		0.00%		3.00%
+s042		98.00%		100.00%		96.00%		97.96%		0.00%		4.00%
+s043		100.00%		100.00%		100.00%		100.00%		0.00%		0.00%
+s044		100.00%		100.00%		100.00%		100.00%		0.00%		0.00%
+s046		95.00%		100.00%		90.00%		94.74%		0.00%		10.00%
+s047		98.00%		100.00%		96.00%		97.96%		0.00%		4.00%
+s048		97.00%		100.00%		94.00%		96.91%		0.00%		6.00%
+s049		100.00%		100.00%		100.00%		100.00%		0.00%		0.00%
+s050		96.50%		100.00%		93.00%		96.37%		0.00%		7.00%
+s051		96.50%		100.00%		93.00%		96.37%		0.00%		7.00%
+s052		99.50%		100.00%		99.00%		99.50%		0.00%		1.00%
+s053		99.00%		100.00%		98.00%		98.99%		0.00%		2.00%
+s054		95.50%		100.00%		91.00%		95.29%		0.00%		9.00%
+s055		97.50%		100.00%		95.00%		97.44%		0.00%		5.00%
+s056		97.00%		100.00%		94.00%		96.91%		0.00%		6.00%
+s057		95.00%		100.00%		90.00%		94.74%		0.00%		10.00%
