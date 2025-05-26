@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:DigitalHandwriting.Views"
         xmlns:viewModels="clr-namespace:DigitalHandwriting.ViewModels"
-        xmlns:b="http://schemas.microsoft.com/xaml/behaviors" 
+        xmlns:b="http://schemas.microsoft.com/xaml/behaviors"
         xmlns:converters="clr-namespace:DigitalHandwriting.Converters"
         mc:Ignorable="d"
         d:Background="White"
@@ -22,12 +22,12 @@
                 <RowDefinition Height="Auto"/>
             </Grid.RowDefinitions>
 
-            <Label Content="Логин:" Grid.Row="0"/>
+            <Label Content="Login:" Grid.Row="0"/>
             <TextBox Text="{Binding UserLogin, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" IsEnabled="{Binding IsLoginBoxEnabled}" Grid.Row="1"/>
-            <TextBlock Text="{Binding RegistrationStep, Converter={converters:RegistrationInformationStringConverter}}" 
+            <TextBlock Text="{Binding RegistrationStep, Converter={converters:RegistrationInformationStringConverter}}"
                        Width="400" Margin="25" TextWrapping="Wrap" TextAlignment="Center" Grid.Row="2"/>
 
-            <Label Content="{Binding UserPassPhrase, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" ContentStringFormat="Проверочный текст: {0}" Grid.Row="3" Visibility="{Binding IsCheckTextBoxEnabled,Converter={converters:BoolToVisibilityConverter}}"/>
+            <Label Content="{Binding UserPassPhrase, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" ContentStringFormat="Check text: {0}" Grid.Row="3" Visibility="{Binding IsCheckTextBoxEnabled,Converter={converters:BoolToVisibilityConverter}}"/>
             <TextBox Text="{Binding UserCheckText, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" IsEnabled="{Binding IsCheckTextBoxEnabled}" Grid.Row="4" Visibility="{Binding IsCheckTextBoxEnabled,Converter={converters:BoolToVisibilityConverter}}">
                 <b:Interaction.Triggers>
                     <b:EventTrigger EventName="PreviewKeyDown">
@@ -39,16 +39,16 @@
                 </b:Interaction.Triggers>
             </TextBox>
 
-            <Label Content="Проверочная фраза:" Grid.Row="3" Visibility="{Binding IsPasswordTextBoxVisible, Converter={converters:BoolToVisibilityConverter}}"/>
-            <TextBox Text="{Binding UserPassPhrase, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
+            <Label Content="Passphrase:" Grid.Row="3" Visibility="{Binding IsPasswordTextBoxVisible, Converter={converters:BoolToVisibilityConverter}}"/>
+            <TextBox Text="{Binding UserPassPhrase, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                      IsEnabled="{Binding IsPasswordTextBoxVisible}" Visibility="{Binding IsPasswordTextBoxVisible, Converter={converters:BoolToVisibilityConverter}}" Grid.Row="4"/>
 
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Grid.Row="5">
-                <Button Content="Назад" HorizontalAlignment="Center" Width="100" Margin="10" Command="{Binding ReturnHomeCommand}"/>
-                <Button Content="Сбросить" HorizontalAlignment="Center" Width="100" Command="{Binding OnResetRegistrationWindowButtonClickCommand}" Margin="10"/>
-                <Button Content="Начать" HorizontalAlignment="Center" Command="{Binding OnRegistrationStartButtonClickCommand}" Width="100" Margin="10" 
+                <Button Content="Back" HorizontalAlignment="Center" Width="100" Margin="10" Command="{Binding ReturnHomeCommand}"/>
+                <Button Content="Reset" HorizontalAlignment="Center" Width="100" Command="{Binding OnResetRegistrationWindowButtonClickCommand}" Margin="10"/>
+                <Button Content="Start" HorizontalAlignment="Center" Command="{Binding OnRegistrationStartButtonClickCommand}" Width="100" Margin="10"
                         Visibility="{Binding IsRegistrationStartButtonVisible, Converter={converters:BoolToVisibilityConverter}}" />
-                <Button Content="Завершить" HorizontalAlignment="Center" Command="{Binding OnRegistrationFinalizeButtonClickCommand}" Width="100" Margin="10" 
+                <Button Content="Finalize" HorizontalAlignment="Center" Command="{Binding OnRegistrationFinalizeButtonClickCommand}" Width="100" Margin="10"
                         Visibility="{Binding IsFinalizeButtonVisible, Converter={converters:BoolToVisibilityConverter}}" />
             </StackPanel>
         </Grid>

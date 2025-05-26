@@ -13,10 +13,10 @@ namespace DigitalHandwriting
 
         public const string DbName = "DigitalHandwriting.db";
 
-        public const string FirstRegistrationStepDescription = "Придумайте проверочную фразу от 11 до 20 символов";
-        public const string SecondRegistrationStepDescription = "Введите фразу снова.";
-        public const string ThirdRegistrationStepDescription = "И еще разок.";
-        public const string FourthRegistrationStepDescription = "И снова.";
-        public const string FinalRegistrationStepDescription = "Завершите регистрацию";
+        public const string FirstRegistrationStepDescription = "Come up with a test phrase between 11 and 20 characters long";
+        public const string SecondRegistrationStepDescription = "Enter the phrase again.";
+        public const string ThirdRegistrationStepDescription = "And one more time.";
+        public const string FourthRegistrationStepDescription = "And again.";
+        public const string FinalRegistrationStepDescription = "Complete registration";
     }
 }

@@ -21,9 +21,9 @@
             <RowDefinition Height="40"/>
         </Grid.RowDefinitions>
 
-        <Label Content="Логин:" Grid.Row="0"/>
+        <Label Content="Login:" Grid.Row="0"/>
         <TextBox Text="{Binding UserLogin, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Grid.Row="1"/>
-        <Label Content="Проверочный текст" Grid.Row="2"/>
+        <Label Content="Check text" Grid.Row="2"/>
         <TextBox Text="{Binding UserCheckText, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" IsEnabled="{Binding IsHandwritingAuthentificationEnabled}" Grid.Row="3">
             <b:Interaction.Triggers>
                 <b:EventTrigger EventName="PreviewKeyDown">
@@ -35,10 +35,10 @@
             </b:Interaction.Triggers>
         </TextBox>
         <StackPanel HorizontalAlignment="Center" Orientation="Horizontal" Grid.Row="6">
-            <Button Content="Аутентификация" Margin="15,15,0,0" Width="100"
+            <Button Content="Authentication" Margin="15,15,0,0" Width="100"
                     Command="{Binding OnAuthenticationButtonClickCommand}" IsEnabled="{Binding IsAuthenticationButtonEnabled}"/>
-            <Button Content="Регистрация" Margin="15,15,0,0" Width="100" Command="{Binding OnRegistrationButtonClickCommand}"/>
-            <Button Content="Администрирование" Margin="15,15,0,0" Width="120" Command="{Binding OnAdministrationButtonClickCommand}"/>
+            <Button Content="Registration" Margin="15,15,0,0" Width="100" Command="{Binding OnRegistrationButtonClickCommand}"/>
+            <Button Content="Administration" Margin="15,15,0,0" Width="120" Command="{Binding OnAdministrationButtonClickCommand}"/>
         </StackPanel>
     </Grid>
 </UserControl>

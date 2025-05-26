@@ -3,28 +3,28 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:DigitalHandwriting.Views" 
+        xmlns:local="clr-namespace:DigitalHandwriting.Views"
         xmlns:viewmodels="clr-namespace:DigitalHandwriting.ViewModels"
         xmlns:converters="clr-namespace:DigitalHandwriting.Converters"
         mc:Ignorable="d"
         Height="90" Width="210">
-    
+
     <StackPanel Margin="5">
         <TextBlock Text="{Binding IsAuthentificated, Converter={converters:BoolToAuthorizationText}}"/>
         <StackPanel Orientation="Horizontal">
-            <TextBlock FontSize="8" Text="Результат времени удержания клавиш: "/>
+            <TextBlock FontSize="8" Text="Key hold time result: "/>
             <TextBlock Text="{Binding KeyPressedMetric}"/>
         </StackPanel>
         <StackPanel Orientation="Horizontal">
-            <TextBlock FontSize="8" Text="Результат времени межсимвольных интервалов (Up-Down): "/>
+            <TextBlock FontSize="8" Text="Between keys time result (Up-Down): "/>
             <TextBlock Text="{Binding BetweenKeysMetric}"/>
         </StackPanel>
         <StackPanel Orientation="Horizontal">
-            <TextBlock FontSize="8" Text="Результат времени межсимвольных интервалов (Down-Down): "/>
+            <TextBlock FontSize="8" Text="Between keys time result (Down-Down): "/>
             <TextBlock Text="{Binding BetweenKeysPressMetric}"/>
         </StackPanel>
         <StackPanel Orientation="Horizontal">
-            <TextBlock FontSize="8" Text="Результат времени межсимвольных интервалов (Up-Up): "/>
+            <TextBlock FontSize="8" Text="Between keys time result (Up-Up): "/>
             <TextBlock Text="{Binding BetweenKeysResolveMetric}"/>
         </StackPanel>
     </StackPanel>
