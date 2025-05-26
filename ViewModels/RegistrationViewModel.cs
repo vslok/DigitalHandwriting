@@ -179,7 +179,7 @@ namespace DigitalHandwriting.ViewModels
 
             if (_checkTextCurrentLetterIndex == _checkTextWithUpperCase.Length && UserCheckText.Length == _checkTextWithUpperCase.Length && RegistrationStep <= ApplicationConfiguration.RegistrationPassphraseInputs)
             {
-                _keyboardMetricsCollector.IncreaseMetricsCollectingStep(_checkTextWithUpperCase);
+                _keyboardMetricsCollector.IncreaseMetricsCollectingStep();
                 RegistrationStep++;
                 UserCheckText = "";
                 _checkTextCurrentLetterIndex = 0;

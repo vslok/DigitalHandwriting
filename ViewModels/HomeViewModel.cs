@@ -135,7 +135,6 @@ namespace DigitalHandwriting.ViewModels
                 }
 
                 _keyboardMetricsCollector.GetCurrentStepValues(
-                    UserCheckText.ToUpper(),
                     out var keyPressedValues,
                     out var betweenKeysValues);
 
