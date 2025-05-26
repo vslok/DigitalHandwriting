@@ -11,6 +11,7 @@ using DigitalHandwriting.Services;
 using System.Windows.Documents;
 using DigitalHandwriting.Repositories;
 using Microsoft.Win32;
+using DigitalHandwriting.Factories.AuthenticationMethods;
 
 namespace DigitalHandwriting.ViewModels
 {
@@ -112,7 +113,7 @@ namespace DigitalHandwriting.ViewModels
             _keyboardMetricsCollector.OnKeyDownEvent(e);
         }
 
-        private void OnAuthenticationButtonClick()
+        private async void OnAuthenticationButtonClick()
         {
             var user = _userRepository.GetUser(UserLogin);
 
@@ -138,7 +139,7 @@ namespace DigitalHandwriting.ViewModels
                     out var keyPressedValues,
                     out var betweenKeysValues);
 
-                var authenticationResult = AuthenticationService.HandwritingAuthentication(user, keyPressedValues, betweenKeysValues);
+                var authenticationResult = await AuthenticationService.HandwritingAuthentication(user, keyPressedValues, betweenKeysValues, Factories.AuthenticationMethods.Method.CNN);
 
                 var window = new UserInfo(authenticationResult);
                 window.ShowDialog();

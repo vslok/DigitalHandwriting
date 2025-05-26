@@ -92,13 +92,15 @@ namespace DigitalHandwriting.Factories.AuthenticationMethods.Models
 
         public List<List<double>> UserBetweenKeysTimesProfile => _userBetweenKeysTimesProfile;
 
-        public abstract List<AuthenticationResult> Authenticate(
+        public abstract Task<List<AuthenticationResult>> Authenticate(
+            string login,
             int n,
             List<double> loginKeyPressedTimes,
             List<double> loginBetweenKeysTimes,
             List<double> thresholds);
 
-        public abstract AuthenticationResult Authenticate(
+        public abstract Task<AuthenticationResult> Authenticate(
+            string login,
             int n,
             List<double> loginKeyPressedTimes,
             List<double> loginBetweenKeysTimes);

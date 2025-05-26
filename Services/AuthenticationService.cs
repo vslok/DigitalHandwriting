@@ -5,6 +5,7 @@ using DigitalHandwriting.Models; // For User and AuthenticationResult
 using System;
 using System.Collections.Generic;
 using System.Linq; // Required for .Any()
+using System.Threading.Tasks;
 
 namespace DigitalHandwriting.Services
 {
@@ -38,10 +39,11 @@ namespace DigitalHandwriting.Services
             return userPasswordHash.Equals(inputPasswordHash);
         }
 
-        public static AuthenticationResult HandwritingAuthentication(
+        public static async Task<AuthenticationResult> HandwritingAuthentication(
             User user,
             List<double> loginKeyPressedTimes,
-            List<double> loginBetweenKeysTimes)
+            List<double> loginBetweenKeysTimes,
+            Method authMethod = Method.FilteredManhattan)
         {
             if (user == null)
             {
@@ -80,13 +82,13 @@ namespace DigitalHandwriting.Services
             // The factory might return a specific "no-op" or "always fail" authenticator,
             // or the authenticator's Authenticate method will return IsAuthenticated = false.
             var authenticationMethod = AuthenticationMethodFactory.GetAuthenticationMethod(
-                Method.FilteredManhattan, // Or your chosen default method
+                authMethod,
                 hUserMedian,
                 udUserMedian,
                 hUserProfile,
                 duUserProfile);
 
-            return authenticationMethod.Authenticate(1, loginKeyPressedTimes, loginBetweenKeysTimes);
+            return await authenticationMethod.Authenticate(user.Login, 1, loginKeyPressedTimes, loginBetweenKeysTimes);
         }
     }
 }

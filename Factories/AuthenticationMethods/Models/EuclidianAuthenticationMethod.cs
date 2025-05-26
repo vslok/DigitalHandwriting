@@ -14,11 +14,15 @@ namespace DigitalHandwriting.Factories.AuthenticationMethods.Models
         {
         }
 
-        public override AuthenticationResult Authenticate(int n, List<double> loginKeyPressedTimes, List<double> loginBetweenKeysTimes)
+        public override async Task<AuthenticationResult> Authenticate(string login, int n, List<double> loginKeyPressedTimes, List<double> loginBetweenKeysTimes)
         {
+            // The 'login' parameter is not used in this specific local authentication method.
+            // It's added for conformity with the base class, which now supports ML service calls.
+            await Task.CompletedTask; // To make the method async without changing its core logic
+
             if (n > 1)
             {
-                return nGraphAuthentication(n, loginKeyPressedTimes, loginBetweenKeysTimes);
+                return nGraphAuthentication(login, n, loginKeyPressedTimes, loginBetweenKeysTimes);
             }
 
             var keyPressedDistance = Calculations.EuclideanDistance(UserKeyPressedTimes, loginKeyPressedTimes);
@@ -36,14 +40,17 @@ namespace DigitalHandwriting.Factories.AuthenticationMethods.Models
             return authResult;
         }
 
-        public override List<AuthenticationResult> Authenticate(
-            int n, List<double> loginKeyPressedTimes,
+        public override async Task<List<AuthenticationResult>> Authenticate(
+            string login, int n, List<double> loginKeyPressedTimes,
             List<double> loginBetweenKeysTimes,
             List<double> thresholds)
         {
+            // The 'login' parameter is not used in this specific local authentication method.
+            await Task.CompletedTask; // To make the method async
+
             if (n > 1)
             {
-                return nGraphAuthentication(n, loginKeyPressedTimes, loginBetweenKeysTimes, thresholds);
+                return nGraphAuthentication(login, n, loginKeyPressedTimes, loginBetweenKeysTimes, thresholds);
             }
 
             var keyPressedDistance = Calculations.EuclideanDistance(UserKeyPressedTimes, loginKeyPressedTimes);
@@ -66,8 +73,9 @@ namespace DigitalHandwriting.Factories.AuthenticationMethods.Models
             return result;
         }
 
-        private AuthenticationResult nGraphAuthentication(int n, List<double> loginKeyPressedTimes, List<double> loginBetweenKeysTimes)
+        private AuthenticationResult nGraphAuthentication(string login, int n, List<double> loginKeyPressedTimes, List<double> loginBetweenKeysTimes)
         {
+            // 'login' parameter added for conformity, not used here
             // Calculate n-graphs for each sample in the user's profile
             var userNGraphProfile = Calculations.CalculateNGraph(n, UserKeyPressedTimesProfile, UserBetweenKeysTimesProfile);
             var loginNGraph = Calculations.CalculateNGraph(n, loginKeyPressedTimes, loginBetweenKeysTimes);
@@ -103,8 +111,9 @@ namespace DigitalHandwriting.Factories.AuthenticationMethods.Models
             return authResult;
         }
 
-        private List<AuthenticationResult> nGraphAuthentication(int n, List<double> loginKeyPressedTimes, List<double> loginBetweenKeysTimes, List<double> thresholds)
+        private List<AuthenticationResult> nGraphAuthentication(string login, int n, List<double> loginKeyPressedTimes, List<double> loginBetweenKeysTimes, List<double> thresholds)
         {
+            // 'login' parameter added for conformity, not used here
             // Calculate n-graphs for each sample in the user's profile
             var userNGraphProfile = Calculations.CalculateNGraph(n, UserKeyPressedTimesProfile, UserBetweenKeysTimesProfile);
             var loginNGraph = Calculations.CalculateNGraph(n, loginKeyPressedTimes, loginBetweenKeysTimes);

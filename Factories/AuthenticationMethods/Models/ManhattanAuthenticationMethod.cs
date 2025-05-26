@@ -8,17 +8,18 @@ using System.Threading.Tasks;
 
 namespace DigitalHandwriting.Factories.AuthenticationMethods.Models
 {
-    internal class ManhattanAuthenticationMethod : AuthenticationMethod
+    public class ManhattanAuthenticationMethod : AuthenticationMethod
     {
         public ManhattanAuthenticationMethod(List<double> userKeyPressedTimes, List<double> userBetweenKeysTimes, List<List<double>> userKeyPressedTimesProfile, List<List<double>> userBetweenKeysTimesProfile) : base(userKeyPressedTimes, userBetweenKeysTimes, userKeyPressedTimesProfile, userBetweenKeysTimesProfile)
         {
         }
 
-        public override AuthenticationResult Authenticate(int n, List<double> loginKeyPressedTimes, List<double> loginBetweenKeysTimes)
+        public override async Task<AuthenticationResult> Authenticate(string login, int n, List<double> loginKeyPressedTimes, List<double> loginBetweenKeysTimes)
         {
+            await Task.CompletedTask;
             if (n > 1)
             {
-                return nGraphAuthentication(n, loginKeyPressedTimes, loginBetweenKeysTimes);
+                return nGraphAuthentication(login, n, loginKeyPressedTimes, loginBetweenKeysTimes);
             }
 
             var userKeyPressedNormalized = Calculations.Normalize(UserKeyPressedTimes);
@@ -41,14 +42,15 @@ namespace DigitalHandwriting.Factories.AuthenticationMethods.Models
             return authResult;
         }
 
-        public override List<AuthenticationResult> Authenticate(
-            int n, List<double> loginKeyPressedTimes,
+        public override async Task<List<AuthenticationResult>> Authenticate(
+            string login, int n, List<double> loginKeyPressedTimes,
             List<double> loginBetweenKeysTimes,
             List<double> thresholds)
         {
+            await Task.CompletedTask;
             if (n > 1)
             {
-                return nGraphAuthentication(n, loginKeyPressedTimes, loginBetweenKeysTimes, thresholds);
+                return nGraphAuthentication(login, n, loginKeyPressedTimes, loginBetweenKeysTimes, thresholds);
             }
 
             var userKeyPressedNormalized = Calculations.Normalize(UserKeyPressedTimes);
@@ -76,7 +78,7 @@ namespace DigitalHandwriting.Factories.AuthenticationMethods.Models
             return result;
         }
 
-        private AuthenticationResult nGraphAuthentication(int n, List<double> loginKeyPressedTimes, List<double> loginBetweenKeysTimes)
+        private AuthenticationResult nGraphAuthentication(string login, int n, List<double> loginKeyPressedTimes, List<double> loginBetweenKeysTimes)
         {
             var userNGraphProfile = Calculations.CalculateNGraph(n, UserKeyPressedTimesProfile, UserBetweenKeysTimesProfile);
             var loginNGraph = Calculations.CalculateNGraph(n, loginKeyPressedTimes, loginBetweenKeysTimes);
@@ -109,7 +111,7 @@ namespace DigitalHandwriting.Factories.AuthenticationMethods.Models
             return authResult;
         }
 
-        private List<AuthenticationResult> nGraphAuthentication(int n, List<double> loginKeyPressedTimes, List<double> loginBetweenKeysTimes, List<double> thresholds)
+        private List<AuthenticationResult> nGraphAuthentication(string login, int n, List<double> loginKeyPressedTimes, List<double> loginBetweenKeysTimes, List<double> thresholds)
         {
             var userNGraphProfile = Calculations.CalculateNGraph(n, UserKeyPressedTimesProfile, UserBetweenKeysTimesProfile);
             var loginNGraph = Calculations.CalculateNGraph(n, loginKeyPressedTimes, loginBetweenKeysTimes);

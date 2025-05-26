@@ -11,59 +11,65 @@ from .xgboost_predictor import XGBoostPredictor
 from .mlp_predictor import MLPPredictor
 from .gru_predictor import GRUPredictor
 from .lstm_predictor import LSTMPredictor
-from ..config import MODEL_WEIGHTS_DIRS
+from ..config import MODEL_WEIGHTS_DIRS, ModelType
 
 class ModelFactory:
     def __init__(self):
-        self._predictors_map: Dict[str, Type[BasePredictor]] = {
-            "CNN": CNNPredictor,
-            "SVM": SVMPredictor,
-            "KNN": KNNPredictor,
-            "RANDOMFOREST": RandomForestPredictor,
-            "NAIVEBAYES": NaiveBayesPredictor,
-            "XGBOOST": XGBoostPredictor,
-            "MLP": MLPPredictor,
-            "GRU": GRUPredictor,
-            "LSTM": LSTMPredictor,
-            # ... and so on for other model types
+        self._predictors_map: Dict[ModelType, Type[BasePredictor]] = {
+            ModelType.CNN: CNNPredictor,
+            ModelType.SVM: SVMPredictor,
+            ModelType.KNN: KNNPredictor,
+            ModelType.RANDOMFOREST: RandomForestPredictor,
+            ModelType.NAIVEBAYES: NaiveBayesPredictor,
+            ModelType.XGBOOST: XGBoostPredictor,
+            ModelType.MLP: MLPPredictor,
+            ModelType.GRU: GRUPredictor,
+            ModelType.LSTM: LSTMPredictor,
         }
 
     def get_predictor(self, model_type: str, n_value: int, login: str) -> BasePredictor:
-        model_type_upper = model_type.upper()
-        cache_key = (model_type_upper, n_value, login)
+        try:
+            model_enum_member = ModelType[model_type.upper()]
+        except KeyError:
+            raise ValueError(f"Unsupported model type: {model_type}")
 
-        predictor_class = self._predictors_map.get(model_type_upper)
+        cache_key = (model_enum_member, n_value, login)
+
+        predictor_class = self._predictors_map.get(model_enum_member)
         if not predictor_class:
+            # This case should ideally not be reached if ModelType Enum is exhaustive
+            # and _predictors_map is kept in sync.
             raise ValueError(f"Unsupported model type: {model_type}")
 
         # Construct paths
-        base_dir_for_type = MODEL_WEIGHTS_DIRS.get(model_type_upper)
+        base_dir_for_type = MODEL_WEIGHTS_DIRS.get(model_enum_member)
         if not base_dir_for_type:
-            raise ValueError(f"Configuration missing for model type weights directory: {model_type_upper}")
+            raise ValueError(f"Configuration missing for model type weights directory: {model_enum_member.value}")
 
         user_specific_path = os.path.join(base_dir_for_type, f"N_{n_value}", login)
 
-        # Determine model file extension based on type (this might need more sophistication)
-        if model_type_upper == "CNN":
+        # Determine model file extension based on type
+        if model_enum_member == ModelType.CNN:
             model_filename = "model.pth"
-        elif model_type_upper == "SVM": # Keras
+        elif model_enum_member == ModelType.SVM: # Keras
             model_filename = "model.keras"
-        elif model_type_upper == "KNN":
+        elif model_enum_member == ModelType.KNN:
             model_filename = "model.pkl" # Assuming .pkl for KNN
-        elif model_type_upper == "RANDOMFOREST":
+        elif model_enum_member == ModelType.RANDOMFOREST:
             model_filename = "model.pkl" # Assuming .pkl for RandomForest
-        elif model_type_upper == "NAIVEBAYES":
+        elif model_enum_member == ModelType.NAIVEBAYES:
             model_filename = "model.pkl" # Assuming .pkl for NaiveBayes
-        elif model_type_upper == "XGBOOST":
+        elif model_enum_member == ModelType.XGBOOST:
             model_filename = "model.pkl" # Assuming .pkl for XGBoost (or .bst if native)
-        elif model_type_upper == "MLP":
+        elif model_enum_member == ModelType.MLP:
             model_filename = "model.keras" # Assuming .keras for MLP (Keras)
-        elif model_type_upper == "GRU":
+        elif model_enum_member == ModelType.GRU:
             model_filename = "model.keras" # Assuming .keras for GRU (Keras)
-        elif model_type_upper == "LSTM":
+        elif model_enum_member == ModelType.LSTM:
             model_filename = "model.keras" # Assuming .keras for LSTM (Keras)
         else:
-            raise NotImplementedError(f"Model filename convention not defined for type: {model_type_upper}")
+            # This case should ideally not be reached if ModelType Enum is exhaustive
+            raise NotImplementedError(f"Model filename convention not defined for type: {model_enum_member.value}")
 
         scaler_filename = "scaler.pkl"
 

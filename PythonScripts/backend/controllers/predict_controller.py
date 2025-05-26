@@ -13,8 +13,8 @@ def handle_predict():
         model_type = data.get('model_type')
         n_value_str = data.get('n_value')
         login = data.get('login')
-        h_values = data.get('H_values')
-        ud_values = data.get('UD_values')
+        h_values = data.get('h_values')
+        ud_values = data.get('ud_values')
 
         if not all([model_type, n_value_str is not None, login, h_values is not None, ud_values is not None]):
             return jsonify({"error": "Missing required parameters. Required: model_type, n_value, login, H_values, UD_values"}), 400

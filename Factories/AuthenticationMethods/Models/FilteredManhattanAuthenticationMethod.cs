@@ -8,17 +8,18 @@ using System.Threading.Tasks;
 
 namespace DigitalHandwriting.Factories.AuthenticationMethods.Models
 {
-    internal class FilteredManhattanAuthenticationMethod : AuthenticationMethod
+    public class FilteredManhattanAuthenticationMethod : AuthenticationMethod
     {
         public FilteredManhattanAuthenticationMethod(List<double> userKeyPressedTimes, List<double> userBetweenKeysTimes, List<List<double>> userKeyPressedTimesProfile, List<List<double>> userBetweenKeysTimesProfile) : base(userKeyPressedTimes, userBetweenKeysTimes, userKeyPressedTimesProfile, userBetweenKeysTimesProfile)
         {
         }
 
-        public override AuthenticationResult Authenticate(int n, List<double> loginKeyPressedTimes, List<double> loginBetweenKeysTimes)
+        public override async Task<AuthenticationResult> Authenticate(string login, int n, List<double> loginKeyPressedTimes, List<double> loginBetweenKeysTimes)
         {
+            await Task.CompletedTask;
             if (n > 1)
             {
-                return nGraphAuthentication(n, loginKeyPressedTimes, loginBetweenKeysTimes);
+                return nGraphAuthentication(login, n, loginKeyPressedTimes, loginBetweenKeysTimes);
             }
 
             var userProfileData = GetUserProfileData(n);
@@ -27,7 +28,7 @@ namespace DigitalHandwriting.Factories.AuthenticationMethods.Models
 
             var keyPressedDistance = Calculations.ManhattanFilteredDistance(userProfileData[AuthenticationCalculationDataType.H], loginKeyPressedNormalized).distance
                 / loginKeyPressedNormalized.Count;
-            var betweenKeysDistance = Calculations.ManhattanFilteredDistance(userProfileData[AuthenticationCalculationDataType.UD], loginBetweenKeysNormalized).distance 
+            var betweenKeysDistance = Calculations.ManhattanFilteredDistance(userProfileData[AuthenticationCalculationDataType.UD], loginBetweenKeysNormalized).distance
                 / loginBetweenKeysNormalized.Count;
 
             var authScore = (keyPressedDistance + betweenKeysDistance) / 2.0;
@@ -42,14 +43,15 @@ namespace DigitalHandwriting.Factories.AuthenticationMethods.Models
             return authResult;
         }
 
-        public override List<AuthenticationResult> Authenticate(
-            int n, List<double> loginKeyPressedTimes,
+        public override async Task<List<AuthenticationResult>> Authenticate(
+            string login, int n, List<double> loginKeyPressedTimes,
             List<double> loginBetweenKeysTimes,
             List<double> thresholds)
         {
+            await Task.CompletedTask;
             if (n > 1)
             {
-                return nGraphAuthentication(n, loginKeyPressedTimes, loginBetweenKeysTimes, thresholds);
+                return nGraphAuthentication(login, n, loginKeyPressedTimes, loginBetweenKeysTimes, thresholds);
             }
 
             var userProfileData = GetUserProfileData(n);
@@ -78,7 +80,7 @@ namespace DigitalHandwriting.Factories.AuthenticationMethods.Models
             return result;
         }
 
-        private AuthenticationResult nGraphAuthentication(int n, List<double> loginKeyPressedTimes, List<double> loginBetweenKeysTimes)
+        private AuthenticationResult nGraphAuthentication(string login, int n, List<double> loginKeyPressedTimes, List<double> loginBetweenKeysTimes)
         {
             var userProfileData = GetUserProfileData(n);
             var loginNGraph = Calculations.CalculateNGraph(n, loginKeyPressedTimes, loginBetweenKeysTimes);
@@ -107,7 +109,7 @@ namespace DigitalHandwriting.Factories.AuthenticationMethods.Models
             return authResult;
         }
 
-        private List<AuthenticationResult> nGraphAuthentication(int n, List<double> loginKeyPressedTimes, List<double> loginBetweenKeysTimes, List<double> thresholds)
+        private List<AuthenticationResult> nGraphAuthentication(string login, int n, List<double> loginKeyPressedTimes, List<double> loginBetweenKeysTimes, List<double> thresholds)
         {
             var userProfileData = GetUserProfileData(n);
             var loginNGraph = Calculations.CalculateNGraph(n, loginKeyPressedTimes, loginBetweenKeysTimes);
