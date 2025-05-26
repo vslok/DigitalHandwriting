@@ -5,11 +5,15 @@ import os
 
 from .base_predictor import BasePredictor
 from ..config import DEVICE
+from ...ml_models.CNN.cnn_model import KeystrokeCNN1D
 
 class CNNPredictor(BasePredictor):
     def _load_model_and_scaler(self):
         if not os.path.exists(self.model_path) or not os.path.exists(self.scaler_path):
             raise FileNotFoundError(f"CNN Model ({self.model_path}) or scaler ({self.scaler_path}) not found for {self.login}, N_{self.n_value}")
+
+        num_features = self.get_num_features_expected()
+        self.model = KeystrokeCNN1D(num_features=num_features, seq_length=1)
 
         self.model.load_state_dict(torch.load(self.model_path, map_location=DEVICE))
         self.model.to(DEVICE)

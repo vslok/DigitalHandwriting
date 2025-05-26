@@ -20,13 +20,8 @@ namespace DigitalHandwriting.Helpers
 
         public static string ConvertKeyToString(Key key)
         {
-            var inputChar = _keyConverter.ConvertToString(key);
-            if (inputChar == "Space")
-            {
-                inputChar = " ";
-            }
-
-            return inputChar;
+            string keyString = _keyConverter.ConvertToString(key);
+            return keyString;
         }
     }
 }

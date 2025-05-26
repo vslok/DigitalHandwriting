@@ -67,7 +67,7 @@ namespace DigitalHandwriting.ViewModels
             set => SetProperty(ref _isHandwritingAuthentificationEnabled, value);
         }
 
-        public bool IsAuthenticationButtonEnabled => UserLogin.Length > 0 && UserCheckText.Length >= 20;
+        public bool IsAuthenticationButtonEnabled => UserLogin.Length > 0 && UserCheckText.Length >= 10;
 
         public string UserLogin
         {

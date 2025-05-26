@@ -4,10 +4,21 @@ using System.Linq;
 using System.Net.Http;
 using System.Text;
 using System.Text.Json;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 
 namespace DigitalHandwriting.Services
 {
+    public class PredictionResponse
+    {
+        public string Login { get; set; }
+        [JsonPropertyName("model_type")]
+        public string ModelType { get; set; }
+        [JsonPropertyName("n_value")]
+        public int NValue { get; set; }
+        public bool Authenticated { get; set; }
+    }
+
     public class MLAuthenticationRequestService
     {
         private readonly HttpClient _httpClient;
@@ -38,8 +49,8 @@ namespace DigitalHandwriting.Services
                 var response = await _httpClient.PostAsync("predict", jsonContent);
                 response.EnsureSuccessStatusCode();
                 var result = await response.Content.ReadAsStringAsync();
-                var prediction = JsonSerializer.Deserialize<bool>(result);
-                return prediction;
+                var predictionResponse = JsonSerializer.Deserialize<PredictionResponse>(result);
+                return predictionResponse.Authenticated;
             } catch (HttpRequestException e) {
                 Console.WriteLine($"Error: {e.Message}");
                 return false;
