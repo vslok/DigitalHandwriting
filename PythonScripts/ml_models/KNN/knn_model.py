@@ -242,7 +242,7 @@ class KeystrokeKNN:
         for r in sorted(results, key=lambda x: x.login):
             self._write_to_results(f"{r.login}\t\t{r.metrics.Accuracy:.2f}%\t\t{r.metrics.Precision:.2f}%\t\t{r.metrics.Recall:.2f}%\t\t{r.metrics.F1Score:.2f}%\t\t{r.metrics.FAR:.2f}%\t\t{r.metrics.FRR:.2f}%")
 
-    def predict(self, login: str, features_dict: Dict[str, str]) -> Tuple[float, bool]:
+    def predict(self, login: str, features_dict: Dict[str, str]) -> bool:
         if login not in self.models:
             raise ValueError(f"No model found for user: {login}")
 
@@ -252,11 +252,15 @@ class KeystrokeKNN:
         else:
             features = self._prepare_features(features_dict)
 
-        features = features.reshape(1, -1)
-        features_scaled = self.scalers[login].transform(features)
-        probability = self.models[login].predict_proba(features_scaled)[0][1]
-        is_authenticated = probability > 0.5
-        return probability, is_authenticated
+        features_array = features.reshape(1, -1)
+        features_scaled = self.scalers[login].transform(features_array)
+
+        # Make prediction - directly get the predicted class
+        predicted_class = self.models[login].predict(features_scaled)[0]
+        # Assuming class 1 is the "authenticated" class
+        is_authenticated = (predicted_class == 1)
+
+        return is_authenticated
 
 def main():
     # Train models for each n-graph level

@@ -309,13 +309,13 @@ class KeystrokeSVM:
         for r in sorted(results, key=lambda x: x.login):
             self._write_to_results(f"{r.login}\t\t{r.metrics.Accuracy:.2f}%\t\t{r.metrics.Precision:.2f}%\t\t{r.metrics.Recall:.2f}%\t\t{r.metrics.F1Score:.2f}%\t\t{r.metrics.FAR:.2f}%\t\t{r.metrics.FRR:.2f}%")
 
-    def predict(self, login: str, features: Dict[str, str]) -> Tuple[float, bool]:
+    def predict(self, login: str, features: Dict[str, str]) -> bool:
         """
         Predict if the keystroke pattern belongs to the specified user
         Args:
             login: User login
             features: Dictionary containing feature arrays as space-separated strings
-        Returns: (probability, is_authenticated)
+        Returns: is_authenticated (bool)
         """
         if login not in self.models:
             raise ValueError(f"No model found for user: {login}")
@@ -329,9 +329,9 @@ class KeystrokeSVM:
 
         # Make prediction
         probability = self.models[login].predict(features_scaled)[0][0]
-        is_authenticated = probability > 0.5
+        is_authenticated = probability > 0.5 # Sigmoid output, threshold at 0.5 for class determination
 
-        return probability, is_authenticated
+        return is_authenticated
 
 def main():
     # Train models for all n-graph levels

@@ -281,7 +281,7 @@ class KeystrokeGRUModel:
                             for batch_x, batch_y in val_loader:
                                 batch_x, batch_y = batch_x.to(device), batch_y.to(device)
                                 outputs = model(batch_x)
-                                _, predicted = torch.max(outputs.data, 1)
+                                _, predicted = torch.max(outputs, 1)
                                 total += batch_y.size(0)
                                 correct += (predicted == batch_y).sum().item()
                         score = correct / total
@@ -357,9 +357,8 @@ class KeystrokeGRUModel:
                 for batch_x, batch_y in train_val_loader:
                     batch_x = batch_x.to(device)
                     batch_y = batch_y.to(device)
-                    outputs = model(batch_x)
-                    probabilities = torch.softmax(outputs, dim=1)
-                    _, predicted = torch.max(probabilities, 1)
+                    outputs = model(batch_x) # raw logits
+                    _, predicted = torch.max(outputs, 1) # Get class directly from logits
                     train_val_predictions.extend(predicted.cpu().numpy())
                     train_val_true.extend(batch_y.cpu().numpy())
             self._write_to_results(f"Prediction distribution: {np.bincount(train_val_predictions)}")
@@ -380,9 +379,8 @@ class KeystrokeGRUModel:
                 for batch_x, batch_y in test_loader:
                     batch_x = batch_x.to(device)
                     batch_y = batch_y.to(device)
-                    outputs = model(batch_x)
-                    probabilities = torch.softmax(outputs, dim=1)
-                    _, predicted = torch.max(probabilities, 1)
+                    outputs = model(batch_x) # raw logits
+                    _, predicted = torch.max(outputs, 1) # Get class directly from logits
                     test_predictions.extend(predicted.cpu().numpy())
                     test_true.extend(batch_y.cpu().numpy())
             self._write_to_results(f"Test prediction distribution: {np.bincount(test_predictions)}")
@@ -449,7 +447,7 @@ class KeystrokeGRUModel:
         for r in sorted(results, key=lambda x: x.login):
             self._write_to_results(f"{r.login}\t\t{r.metrics.Accuracy:.2f}%\t\t{r.metrics.Precision:.2f}%\t\t{r.metrics.Recall:.2f}%\t\t{r.metrics.F1Score:.2f}%\t\t{r.metrics.FAR:.2f}%\t\t{r.metrics.FRR:.2f}%")
 
-    def predict(self, login: str, features_dict: Dict[str, str]) -> Tuple[float, bool]:
+    def predict(self, login: str, features_dict: Dict[str, str]) -> bool:
         if login not in self.models:
             raise ValueError(f"No model found for user: {login}")
 
@@ -459,18 +457,26 @@ class KeystrokeGRUModel:
         else:
             features = self._prepare_features(features_dict)
 
-        features = features.reshape(1, 1, -1)
-        features = torch.FloatTensor(features).to(device)
-        features_scaled = self.scalers[login].transform(features.reshape(1, -1))
-        features_scaled = features_scaled.reshape(1, 1, -1)
-        features_scaled = torch.FloatTensor(features_scaled).to(device)
+        # Ensure features is a 2D array before reshaping for scaler
+        if features.ndim == 1:
+            features_for_scaler = features.reshape(1, -1)
+        else:
+            features_for_scaler = features
+
+        features_scaled = self.scalers[login].transform(features_for_scaler)
+
+        # Reshape for GRU input: (batch_size, seq_len, input_size)
+        # Assuming seq_len is 1 for individual predictions
+        features_reshaped = torch.FloatTensor(features_scaled).reshape(1, 1, -1).to(device)
+
         self.models[login].eval()
         with torch.no_grad():
-            outputs = self.models[login](features_scaled)
-            probabilities = torch.softmax(outputs, dim=1)
-            probability = probabilities[0][1].item()
-            is_authenticated = probability > 0.5
-        return probability, is_authenticated
+            outputs = self.models[login](features_reshaped) # Raw model outputs (logits)
+            # Get the predicted class (0 or 1)
+            _, predicted_class = torch.max(outputs, 1)
+            # Assuming class 1 is the "authenticated" class
+            is_authenticated = predicted_class.item() == 1
+        return is_authenticated
 
 def main():
     # Train models for each n-graph level

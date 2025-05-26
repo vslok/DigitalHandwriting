@@ -51,8 +51,8 @@ class ModelMetrics:
     Precision: float
     Recall: float
     F1Score: float
-    FAR: float  # False Acceptance Rate
-    FRR: float  # False Rejection Rate
+    FAR: float
+    FRR: float
 
 @dataclass
 class ValidationResult:
@@ -85,7 +85,6 @@ class KeystrokeCNN1D(nn.Module):
         self.fc = nn.Linear(128, num_classes)
 
     def forward(self, x):
-        # x: (batch, seq_len, num_features) -> (batch, num_features, seq_len)
         x = x.permute(0, 2, 1)
         x = self.conv1(x)
         x = self.bn1(x)
@@ -115,7 +114,6 @@ class KeystrokeCNNModel:
         self.weights_dir, self.results_dir = get_model_paths(n_graph)
         self.train_data_path, self.train_val_data_path, self.test_data_path = get_data_paths(n_graph)
 
-        # Calculate number of features based on n-graph level
         if n_graph == 1:
             self.num_features = 40  # H and UD features
         else:
@@ -238,7 +236,6 @@ class KeystrokeCNNModel:
             X_train_scaled = scaler.fit_transform(X_train)
             X_train_val_scaled = scaler.transform(X_train_val)
             X_test_scaled = scaler.transform(X_test)
-            # For 1D-CNN, treat each sample as (seq_len, num_features)
             X_train_reshaped = X_train_scaled.reshape(-1, 1, X_train_scaled.shape[1])
             X_train_val_reshaped = X_train_val_scaled.reshape(-1, 1, X_train_val_scaled.shape[1])
             X_test_reshaped = X_test_scaled.reshape(-1, 1, X_test_scaled.shape[1])
@@ -354,7 +351,6 @@ class KeystrokeCNNModel:
         if login not in self.models:
             raise ValueError(f"No model found for user: {login}")
 
-        # Prepare features based on n-graph level
         if self.n_graph == 1:
             features = self._prepare_features({'H': features_dict['H'], 'UD': features_dict['UD']})
         else:
@@ -374,7 +370,6 @@ class KeystrokeCNNModel:
         return probability, is_authenticated
 
 def main():
-    # Train models for each n-graph level
     for n_graph in [1, 2, 3]:
         print(f"\nTraining and validating CNN models for {n_graph}-graph...")
         cnn = KeystrokeCNNModel(n_graph=n_graph)
