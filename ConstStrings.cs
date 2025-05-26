@@ -17,6 +17,6 @@ namespace DigitalHandwriting
         public const string SecondRegistrationStepDescription = "Введите фразу снова.";
         public const string ThirdRegistrationStepDescription = "И еще разок.";
         public const string FourthRegistrationStepDescription = "И снова.";
-        public const string FifthRegistrationStepDescription = "Завершите регистрацию";
+        public const string FinalRegistrationStepDescription = "Завершите регистрацию";
     }
 }

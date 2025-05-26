@@ -7,6 +7,7 @@ using System.Security.Policy;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using DigitalHandwriting.Context;
 
 namespace DigitalHandwriting.Services
 {
@@ -25,13 +26,13 @@ namespace DigitalHandwriting.Services
 
         public List<List<double>> BetweenKeysTimes { get { return _betweenKeysTimes; } }
 
-        public KeyboardMetricsCollectionService() 
-        { 
+        public KeyboardMetricsCollectionService()
+        {
             _collectingMetricsStep = 0;
-            _keyPressedTimes = new List<List<double>>(3);
-            _betweenKeysTimes = new List<List<double>>(3);
+            _keyPressedTimes = new List<List<double>>(ApplicationConfiguration.RegistrationPassphraseInputs);
+            _betweenKeysTimes = new List<List<double>>(ApplicationConfiguration.RegistrationPassphraseInputs);
 
-            for (int i = 0; i < 3; i++)
+            for (int i = 0; i < ApplicationConfiguration.RegistrationPassphraseInputs; i++)
             {
                 _keyPressedTimes.Add(new List<double>());
                 _betweenKeysTimes.Add(new List<double>());
@@ -39,8 +40,8 @@ namespace DigitalHandwriting.Services
         }
 
         public void GetCurrentStepValues(
-            string testText, 
-            out List<double> keyPressedValues, 
+            string testText,
+            out List<double> keyPressedValues,
             out List<double> betweenKeysValues)
         {
             ConvertRawData(testText);
@@ -98,7 +99,7 @@ namespace DigitalHandwriting.Services
         private List<double> FilterKeyTimePairsToTheTimeList(List<(string, double)> pairs, string pairsText)
         {
             List<double> times = new List<double>();
-            
+
             for (int i = 0; i < pairsText.Count(); i++)
             {
                 var firstPair = pairs.First(pair => pair.Item1[0] == pairsText[i]);

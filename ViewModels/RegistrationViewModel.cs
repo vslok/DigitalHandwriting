@@ -152,7 +152,7 @@ namespace DigitalHandwriting.ViewModels
             var hSampleValues = _keyboardMetricsCollector.KeyPressedTimes;
             var udSampleValues = _keyboardMetricsCollector.BetweenKeysTimes;
 
-            if (hSampleValues == null /*|| hSampleValues.Count < 3*/ || udSampleValues == null /*|| udSampleValues.Count < 3*/)
+            if (hSampleValues == null || udSampleValues == null)
             {
                 Trace.TraceError("Insufficient keyboard metrics collected for registration.");
             }

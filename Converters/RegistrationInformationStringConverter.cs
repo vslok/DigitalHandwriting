@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Data;
 using System.Windows.Markup;
+using DigitalHandwriting.Context;
 
 namespace DigitalHandwriting.Converters
 {
@@ -14,14 +15,19 @@ namespace DigitalHandwriting.Converters
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
             var step = (int)value;
+
+            if (step == ApplicationConfiguration.RegistrationPassphraseInputs + 1)
+            {
+                return ConstStrings.FinalRegistrationStepDescription;
+            }
+
             return step switch
             {
                 0 => ConstStrings.FirstRegistrationStepDescription,
                 1 => ConstStrings.SecondRegistrationStepDescription,
                 2 => ConstStrings.ThirdRegistrationStepDescription,
                 3 => ConstStrings.FourthRegistrationStepDescription,
-                4 => ConstStrings.FifthRegistrationStepDescription,
-                _ => " "
+                _ => (step <= ApplicationConfiguration.RegistrationPassphraseInputs) ? $"Enter passphrase (attempt {step} of {ApplicationConfiguration.RegistrationPassphraseInputs})" : " "
             };
         }
 
