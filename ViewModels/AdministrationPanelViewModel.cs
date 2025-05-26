@@ -9,10 +9,19 @@ using System.Windows.Input;
 using System.Linq;
 using DigitalHandwriting.Factories.AuthenticationMethods.Models;
 using static DigitalHandwriting.Helpers.Calculations.BiometricMetrics;
+using DigitalHandwriting.Commands;
+using DigitalHandwriting.Models;
+using Microsoft.Win32;
+using System.Collections.ObjectModel;
+using System.ComponentModel;
+using System.Diagnostics;
+using System.Globalization;
+using System.Windows.Data;
+using DigitalHandwriting.Views; // Added for ConfigurationWindow
 
 namespace DigitalHandwriting.ViewModels
 {
-    public class AlgorithmValidationViewModel : BaseViewModel
+    public class AdministrationPanelViewModel : BaseViewModel
     {
         private readonly AlgorithmValidationService _algorithmValidationService;
         private readonly DataMigrationService _dataMigrationService;
@@ -29,6 +38,7 @@ namespace DigitalHandwriting.ViewModels
         public ICommand ValidateDataCommand { get; private set; }
         public ICommand NextPageCommand { get; private set; }
         public ICommand PreviousPageCommand { get; private set; }
+        public ICommand OpenConfigurationWindowCommand { get; }
 
         public double EER
         {
@@ -74,19 +84,22 @@ namespace DigitalHandwriting.ViewModels
             }
         }
 
-        public AlgorithmValidationViewModel()
+        public AdministrationPanelViewModel(DataMigrationService dataMigrationService)
         {
             _algorithmValidationService = new AlgorithmValidationService();
-            _dataMigrationService = new DataMigrationService();
+            _dataMigrationService = dataMigrationService;
             OnValidationResultButtonImportClickCommand = new Command(OnValidationResultButtonImportClick);
             OnImportButtonClickCommand = new Command(OnImportButtonClick);
             ValidateDataCommand = new Command(OnValidateDataClick);
             NextPageCommand = new Command(NextPage, CanGoToNextPage);
             PreviousPageCommand = new Command(PreviousPage, CanGoToPreviousPage);
+            OpenConfigurationWindowCommand = new Command(OpenConfigurationWindow);
 
             _allResults = new List<CsvExportAuthentication>();
             _displayedResults = new List<CsvExportAuthentication>();
             _thresholdMetrics = new Dictionary<double, ThresholdMetrics>();
+
+            LoadInitialData();
         }
 
         public List<CsvExportAuthentication> ValidationResults
@@ -198,7 +211,7 @@ namespace DigitalHandwriting.ViewModels
             return null;
         }
 
-        private void OnValidateDataClick()
+        private async void OnValidateDataClick()
         {
             var dialog = new Microsoft.Win32.OpenFileDialog
             {
@@ -217,9 +230,9 @@ namespace DigitalHandwriting.ViewModels
             try
             {
                 // Run validation for N=1,2,3
-                _algorithmValidationService.ValidateAuthentication(testDataPath, 1, saveDirectory);
-                _algorithmValidationService.ValidateAuthentication(testDataPath, 2, saveDirectory);
-                _algorithmValidationService.ValidateAuthentication(testDataPath, 3, saveDirectory);
+                await _algorithmValidationService.ValidateAuthentication(testDataPath, 1, saveDirectory);
+                await _algorithmValidationService.ValidateAuthentication(testDataPath, 2, saveDirectory);
+                await _algorithmValidationService.ValidateAuthentication(testDataPath, 3, saveDirectory);
 
                 System.Windows.MessageBox.Show(
                     $"Validation completed successfully!\nResults saved in: {saveDirectory}",
@@ -237,6 +250,19 @@ namespace DigitalHandwriting.ViewModels
                     System.Windows.MessageBoxImage.Error
                 );
             }
+        }
+
+        private void OpenConfigurationWindow()
+        {
+            var configWindow = new ConfigurationWindow();
+            configWindow.Owner = System.Windows.Application.Current.MainWindow; // Set owner for modal behavior
+            configWindow.ShowDialog();
+            // Optionally, refresh any data in AdministrationPanelViewModel that might depend on configuration changes.
+        }
+
+        private void LoadInitialData()
+        {
+            // ... existing data loading ...
         }
     }
 }

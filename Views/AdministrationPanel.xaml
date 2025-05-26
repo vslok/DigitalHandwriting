@@ -1,4 +1,4 @@
-﻿<Window x:Class="DigitalHandwriting.Views.ValidationResult"
+﻿<Window x:Class="DigitalHandwriting.Views.AdministrationPanel"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -9,7 +9,7 @@
         mc:Ignorable="d"
         WindowState="Maximized"
         WindowStyle="SingleBorderWindow"
-        Title="Validation Results">
+        Title="Administration panel">
 
     <DockPanel>
         <Menu DockPanel.Dock="Top" Height="25">
@@ -19,6 +19,7 @@
                 <Separator/>
                 <MenuItem Header="Validate Data" Command="{Binding ValidateDataCommand}" />
             </MenuItem>
+            <MenuItem Header="Configuration" Command="{Binding OpenConfigurationWindowCommand}" />
         </Menu>
 
         <Grid DockPanel.Dock="Bottom" Margin="10">

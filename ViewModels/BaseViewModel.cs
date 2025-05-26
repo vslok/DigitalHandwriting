@@ -65,7 +65,7 @@ namespace DigitalHandwriting.ViewModels
         /// Called when [property changed].
         /// </summary>
         /// <param name="propertyName">Name of the property.</param>
-        protected void InvokeOnPropertyChangedEvent([CallerMemberName] string propertyName = "")
+        protected virtual void InvokeOnPropertyChangedEvent([CallerMemberName] string propertyName = null)
         {
             PropertyChangedEventHandler changed = PropertyChanged;
             changed?.Invoke(this, new PropertyChangedEventArgs(propertyName));

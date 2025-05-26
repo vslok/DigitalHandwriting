@@ -155,7 +155,7 @@ namespace DigitalHandwriting.ViewModels
 
         private void OnAdministrationButtonClick()
         {
-            var window = new ValidationResult();
+            var window = new AdministrationPanel();
             window.ShowDialog();
         }
 

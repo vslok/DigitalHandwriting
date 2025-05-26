@@ -13,9 +13,11 @@ namespace DigitalHandwriting.Context
     {
         public ApplicationContext()
         {
-            Database.EnsureCreated();
+            // Ensure database is created, consider using migrations for production
+            // Database.EnsureCreated();
         }
         public DbSet<User> Users { get; set; }
+        public DbSet<ApplicationSetting> ApplicationSettings { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder builder)
         {

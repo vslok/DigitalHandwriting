@@ -129,7 +129,7 @@ namespace DigitalHandwriting.ViewModels
             set
             {
                 SetProperty(ref _userPassPhrase, value);
-                if (value.Length >= 20)
+                if (value.Length >= 11 && value.Length <= 20)
                 {
                     IsRegistrationStartButtonVisible = true;
                     InvokeOnPropertyChangedEvent(nameof(_isStartRegistrationbuttonVisible));
