@@ -28,5 +28,7 @@ namespace DigitalHandwriting.Context
         public static Method DefaultAuthenticationMethod { get; set; } = Method.FilteredManhattan;
 
         public static int RegistrationPassphraseInputs { get; set; } = 3; // Default value, can be changed
+
+        public static int Ngraph { get; set; } = 1; // Possible values: 1, 2, 3
     }
 }

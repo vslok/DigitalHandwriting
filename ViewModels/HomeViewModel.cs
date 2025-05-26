@@ -139,7 +139,7 @@ namespace DigitalHandwriting.ViewModels
                     out var keyPressedValues,
                     out var betweenKeysValues);
 
-                var authenticationResult = await AuthenticationService.HandwritingAuthentication(user, keyPressedValues, betweenKeysValues, Factories.AuthenticationMethods.Method.CNN);
+                var authenticationResult = await AuthenticationService.HandwritingAuthentication(user, keyPressedValues, betweenKeysValues, ApplicationConfiguration.DefaultAuthenticationMethod);
 
                 var window = new UserInfo(authenticationResult);
                 window.ShowDialog();
@@ -164,13 +164,6 @@ namespace DigitalHandwriting.ViewModels
             _checkTextCurrentLetterIndex = 0;
             UserCheckText = "";
             _keyboardMetricsCollector.ResetMetricsCollection();
-        }
-
-        private void ResetWindowState()
-        {
-            ResetTryState();
-            IsHandwritingAuthentificationEnabled = true;
-            UserLogin = "";
         }
     }
 }

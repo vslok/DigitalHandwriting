@@ -21,6 +21,8 @@
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
 
         <TextBlock Grid.Row="0" Text="Validation Authentication Methods:" FontWeight="Bold" Margin="0,0,0,5"/>
@@ -45,7 +47,13 @@
         <TextBlock Grid.Row="4" Text="Registration Passphrase Inputs (Number of times user types passphrase):" FontWeight="Bold" Margin="0,10,0,5"/>
         <TextBox Grid.Row="5" Text="{Binding RegistrationPassphraseInputs, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="0,0,0,15"/>
 
-        <StackPanel Grid.Row="6" Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,15,0,0">
+        <TextBlock Grid.Row="6" Text="N-graph value:" FontWeight="Bold" Margin="0,10,0,5"/>
+        <ComboBox Grid.Row="7"
+                  ItemsSource="{Binding AvailableNgraphValues}"
+                  SelectedItem="{Binding Ngraph, Mode=TwoWay}"
+                  Margin="0,0,0,10"/>
+
+        <StackPanel Grid.Row="8" Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,15,0,0">
             <Button Content="Save" Command="{Binding SaveConfigurationCommand}" Width="75" Margin="0,0,10,0" IsDefault="True"/>
             <Button Content="Cancel" Command="{Binding CancelCommand}" Width="75" IsCancel="True"/>
         </StackPanel>

@@ -44,7 +44,7 @@ namespace DigitalHandwriting.Services
             User user,
             List<double> loginKeyPressedTimes,
             List<double> loginBetweenKeysTimes,
-            Method authMethod = Method.FilteredManhattan)
+            Method authMethod = Method.ITAD)
         {
             if (user == null)
             {
@@ -92,7 +92,7 @@ namespace DigitalHandwriting.Services
                 hUserProfile,
                 duUserProfile);
 
-            return await authenticationMethod.Authenticate(user.Login, 1, loginKeyPressedTimes, loginBetweenKeysTimes);
+            return await authenticationMethod.Authenticate(user.Login, ApplicationConfiguration.Ngraph, loginKeyPressedTimes, loginBetweenKeysTimes);
         }
     }
 }

@@ -47,6 +47,21 @@ namespace DigitalHandwriting.ViewModels
             set => SetProperty(ref _selectedDefaultAuthenticationMethod, value);
         }
 
+        private int _ngraph;
+        public int Ngraph
+        {
+            get => _ngraph;
+            set
+            {
+                if (SetProperty(ref _ngraph, value))
+                {
+                    (SaveConfigurationCommand as Command)?.RaiseCanExecuteChanged();
+                }
+            }
+        }
+
+        public List<int> AvailableNgraphValues => new List<int> { 1, 2, 3 };
+
         private int _registrationPassphraseInputs;
         public int RegistrationPassphraseInputs
         {
@@ -99,6 +114,8 @@ namespace DigitalHandwriting.ViewModels
             SelectedDefaultAuthenticationMethod = ApplicationConfiguration.DefaultAuthenticationMethod;
             _registrationPassphraseInputs = ApplicationConfiguration.RegistrationPassphraseInputs;
             InvokeOnPropertyChangedEvent(nameof(RegistrationPassphraseInputs));
+            _ngraph = ApplicationConfiguration.Ngraph; // Load Ngraph
+            InvokeOnPropertyChangedEvent(nameof(Ngraph)); // Notify Ngraph change
         }
 
         private void MethodViewModel_PropertyChanged(object sender, PropertyChangedEventArgs e)
@@ -125,6 +142,7 @@ namespace DigitalHandwriting.ViewModels
                 .ToList();
             ApplicationConfiguration.DefaultAuthenticationMethod = SelectedDefaultAuthenticationMethod;
             ApplicationConfiguration.RegistrationPassphraseInputs = RegistrationPassphraseInputs;
+            ApplicationConfiguration.Ngraph = Ngraph; // Save Ngraph
 
             await _settingsService.SaveSettingsAsync(); // Save to DB
 
