@@ -12,6 +12,7 @@ using System.IO; // Keep for Path, Directory
 using System.Linq; // Required for .Any()
 // System.Text.Json might no longer be needed here if all direct uses are removed
 using System.Threading.Tasks; // For Parallel.ForEach
+using DigitalHandwriting.Context; // Added for ApplicationConfiguration
 
 namespace DigitalHandwriting.Services
 {
@@ -124,82 +125,14 @@ namespace DigitalHandwriting.Services
             var authenticationH = new List<double>(testAuthenticationsRecord.H);
             var authenticationDU = new List<double>(testAuthenticationsRecord.UD);
 
-            // --- Existing Methods ---
-            var euclidianMethod = AuthenticationMethodFactory.GetAuthenticationMethod(
-                Method.Euclidian, hUserMedian, udUserMedian, hUserProfile, udUserProfile);
-            var euclidianMethodResult = await euclidianMethod.Authenticate(user.Login, n, authenticationH, authenticationDU, thresholds);
-            ProcessMethod(Method.Euclidian, euclidianMethodResult, user.Login, testAuthenticationsRecord.IsLegalUser);
-
-            var euclidianNormalizedMethod = AuthenticationMethodFactory.GetAuthenticationMethod(
-                Method.NormalizedEuclidian, hUserMedian, udUserMedian, hUserProfile, udUserProfile);
-            var euclidianNormalizedMethodResult = await euclidianNormalizedMethod.Authenticate(user.Login, n, authenticationH, authenticationDU, thresholds);
-            ProcessMethod(Method.NormalizedEuclidian, euclidianNormalizedMethodResult, user.Login, testAuthenticationsRecord.IsLegalUser);
-
-            var manhattanMethod = AuthenticationMethodFactory.GetAuthenticationMethod(
-                Method.Manhattan, hUserMedian, udUserMedian, hUserProfile, udUserProfile);
-            var manhattanMethodResult = await manhattanMethod.Authenticate(user.Login, n, authenticationH, authenticationDU, thresholds);
-            ProcessMethod(Method.Manhattan, manhattanMethodResult, user.Login, testAuthenticationsRecord.IsLegalUser);
-
-            var filteredManhattanMethod = AuthenticationMethodFactory.GetAuthenticationMethod(
-                Method.FilteredManhattan, hUserMedian, udUserMedian, hUserProfile, udUserProfile);
-            var filteredManhattanMethodResult = await filteredManhattanMethod.Authenticate(user.Login, n, authenticationH, authenticationDU, thresholds);
-            ProcessMethod(Method.FilteredManhattan, filteredManhattanMethodResult, user.Login, testAuthenticationsRecord.IsLegalUser);
-
-            var scaledManhattanMethod = AuthenticationMethodFactory.GetAuthenticationMethod(
-                Method.ScaledManhattan, hUserMedian, udUserMedian, hUserProfile, udUserProfile);
-            var scaledManhattanMethodResult = await scaledManhattanMethod.Authenticate(user.Login, n, authenticationH, authenticationDU, thresholds);
-            ProcessMethod(Method.ScaledManhattan, scaledManhattanMethodResult, user.Login, testAuthenticationsRecord.IsLegalUser);
-
-            var ITADMethod = AuthenticationMethodFactory.GetAuthenticationMethod(
-                Method.ITAD, hUserMedian, udUserMedian, hUserProfile, udUserProfile);
-            var ITADMethodResult = await ITADMethod.Authenticate(user.Login, n, authenticationH, authenticationDU, thresholds);
-            ProcessMethod(Method.ITAD, ITADMethodResult, user.Login, testAuthenticationsRecord.IsLegalUser);
-
-            // --- ML Methods ---
-            var cnnMethod = AuthenticationMethodFactory.GetAuthenticationMethod(
-                Method.CNN, hUserMedian, udUserMedian, hUserProfile, udUserProfile);
-            var cnnMethodResult = await cnnMethod.Authenticate(user.Login, n, authenticationH, authenticationDU, thresholds);
-            ProcessMethod(Method.CNN, cnnMethodResult, user.Login, testAuthenticationsRecord.IsLegalUser);
-
-            var gruMethod = AuthenticationMethodFactory.GetAuthenticationMethod(
-                Method.GRU, hUserMedian, udUserMedian, hUserProfile, udUserProfile);
-            var gruMethodResult = await gruMethod.Authenticate(user.Login, n, authenticationH, authenticationDU, thresholds);
-            ProcessMethod(Method.GRU, gruMethodResult, user.Login, testAuthenticationsRecord.IsLegalUser);
-
-            var knnMethod = AuthenticationMethodFactory.GetAuthenticationMethod(
-                Method.KNN, hUserMedian, udUserMedian, hUserProfile, udUserProfile);
-            var knnMethodResult = await knnMethod.Authenticate(user.Login, n, authenticationH, authenticationDU, thresholds);
-            ProcessMethod(Method.KNN, knnMethodResult, user.Login, testAuthenticationsRecord.IsLegalUser);
-
-            var lstmMethod = AuthenticationMethodFactory.GetAuthenticationMethod(
-                Method.LSTM, hUserMedian, udUserMedian, hUserProfile, udUserProfile);
-            var lstmMethodResult = await lstmMethod.Authenticate(user.Login, n, authenticationH, authenticationDU, thresholds);
-            ProcessMethod(Method.LSTM, lstmMethodResult, user.Login, testAuthenticationsRecord.IsLegalUser);
-
-            var mlpMethod = AuthenticationMethodFactory.GetAuthenticationMethod(
-                Method.MLP, hUserMedian, udUserMedian, hUserProfile, udUserProfile);
-            var mlpMethodResult = await mlpMethod.Authenticate(user.Login, n, authenticationH, authenticationDU, thresholds);
-            ProcessMethod(Method.MLP, mlpMethodResult, user.Login, testAuthenticationsRecord.IsLegalUser);
-
-            var naiveBayesMethod = AuthenticationMethodFactory.GetAuthenticationMethod(
-                Method.NaiveBayes, hUserMedian, udUserMedian, hUserProfile, udUserProfile);
-            var naiveBayesMethodResult = await naiveBayesMethod.Authenticate(user.Login, n, authenticationH, authenticationDU, thresholds);
-            ProcessMethod(Method.NaiveBayes, naiveBayesMethodResult, user.Login, testAuthenticationsRecord.IsLegalUser);
-
-            var randomForestMethod = AuthenticationMethodFactory.GetAuthenticationMethod(
-                Method.RandomForest, hUserMedian, udUserMedian, hUserProfile, udUserProfile);
-            var randomForestMethodResult = await randomForestMethod.Authenticate(user.Login, n, authenticationH, authenticationDU, thresholds);
-            ProcessMethod(Method.RandomForest, randomForestMethodResult, user.Login, testAuthenticationsRecord.IsLegalUser);
-
-            var svmMethod = AuthenticationMethodFactory.GetAuthenticationMethod(
-                Method.SVM, hUserMedian, udUserMedian, hUserProfile, udUserProfile);
-            var svmMethodResult = await svmMethod.Authenticate(user.Login, n, authenticationH, authenticationDU, thresholds);
-            ProcessMethod(Method.SVM, svmMethodResult, user.Login, testAuthenticationsRecord.IsLegalUser);
-
-            var xgboostMethod = AuthenticationMethodFactory.GetAuthenticationMethod(
-                Method.XGBoost, hUserMedian, udUserMedian, hUserProfile, udUserProfile);
-            var xgboostMethodResult = await xgboostMethod.Authenticate(user.Login, n, authenticationH, authenticationDU, thresholds);
-            ProcessMethod(Method.XGBoost, xgboostMethodResult, user.Login, testAuthenticationsRecord.IsLegalUser);
+            // Loop through methods specified in ApplicationConfiguration
+            foreach (var methodType in ApplicationConfiguration.ValidationAuthenticationMethods)
+            {
+                var authMethod = AuthenticationMethodFactory.GetAuthenticationMethod(
+                    methodType, hUserMedian, udUserMedian, hUserProfile, udUserProfile);
+                var authMethodResult = await authMethod.Authenticate(user.Login, n, authenticationH, authenticationDU, thresholds);
+                ProcessMethod(methodType, authMethodResult, user.Login, testAuthenticationsRecord.IsLegalUser);
+            }
         }
 
         private void WriteResultsToCsv(List<AuthenticationValidationResult> results, string saveDirectory) // Unchanged

@@ -106,7 +106,7 @@ namespace DigitalHandwriting.ViewModels
             set
             {
                 SetProperty(ref _registrationStep, value);
-                if (value == 4)
+                if (value == ApplicationConfiguration.RegistrationPassphraseInputs + 1)
                 {
                     IsCheckTextBoxEnabled = false;
                     IsFinalizeButtonVisible = true;
@@ -177,7 +177,7 @@ namespace DigitalHandwriting.ViewModels
 
             _keyboardMetricsCollector.OnKeyUpEvent(e);
 
-            if (_checkTextCurrentLetterIndex == _checkTextWithUpperCase.Length && UserCheckText.Length == _checkTextWithUpperCase.Length)
+            if (_checkTextCurrentLetterIndex == _checkTextWithUpperCase.Length && UserCheckText.Length == _checkTextWithUpperCase.Length && RegistrationStep <= ApplicationConfiguration.RegistrationPassphraseInputs)
             {
                 _keyboardMetricsCollector.IncreaseMetricsCollectingStep(_checkTextWithUpperCase);
                 RegistrationStep++;
@@ -190,7 +190,7 @@ namespace DigitalHandwriting.ViewModels
         {
             var e = (KeyEventArgs)props;
             Trace.WriteLine($"{e.Key} = keyDown");
-            if (!Helper.CheckCurrentLetterKeyPressed(e, _checkTextCurrentLetterIndex, _checkTextWithUpperCase) || _registrationStep == 4)
+            if (!Helper.CheckCurrentLetterKeyPressed(e, _checkTextCurrentLetterIndex, _checkTextWithUpperCase) || RegistrationStep == ApplicationConfiguration.RegistrationPassphraseInputs + 1)
             {
                 e.Handled = true;
                 return;

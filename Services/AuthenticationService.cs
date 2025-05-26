@@ -6,6 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq; // Required for .Any()
 using System.Threading.Tasks;
+using DigitalHandwriting.Context; // Added for ApplicationConfiguration
 
 namespace DigitalHandwriting.Services
 {
@@ -50,6 +51,9 @@ namespace DigitalHandwriting.Services
                 throw new ArgumentNullException(nameof(user), "User cannot be null for handwriting authentication.");
             }
 
+            // Use the method from ApplicationConfiguration
+            Method actualAuthMethod = ApplicationConfiguration.DefaultAuthenticationMethod;
+
             var hUserProfile = user.HSampleValues;
             var duUserProfile = user.UDSampleValues;
 
@@ -82,7 +86,7 @@ namespace DigitalHandwriting.Services
             // The factory might return a specific "no-op" or "always fail" authenticator,
             // or the authenticator's Authenticate method will return IsAuthenticated = false.
             var authenticationMethod = AuthenticationMethodFactory.GetAuthenticationMethod(
-                authMethod,
+                actualAuthMethod, // Use the configured method
                 hUserMedian,
                 udUserMedian,
                 hUserProfile,

@@ -21,7 +21,7 @@ namespace DigitalHandwriting.ViewModels
         public ICommand OnAuthenticationButtonClickCommand { get; set; }
         public ICommand OnCheckTextBoxKeyDownEventCommand { get; set; }
         public ICommand OnCheckTextBoxKeyUpEventCommand { get; set; }
-        public ICommand OnValidationButtonClickCommand { get; set; }
+        public ICommand OnAdministrationButtonClickCommand { get; set; }
 
         private int _authentificationTry = 0;
 
@@ -52,7 +52,7 @@ namespace DigitalHandwriting.ViewModels
                     () => registrationViewModelFactory()));
 
             OnAuthenticationButtonClickCommand = new Command(OnAuthenticationButtonClick);
-            OnValidationButtonClickCommand = new Command(OnValidationButtonClick);
+            OnAdministrationButtonClickCommand = new Command(OnAdministrationButtonClick);
             OnCheckTextBoxKeyDownEventCommand = new RelayCommand<object>(OnCheckTextBoxKeyDownEvent);
             OnCheckTextBoxKeyUpEventCommand = new RelayCommand<object>(OnCheckTextBoxKeyUpEvent);
 
@@ -153,7 +153,7 @@ namespace DigitalHandwriting.ViewModels
             ResetTryState();
         }
 
-        private void OnValidationButtonClick()
+        private void OnAdministrationButtonClick()
         {
             var window = new ValidationResult();
             window.ShowDialog();
