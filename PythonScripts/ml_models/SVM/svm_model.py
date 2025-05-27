@@ -1,7 +1,8 @@
-import tensorflow as tf
 import numpy as np
 import pandas as pd
 from sklearn.preprocessing import StandardScaler
+from sklearn.svm import SVC
+from sklearn.model_selection import GridSearchCV
 import joblib
 import os
 from dataclasses import dataclass
@@ -65,13 +66,17 @@ class ValidationResult:
     correct_predictions: int
 
 class KeystrokeSVM:
-    def __init__(self, n_graph: int = 1):
+    def __init__(self, n_graph: int = 1, C=1.0, kernel='rbf', gamma='scale'):
         self.n_graph = n_graph
         self.scalers = {}  # Dictionary to store scalers for each user
         self.models = {}   # Dictionary to store models for each user
         self.validation_results = []  # Store validation results
         self.test_results = []  # Store test results
         self.results_file = None  # File handle for results
+        self.C = C
+        self.kernel = kernel
+        self.gamma = gamma
+        self.best_params = {} # For storing results of hyperparameter tuning
 
     def _open_results_file(self):
         """Open a new results file with timestamp"""
@@ -133,7 +138,48 @@ class KeystrokeSVM:
             FRR=frr
         )
 
-    def train_and_validate(self):
+    def tune_hyperparameters(self, X_train, y_train, login: str):
+        """
+        Tune hyperparameters using GridSearchCV for SVC.
+        """
+        self._write_to_results(f"\nTuning hyperparameters for user {login} with SVC...")
+
+        param_grid = {
+            'C': [0.1, 1, 10],
+            'kernel': ['rbf', 'linear', 'poly'],
+            'gamma': ['scale', 'auto', 0.1, 1],
+            'degree': [2, 3, 4] # Relevant for 'poly' kernel
+        }
+
+        # Conditional parameter inclusion for 'poly' kernel's 'degree'
+        # GridSearchCV doesn't directly support conditional parameters in a single grid.
+        # A simpler approach for now is to test common kernels separately or use a fixed degree for poly.
+        # For simplicity here, we'll let GridSearchCV try all combinations; invalid ones might raise warnings or be ignored by SVC.
+        # A more robust way would be multiple GridSearchCV calls or more complex logic.
+
+        base_model = SVC(probability=True, random_state=42)
+
+        grid_search = GridSearchCV(
+            estimator=base_model,
+            param_grid=param_grid,
+            cv=3,  # Using 3-fold cross-validation for speed; 5 is also common
+            scoring='accuracy',
+            n_jobs=-1,
+            verbose=1
+        )
+
+        grid_search.fit(X_train, y_train)
+        best_params = grid_search.best_params_
+        self.best_params[login] = best_params
+
+        self._write_to_results(f"Best parameters for {login} (SVC):")
+        for param, value in best_params.items():
+            self._write_to_results(f"{param}: {value}")
+        self._write_to_results(f"Best cross-validation score: {grid_search.best_score_:.4f}")
+
+        return grid_search.best_estimator_
+
+    def train_and_validate(self, tune_hyperparameters=False):
         """Train and validate models for each user"""
         # Open results file
         self._open_results_file()
@@ -175,40 +221,25 @@ class KeystrokeSVM:
             X_test_scaled = scaler.transform(X_test)
 
             # Create and train model for this user
-            model = tf.keras.Sequential([
-                tf.keras.layers.Dense(64, activation='relu', input_shape=(X_train.shape[1],)),
-                tf.keras.layers.Dropout(0.1),
-                tf.keras.layers.Dense(32, activation='relu'),
-                tf.keras.layers.Dropout(0.1),
-                tf.keras.layers.Dense(1, activation='sigmoid')
-            ])
+            if tune_hyperparameters:
+                model = self.tune_hyperparameters(X_train_scaled, y_train, login)
+            else:
+                model = SVC(
+                    C=self.C,
+                    kernel=self.kernel,
+                    gamma=self.gamma,
+                    probability=True, # Set to True to use predict_proba if needed, or for consistent thresholding
+                    random_state=42
+                )
+                self._write_to_results(f"Training SVM model for {login} with C={model.C}, kernel={model.kernel}, gamma={model.gamma}...")
+                model.fit(X_train_scaled, y_train)
 
-            model.compile(
-                optimizer=tf.keras.optimizers.Adam(learning_rate=0.001),
-                loss='binary_crossentropy',
-                metrics=['accuracy']
-            )
-
-            # Train model
-            self._write_to_results(f"Training model for {login}...")
-            model.fit(
-                X_train_scaled, y_train,
-                validation_data=(X_train_val_scaled, y_train_val),
-                epochs=100,
-                batch_size=32,
-                callbacks=[
-                    tf.keras.callbacks.EarlyStopping(
-                        monitor='val_loss',
-                        patience=10,
-                        restore_best_weights=True
-                    )
-                ],
-                verbose=1
-            )
+            self.models[login] = model # Store the trained model
 
             # Validate on train validation set
             self._write_to_results(f"Validating model for {login} on train validation set...")
-            train_val_predictions = (model.predict(X_train_val_scaled) > 0.5).astype(int).flatten()
+            # SVC's predict method directly returns class labels (0 or 1)
+            train_val_predictions = model.predict(X_train_val_scaled)
             train_val_metrics = self._calculate_metrics(y_train_val, train_val_predictions)
             train_val_correct = np.sum(train_val_predictions == y_train_val)
 
@@ -223,7 +254,8 @@ class KeystrokeSVM:
 
             # Test on test set
             self._write_to_results(f"Testing model for {login} on test set...")
-            test_predictions = (model.predict(X_test_scaled) > 0.5).astype(int).flatten()
+            # SVC's predict method directly returns class labels
+            test_predictions = model.predict(X_test_scaled)
             test_metrics = self._calculate_metrics(y_test, test_predictions)
             test_correct = np.sum(test_predictions == y_test)
 
@@ -254,15 +286,11 @@ class KeystrokeSVM:
             self._write_to_results(f"FRR: {test_metrics.FRR:.2f}%")
 
             # Store model and scaler
-            self.models[login] = model
-            self.scalers[login] = scaler
-
-            # Save model and scaler
             weights_dir, _ = get_model_paths(self.n_graph)
             user_weights_dir = os.path.join(weights_dir, login)
             os.makedirs(user_weights_dir, exist_ok=True)
 
-            model.save(os.path.join(user_weights_dir, 'model.keras'))
+            joblib.dump(model, os.path.join(user_weights_dir, 'model.pkl')) # Changed from model.save
             joblib.dump(scaler, os.path.join(user_weights_dir, 'scaler.pkl'))
 
         # Print overall results
@@ -318,7 +346,23 @@ class KeystrokeSVM:
         Returns: is_authenticated (bool)
         """
         if login not in self.models:
-            raise ValueError(f"No model found for user: {login}")
+            # Attempt to load model if not in memory
+            model_path = os.path.join(get_model_paths(self.n_graph)[0], login, 'model.pkl')
+            scaler_path = os.path.join(get_model_paths(self.n_graph)[0], login, 'scaler.pkl')
+            if os.path.exists(model_path) and os.path.exists(scaler_path):
+                self._write_to_results(f"Loading model for user {login} from disk.")
+                self.models[login] = joblib.load(model_path)
+                self.scalers[login] = joblib.load(scaler_path)
+            else:
+                raise ValueError(f"No model found for user: {login}, and could not load from disk.")
+
+        if login not in self.scalers: # Should be loaded with model, but as a safeguard
+             scaler_path = os.path.join(get_model_paths(self.n_graph)[0], login, 'scaler.pkl')
+             if os.path.exists(scaler_path):
+                self.scalers[login] = joblib.load(scaler_path)
+             else:
+                raise ValueError(f"No scaler found for user: {login}")
+
 
         # Prepare input features
         features_array = self._prepare_features(features)
@@ -328,8 +372,9 @@ class KeystrokeSVM:
         features_scaled = self.scalers[login].transform(features_array)
 
         # Make prediction
-        probability = self.models[login].predict(features_scaled)[0][0]
-        is_authenticated = probability > 0.5 # Sigmoid output, threshold at 0.5 for class determination
+        # SVC's predict method returns the class label directly (0 or 1)
+        prediction = self.models[login].predict(features_scaled)[0]
+        is_authenticated = bool(prediction) # Convert 0/1 to False/True
 
         return is_authenticated
 
@@ -337,8 +382,9 @@ def main():
     # Train models for all n-graph levels
     for n in [1, 2, 3]:
         print(f"\nTraining SVM model for {n}-graph...")
-        svm = KeystrokeSVM(n_graph=n)
-        svm.train_and_validate()
+        svm_model = KeystrokeSVM(n_graph=n) # Renamed variable to avoid conflict with module
+        # To enable hyperparameter tuning, call: svm_model.train_and_validate(tune_hyperparameters=True)
+        svm_model.train_and_validate(tune_hyperparameters=False) # Defaulting to False
 
 if __name__ == "__main__":
     main()
