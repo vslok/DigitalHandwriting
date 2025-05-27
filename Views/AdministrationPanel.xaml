@@ -9,17 +9,17 @@
         mc:Ignorable="d"
         WindowState="Maximized"
         WindowStyle="SingleBorderWindow"
-        Title="Administration panel">
+        Title="Панель администрирования">
 
     <DockPanel>
         <Menu DockPanel.Dock="Top" Height="25">
-            <MenuItem Header="File">
-                <MenuItem Header="Import Results" Command="{Binding OnValidationResultButtonImportClickCommand}" />
-                <MenuItem Header="Import Users" Command="{Binding OnImportButtonClickCommand}" />
+            <MenuItem Header="Файл">
+                <MenuItem Header="Импорт результатов" Command="{Binding OnValidationResultButtonImportClickCommand}" />
+                <MenuItem Header="Импорт пользователей" Command="{Binding OnImportButtonClickCommand}" />
                 <Separator/>
-                <MenuItem Header="Validate Data" Command="{Binding ValidateDataCommand}" />
+                <MenuItem Header="Проверить данные" Command="{Binding ValidateDataCommand}" />
             </MenuItem>
-            <MenuItem Header="Configuration" Command="{Binding OpenConfigurationWindowCommand}" />
+            <MenuItem Header="Конфигурация" Command="{Binding OpenConfigurationWindowCommand}" />
         </Menu>
 
         <Grid DockPanel.Dock="Bottom" Margin="10">
@@ -29,36 +29,36 @@
             </Grid.ColumnDefinitions>
             <Border Grid.Column="0" BorderBrush="LightGray" BorderThickness="1" Margin="5" Padding="10">
                 <StackPanel>
-                    <TextBlock Text="Equal Error Rate (EER)" FontWeight="Bold" Margin="0,0,0,5"/>
+                    <TextBlock Text="Коэффициент равных ошибок (EER)" FontWeight="Bold" Margin="0,0,0,5"/>
                     <TextBlock Text="{Binding EER, StringFormat=EER: {0:F2}%}"/>
-                    <TextBlock Text="{Binding EERThreshold, StringFormat=Threshold: {0:F3}}"/>
-                    <TextBlock Text="Metrics at EER Threshold:" FontWeight="SemiBold" Margin="0,10,0,5"/>
+                    <TextBlock Text="{Binding EERThreshold, StringFormat=Порог: {0:F3}}"/>
+                    <TextBlock Text="Метрики на пороге EER:" FontWeight="SemiBold" Margin="0,10,0,5"/>
                     <TextBlock Text="{Binding MetricsAtEER.FAR, StringFormat=FAR: {0:F2}%}"/>
                     <TextBlock Text="{Binding MetricsAtEER.FRR, StringFormat=FRR: {0:F2}%}"/>
-                    <TextBlock Text="{Binding MetricsAtEER.Accuracy, StringFormat=Accuracy: {0:F2}%}"/>
-                    <TextBlock Text="{Binding MetricsAtEER.ErrorRate, StringFormat=Error Rate: {0:F2}%}"/>
-                    <TextBlock Text="{Binding MetricsAtEER.Precision, StringFormat=Precision: {0:F2}%}"/>
-                    <TextBlock Text="{Binding MetricsAtEER.Recall, StringFormat=Recall: {0:F2}%}"/>
-                    <TextBlock Text="{Binding MetricsAtEER.FMeasure, StringFormat=F-Measure: {0:F2}}"/>
+                    <TextBlock Text="{Binding MetricsAtEER.Accuracy, StringFormat=Точность: {0:F2}%}"/>
+                    <TextBlock Text="{Binding MetricsAtEER.ErrorRate, StringFormat=Частота ошибок: {0:F2}%}"/>
+                    <TextBlock Text="{Binding MetricsAtEER.Precision, StringFormat=Точность (Precision): {0:F2}%}"/>
+                    <TextBlock Text="{Binding MetricsAtEER.Recall, StringFormat=Полнота (Recall): {0:F2}%}"/>
+                    <TextBlock Text="{Binding MetricsAtEER.FMeasure, StringFormat=F-мера: {0:F2}}"/>
                 </StackPanel>
             </Border>
             <Border Grid.Column="1" BorderBrush="LightGray" BorderThickness="1" Margin="5" Padding="10">
                 <StackPanel>
-                    <TextBlock Text="Threshold Metrics" FontWeight="Bold" Margin="0,0,0,5"/>
+                    <TextBlock Text="Пороговые метрики" FontWeight="Bold" Margin="0,0,0,5"/>
                     <DataGrid ItemsSource="{Binding ThresholdMetrics}"
                             AutoGenerateColumns="False"
                             IsReadOnly="True"
                             Height="100"
                             ScrollViewer.VerticalScrollBarVisibility="Auto">
                         <DataGrid.Columns>
-                            <DataGridTextColumn Header="Threshold" Binding="{Binding Key, StringFormat={}{0:F3}}" Width="Auto"/>
+                            <DataGridTextColumn Header="Порог" Binding="{Binding Key, StringFormat={}{0:F3}}" Width="Auto"/>
                             <DataGridTextColumn Header="FAR (%)" Binding="{Binding Value.FAR, StringFormat={}{0:F2}}" Width="Auto"/>
                             <DataGridTextColumn Header="FRR (%)" Binding="{Binding Value.FRR, StringFormat={}{0:F2}}" Width="Auto"/>
-                            <DataGridTextColumn Header="Accuracy (%)" Binding="{Binding Value.Accuracy, StringFormat={}{0:F2}}" Width="Auto"/>
-                            <DataGridTextColumn Header="Error Rate (%)" Binding="{Binding Value.ErrorRate, StringFormat={}{0:F2}}" Width="Auto"/>
-                            <DataGridTextColumn Header="Precision (%)" Binding="{Binding Value.Precision, StringFormat={}{0:F2}}" Width="Auto"/>
-                            <DataGridTextColumn Header="Recall (%)" Binding="{Binding Value.Recall, StringFormat={}{0:F2}}" Width="Auto"/>
-                            <DataGridTextColumn Header="F-Measure" Binding="{Binding Value.FMeasure, StringFormat={}{0:F2}}" Width="Auto"/>
+                            <DataGridTextColumn Header="Точность (%)" Binding="{Binding Value.Accuracy, StringFormat={}{0:F2}}" Width="Auto"/>
+                            <DataGridTextColumn Header="Частота ошибок (%)" Binding="{Binding Value.ErrorRate, StringFormat={}{0:F2}}" Width="Auto"/>
+                            <DataGridTextColumn Header="Точность (Precision) (%)" Binding="{Binding Value.Precision, StringFormat={}{0:F2}}" Width="Auto"/>
+                            <DataGridTextColumn Header="Полнота (Recall) (%)" Binding="{Binding Value.Recall, StringFormat={}{0:F2}}" Width="Auto"/>
+                            <DataGridTextColumn Header="F-мера" Binding="{Binding Value.FMeasure, StringFormat={}{0:F2}}" Width="Auto"/>
                         </DataGrid.Columns>
                     </DataGrid>
                 </StackPanel>
@@ -67,9 +67,9 @@
 
         <StackPanel DockPanel.Dock="Bottom" Orientation="Horizontal"
                     HorizontalAlignment="Center" Margin="10">
-            <Button Content="Previous" Command="{Binding PreviousPageCommand}"
+            <Button Content="Предыдущая" Command="{Binding PreviousPageCommand}"
                     Width="80" Height="25" Margin="5,0" />
-            <Button Content="Next" Command="{Binding NextPageCommand}"
+            <Button Content="Следующая" Command="{Binding NextPageCommand}"
                     Width="80" Height="25" Margin="5,0" />
         </StackPanel>
 
@@ -88,17 +88,17 @@
                      AlternatingRowBackground="#F5F5F5"
                      RowHeaderWidth="0">
                 <DataGrid.Columns>
-                    <DataGridTextColumn Header="Login" Binding="{Binding Login}" Width="Auto"/>
-                    <DataGridTextColumn Header="Is Legal User" Binding="{Binding IsLegalUser}" Width="Auto"/>
-                    <DataGridTextColumn Header="Authentication Method" Binding="{Binding AuthenticationMethod}" Width="Auto"/>
-                    <DataGridTextColumn Header="Is Authenticated" Binding="{Binding IsAuthenticated}" Width="Auto"/>
+                    <DataGridTextColumn Header="Логин" Binding="{Binding Login}" Width="Auto"/>
+                    <DataGridTextColumn Header="Легальный пользователь" Binding="{Binding IsLegalUser}" Width="Auto"/>
+                    <DataGridTextColumn Header="Метод аутентификации" Binding="{Binding AuthenticationMethod}" Width="Auto"/>
+                    <DataGridTextColumn Header="Аутентифицирован" Binding="{Binding IsAuthenticated}" Width="Auto"/>
                     <DataGridTextColumn Header="N" Binding="{Binding N}" Width="Auto"/>
-                    <DataGridTextColumn Header="Threshold" Binding="{Binding Threshold, StringFormat={}{0:F3}}" Width="Auto"/>
+                    <DataGridTextColumn Header="Порог" Binding="{Binding Threshold, StringFormat={}{0:F3}}" Width="Auto"/>
                     <DataGridTextColumn Header="H Score" Binding="{Binding H_Score, StringFormat={}{0:F3}}" Width="Auto"/>
                     <DataGridTextColumn Header="DU Score" Binding="{Binding DU_Score, StringFormat={}{0:F3}}" Width="Auto"/>
                     <DataGridTextColumn Header="UU Score" Binding="{Binding UU_Score, StringFormat={}{0:F3}}" Width="Auto"/>
                     <DataGridTextColumn Header="DD Score" Binding="{Binding DD_Score, StringFormat={}{0:F3}}" Width="Auto"/>
-                    <DataGridTextColumn Header="Total Score" Binding="{Binding TotalAuthenticationScore, StringFormat={}{0:F3}}" Width="Auto"/>
+                    <DataGridTextColumn Header="Общий счет" Binding="{Binding TotalAuthenticationScore, StringFormat={}{0:F3}}" Width="Auto"/>
                 </DataGrid.Columns>
             </DataGrid>
         </ScrollViewer>

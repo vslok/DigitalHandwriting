@@ -196,7 +196,7 @@ namespace DigitalHandwriting.ViewModels
         {
             var dialog = new Microsoft.Win32.SaveFileDialog
             {
-                Title = "Select folder to save validation results",
+                Title = "Выберите папку для сохранения результатов проверки",
                 FileName = "Select Folder", // Placeholder name
                 CheckFileExists = false,
                 CheckPathExists = true,
@@ -213,12 +213,12 @@ namespace DigitalHandwriting.ViewModels
 
         private async void OnValidateDataClick()
         {
-            var dialog = new Microsoft.Win32.OpenFileDialog
+            var dialog = new OpenFileDialog
             {
                 FileName = "",
                 DefaultExt = ".csv",
                 Filter = "CSV (.csv)|*.csv",
-                Title = "Select test data CSV file"
+                Title = "Выберите CSV-файл с тестовыми данными"
             };
 
             if (dialog.ShowDialog() != true) return;
@@ -235,8 +235,8 @@ namespace DigitalHandwriting.ViewModels
                 await _algorithmValidationService.ValidateAuthentication(testDataPath, 3, saveDirectory);
 
                 System.Windows.MessageBox.Show(
-                    $"Validation completed successfully!\nResults saved in: {saveDirectory}",
-                    "Validation Complete",
+                    $"Проверка успешно завершена!\nРезультаты сохранены в: {saveDirectory}",
+                    "Проверка завершена",
                     System.Windows.MessageBoxButton.OK,
                     System.Windows.MessageBoxImage.Information
                 );
@@ -244,8 +244,8 @@ namespace DigitalHandwriting.ViewModels
             catch (Exception ex)
             {
                 System.Windows.MessageBox.Show(
-                    $"Error during validation: {ex.Message}",
-                    "Validation Error",
+                    $"Ошибка во время проверки: {ex.Message}",
+                    "Ошибка проверки",
                     System.Windows.MessageBoxButton.OK,
                     System.Windows.MessageBoxImage.Error
                 );

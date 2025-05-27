@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:DigitalHandwriting.Views"
         xmlns:viewmodels="clr-namespace:DigitalHandwriting.ViewModels"
         mc:Ignorable="d"
-        Title="Application Configuration"
+        Title="Конфигурация приложения"
         Width="500"
         Height="600"
         WindowStartupLocation="CenterOwner"
@@ -25,7 +25,7 @@
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
 
-        <TextBlock Grid.Row="0" Text="Validation Authentication Methods:" FontWeight="Bold" Margin="0,0,0,5"/>
+        <TextBlock Grid.Row="0" Text="Методы аутентификации для валидации:" FontWeight="Bold" Margin="0,0,0,5"/>
         <Border Grid.Row="1" BorderBrush="LightGray" BorderThickness="1" Margin="0,0,0,10">
             <ScrollViewer VerticalScrollBarVisibility="Auto">
                 <ListBox ItemsSource="{Binding AllValidationMethods}" SelectionMode="Multiple">
@@ -38,24 +38,24 @@
             </ScrollViewer>
         </Border>
 
-        <TextBlock Grid.Row="2" Text="Default Authentication Method:" FontWeight="Bold" Margin="0,10,0,5"/>
+        <TextBlock Grid.Row="2" Text="Метод аутентификации по умолчанию:" FontWeight="Bold" Margin="0,10,0,5"/>
         <ComboBox Grid.Row="3"
                   ItemsSource="{Binding AvailableDefaultMethods}"
                   SelectedItem="{Binding SelectedDefaultAuthenticationMethod, Mode=TwoWay}"
                   Margin="0,0,0,10"/>
 
-        <TextBlock Grid.Row="4" Text="Registration Passphrase Inputs (Number of times user types passphrase):" FontWeight="Bold" Margin="0,10,0,5"/>
+        <TextBlock Grid.Row="4" Text="Вводы парольной фразы при регистрации (количество раз, когда пользователь вводит парольную фразу):" FontWeight="Bold" Margin="0,10,0,5"/>
         <TextBox Grid.Row="5" Text="{Binding RegistrationPassphraseInputs, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="0,0,0,15"/>
 
-        <TextBlock Grid.Row="6" Text="N-graph value:" FontWeight="Bold" Margin="0,10,0,5"/>
+        <TextBlock Grid.Row="6" Text="Значение N-граммы:" FontWeight="Bold" Margin="0,10,0,5"/>
         <ComboBox Grid.Row="7"
                   ItemsSource="{Binding AvailableNgraphValues}"
                   SelectedItem="{Binding Ngraph, Mode=TwoWay}"
                   Margin="0,0,0,10"/>
 
         <StackPanel Grid.Row="8" Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,15,0,0">
-            <Button Content="Save" Command="{Binding SaveConfigurationCommand}" Width="75" Margin="0,0,10,0" IsDefault="True"/>
-            <Button Content="Cancel" Command="{Binding CancelCommand}" Width="75" IsCancel="True"/>
+            <Button Content="Сохранить" Command="{Binding SaveConfigurationCommand}" Width="75" Margin="0,0,10,0" IsDefault="True"/>
+            <Button Content="Отмена" Command="{Binding CancelCommand}" Width="75" IsCancel="True"/>
         </StackPanel>
     </Grid>
 </Window>

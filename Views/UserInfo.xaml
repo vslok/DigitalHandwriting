@@ -12,19 +12,19 @@
     <StackPanel Margin="5">
         <TextBlock Text="{Binding IsAuthentificated, Converter={converters:BoolToAuthorizationText}}"/>
         <StackPanel Orientation="Horizontal">
-            <TextBlock FontSize="8" Text="Key hold time result: "/>
+            <TextBlock FontSize="8" Text="Результат по времени удержания клавиши: "/>
             <TextBlock Text="{Binding KeyPressedMetric}"/>
         </StackPanel>
         <StackPanel Orientation="Horizontal">
-            <TextBlock FontSize="8" Text="Between keys time result (Up-Down): "/>
+            <TextBlock FontSize="8" Text="Результат по времени между нажатиями (клавиша вверх - клавиша вниз): "/>
             <TextBlock Text="{Binding BetweenKeysMetric}"/>
         </StackPanel>
         <StackPanel Orientation="Horizontal">
-            <TextBlock FontSize="8" Text="Between keys time result (Down-Down): "/>
+            <TextBlock FontSize="8" Text="Результат по времени между нажатиями (клавиша вниз - клавиша вниз): "/>
             <TextBlock Text="{Binding BetweenKeysPressMetric}"/>
         </StackPanel>
         <StackPanel Orientation="Horizontal">
-            <TextBlock FontSize="8" Text="Between keys time result (Up-Up): "/>
+            <TextBlock FontSize="8" Text="Результат по времени между нажатиями (клавиша вверх - клавиша вверх): "/>
             <TextBlock Text="{Binding BetweenKeysResolveMetric}"/>
         </StackPanel>
     </StackPanel>
