@@ -1,11 +1,11 @@
 import matplotlib.pyplot as plt
 
 metrics = {
-    "Euclidean": {"eer": [29.84, 30.82, 33.16], "f1": [70.16, 69.18, 66.84]},
-    "Normalized Euclidean": {"eer": [29.75, 30.93, 34.48], "f1": [70.25, 69.07, 65.52]},
+    "Расстояние Евклида": {"eer": [29.84, 30.82, 33.16], "f1": [70.16, 69.18, 66.84]},
+    "Нормализованное расстояние Евклида": {"eer": [29.75, 30.93, 34.48], "f1": [70.25, 69.07, 65.52]},
     "L1": {"eer": [26.78, 30.04, 33.27], "f1": [73.22, 69.96, 66.73]},
-    "L1 with filter": {"eer": [23.58, 26.45, 31.05], "f1": [76.42, 73.55, 68.95]},
-    "L1-scaled": {"eer": [18.72, 21.81, 27.10], "f1": [81.28, 78.19, 72.90]},
+    "L1 с фильтрацией": {"eer": [23.58, 26.45, 31.05], "f1": [76.42, 73.55, 68.95]},
+    "L1 с масштабированием": {"eer": [18.72, 21.81, 27.10], "f1": [81.28, 78.19, 72.90]},
     "ITAD": {"eer": [19.01, 21.22, 28.51], "f1": [80.99, 78.78, 71.49]}
 }
 
@@ -62,13 +62,13 @@ ax.annotate(f"{best_point_eer[2]}, N={best_point_eer[0]} — {best_eer:.2f}%",
 
 ax.annotate(f"{worst_point_eer[2]}, N={worst_point_eer[0]} — {worst_eer:.2f}%",
              xy=(worst_point_eer[0], worst_point_eer[1]),
-             xytext=(-300, -20), textcoords='offset points',
+             xytext=(-330, -20), textcoords='offset points',
              color='red', fontsize=10, fontweight='bold',
              bbox=dict(boxstyle="round,pad=0.3", fc="white", alpha=0.8),
              arrowprops=dict(arrowstyle="->", color='red'))
 
-ax.set_title("EER (%) by N-gram and Distance Metric")
-ax.set_xlabel("N-gram")
+ax.set_title("EER (%) по N-граммам и метрикам расстояния")
+ax.set_xlabel("N-граммы")
 ax.set_ylabel("EER (%)")
 ax.grid(True, linestyle='--', alpha=0.6)
 ax.set_xticks(ngrams)
@@ -77,8 +77,8 @@ ax = axs[1]
 for (name, values), color in zip(metrics.items(), colors):
     ax.plot(ngrams, values["f1"], label=name, marker='o', color=color)
 
-ax.scatter(best_point_f1[0], best_point_f1[1], color='green', zorder=5, edgecolor='black', label='Best Result')
-ax.scatter(worst_point_f1[0], worst_point_f1[1], color='red', zorder=5, edgecolor='black', label='Worst Result')
+ax.scatter(best_point_f1[0], best_point_f1[1], color='green', zorder=5, edgecolor='black', label='Лучший результат')
+ax.scatter(worst_point_f1[0], worst_point_f1[1], color='red', zorder=5, edgecolor='black', label='Худший результат')
 
 ax.annotate(f"{best_point_f1[2]}, N={best_point_f1[0]} — {best_f1:.2f}%",
              xy=(best_point_f1[0], best_point_f1[1]),
@@ -89,14 +89,14 @@ ax.annotate(f"{best_point_f1[2]}, N={best_point_f1[0]} — {best_f1:.2f}%",
 
 ax.annotate(f"{worst_point_f1[2]}, N={worst_point_f1[0]} — {worst_f1:.2f}%",
              xy=(worst_point_f1[0], worst_point_f1[1]),
-             xytext=(-300, 20), textcoords='offset points',
+             xytext=(-330, 20), textcoords='offset points',
              color='red', fontsize=10, fontweight='bold',
              bbox=dict(boxstyle="round,pad=0.3", fc="white", alpha=0.8),
              arrowprops=dict(arrowstyle="->", color='red'))
 
-ax.set_title("F1 Score (%) by N-gram and Distance Metric")
-ax.set_xlabel("N-gram")
-ax.set_ylabel("F1 Score (%)")
+ax.set_title("F1 (%) по N-граммам и метрикам расстояния")
+ax.set_xlabel("N-граммы")
+ax.set_ylabel("F1 (%)")
 ax.grid(True, linestyle='--', alpha=0.6)
 ax.set_xticks(ngrams)
 
@@ -127,12 +127,12 @@ plt.annotate(f"{worst_point_eer[2]}, N={worst_point_eer[0]} — {worst_eer:.2f}%
              bbox=dict(boxstyle="round,pad=0.3", fc="white", alpha=0.8),
              arrowprops=dict(arrowstyle="->", color='red'))
 
-plt.title("EER (%) by N-gram and Distance Metric")
-plt.xlabel("N-gram")
+plt.title("EER (%) по N-граммам и метрикам расстояния")
+plt.xlabel("N-граммы")
 plt.ylabel("EER (%)")
 plt.xticks(ngrams)
 plt.grid(True, linestyle='--', alpha=0.6)
-plt.legend(title="Metric", bbox_to_anchor=(1.05, 1), loc='upper left')
+plt.legend(title="Метрика", bbox_to_anchor=(1.05, 1), loc='upper left')
 plt.tight_layout()
 plt.savefig("eer_plot_final_huge.png")
 
@@ -144,24 +144,24 @@ plt.scatter(best_point_f1[0], best_point_f1[1], color='green', zorder=5, edgecol
 plt.scatter(worst_point_f1[0], worst_point_f1[1], color='red', zorder=5, edgecolor='black')
 
 plt.annotate(f"{best_point_f1[2]}, N={best_point_f1[0]} — {best_f1:.2f}%",
-             xy=(best_point_f1[0], best_point_f1[1]),
-             xytext=(-20, 20), textcoords='offset points',
-             color='green', fontsize=10, fontweight='bold',
-             bbox=dict(boxstyle="round,pad=0.3", fc="white", alpha=0.8),
-             arrowprops=dict(arrowstyle="->", color='green'))
+            xy=(best_point_f1[0], best_point_f1[1]),
+            xytext=(-20, 20), textcoords='offset points',
+            color='green', fontsize=10, fontweight='bold',
+            bbox=dict(boxstyle="round,pad=0.3", fc="white", alpha=0.8),
+            arrowprops=dict(arrowstyle="->", color='green'))
 
 plt.annotate(f"{worst_point_f1[2]}, N={worst_point_f1[0]} — {worst_f1:.2f}%",
-             xy=(worst_point_f1[0], worst_point_f1[1]),
-             xytext=(-20, -20), textcoords='offset points',
-             color='red', fontsize=10, fontweight='bold',
-             bbox=dict(boxstyle="round,pad=0.3", fc="white", alpha=0.8),
-             arrowprops=dict(arrowstyle="->", color='red'))
+            xy=(worst_point_f1[0], worst_point_f1[1]),
+            xytext=(-20, -20), textcoords='offset points',
+            color='red', fontsize=10, fontweight='bold',
+            bbox=dict(boxstyle="round,pad=0.3", fc="white", alpha=0.8),
+            arrowprops=dict(arrowstyle="->", color='red'))
 
-plt.title("F1 Score (%) by N-gram and Distance Metric")
-plt.xlabel("N-gram")
-plt.ylabel("F1 Score (%)")
+plt.title("F1 (%) по N-граммам и метрикам расстояния")
+plt.xlabel("N-граммы")
+plt.ylabel("F1 (%)")
 plt.xticks(ngrams)
 plt.grid(True, linestyle='--', alpha=0.6)
-plt.legend(title="Metric", bbox_to_anchor=(1.05, 1), loc='upper left')
+plt.legend(title="Метрика", bbox_to_anchor=(1.05, 1), loc='upper left')
 plt.tight_layout()
 plt.savefig("f1_plot_final_huge.png")

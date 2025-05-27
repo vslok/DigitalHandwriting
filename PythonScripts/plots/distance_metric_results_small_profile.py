@@ -1,11 +1,11 @@
 import matplotlib.pyplot as plt
 
 metrics = {
-    "Euclidean": {"eer": [38.95, 42.25, 43.27], "f1": [60.92, 57.55, 56.73]},
-    "Normalized Euclidean": {"eer": [46.13, 47.68, 48.81], "f1": [53.87, 52.32, 51.17]},
+    "Расстояние Евклида": {"eer": [38.95, 42.25, 43.27], "f1": [60.92, 57.55, 56.73]},
+    "Нормализованное расстояние Евклида": {"eer": [46.13, 47.68, 48.81], "f1": [53.87, 52.32, 51.17]},
     "L1": {"eer": [38.07, 41.28, 42.84], "f1": [61.96, 58.72, 57.16]},
-    "L1 with filter": {"eer": [37.39, 41.29, 42.71], "f1": [62.59, 58.71, 57.29]},
-    "L1-scaled": {"eer": [43.67, 45.00, 45.97], "f1": [56.33, 55.00, 54.02]},
+    "L1 с фильтрацией": {"eer": [37.39, 41.29, 42.71], "f1": [62.59, 58.71, 57.29]},
+    "L1 с масштабированием": {"eer": [43.67, 45.00, 45.97], "f1": [56.33, 55.00, 54.02]},
     "ITAD": {"eer": [60.88, 57.77, 54.25], "f1": [39.11, 42.22, 45.77]}
 }
 
@@ -67,8 +67,8 @@ ax.annotate(f"{worst_point_eer[2]}, N={worst_point_eer[0]} — {worst_eer:.2f}%"
              bbox=dict(boxstyle="round,pad=0.3", fc="white", alpha=0.8),
              arrowprops=dict(arrowstyle="->", color='red'))
 
-ax.set_title("EER (%) by N-gram and Distance Metric")
-ax.set_xlabel("N-gram")
+ax.set_title("EER (%) по N-граммам и метрикам расстояния")
+ax.set_xlabel("N-граммы")
 ax.set_ylabel("EER (%)")
 ax.grid(True, linestyle='--', alpha=0.6)
 ax.set_xticks(ngrams)
@@ -77,8 +77,8 @@ ax = axs[1]
 for (name, values), color in zip(metrics.items(), colors):
     ax.plot(ngrams, values["f1"], label=name, marker='o', color=color)
 
-ax.scatter(best_point_f1[0], best_point_f1[1], color='green', zorder=5, edgecolor='black', label='Best Result')
-ax.scatter(worst_point_f1[0], worst_point_f1[1], color='red', zorder=5, edgecolor='black', label='Worst Result')
+ax.scatter(best_point_f1[0], best_point_f1[1], color='green', zorder=5, edgecolor='black', label='Лучший результат')
+ax.scatter(worst_point_f1[0], worst_point_f1[1], color='red', zorder=5, edgecolor='black', label='Худший результат')
 
 ax.annotate(f"{best_point_f1[2]}, N={best_point_f1[0]} — {best_f1:.2f}%",
              xy=(best_point_f1[0], best_point_f1[1]),
@@ -94,9 +94,9 @@ ax.annotate(f"{worst_point_f1[2]}, N={worst_point_f1[0]} — {worst_f1:.2f}%",
              bbox=dict(boxstyle="round,pad=0.3", fc="white", alpha=0.8),
              arrowprops=dict(arrowstyle="->", color='red'))
 
-ax.set_title("F1 Score (%) by N-gram and Distance Metric")
-ax.set_xlabel("N-gram")
-ax.set_ylabel("F1 Score (%)")
+ax.set_title("F1 (%) по N-граммам и метрикам расстояния")
+ax.set_xlabel("N-граммы")
+ax.set_ylabel("F1 (%)")
 ax.grid(True, linestyle='--', alpha=0.6)
 ax.set_xticks(ngrams)
 
@@ -127,12 +127,12 @@ plt.annotate(f"{worst_point_eer[2]}, N={worst_point_eer[0]} — {worst_eer:.2f}%
              bbox=dict(boxstyle="round,pad=0.3", fc="white", alpha=0.8),
              arrowprops=dict(arrowstyle="->", color='red'))
 
-plt.title("EER (%) by N-gram and Distance Metric")
-plt.xlabel("N-gram")
+plt.title("EER (%) по N-граммам и метрикам расстояния")
+plt.xlabel("N-граммы")
 plt.ylabel("EER (%)")
 plt.xticks(ngrams)
 plt.grid(True, linestyle='--', alpha=0.6)
-plt.legend(title="Metric", bbox_to_anchor=(1.05, 1), loc='upper left')
+plt.legend(title="Метрика", bbox_to_anchor=(1.05, 1), loc='upper left')
 plt.tight_layout()
 plt.savefig("eer_plot_final_small.png")
 
@@ -157,11 +157,11 @@ plt.annotate(f"{worst_point_f1[2]}, N={worst_point_f1[0]} — {worst_f1:.2f}%",
              bbox=dict(boxstyle="round,pad=0.3", fc="white", alpha=0.8),
              arrowprops=dict(arrowstyle="->", color='red'))
 
-plt.title("F1 Score (%) by N-gram and Distance Metric")
-plt.xlabel("N-gram")
-plt.ylabel("F1 Score (%)")
+plt.title("F1 (%) по N-граммам и метрикам расстояния")
+plt.xlabel("N-граммы")
+plt.ylabel("F1 (%)")
 plt.xticks(ngrams)
 plt.grid(True, linestyle='--', alpha=0.6)
-plt.legend(title="Metric", bbox_to_anchor=(1.05, 1), loc='upper left')
+plt.legend(title="Метрика", bbox_to_anchor=(1.05, 1), loc='upper left')
 plt.tight_layout()
 plt.savefig("f1_plot_final_small.png")
